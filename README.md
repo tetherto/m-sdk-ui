@@ -89,9 +89,19 @@ export default antfu({
 
 ## Adding Dependencies to a Package
 
+Using filter from root:
+
 ```bash
 pnpm add react --filter @mdk-ui/components
 pnpm add -D vitest --filter @mdk-ui/components
+```
+
+Or cd into the package directory:
+
+```bash
+cd packages/components
+pnpm add react
+pnpm add -D vitest
 ```
 
 ## CI
