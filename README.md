@@ -229,7 +229,7 @@ import { Button, DataTable, LineChart } from "@mdk/components-foundation";
 
 **Contents**:
 - DeviceExplorer, MinerCard, ListView
-- Container components (Bitdeer, MicroBT, EMCA, Gabbani)
+- Container components
 - HashRateChart, TemperatureMonitor
 - AlertsWidget, PoolStatusCard
 - Real-time data displays
