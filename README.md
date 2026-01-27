@@ -2,8 +2,8 @@
 
 > A developer-first toolkit providing pre-built components and seamless backend integration for building mining operations applications in days instead of weeks.
 
-[![CI](https://github.com/bitfinex/miningos-ui-kit/workflows/ci/badge.svg)](https://github.com/bitfinex/miningos-ui-kit/actions)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/tetherto/miningos-ui-kit/workflows/ci/badge.svg)](https://github.com/tetherto/miningos-ui-kit/actions)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tetherto/moria-app-ui/blob/staging/LICENSE)
 
 ## 📋 Table of Contents
 
@@ -22,14 +22,13 @@
 
 ## Overview
 
-The **MDK UI Development Kit** is a comprehensive toolkit extracted from production-tested Mining OS (moria-app-ui) codebase, providing:
+The **MDK UI Development Kit** is a comprehensive toolkit providing:
 
 - **150-200+ production-tested components** (foundation + domain-specific)
 - **87+ API integration hooks** (RTK Query-based)
 - **70+ custom React hooks** for common patterns
 - **Complete state management** (Redux Toolkit)
 - **Modern tech stack** (React 19, shadcn/ui, React Hook Form, Zod)
-- **29% bundle size reduction** (700KB → <500KB)
 - **5x faster forms** compared to legacy solutions
 
 ### Key Benefits
@@ -148,7 +147,7 @@ graph LR
 
 ```bash
 # Clone the repository
-git clone https://github.com/bitfinex/miningos-ui-kit.git
+git clone https://github.com/tetherto/miningos-ui-kit.git
 cd miningos-ui-kit
 
 # Install dependencies
@@ -884,33 +883,25 @@ Changelog is auto-generated from commit messages. Follow conventional commits fo
 
 ### Documentation
 
-- **API Documentation**: [docs.mdk.io](https://docs.mdk.io) (TBD)
-- **Component Playground**: [playground.mdk.io](https://playground.mdk.io) (TBD)
-- **Migration Guide**: [docs/MIGRATION.md](docs/MIGRATION.md) (TBD)
-
+- **API Documentation**: [docs.mdk.io]() (TBD)
+- **Component Playground**
 ### Examples
 
 - **Minimal App**: [examples/minimal-app](examples/minimal-app)
 - **Dashboard App**: [examples/dashboard-app](examples/dashboard-app)
 
-### Related Projects
-
-- **Mining OS**: [github.com/bitfinex/moria-app-ui](https://github.com/bitfinex/moria-app-ui)
-- **WDK**: Tether's Wallet Development Kit
-
 ### Support
 
-- **Issues**: [GitHub Issues](https://github.com/bitfinex/miningos-ui-kit/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/bitfinex/miningos-ui-kit/discussions)
+- **Issues**: [GitHub Issues](https://github.com/tetherto/miningos-ui-kit/issues)
 
 ---
 
 ## License
 
-MIT © Bitfinex
+Apache 2.0 - See [LICENSE](https://github.com/tetherto/moria-app-ui/blob/staging/LICENSE) for details.
 
 ---
 
 ## Acknowledgments
 
-Extracted from production-tested Mining OS (moria-app-ui) codebase with contributions from the entire Bitfinex mining operations team.
+Built with contributions from the mining operations team.
