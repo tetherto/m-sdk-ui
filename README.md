@@ -2,7 +2,6 @@
 
 > A developer-first toolkit providing pre-built components and seamless backend integration for building mining operations applications in days instead of weeks.
 
-[![CI](https://github.com/tetherto/miningos-ui-kit/workflows/ci/badge.svg)](https://github.com/tetherto/miningos-ui-kit/actions)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tetherto/moria-app-ui/blob/staging/LICENSE)
 
 ## 📋 Table of Contents
@@ -34,7 +33,6 @@ The **MDK UI Development Kit** is a comprehensive toolkit providing:
 - 🔌 **Seamless integration** - Type-safe API client with intelligent caching
 - 🎯 **Battle-tested** - Extracted from production Mining OS codebase
 - 📦 **Zero CSS-in-JS runtime** - Better performance, smaller bundles
-- ♿ **Accessible by default** - WCAG compliant components
 
 ---
 
