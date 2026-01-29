@@ -1,15 +1,10 @@
-import antfu from '@antfu/eslint-config';
+import antfu from '@antfu/eslint-config'
 
 export default antfu(
   {
     type: 'lib',
     typescript: true,
-    formatters: true,
-    stylistic: {
-      indent: 2,
-      quotes: 'single',
-      semi: true,
-    },
+    formatters: false,
   },
   {
     rules: {
@@ -33,4 +28,4 @@ export default antfu(
       ],
     },
   },
-);
+)
