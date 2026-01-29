@@ -10,23 +10,23 @@ graph TB
         Types[TypeScript Types]
         Tests[Test Patterns]
     end
-    
+
     subgraph Layer2[Layer 2: Integration & State]
         API[API Client<br/>RTK Query]
         State[State Management<br/>Redux Toolkit]
         Hooks[Custom Hooks<br/>70+ hooks]
         Auth[Auth & Permissions]
     end
-    
+
     subgraph Layer1[Layer 1: Component Library]
         Foundation[Foundation Components<br/>Generic, Reusable]
         Domain[Domain Components<br/>Mining-Specific]
         Features[Feature Modules<br/>Complete Features]
     end
-    
+
     Layer3 --> Layer2
     Layer2 --> Layer1
-    
+
     style Layer1 fill:#e1f5ff
     style Layer2 fill:#fff3e0
     style Layer3 fill:#f3e5f5
@@ -67,13 +67,13 @@ graph LR
     Hooks[@mdk/hooks]
     Core[@mdk/core]
     Theme[@mdk/theme]
-    
+
     App --> Features
     App --> Domain
     App --> Foundation
     App --> API
     App --> State
-    
+
     Features --> Domain
     Features --> Foundation
     Domain --> Foundation
@@ -83,7 +83,7 @@ graph LR
     API --> Core
     State --> Core
     Hooks --> Core
-    
+
     style App fill:#4caf50
     style Features fill:#2196f3
     style Domain fill:#ff9800
@@ -97,14 +97,16 @@ graph LR
 **Purpose**: Shared types, constants, and utilities
 
 **Contents**:
+
 - TypeScript types and interfaces
 - Shared constants (routes, colors, units, etc.)
 - Pure utility functions
 - Common type guards
 
 **Usage**:
+
 ```typescript
-import { DeviceType, formatHashrate, isValidMiner } from "@mdk/core";
+import { DeviceType, formatHashrate, isValidMiner } from '@mdk/core';
 ```
 
 ---
@@ -114,6 +116,7 @@ import { DeviceType, formatHashrate, isValidMiner } from "@mdk/core";
 **Purpose**: Generic, reusable UI components
 
 **Contents**:
+
 - DataTable (sortable, filterable, paginated)
 - Chart wrappers (LineChart, BarChart, DoughnutChart)
 - Form components (Input, Select, Checkbox, etc.)
@@ -121,11 +124,13 @@ import { DeviceType, formatHashrate, isValidMiner } from "@mdk/core";
 - Feedback components (Alert, Toast, Loading)
 
 **Usage**:
+
 ```typescript
-import { Button, DataTable, LineChart } from "@mdk/components-foundation";
+import { Button, DataTable, LineChart } from '@mdk/components-foundation';
 ```
 
 **Key Features**:
+
 - Built on shadcn/ui + Radix UI
 - Zero CSS-in-JS runtime
 - Fully accessible (WCAG compliant)
@@ -138,6 +143,7 @@ import { Button, DataTable, LineChart } from "@mdk/components-foundation";
 **Purpose**: Mining-specific components
 
 **Contents**:
+
 - DeviceExplorer, MinerCard, ListView
 - Container components
 - HashRateChart, TemperatureMonitor
@@ -145,8 +151,9 @@ import { Button, DataTable, LineChart } from "@mdk/components-foundation";
 - Real-time data displays
 
 **Usage**:
+
 ```typescript
-import { MinerCard, HashRateChart, DeviceExplorer } from "@mdk/components-domain";
+import { MinerCard, HashRateChart, DeviceExplorer } from '@mdk/components-domain';
 ```
 
 ---
@@ -156,6 +163,7 @@ import { MinerCard, HashRateChart, DeviceExplorer } from "@mdk/components-domain
 **Purpose**: Complete, ready-to-use feature modules
 
 **Contents**:
+
 - Dashboard module (complete single-site dashboard)
 - Device Management module (Explorer + List + Details)
 - Container Management module (all container types)
@@ -165,6 +173,7 @@ import { MinerCard, HashRateChart, DeviceExplorer } from "@mdk/components-domain
 - Multi-Site Dashboard module
 
 **Usage**:
+
 ```typescript
 import { DashboardModule, DeviceManagementModule } from "@mdk/features";
 
@@ -186,6 +195,7 @@ function App() {
 **Purpose**: RTK Query-based API client with 87+ hooks
 
 **Contents**:
+
 - Auth endpoints (getUserinfo, postToken, getUserPermissions)
 - Device endpoints (getListThings, getThingConfig)
 - Operations endpoints (hashrate, consumption, workers, efficiency)
@@ -195,12 +205,13 @@ function App() {
 - Tag-based invalidation
 
 **Usage**:
+
 ```typescript
 import { useGetListThingsQuery, useGetOperationsHashrateQuery } from "@mdk/api-client";
 
 function DeviceList() {
   const { data, isLoading } = useGetListThingsQuery({ siteId: "site-1" });
-  
+
   if (isLoading) return <Loading />;
   return <div>{data.things.map(thing => <MinerCard key={thing.id} {...thing} />)}</div>;
 }
@@ -213,6 +224,7 @@ function DeviceList() {
 **Purpose**: 70+ custom React hooks
 
 **Contents**:
+
 - Data fetching hooks (useDeviceData, useRealTimeMetrics)
 - Business logic hooks (useHashrateCalculation, useEfficiencyScore)
 - UI utility hooks (useDebounce, useLocalStorage, useMediaQuery)
@@ -220,14 +232,15 @@ function DeviceList() {
 - Form hooks (useFormValidation, useFieldArray)
 
 **Usage**:
+
 ```typescript
-import { useDebounce, useLocalStorage, useRealTimeMetrics } from "@mdk/hooks";
+import { useDebounce, useLocalStorage, useRealTimeMetrics } from '@mdk/hooks';
 
 function SearchBar() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 300);
-  const [recentSearches, setRecentSearches] = useLocalStorage("recent-searches", []);
-  
+  const [recentSearches, setRecentSearches] = useLocalStorage('recent-searches', []);
+
   // ... rest of component
 }
 ```
@@ -239,6 +252,7 @@ function SearchBar() {
 **Purpose**: Redux Toolkit state management
 
 **Contents**:
+
 - Authentication slice (user, token, permissions)
 - Device selection slice (selected devices, filters)
 - Notification slice (toasts, alerts)
@@ -247,13 +261,14 @@ function SearchBar() {
 - UI state slice (sidebar, modals)
 
 **Usage**:
+
 ```typescript
-import { useAppSelector, useAppDispatch, selectSelectedDevices } from "@mdk/state";
+import { useAppSelector, useAppDispatch, selectSelectedDevices } from '@mdk/state';
 
 function DeviceActions() {
   const dispatch = useAppDispatch();
   const selectedDevices = useAppSelector(selectSelectedDevices);
-  
+
   // ... rest of component
 }
 ```
@@ -265,6 +280,7 @@ function DeviceActions() {
 **Purpose**: Design system and theming
 
 **Contents**:
+
 - Design tokens (colors, spacing, typography)
 - Light/dark theme definitions
 - CSS variables for performance
@@ -272,6 +288,7 @@ function DeviceActions() {
 - Theme switching utilities
 
 **Usage**:
+
 ```typescript
 import { ThemeProvider, useTheme } from "@mdk/theme";
 
@@ -357,16 +374,16 @@ function ThemeToggle() {
 
 ### Bundle Size Targets
 
-| Package | Target Size (gzipped) | Current Size |
-|---------|----------------------|--------------|
-| `@mdk/core` | < 50KB | TBD |
-| `@mdk/components-foundation` | < 150KB | TBD |
-| `@mdk/components-domain` | < 200KB | TBD |
-| `@mdk/features` | < 250KB | TBD |
-| `@mdk/api-client` | < 100KB | TBD |
-| `@mdk/hooks` | < 50KB | TBD |
-| `@mdk/state` | < 50KB | TBD |
-| `@mdk/theme` | < 30KB | TBD |
+| Package                      | Target Size (gzipped) | Current Size |
+| ---------------------------- | --------------------- | ------------ |
+| `@mdk/core`                  | < 50KB                | TBD          |
+| `@mdk/components-foundation` | < 150KB               | TBD          |
+| `@mdk/components-domain`     | < 200KB               | TBD          |
+| `@mdk/features`              | < 250KB               | TBD          |
+| `@mdk/api-client`            | < 100KB               | TBD          |
+| `@mdk/hooks`                 | < 50KB                | TBD          |
+| `@mdk/state`                 | < 50KB                | TBD          |
+| `@mdk/theme`                 | < 30KB                | TBD          |
 
 **Total**: < 500KB (vs. 700KB legacy)
 

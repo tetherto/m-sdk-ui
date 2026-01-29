@@ -16,11 +16,14 @@
     "lint:fix": {
       "cache": false
     },
+    "format": {
+      "cache": false
+    },
     "typecheck": {
       "dependsOn": ["^build"]
     },
     "check": {
-      "dependsOn": ["lint", "typecheck"]
+      "dependsOn": ["lint", "format", "typecheck"]
     },
     "clean": {
       "cache": false

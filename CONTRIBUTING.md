@@ -26,6 +26,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 **Types**:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -35,6 +36,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/):
 - `chore`: Maintenance tasks
 
 **Examples**:
+
 ```
 feat(components): add MinerCard component
 fix(api-client): handle null response in useGetListThingsQuery
@@ -155,15 +157,15 @@ cd packages/my-package
 4. Create `src/index.ts`:
 
 ```typescript
-export * from "./my-component";
+export * from './my-component';
 ```
 
 5. Update workspace `pnpm-workspace.yaml` (if needed):
 
 ```yaml
 packages:
-  - "packages/*"
-  - "apps/*"
+  - 'packages/*'
+  - 'apps/*'
 ```
 
 ### Package Configuration
@@ -192,14 +194,14 @@ Packages can override root ESLint config:
 
 ```js
 // eslint.config.mjs
-import antfu from "@antfu/eslint-config";
+import antfu from '@antfu/eslint-config';
 
 export default antfu({
   react: true,
   typescript: true,
   stylistic: {
     indent: 2,
-    quotes: "double",
+    quotes: 'double',
     semi: true,
   },
   rules: {
@@ -211,6 +213,7 @@ export default antfu({
 ## Testing Guidelines
 
 **Component Tests**:
+
 ```typescript
 import { render, screen } from "@testing-library/react";
 import { Button } from "./Button";
@@ -224,7 +227,7 @@ describe("Button", () => {
   it("handles click events", async () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
-    
+
     await userEvent.click(screen.getByText("Click me"));
     expect(handleClick).toHaveBeenCalledOnce();
   });
@@ -232,35 +235,37 @@ describe("Button", () => {
 ```
 
 **Hook Tests**:
+
 ```typescript
-import { renderHook } from "@testing-library/react";
-import { useDebounce } from "./useDebounce";
+import { renderHook } from '@testing-library/react';
+import { useDebounce } from './useDebounce';
 
-describe("useDebounce", () => {
-  it("debounces value changes", async () => {
-    const { result, rerender } = renderHook(
-      ({ value, delay }) => useDebounce(value, delay),
-      { initialProps: { value: "initial", delay: 300 } }
-    );
+describe('useDebounce', () => {
+  it('debounces value changes', async () => {
+    const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
+      initialProps: { value: 'initial', delay: 300 },
+    });
 
-    expect(result.current).toBe("initial");
+    expect(result.current).toBe('initial');
 
-    rerender({ value: "updated", delay: 300 });
-    expect(result.current).toBe("initial"); // Still initial
+    rerender({ value: 'updated', delay: 300 });
+    expect(result.current).toBe('initial'); // Still initial
 
-    await waitFor(() => expect(result.current).toBe("updated"), { timeout: 400 });
+    await waitFor(() => expect(result.current).toBe('updated'), { timeout: 400 });
   });
 });
 ```
 
 **Coverage Requirements**:
+
 - Minimum 80% coverage for all packages
 - 100% coverage for critical utilities
 
 ## Documentation Guidelines
 
 **Component Documentation**:
-```typescript
+
+````typescript
 /**
  * A button component that handles user interactions.
  *
@@ -273,9 +278,9 @@ describe("useDebounce", () => {
  */
 export interface ButtonProps {
   /** The button variant */
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: 'primary' | 'secondary' | 'ghost';
   /** The button size */
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   /** Whether the button is disabled */
   disabled?: boolean;
   /** Click handler */
@@ -284,13 +289,14 @@ export interface ButtonProps {
   children: React.ReactNode;
 }
 
-export function Button({ variant = "primary", size = "md", ...props }: ButtonProps) {
+export function Button({ variant = 'primary', size = 'md', ...props }: ButtonProps) {
   // Implementation
 }
-```
+````
 
 **Hook Documentation**:
-```typescript
+
+````typescript
 /**
  * Debounces a value change.
  *
@@ -311,27 +317,32 @@ export function Button({ variant = "primary", size = "md", ...props }: ButtonPro
 export function useDebounce<T>(value: T, delay: number): T {
   // Implementation
 }
-```
+````
 
 ## Pull Request Guidelines
 
 **PR Title**: Use conventional commit format
+
 ```
 feat(components): add MinerCard component
 ```
 
 **PR Description Template**:
+
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Checklist
+
 - [ ] Code follows style guidelines
 - [ ] Self-review completed
 - [ ] Comments added for complex code
@@ -342,9 +353,11 @@ Brief description of changes
 - [ ] Dependent changes merged
 
 ## Screenshots (if applicable)
+
 Add screenshots here
 
 ## Related Issues
+
 Closes #123
 ```
 
