@@ -1,4 +1,4 @@
-# MDK UI Development Kit
+# Mining SDK UI Development Kit
 
 > A developer-first toolkit providing pre-built components and seamless backend integration for building mining operations applications in days instead of weeks.
 
@@ -17,7 +17,7 @@
 
 ## Overview
 
-The **MDK UI Development Kit** is a comprehensive toolkit providing:
+The **Mining SDK UI Development Kit** is a comprehensive toolkit providing:
 
 - **150-200+ production-tested components** (foundation + domain-specific)
 - **87+ API integration hooks** (RTK Query-based)
@@ -64,7 +64,7 @@ pnpm build
 pnpm dev
 
 # Run specific package
-pnpm dev --filter @mdk/components-foundation
+pnpm dev --filter @miningsdk/components-foundation
 
 # Build all packages
 pnpm build
@@ -82,7 +82,6 @@ pnpm check
 
 - **[Architecture](ARCHITECTURE.md)** - System architecture, package structure, and technology stack
 - **[Contributing](CONTRIBUTING.md)** - Contribution guidelines, development workflow, and coding standards
-- **API Documentation**: [docs.mdk.io]() (TBD)
 
 ---
 

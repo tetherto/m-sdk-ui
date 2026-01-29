@@ -61,11 +61,11 @@ chore(deps): update dependencies
 ```bash
 # Development
 pnpm dev                    # Run all packages in dev mode
-pnpm dev --filter @mdk/core # Run specific package
+pnpm dev --filter @miningsdk/core # Run specific package
 
 # Building
 pnpm build                  # Build all packages
-pnpm build --filter @mdk/*  # Build specific packages
+pnpm build --filter @miningsdk/*  # Build specific packages
 
 # Testing
 pnpm test                   # Run all tests
@@ -88,8 +88,8 @@ pnpm clean                  # Remove all build artifacts
 
 ```bash
 # From root (recommended)
-pnpm add react --filter @mdk/components-foundation
-pnpm add -D vitest --filter @mdk/components-foundation
+pnpm add react --filter @miningsdk/components-foundation
+pnpm add -D vitest --filter @miningsdk/components-foundation
 
 # Or cd into package
 cd packages/components-foundation
@@ -117,7 +117,7 @@ cd packages/my-package
 
 ```json
 {
-  "name": "@mdk/my-package",
+  "name": "@miningsdk/my-package",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.js",
