@@ -64,7 +64,7 @@ pnpm build
 pnpm dev
 
 # Run specific package
-pnpm dev --filter @miningsdk/components-foundation
+pnpm dev --filter @mining-sdk/components-foundation
 
 # Build all packages
 pnpm build

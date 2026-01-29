@@ -37,14 +37,14 @@ graph TB
 ```
 miningos-ui-kit/
 ├── packages/
-│   ├── core/                    # @miningsdk/core - Types, constants, utilities
-│   ├── hooks/                   # @miningsdk/hooks - 70+ custom React hooks
-│   ├── state/                   # @miningsdk/state - Redux slices
-│   ├── api-client/              # @miningsdk/api-client - RTK Query endpoints
-│   ├── components-foundation/   # @miningsdk/components-foundation - Generic components
-│   ├── components-domain/       # @miningsdk/components-domain - Mining-specific
-│   ├── features/                # @miningsdk/features - Complete feature modules
-│   └── theme/                   # @miningsdk/theme - Design system
+│   ├── core/                    # @mining-sdk/core - Types, constants, utilities
+│   ├── hooks/                   # @mining-sdk/hooks - 70+ custom React hooks
+│   ├── state/                   # @mining-sdk/state - Redux slices
+│   ├── api-client/              # @mining-sdk/api-client - RTK Query endpoints
+│   ├── components-foundation/   # @mining-sdk/components-foundation - Generic components
+│   ├── components-domain/       # @mining-sdk/components-domain - Mining-specific
+│   ├── features/                # @mining-sdk/features - Complete feature modules
+│   └── theme/                   # @mining-sdk/theme - Design system
 ├── apps/
 │   ├── docs/                    # Documentation site
 │   ├── playground/              # Component playground
@@ -59,14 +59,14 @@ miningos-ui-kit/
 ```mermaid
 graph LR
     App[Your Application]
-    Features[@miningsdk/features]
-    Domain[@miningsdk/components-domain]
-    Foundation[@miningsdk/components-foundation]
-    API[@miningsdk/api-client]
-    State[@miningsdk/state]
-    Hooks[@miningsdk/hooks]
-    Core[@miningsdk/core]
-    Theme[@miningsdk/theme]
+    Features[@mining-sdk/features]
+    Domain[@mining-sdk/components-domain]
+    Foundation[@mining-sdk/components-foundation]
+    API[@mining-sdk/api-client]
+    State[@mining-sdk/state]
+    Hooks[@mining-sdk/hooks]
+    Core[@mining-sdk/core]
+    Theme[@mining-sdk/theme]
     
     App --> Features
     App --> Domain
@@ -92,7 +92,7 @@ graph LR
 
 ## Core Packages
 
-### `@miningsdk/core`
+### `@mining-sdk/core`
 
 **Purpose**: Shared types, constants, and utilities
 
@@ -104,12 +104,12 @@ graph LR
 
 **Usage**:
 ```typescript
-import { DeviceType, formatHashrate, isValidMiner } from "@miningsdk/core";
+import { DeviceType, formatHashrate, isValidMiner } from "@mining-sdk/core";
 ```
 
 ---
 
-### `@miningsdk/components-foundation`
+### `@mining-sdk/components-foundation`
 
 **Purpose**: Generic, reusable UI components
 
@@ -122,7 +122,7 @@ import { DeviceType, formatHashrate, isValidMiner } from "@miningsdk/core";
 
 **Usage**:
 ```typescript
-import { Button, DataTable, LineChart } from "@miningsdk/components-foundation";
+import { Button, DataTable, LineChart } from "@mining-sdk/components-foundation";
 ```
 
 **Key Features**:
@@ -133,7 +133,7 @@ import { Button, DataTable, LineChart } from "@miningsdk/components-foundation";
 
 ---
 
-### `@miningsdk/components-domain`
+### `@mining-sdk/components-domain`
 
 **Purpose**: Mining-specific components
 
@@ -146,12 +146,12 @@ import { Button, DataTable, LineChart } from "@miningsdk/components-foundation";
 
 **Usage**:
 ```typescript
-import { MinerCard, HashRateChart, DeviceExplorer } from "@miningsdk/components-domain";
+import { MinerCard, HashRateChart, DeviceExplorer } from "@mining-sdk/components-domain";
 ```
 
 ---
 
-### `@miningsdk/features`
+### `@mining-sdk/features`
 
 **Purpose**: Complete, ready-to-use feature modules
 
@@ -166,7 +166,7 @@ import { MinerCard, HashRateChart, DeviceExplorer } from "@miningsdk/components-
 
 **Usage**:
 ```typescript
-import { DashboardModule, DeviceManagementModule } from "@miningsdk/features";
+import { DashboardModule, DeviceManagementModule } from "@mining-sdk/features";
 
 function App() {
   return (
@@ -181,7 +181,7 @@ function App() {
 
 ---
 
-### `@miningsdk/api-client`
+### `@mining-sdk/api-client`
 
 **Purpose**: RTK Query-based API client with 87+ hooks
 
@@ -196,7 +196,7 @@ function App() {
 
 **Usage**:
 ```typescript
-import { useGetListThingsQuery, useGetOperationsHashrateQuery } from "@miningsdk/api-client";
+import { useGetListThingsQuery, useGetOperationsHashrateQuery } from "@mining-sdk/api-client";
 
 function DeviceList() {
   const { data, isLoading } = useGetListThingsQuery({ siteId: "site-1" });
@@ -208,7 +208,7 @@ function DeviceList() {
 
 ---
 
-### `@miningsdk/hooks`
+### `@mining-sdk/hooks`
 
 **Purpose**: 70+ custom React hooks
 
@@ -221,7 +221,7 @@ function DeviceList() {
 
 **Usage**:
 ```typescript
-import { useDebounce, useLocalStorage, useRealTimeMetrics } from "@miningsdk/hooks";
+import { useDebounce, useLocalStorage, useRealTimeMetrics } from "@mining-sdk/hooks";
 
 function SearchBar() {
   const [search, setSearch] = useState("");
@@ -234,7 +234,7 @@ function SearchBar() {
 
 ---
 
-### `@miningsdk/state`
+### `@mining-sdk/state`
 
 **Purpose**: Redux Toolkit state management
 
@@ -248,7 +248,7 @@ function SearchBar() {
 
 **Usage**:
 ```typescript
-import { useAppSelector, useAppDispatch, selectSelectedDevices } from "@miningsdk/state";
+import { useAppSelector, useAppDispatch, selectSelectedDevices } from "@mining-sdk/state";
 
 function DeviceActions() {
   const dispatch = useAppDispatch();
@@ -260,7 +260,7 @@ function DeviceActions() {
 
 ---
 
-### `@miningsdk/theme`
+### `@mining-sdk/theme`
 
 **Purpose**: Design system and theming
 
@@ -273,7 +273,7 @@ function DeviceActions() {
 
 **Usage**:
 ```typescript
-import { ThemeProvider, useTheme } from "@miningsdk/theme";
+import { ThemeProvider, useTheme } from "@mining-sdk/theme";
 
 function App() {
   return (
@@ -359,14 +359,14 @@ function ThemeToggle() {
 
 | Package | Target Size (gzipped) | Current Size |
 |---------|----------------------|--------------|
-| `@miningsdk/core` | < 50KB | TBD |
-| `@miningsdk/components-foundation` | < 150KB | TBD |
-| `@miningsdk/components-domain` | < 200KB | TBD |
-| `@miningsdk/features` | < 250KB | TBD |
-| `@miningsdk/api-client` | < 100KB | TBD |
-| `@miningsdk/hooks` | < 50KB | TBD |
-| `@miningsdk/state` | < 50KB | TBD |
-| `@miningsdk/theme` | < 30KB | TBD |
+| `@mining-sdk/core` | < 50KB | TBD |
+| `@mining-sdk/components-foundation` | < 150KB | TBD |
+| `@mining-sdk/components-domain` | < 200KB | TBD |
+| `@mining-sdk/features` | < 250KB | TBD |
+| `@mining-sdk/api-client` | < 100KB | TBD |
+| `@mining-sdk/hooks` | < 50KB | TBD |
+| `@mining-sdk/state` | < 50KB | TBD |
+| `@mining-sdk/theme` | < 30KB | TBD |
 
 **Total**: < 500KB (vs. 700KB legacy)
 
