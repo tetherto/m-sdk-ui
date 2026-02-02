@@ -11,9 +11,6 @@ build
 # Turbo
 .turbo
 
-# ESLint cache
-.eslintcache
-
 # Environment
 .env
 .env.*
