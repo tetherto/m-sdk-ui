@@ -106,7 +106,7 @@ graph LR
 **Usage**:
 
 ```typescript
-import { DeviceType, formatHashrate, isValidMiner } from '@mdk/core';
+import { DeviceType, formatHashrate, isValidMiner } from '@mdk/core'
 ```
 
 ---
@@ -126,7 +126,7 @@ import { DeviceType, formatHashrate, isValidMiner } from '@mdk/core';
 **Usage**:
 
 ```typescript
-import { Button, DataTable, LineChart } from '@mdk/components-foundation';
+import { Button, DataTable, LineChart } from '@mdk/components-foundation'
 ```
 
 **Key Features**:
@@ -153,7 +153,7 @@ import { Button, DataTable, LineChart } from '@mdk/components-foundation';
 **Usage**:
 
 ```typescript
-import { MinerCard, HashRateChart, DeviceExplorer } from '@mdk/components-domain';
+import { DeviceExplorer, HashRateChart, MinerCard } from '@mdk/components-domain'
 ```
 
 ---
@@ -234,12 +234,12 @@ function DeviceList() {
 **Usage**:
 
 ```typescript
-import { useDebounce, useLocalStorage, useRealTimeMetrics } from '@mdk/hooks';
+import { useDebounce, useLocalStorage, useRealTimeMetrics } from '@mdk/hooks'
 
 function SearchBar() {
-  const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search, 300);
-  const [recentSearches, setRecentSearches] = useLocalStorage('recent-searches', []);
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search, 300)
+  const [recentSearches, setRecentSearches] = useLocalStorage('recent-searches', [])
 
   // ... rest of component
 }
@@ -263,11 +263,11 @@ function SearchBar() {
 **Usage**:
 
 ```typescript
-import { useAppSelector, useAppDispatch, selectSelectedDevices } from '@mdk/state';
+import { selectSelectedDevices, useAppDispatch, useAppSelector } from '@mdk/state'
 
 function DeviceActions() {
-  const dispatch = useAppDispatch();
-  const selectedDevices = useAppSelector(selectSelectedDevices);
+  const dispatch = useAppDispatch()
+  const selectedDevices = useAppSelector(selectSelectedDevices)
 
   // ... rest of component
 }

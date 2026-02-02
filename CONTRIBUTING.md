@@ -157,7 +157,7 @@ cd packages/my-package
 4. Create `src/index.ts`:
 
 ```typescript
-export * from './my-component';
+export * from './my-component'
 ```
 
 5. Update workspace `pnpm-workspace.yaml` (if needed):
@@ -194,7 +194,7 @@ Packages can override root ESLint config:
 
 ```js
 // eslint.config.mjs
-import antfu from '@antfu/eslint-config';
+import antfu from '@antfu/eslint-config'
 
 export default antfu({
   react: true,
@@ -207,7 +207,7 @@ export default antfu({
   rules: {
     // Package-specific rules
   },
-});
+})
 ```
 
 ## Testing Guidelines
@@ -237,23 +237,24 @@ describe("Button", () => {
 **Hook Tests**:
 
 ```typescript
-import { renderHook } from '@testing-library/react';
-import { useDebounce } from './useDebounce';
+import { renderHook } from '@testing-library/react'
+
+import { useDebounce } from './useDebounce'
 
 describe('useDebounce', () => {
   it('debounces value changes', async () => {
     const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
       initialProps: { value: 'initial', delay: 300 },
-    });
+    })
 
-    expect(result.current).toBe('initial');
+    expect(result.current).toBe('initial')
 
-    rerender({ value: 'updated', delay: 300 });
-    expect(result.current).toBe('initial'); // Still initial
+    rerender({ value: 'updated', delay: 300 })
+    expect(result.current).toBe('initial') // Still initial
 
-    await waitFor(() => expect(result.current).toBe('updated'), { timeout: 400 });
-  });
-});
+    await waitFor(() => expect(result.current).toBe('updated'), { timeout: 400 })
+  })
+})
 ```
 
 **Coverage Requirements**:
@@ -276,17 +277,17 @@ describe('useDebounce', () => {
  * </Button>
  * ```
  */
-export interface ButtonProps {
+export type ButtonProps = {
   /** The button variant */
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost'
   /** The button size */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg'
   /** Whether the button is disabled */
-  disabled?: boolean;
+  disabled?: boolean
   /** Click handler */
-  onClick?: () => void;
+  onClick?: () => void
   /** Button content */
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export function Button({ variant = 'primary', size = 'md', ...props }: ButtonProps) {
