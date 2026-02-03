@@ -141,11 +141,11 @@ cd packages/my-package
 }
 ```
 
-3. Create `tsconfig.json`:
+3. Create `tsconfig.base.json`:
 
 ```json
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src"
@@ -172,11 +172,11 @@ packages:
 
 #### TypeScript
 
-Each package extends the root `tsconfig.json`:
+Each package extends the root `tsconfig.base.json`:
 
 ```json
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
