@@ -2,7 +2,7 @@
 
 > A developer-first toolkit providing pre-built components and seamless backend integration for building mining operations applications in days instead of weeks.
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tetherto/miningos-app-ui/blob/staging/LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tetherto/miningos-ui-kit/blob/main/LICENSE)
 
 ## 📋 Table of Contents
 
@@ -257,7 +257,7 @@ For detailed information, see:
 
 ## License
 
-Apache 2.0 - See [LICENSE](https://github.com/tetherto/miningos-app-ui/blob/staging/LICENSE) for details.
+Apache 2.0 - See [LICENSE](https://github.com/tetherto/miningos-ui-kit/blob/main/LICENSE) for details.
 
 ---
 
