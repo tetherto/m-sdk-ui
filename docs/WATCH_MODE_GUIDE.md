@@ -1,6 +1,6 @@
 # Watch Mode Guide
 
-Complete guide to using watch mode for efficient development in the MDK UI monorepo.
+Complete guide to using watch mode for efficient development in the Mining SDK monorepo.
 
 ## Quick Start
 
@@ -26,10 +26,10 @@ Watch mode automatically recompiles files when they change, providing instant fe
 
 | Package | TypeScript | SCSS | Output |
 |---------|-----------|------|--------|
-| `@mdk/core` | ✅ | ✅ | `dist/` + `src/styles.css` |
-| `@mdk/components-foundation` | ✅ | ✅ | `dist/` + `src/styles.css` |
-| `@mdk/theme` | ✅ | ✅ | `dist/` + `src/styles.css` |
-| `@mdk/demo` | ✅ | ✅ | HMR (no build output) |
+| `@mining-sdk/core` | ✅ | ✅ | `dist/` + `src/styles.css` |
+| `@mining-sdk/components-foundation` | ✅ | ✅ | `dist/` + `src/styles.css` |
+| `@mining-sdk/theme` | ✅ | ✅ | `dist/` + `src/styles.css` |
+| `@mining-sdk/demo` | ✅ | ✅ | HMR (no build output) |
 | Other packages | ✅ | ❌ | `dist/` |
 
 ## Development Workflows
@@ -183,11 +183,11 @@ Packages with both TypeScript and SCSS use `concurrently` to run both watchers s
 Watch mode respects package dependencies:
 
 ```
-@mdk/core (watches TS + SCSS)
+@mining-sdk/core (watches TS + SCSS)
     ↓
-@mdk/components-foundation (watches TS + SCSS)
+@mining-sdk/components-foundation (watches TS + SCSS)
     ↓
-@mdk/demo (Vite dev server)
+@mining-sdk/demo (Vite dev server)
 ```
 
 ### Persistent Tasks
@@ -421,13 +421,13 @@ pnpm dev
 
 ```bash
 # Watch only core
-turbo dev --filter=@mdk/core
+turbo dev --filter=@mining-sdk/core
 
 # Watch core and foundation
-turbo dev --filter=@mdk/core --filter=@mdk/components-foundation
+turbo dev --filter=@mining-sdk/core --filter=@mining-sdk/components-foundation
 
 # Watch everything except demo
-turbo dev --filter=!@mdk/demo
+turbo dev --filter=!@mining-sdk/demo
 ```
 
 ### Custom Watch Scripts
@@ -437,8 +437,8 @@ Add custom watch scripts to `package.json`:
 ```json
 {
   "scripts": {
-    "watch:components": "turbo dev --filter=@mdk/components-*",
-    "watch:libs": "turbo dev --filter=!@mdk/demo"
+    "watch:components": "turbo dev --filter=@mining-sdk/components-*",
+    "watch:libs": "turbo dev --filter=!@mining-sdk/demo"
   }
 }
 ```

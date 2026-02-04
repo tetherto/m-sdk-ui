@@ -1,5 +1,5 @@
 /**
- * @mdk/core - Core utilities, types, and Radix UI primitives
+ * @mining-sdk/core - Core UI components, utilities, types, and theme system
  *
  * This package provides the foundation for all other packages in the monorepo.
  */
@@ -27,6 +27,8 @@ export * from './components/switch'
 export * as Tabs from './components/tabs'
 export * as Toast from './components/toast'
 export * as Tooltip from './components/tooltip'
+// Theme system
+export * from './theme'
 // Core types
 export * from './types'
 // Core utilities

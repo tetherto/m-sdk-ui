@@ -62,7 +62,7 @@ importers:
 
   apps/demo:
     dependencies:
-      '@mdk/core':
+      '@mining-sdk/core':
         specifier: workspace:*
         version: link:../../packages/core
       react:
@@ -84,151 +84,6 @@ importers:
       vite:
         specifier: ^6.0.11
         version: 6.4.1(sass@1.97.3)(yaml@2.8.2)
-
-  packages/api-client:
-    dependencies:
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
-    devDependencies:
-      '@reduxjs/toolkit':
-        specifier: ^2.5.0
-        version: 2.11.2(react-redux@9.2.0(@types/react@18.3.27)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.27
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-redux:
-        specifier: ^9.2.0
-        version: 9.2.0(@types/react@18.3.27)(react@18.3.1)(redux@5.0.1)
-
-  packages/components-domain:
-    dependencies:
-      '@mdk/components-foundation':
-        specifier: workspace:*
-        version: link:../components-foundation
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
-    devDependencies:
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.3.5
-        version: 18.3.7(@types/react@18.3.27)
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
-
-  packages/components-feature:
-    dependencies:
-      '@mdk/components-domain':
-        specifier: workspace:*
-        version: link:../components-domain
-      '@mdk/components-foundation':
-        specifier: workspace:*
-        version: link:../components-foundation
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
-      '@mdk/hooks':
-        specifier: workspace:*
-        version: link:../hooks
-    devDependencies:
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.3.5
-        version: 18.3.7(@types/react@18.3.27)
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
-
-  packages/components-foundation:
-    dependencies:
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
-      '@radix-ui/react-accordion':
-        specifier: ^1.2.2
-        version: 1.2.12(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-alert-dialog':
-        specifier: ^1.1.4
-        version: 1.1.15(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-avatar':
-        specifier: ^1.1.2
-        version: 1.1.11(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-checkbox':
-        specifier: ^1.1.3
-        version: 1.3.3(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-dialog':
-        specifier: ^1.1.4
-        version: 1.1.15(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-dropdown-menu':
-        specifier: ^2.1.4
-        version: 2.1.16(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-label':
-        specifier: ^2.1.1
-        version: 2.1.8(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-popover':
-        specifier: ^1.1.4
-        version: 1.1.15(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-progress':
-        specifier: ^1.1.1
-        version: 1.1.8(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-radio-group':
-        specifier: ^1.2.2
-        version: 1.3.8(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-select':
-        specifier: ^2.1.4
-        version: 2.2.6(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-separator':
-        specifier: ^1.1.1
-        version: 1.1.8(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-slider':
-        specifier: ^1.2.2
-        version: 1.3.6(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-switch':
-        specifier: ^1.1.2
-        version: 1.2.6(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tabs':
-        specifier: ^1.1.2
-        version: 1.1.13(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-toast':
-        specifier: ^1.2.4
-        version: 1.2.15(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@radix-ui/react-tooltip':
-        specifier: ^1.1.6
-        version: 1.2.8(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      class-variance-authority:
-        specifier: ^0.7.1
-        version: 0.7.1
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-    devDependencies:
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.3.5
-        version: 18.3.7(@types/react@18.3.27)
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
 
   packages/core:
     dependencies:
@@ -303,71 +158,39 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
 
-  packages/hooks:
+  packages/foundation:
     dependencies:
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
-    devDependencies:
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.27
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-
-  packages/state:
-    dependencies:
-      '@mdk/api-client':
-        specifier: workspace:*
-        version: link:../api-client
-      '@mdk/core':
+      '@mining-sdk/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
       '@reduxjs/toolkit':
         specifier: ^2.5.0
         version: 2.11.2(react-redux@9.2.0(@types/react@18.3.27)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.27
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-redux:
-        specifier: ^9.2.0
-        version: 9.2.0(@types/react@18.3.27)(react@18.3.1)(redux@5.0.1)
-
-  packages/test-utils:
-    dependencies:
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
-      '@mdk/state':
-        specifier: workspace:*
-        version: link:../state
-    devDependencies:
       '@testing-library/react':
         specifier: ^16.1.0
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.27
+      '@types/react-dom':
+        specifier: ^18.3.5
+        version: 18.3.7(@types/react@18.3.27)
       '@vitest/ui':
         specifier: ^3.0.11
         version: 3.2.4(vitest@3.2.4)
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      react-redux:
+        specifier: ^9.2.0
+        version: 9.2.0(@types/react@18.3.27)(react@18.3.1)(redux@5.0.1)
       vitest:
         specifier: ^3.0.11
         version: 3.2.4(@types/debug@4.1.12)(@vitest/ui@3.2.4)(sass@1.97.3)(yaml@2.8.2)
-
-  packages/theme:
-    dependencies:
-      '@mdk/core':
-        specifier: workspace:*
-        version: link:../core
 
 packages:
 

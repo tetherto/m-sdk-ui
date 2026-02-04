@@ -1,4 +1,4 @@
-import type { CheckedState } from '@mdk/core'
+import type { CheckedState } from '@mining-sdk/core'
 
 import {
   Accordion,
@@ -28,7 +28,7 @@ import {
   DialogTrigger,
   Label,
   Switch,
-} from '@mdk/core'
+} from '@mining-sdk/core'
 import { useState } from 'react'
 
 import './App.scss'
@@ -39,7 +39,7 @@ function App(): JSX.Element {
 
   return (
     <div className="demo-app">
-      <h1 className="demo-app__title">@mdk/core Component Demo</h1>
+      <h1 className="demo-app__title">@mining-sdk/core Component Demo</h1>
 
       <div className="demo-app__content">
         {/* Buttons */}
@@ -69,7 +69,7 @@ function App(): JSX.Element {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Welcome to @mdk/core</DialogTitle>
+                <DialogTitle>Welcome to @mining-sdk/core</DialogTitle>
                 <DialogDescription>
                   This is a dialog component built with Radix UI primitives.
                 </DialogDescription>
@@ -154,7 +154,7 @@ function App(): JSX.Element {
             <AccordionItem value="item-3">
               <AccordionTrigger>Can I use it in my project?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! It's part of the @mdk/core package in this monorepo.
+                Absolutely! It's part of the @mining-sdk/core package in this monorepo.
               </AccordionContent>
             </AccordionItem>
           </Accordion>

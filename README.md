@@ -1,4 +1,4 @@
-# MDK UI Development Kit
+# Mining SDK
 
 > A developer-first toolkit providing pre-built components and seamless backend integration for building mining operations applications in days instead of weeks.
 
@@ -19,7 +19,7 @@
 
 ## Overview
 
-The **MDK UI Development Kit** is a comprehensive toolkit providing:
+The **Mining SDK** is a comprehensive toolkit providing:
 
 - **150-200+ production-tested components** (foundation + domain-specific)
 - **87+ API integration hooks** (RTK Query-based)
@@ -40,31 +40,31 @@ The **MDK UI Development Kit** is a comprehensive toolkit providing:
 
 ## Packages
 
-This monorepo contains 9 packages organized in a layered architecture:
+This monorepo contains 2 main packages in a simplified architecture:
 
-### Core Layer
-- **`@mdk/core`** - Core utilities, types, and Radix UI primitives
-- **`@mdk/theme`** - Theming system with design tokens
-- **`@mdk/hooks`** - Custom React hooks
+### `@mining-sdk/core`
+Core UI components, utilities, types, and theme system. This package includes:
+- Radix UI primitives (Button, Dialog, Switch, etc.)
+- Core utilities (cn, formatters, validators)
+- Type definitions
+- Theme system with design tokens
+- SCSS-based styling
 
-### Component Layers
-- **`@mdk/components-foundation`** - Generic, reusable UI components
-- **`@mdk/components-domain`** - Mining-specific components
-- **`@mdk/components-feature`** - Complete features
-
-### Data & State
-- **`@mdk/api-client`** - API integration with RTK Query
-- **`@mdk/state`** - Redux store and state management
-
-### Development
-- **`@mdk/test-utils`** - Testing utilities and helpers
+### `@mining-sdk/foundation`
+Complete foundation with features, state management, and utilities. This package includes:
+- Domain-specific components (mining operations)
+- Feature components (complete features)
+- Custom React hooks (70+ hooks)
+- API client (RTK Query integration)
+- State management (Redux Toolkit)
+- Test utilities
 
 ### Demo App
 
 Interactive demo showcasing all components.
 
 - **Location**: `apps/demo`
-- **Run**: `pnpm --filter @mdk/demo dev`
+- **Run**: `pnpm --filter @mining-sdk/demo dev`
 
 📖 **See [docs/STRUCTURE.md](docs/STRUCTURE.md) for complete package details and dependency graph.**
 
@@ -118,7 +118,7 @@ pnpm dev:demo
 pnpm build
 
 # Build specific package
-pnpm --filter @mdk/core build
+pnpm --filter @mining-sdk/core build
 
 # Type check all packages
 pnpm typecheck
@@ -130,14 +130,14 @@ pnpm lint
 pnpm lint:fix
 ```
 
-### Using @mdk/core in Your App
+### Using @mining-sdk/core in Your App
 
 1. Add the dependency to your app's `package.json`:
 
 ```json
 {
   "dependencies": {
-    "@mdk/core": "workspace:*"
+    "@mining-sdk/core": "workspace:*"
   }
 }
 ```
@@ -145,8 +145,8 @@ pnpm lint:fix
 2. Import and use components:
 
 ```tsx
-import { Button, Dialog, Switch } from '@mdk/core'
-import '@mdk/core/styles.css'
+import { Button, Dialog, Switch } from '@mining-sdk/core'
+import '@mining-sdk/core/styles.css'
 
 function App() {
   return <Button variant="outline">Click me</Button>
@@ -233,15 +233,8 @@ For detailed information, see:
 
 ### Package Documentation
 
-- **[@mdk/core](packages/core/README.md)** - Core components and utilities ([Usage Guide](packages/core/USAGE.md))
-- **[@mdk/theme](packages/theme/README.md)** - Theming system
-- **[@mdk/hooks](packages/hooks/README.md)** - Custom React hooks
-- **[@mdk/components-foundation](packages/components-foundation/README.md)** - Foundation components
-- **[@mdk/components-domain](packages/components-domain/README.md)** - Domain-specific components
-- **[@mdk/components-feature](packages/components-feature/README.md)** - Feature components
-- **[@mdk/api-client](packages/api-client/README.md)** - API integration
-- **[@mdk/state](packages/state/README.md)** - State management
-- **[@mdk/test-utils](packages/test-utils/README.md)** - Testing utilities
+- **[@mining-sdk/core](packages/core/README.md)** - Core components, utilities, and theme ([Usage Guide](packages/core/USAGE.md))
+- **[@mining-sdk/foundation](packages/foundation/README.md)** - Complete foundation with features, state, API, and utilities
 
 ### Demo App
 

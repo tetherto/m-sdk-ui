@@ -7,7 +7,7 @@ This monorepo uses **SCSS** with **Vite** and **Turborepo** for styling, replaci
 - **Build Tool**: Turborepo (orchestration) + Vite (bundling)
 - **SCSS Compiler**: Dart Sass (via Vite)
 - **PostCSS**: Autoprefixer for vendor prefixes
-- **Module Resolution**: Vite aliases for `@mdk/*` workspace packages
+- **Module Resolution**: Vite aliases for `@mining-sdk/*` workspace packages
 
 ## Why This Stack?
 
@@ -49,7 +49,7 @@ This monorepo uses **SCSS** with **Vite** and **Turborepo** for styling, replaci
 ┌─────────────────────────────────────┐
 │ Vite (Build Tool)                   │
 │ - Compiles SCSS to CSS              │
-│ - Resolves @mdk/* imports           │
+│ - Resolves @mining-sdk/* imports           │
 │ - Applies PostCSS transforms        │
 └──────────────┬──────────────────────┘
                │
@@ -66,9 +66,9 @@ This monorepo uses **SCSS** with **Vite** and **Turborepo** for styling, replaci
 
 ### Packages with SCSS
 
-1. **@mdk/core** - Base styles and design tokens
-2. **@mdk/theme** - Theme system with SCSS mixins
-3. **@mdk/components-foundation** - Foundation component styles
+1. **@mining-sdk/core** - Base styles and design tokens
+2. **@mining-sdk/theme** - Theme system with SCSS mixins
+3. **@mining-sdk/components-foundation** - Foundation component styles
 
 Each package has:
 - `src/styles.scss` - Source SCSS file
@@ -111,8 +111,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@mdk/core': resolve(__dirname, '../core/src'),
-      '@mdk/theme': resolve(__dirname, '../theme/src'),
+      '@mining-sdk/core': resolve(__dirname, '../core/src'),
+      '@mining-sdk/theme': resolve(__dirname, '../theme/src'),
     },
   },
 })
@@ -143,12 +143,12 @@ export default defineConfig({
 // packages/my-package/src/styles.scss
 
 /**
- * @mdk/my-package styles
+ * @mining-sdk/my-package styles
  */
 
 // Import from other workspace packages
-@use '@mdk/core/styles' as core;
-@use '@mdk/theme/styles' as theme;
+@use '@mining-sdk/core/styles' as core;
+@use '@mining-sdk/theme/styles' as theme;
 
 // Your styles
 .my-component {
@@ -193,8 +193,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@mdk/core': resolve(__dirname, '../core/src'),
-      '@mdk/theme': resolve(__dirname, '../theme/src'),
+      '@mining-sdk/core': resolve(__dirname, '../core/src'),
+      '@mining-sdk/theme': resolve(__dirname, '../theme/src'),
     },
   },
 })
@@ -242,8 +242,8 @@ pnpm build
 pnpm build:scss
 
 # Build specific package
-pnpm --filter @mdk/core build
-pnpm --filter @mdk/core build:scss
+pnpm --filter @mining-sdk/core build
+pnpm --filter @mining-sdk/core build:scss
 ```
 
 ### Turborepo Features
@@ -257,7 +257,7 @@ pnpm build
 pnpm build --force
 
 # Build with dependencies
-pnpm --filter @mdk/components-foundation... build
+pnpm --filter @mining-sdk/components-foundation... build
 # → Builds foundation + all its dependencies
 
 # Parallel builds
@@ -270,23 +270,23 @@ pnpm --filter @mdk/components-foundation... build
 
 ```tsx
 // In your app entry point
-import '@mdk/components-foundation/styles.css'
+import '@mining-sdk/components-foundation/styles.css'
 ```
 
 ### Option 2: Import SCSS (if using Vite)
 
 ```tsx
-import '@mdk/components-foundation/styles.scss'
+import '@mining-sdk/components-foundation/styles.scss'
 ```
 
 ## Workspace Package Resolution
 
-Vite resolves `@mdk/*` imports using aliases:
+Vite resolves `@mining-sdk/*` imports using aliases:
 
 ```scss
 // This works! ✅
-@use '@mdk/core/styles' as core;
-@use '@mdk/theme/styles' as theme;
+@use '@mining-sdk/core/styles' as core;
+@use '@mining-sdk/theme/styles' as theme;
 
 // No need for relative paths ❌
 @use '../../core/src/styles.scss' as core;
@@ -294,7 +294,7 @@ Vite resolves `@mdk/*` imports using aliases:
 
 ### How It Works
 
-1. **Vite Alias**: Maps `@mdk/core` to `../core/src`
+1. **Vite Alias**: Maps `@mining-sdk/core` to `../core/src`
 2. **SCSS Load Paths**: Adds `../` to SCSS resolution
 3. **Modern SCSS API**: Uses Dart Sass modern compiler
 
@@ -398,7 +398,7 @@ pnpm build
 ```javascript
 resolve: {
   alias: {
-    '@mdk/core': resolve(__dirname, '../core/src'),
+    '@mining-sdk/core': resolve(__dirname, '../core/src'),
   },
 }
 ```
@@ -446,16 +446,16 @@ pnpm build --force
 
 ```scss
 // ✅ Good - Namespaced
-@use '@mdk/core/styles' as core;
-@use '@mdk/theme/styles' as theme;
+@use '@mining-sdk/core/styles' as core;
+@use '@mining-sdk/theme/styles' as theme;
 
 .my-component {
   @include theme.flex-center;
 }
 
 // ❌ Bad - Global namespace pollution
-@use '@mdk/core/styles' as *;
-@use '@mdk/theme/styles' as *;
+@use '@mining-sdk/core/styles' as *;
+@use '@mining-sdk/theme/styles' as *;
 ```
 
 ### 3. Leverage Turborepo
@@ -465,9 +465,9 @@ pnpm build --force
 pnpm build
 
 # ❌ Bad - Manual dependency management
-pnpm --filter @mdk/core build
-pnpm --filter @mdk/theme build
-pnpm --filter @mdk/components-foundation build
+pnpm --filter @mining-sdk/core build
+pnpm --filter @mining-sdk/theme build
+pnpm --filter @mining-sdk/components-foundation build
 ```
 
 ### 4. Keep Specificity Low

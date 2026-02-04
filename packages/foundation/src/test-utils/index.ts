@@ -1,0 +1,14 @@
+/**
+ * @mining-sdk/foundation - Test Utils
+ *
+ * Testing utilities and helpers for component testing.
+ */
+
+// Test utilities
+// export * from './render'
+// export * from './mock-data'
+// export * from './test-providers'
+// export * from './custom-matchers'
+
+// Placeholder export to make this a valid module
+export {}

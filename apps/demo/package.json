@@ -1,8 +1,8 @@
 {
-  "name": "@mdk/demo",
-  "private": true,
+  "name": "@mining-sdk/demo",
   "type": "module",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "build": "vite build",
     "clean": "rimraf dist node_modules .turbo",
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@mdk/core": "workspace:*",
+    "@mining-sdk/core": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

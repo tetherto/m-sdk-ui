@@ -9,13 +9,13 @@
       "types": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./dist/styles.css"
   },
   "scripts": {
     "build": "pnpm build:ts && pnpm build:scss",
     "build:scss": "vite build",
     "build:ts": "tsc",
-    "clean": "rimraf dist dist-css node_modules .turbo src/styles.css",
+    "clean": "rimraf dist node_modules .turbo",
     "dev": "concurrently -n ts,scss -c cyan,magenta \"pnpm dev:ts\" \"pnpm dev:scss\"",
     "dev:scss": "vite build --watch",
     "dev:ts": "tsc --watch",

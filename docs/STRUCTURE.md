@@ -1,11 +1,11 @@
-# MDK UI Dev Kit - Project Structure
+# Mining SDK Dev Kit - Project Structure
 
 Complete monorepo structure with all packages and their relationships.
 
 ## 📁 Directory Structure
 
 ```
-@mdk/ui-dev-kit/
+@mining-sdk/ui-dev-kit/
 ├── packages/
 │   ├── core/                    # Core utilities, types, and Radix UI primitives
 │   ├── components-foundation/   # Generic, reusable UI components
@@ -27,7 +27,7 @@ Complete monorepo structure with all packages and their relationships.
 
 ## 📦 Package Details
 
-### `@mdk/core`
+### `@mining-sdk/core`
 
 **Purpose:** Foundation package with utilities, types, and Radix UI primitives
 
@@ -42,31 +42,31 @@ Complete monorepo structure with all packages and their relationships.
 
 **Usage:**
 ```tsx
-import { Button, cn, formatDate } from '@mdk/core'
+import { Button, cn, formatDate } from '@mining-sdk/core'
 ```
 
 ---
 
-### `@mdk/components-foundation`
+### `@mining-sdk/components-foundation`
 
 **Purpose:** Generic, reusable UI components built on core primitives
 
 **Location:** `packages/core-foundation`
 
 **Exports:**
-- All components from `@mdk/core`
+- All components from `@mining-sdk/core`
 - Additional foundation components (Card, Table, Form, Badge, Alert)
 
-**Dependencies:** `@mdk/core`, Radix UI
+**Dependencies:** `@mining-sdk/core`, Radix UI
 
 **Usage:**
 ```tsx
-import { Card, Table, Badge } from '@mdk/components-foundation'
+import { Card, Table, Badge } from '@mining-sdk/components-foundation'
 ```
 
 ---
 
-### `@mdk/components-domain`
+### `@mining-sdk/components-domain`
 
 **Purpose:** Mining-specific business components
 
@@ -79,16 +79,16 @@ import { Card, Table, Badge } from '@mdk/components-foundation'
 - WorkerStatus
 - TemperatureMonitor
 
-**Dependencies:** `@mdk/components-foundation`, `@mdk/core`
+**Dependencies:** `@mining-sdk/components-foundation`, `@mining-sdk/core`
 
 **Usage:**
 ```tsx
-import { MinerCard, PoolStats } from '@mdk/components-domain'
+import { MinerCard, PoolStats } from '@mining-sdk/components-domain'
 ```
 
 ---
 
-### `@mdk/components-feature`
+### `@mining-sdk/components-feature`
 
 **Purpose:** Complete features combining multiple components
 
@@ -101,16 +101,16 @@ import { MinerCard, PoolStats } from '@mdk/components-domain'
 - Settings
 - Analytics
 
-**Dependencies:** `@mdk/components-domain`, `@mdk/components-foundation`, `@mdk/hooks`
+**Dependencies:** `@mining-sdk/components-domain`, `@mining-sdk/components-foundation`, `@mining-sdk/hooks`
 
 **Usage:**
 ```tsx
-import { Dashboard, MinerManagement } from '@mdk/components-feature'
+import { Dashboard, MinerManagement } from '@mining-sdk/components-feature'
 ```
 
 ---
 
-### `@mdk/hooks`
+### `@mining-sdk/hooks`
 
 **Purpose:** Custom React hooks for common patterns
 
@@ -125,16 +125,16 @@ import { Dashboard, MinerManagement } from '@mdk/components-feature'
 - useOnline
 - useWindowSize
 
-**Dependencies:** `@mdk/core`, React
+**Dependencies:** `@mining-sdk/core`, React
 
 **Usage:**
 ```tsx
-import { useLocalStorage, useMediaQuery } from '@mdk/hooks'
+import { useLocalStorage, useMediaQuery } from '@mining-sdk/hooks'
 ```
 
 ---
 
-### `@mdk/api-client`
+### `@mining-sdk/api-client`
 
 **Purpose:** Type-safe API client with RTK Query
 
@@ -146,16 +146,16 @@ import { useLocalStorage, useMediaQuery } from '@mdk/hooks'
 - useCreateMinerMutation
 - API client configuration
 
-**Dependencies:** `@mdk/core`, RTK Query, Redux
+**Dependencies:** `@mining-sdk/core`, RTK Query, Redux
 
 **Usage:**
 ```tsx
-import { useGetMinersQuery } from '@mdk/api-client'
+import { useGetMinersQuery } from '@mining-sdk/api-client'
 ```
 
 ---
 
-### `@mdk/state`
+### `@mining-sdk/state`
 
 **Purpose:** Redux store and state management
 
@@ -169,16 +169,16 @@ import { useGetMinersQuery } from '@mdk/api-client'
 - UI slice
 - Settings slice
 
-**Dependencies:** `@mdk/api-client`, `@mdk/core`, Redux Toolkit
+**Dependencies:** `@mining-sdk/api-client`, `@mining-sdk/core`, Redux Toolkit
 
 **Usage:**
 ```tsx
-import { store, useAppSelector } from '@mdk/state'
+import { store, useAppSelector } from '@mining-sdk/state'
 ```
 
 ---
 
-### `@mdk/theme`
+### `@mining-sdk/theme`
 
 **Purpose:** Theming system with design tokens
 
@@ -189,17 +189,17 @@ import { store, useAppSelector } from '@mdk/state'
 - Theme utilities (applyTheme, getSystemTheme)
 - CSS variables
 
-**Dependencies:** `@mdk/core`
+**Dependencies:** `@mining-sdk/core`
 
 **Usage:**
 ```tsx
-import { applyTheme, colors } from '@mdk/theme'
-import '@mdk/theme/styles.css'
+import { applyTheme, colors } from '@mining-sdk/theme'
+import '@mining-sdk/theme/styles.css'
 ```
 
 ---
 
-### `@mdk/test-utils`
+### `@mining-sdk/test-utils`
 
 **Purpose:** Testing utilities and helpers
 
@@ -211,11 +211,11 @@ import '@mdk/theme/styles.css'
 - Mock data generators
 - Custom matchers
 
-**Dependencies:** `@mdk/core`, `@mdk/state`, Testing Library, Vitest
+**Dependencies:** `@mining-sdk/core`, `@mining-sdk/state`, Testing Library, Vitest
 
 **Usage:**
 ```tsx
-import { render, mockMiner } from '@mdk/test-utils'
+import { render, mockMiner } from '@mining-sdk/test-utils'
 ```
 
 ---
@@ -224,34 +224,34 @@ import { render, mockMiner } from '@mdk/test-utils'
 
 ```
 ┌─────────────────────────────────────┐
-│ @mdk/core                           │
+│ @mining-sdk/core                           │
 │ (types, utils, Radix primitives)   │
 └──────────────┬──────────────────────┘
                │
                ├──────────────────────────────────────┐
                │                                      │
 ┌──────────────▼──────────────────────┐  ┌───────────▼──────────┐
-│ @mdk/components-foundation          │  │ @mdk/hooks           │
+│ @mining-sdk/components-foundation          │  │ @mining-sdk/hooks           │
 │ (Card, Table, Form, Badge)          │  │ (useLocalStorage)    │
 └──────────────┬──────────────────────┘  └──────────────────────┘
                │
 ┌──────────────▼──────────────────────┐  ┌──────────────────────┐
-│ @mdk/components-domain              │  │ @mdk/theme           │
+│ @mining-sdk/components-domain              │  │ @mining-sdk/theme           │
 │ (MinerCard, PoolStats)              │  │ (design tokens)      │
 └──────────────┬──────────────────────┘  └──────────────────────┘
                │
 ┌──────────────▼──────────────────────┐  ┌──────────────────────┐
-│ @mdk/components-feature             │  │ @mdk/api-client      │
+│ @mining-sdk/components-feature             │  │ @mining-sdk/api-client      │
 │ (Dashboard, MinerManagement)        │  │ (RTK Query)          │
 └─────────────────────────────────────┘  └───────────┬──────────┘
                                                       │
                                          ┌────────────▼──────────┐
-                                         │ @mdk/state            │
+                                         │ @mining-sdk/state            │
                                          │ (Redux store)         │
                                          └───────────────────────┘
 
                     ┌──────────────────────┐
-                    │ @mdk/test-utils      │
+                    │ @mining-sdk/test-utils      │
                     │ (testing helpers)    │
                     └──────────────────────┘
 ```
@@ -277,7 +277,7 @@ pnpm build
 ### Run Demo App
 
 ```bash
-pnpm --filter @mdk/demo dev
+pnpm --filter @mining-sdk/demo dev
 ```
 
 ### Type Check
@@ -303,7 +303,7 @@ mkdir -p packages/my-package/src
 2. Create `package.json`:
 ```json
 {
-  "name": "@mdk/my-package",
+  "name": "@mining-sdk/my-package",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -321,7 +321,7 @@ mkdir -p packages/my-package/src
     "clean": "rimraf dist node_modules .turbo"
   },
   "dependencies": {
-    "@mdk/core": "workspace:*"
+    "@mining-sdk/core": "workspace:*"
   }
 }
 ```
@@ -373,7 +373,7 @@ pnpm install
 
 ### Testing
 
-- **Use `@mdk/test-utils`** - consistent testing setup
+- **Use `@mining-sdk/test-utils`** - consistent testing setup
 - **Test in isolation** - don't rely on other packages
 - **Mock external dependencies** - use MSW for API calls
 
@@ -402,7 +402,7 @@ pnpm build
 
 ```bash
 # Check specific package
-pnpm --filter @mdk/core typecheck
+pnpm --filter @mining-sdk/core typecheck
 
 # Check all packages
 pnpm typecheck
@@ -415,5 +415,5 @@ pnpm typecheck
 pnpm lint:fix
 
 # Check specific package
-pnpm --filter @mdk/core lint
+pnpm --filter @mining-sdk/core lint
 ```

@@ -1,4 +1,4 @@
-# @mdk/core - Usage Guide
+# @mining-sdk/core - Usage Guide
 
 ## Quick Start
 
@@ -9,7 +9,7 @@ In your app's `package.json`, add the dependency:
 ```json
 {
   "dependencies": {
-    "@mdk/core": "workspace:*",
+    "@mining-sdk/core": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
@@ -27,13 +27,13 @@ pnpm install
 In your app's entry point (e.g., `main.tsx` or `App.tsx`), import the base styles:
 
 ```tsx
-import '@mdk/core/styles.css'
+import '@mining-sdk/core/styles.css'
 ```
 
 ### 3. Use Components
 
 ```tsx
-import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@mdk/core'
+import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@mining-sdk/core'
 
 function MyComponent() {
   return (
@@ -56,7 +56,7 @@ function MyComponent() {
 ### Button
 
 ```tsx
-import { Button } from '@mdk/core'
+import { Button } from '@mining-sdk/core'
 
 // Variants
 <Button variant="default">Default</Button>
@@ -76,7 +76,7 @@ import { Button } from '@mdk/core'
 ### Checkbox
 
 ```tsx
-import { Checkbox, Label } from '@mdk/core'
+import { Checkbox, Label } from '@mining-sdk/core'
 import { useState } from 'react'
 
 function CheckboxDemo() {
@@ -94,7 +94,7 @@ function CheckboxDemo() {
 ### Switch
 
 ```tsx
-import { Label, Switch } from '@mdk/core'
+import { Label, Switch } from '@mining-sdk/core'
 import { useState } from 'react'
 
 function SwitchDemo() {
@@ -112,7 +112,7 @@ function SwitchDemo() {
 ### Accordion
 
 ```tsx
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@mdk/core'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@mining-sdk/core'
 
 function AccordionDemo() {
   return (
@@ -137,7 +137,7 @@ function AccordionDemo() {
 ### Avatar
 
 ```tsx
-import { Avatar, AvatarFallback, AvatarImage } from '@mdk/core'
+import { Avatar, AvatarFallback, AvatarImage } from '@mining-sdk/core'
 
 function AvatarDemo() {
   return (
@@ -163,7 +163,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-} from '@mdk/core'
+} from '@mining-sdk/core'
 
 function AlertDialogDemo() {
   return (
@@ -193,7 +193,7 @@ function AlertDialogDemo() {
 For components that are re-exported as Radix primitives, use the namespace:
 
 ```tsx
-import { DropdownMenu, Popover, Select, Tabs, Toast, Tooltip } from '@mdk/core'
+import { DropdownMenu, Popover, Select, Tabs, Toast, Tooltip } from '@mining-sdk/core'
 
 // Dropdown Menu
 <DropdownMenu.Root>
@@ -245,22 +245,12 @@ All components accept a `className` prop:
 <Button className="my-custom-class">Custom Button</Button>
 ```
 
-### Using with Tailwind CSS
-
-If you're using Tailwind CSS, you can use utility classes directly:
-
-```tsx
-<Button className="bg-blue-500 hover:bg-blue-600">
-  Tailwind Button
-</Button>
-```
-
 ## TypeScript
 
 All components are fully typed. Import types as needed:
 
 ```tsx
-import type { ButtonProps } from '@mdk/core'
+import type { ButtonProps } from '@mining-sdk/core'
 
 const MyButton: React.FC<ButtonProps> = (props) => {
   return <Button {...props} />
@@ -274,7 +264,7 @@ const MyButton: React.FC<ButtonProps> = (props) => {
 The `cn()` utility merges class names:
 
 ```tsx
-import { cn } from '@mdk/core'
+import { cn } from '@mining-sdk/core'
 
 const className = cn(
   'base-class',
@@ -298,7 +288,7 @@ const className = cn(
 Make sure you've imported the styles:
 
 ```tsx
-import '@mdk/core/styles.css'
+import '@mining-sdk/core/styles.css'
 ```
 
 ### Type errors
@@ -314,5 +304,5 @@ pnpm add react@^18.0.0 react-dom@^18.0.0
 Run type checking to identify issues:
 
 ```bash
-pnpm --filter @mdk/core typecheck
+pnpm --filter @mining-sdk/core typecheck
 ```

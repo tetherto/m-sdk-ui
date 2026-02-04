@@ -50,7 +50,7 @@
 ┌──────────────────────────┐    ┌──────────────────────────┐
 │ TypeScript Build (tsc)   │    │ SCSS Build (Vite)        │
 │ - Compiles .ts/.tsx      │    │ - Compiles .scss         │
-│ - Generates .d.ts        │    │ - Resolves @mdk/*        │
+│ - Generates .d.ts        │    │ - Resolves @mining-sdk/*        │
 │ - Type checking          │    │ - Minifies CSS           │
 │ - Output: dist/          │    │ - Output: src/styles.css │
 └──────────────────────────┘    └──────────────────────────┘
@@ -119,11 +119,11 @@ export default defineConfig({
 pnpm build
 
 # Turborepo will:
-# 1. Build @mdk/core first (no dependencies)
-# 2. Build @mdk/theme, @mdk/hooks in parallel
-# 3. Build @mdk/components-foundation (depends on core)
-# 4. Build @mdk/components-domain (depends on foundation)
-# 5. Build @mdk/components-feature (depends on domain)
+# 1. Build @mining-sdk/core first (no dependencies)
+# 2. Build @mining-sdk/theme, @mining-sdk/hooks in parallel
+# 3. Build @mining-sdk/components-foundation (depends on core)
+# 4. Build @mining-sdk/components-domain (depends on foundation)
+# 5. Build @mining-sdk/components-feature (depends on domain)
 # 6. Build apps (depends on all packages)
 ```
 
@@ -131,13 +131,13 @@ pnpm build
 
 ```bash
 # Build specific package
-pnpm --filter @mdk/core build
+pnpm --filter @mining-sdk/core build
 
 # Build package with dependencies
-pnpm --filter @mdk/components-foundation... build
+pnpm --filter @mining-sdk/components-foundation... build
 
 # Build package with dependents
-pnpm --filter ...@mdk/core build
+pnpm --filter ...@mining-sdk/core build
 ```
 
 ### Incremental Build
@@ -151,9 +151,9 @@ pnpm build
 pnpm build
 # → Takes ~0.1s (everything cached!)
 
-# Change one file in @mdk/core
+# Change one file in @mining-sdk/core
 pnpm build
-# → Only rebuilds @mdk/core + packages that depend on it
+# → Only rebuilds @mining-sdk/core + packages that depend on it
 ```
 
 ## Caching
@@ -201,12 +201,12 @@ Turborepo automatically parallelizes independent tasks:
 ```
 Time →
 
-@mdk/core         ████████
-@mdk/theme              ████████
-@mdk/hooks              ████████
-@mdk/foundation                ████████
-@mdk/domain                          ████████
-@mdk/feature                               ████████
+@mining-sdk/core         ████████
+@mining-sdk/theme              ████████
+@mining-sdk/hooks              ████████
+@mining-sdk/foundation                ████████
+@mining-sdk/domain                          ████████
+@mining-sdk/feature                               ████████
 
 Total: ~5s (vs ~20s sequential)
 ```
@@ -214,22 +214,22 @@ Total: ~5s (vs ~20s sequential)
 ## Dependency Graph
 
 ```
-@mdk/core
-├── @mdk/theme
-├── @mdk/hooks
-└── @mdk/components-foundation
-    └── @mdk/components-domain
-        └── @mdk/components-feature
-            └── @mdk/demo (app)
+@mining-sdk/core
+├── @mining-sdk/theme
+├── @mining-sdk/hooks
+└── @mining-sdk/components-foundation
+    └── @mining-sdk/components-domain
+        └── @mining-sdk/components-feature
+            └── @mining-sdk/demo (app)
 
-@mdk/api-client
-└── @mdk/state
-    └── @mdk/components-feature
+@mining-sdk/api-client
+└── @mining-sdk/state
+    └── @mining-sdk/components-feature
 ```
 
 Turborepo ensures:
-- `@mdk/core` builds before `@mdk/components-foundation`
-- `@mdk/components-foundation` builds before `@mdk/components-domain`
+- `@mining-sdk/core` builds before `@mining-sdk/components-foundation`
+- `@mining-sdk/components-foundation` builds before `@mining-sdk/components-domain`
 - Independent packages build in parallel
 
 ## Performance
@@ -262,7 +262,7 @@ pnpm build
 pnpm build --verbose
 
 # Build specific package to debug
-pnpm --filter @mdk/core build
+pnpm --filter @mining-sdk/core build
 ```
 
 ### Cache Issues
@@ -295,8 +295,8 @@ pnpm list --depth=1
 pnpm build
 
 # ❌ Bad - Manual package-by-package
-pnpm --filter @mdk/core build
-pnpm --filter @mdk/theme build
+pnpm --filter @mining-sdk/core build
+pnpm --filter @mining-sdk/theme build
 # ...
 ```
 

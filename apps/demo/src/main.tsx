@@ -1,4 +1,4 @@
-import '@mdk/core/styles.css'
+import '@mining-sdk/core/styles.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 

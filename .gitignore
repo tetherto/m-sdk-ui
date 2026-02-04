@@ -4,7 +4,6 @@ node_modules
 
 # Build outputs
 dist
-dist-css
 .next
 out
 build
@@ -35,10 +34,3 @@ pnpm-debug.log*
 # Cache
 .cache
 *.tsbuildinfo
-
-# Compiled CSS from SCSS
-packages/*/src/styles.css
-packages/*/src/styles.css.map
-packages/*/src/**/*.css
-packages/*/src/**/*.css.map
-!packages/*/src/**/*.module.css
