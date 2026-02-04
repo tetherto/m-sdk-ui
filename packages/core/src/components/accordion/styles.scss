@@ -1,0 +1,73 @@
+/**
+ * Accordion Component Styles
+ */
+
+.mdk-accordion {
+  &__item {
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  &__header {
+    display: flex;
+  }
+
+  &__trigger {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    font-weight: 500;
+    transition: all 0.2s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &[data-state='open'] svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  &__content {
+    overflow: hidden;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+
+    &[data-state='closed'] {
+      animation: accordion-up 0.2s ease-out;
+    }
+
+    &[data-state='open'] {
+      animation: accordion-down 0.2s ease-out;
+    }
+  }
+
+  &__content-inner {
+    padding-bottom: 1rem;
+    padding-top: 0;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

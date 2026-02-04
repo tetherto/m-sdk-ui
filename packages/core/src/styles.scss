@@ -6,11 +6,13 @@
  */
 
 // Component Styles (must be first with @use)
+@use './components/accordion/styles' as accordion;
+@use './components/avatar/styles' as avatar;
 @use './components/button/styles' as button;
-@use './components/dialog/styles' as dialog;
 @use './components/checkbox/styles' as checkbox;
-@use './components/switch/styles' as switch;
+@use './components/dialog/styles' as dialog;
 @use './components/label/styles' as label;
+@use './components/switch/styles' as switch;
 
 // CSS Variables
 @layer base {
