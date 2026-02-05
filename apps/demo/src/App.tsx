@@ -327,7 +327,7 @@ function App(): JSX.Element {
                 <div className="demo-section__switches">
                   <div className="demo-section__switches__item">
                     <Switch id="radius-none" radius="none" variant="success" defaultChecked />
-                    <Label htmlFor="radius-none">None (Square corners)</Label>
+                    <Label htmlFor="radius-none">None (Square corners) - Default</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
@@ -347,7 +347,7 @@ function App(): JSX.Element {
 
                   <div className="demo-section__switches__item">
                     <Switch id="radius-full" radius="full" variant="success" defaultChecked />
-                    <Label htmlFor="radius-full">Full (Pill-shaped) - Default</Label>
+                    <Label htmlFor="radius-full">Full (Pill-shaped)</Label>
                   </div>
                 </div>
               </section>

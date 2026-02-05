@@ -49,9 +49,11 @@
     --mdk-color-background-light: #e5e7eb;
     --mdk-color-surface: #0e0e0e;
 
+    /* Common Component Colors */
+    --mdk-color-white: #ffffff;
+
     /* Switch specific colors */
     --mdk-switch-unchecked-bg: var(--mdk-color-background-light);
-    --mdk-switch-thumb-bg: #ffffff;
     --mdk-switch-thumb-shadow: rgba(0, 0, 0, 0.2);
     --mdk-switch-thumb-shadow-checked: rgba(0, 0, 0, 0.3);
   }

@@ -22,7 +22,7 @@
 /* Thumb (Sliding Circle) */
 .mdk-switch__thumb {
   display: block;
-  background-color: var(--mdk-switch-thumb-bg);
+  background-color: var(--mdk-color-white);
   box-shadow: 0 2px 4px var(--mdk-switch-thumb-shadow);
   transition: transform 200ms ease;
   will-change: transform;
