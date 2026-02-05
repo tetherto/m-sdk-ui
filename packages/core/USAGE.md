@@ -59,8 +59,8 @@ function MyComponent() {
 import { Button } from '@mining-sdk/core'
 
 // Variants
-<Button variant="default">Default</Button>
-<Button variant="destructive">Destructive</Button>
+<Button variant="primary">Primary</Button>
+<Button variant="danger">Danger</Button>
 <Button variant="outline">Outline</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="ghost">Ghost</Button>
@@ -68,7 +68,7 @@ import { Button } from '@mining-sdk/core'
 
 // Sizes
 <Button size="sm">Small</Button>
-<Button size="default">Default</Button>
+<Button size="md">Default</Button>
 <Button size="lg">Large</Button>
 <Button size="icon">🔥</Button>
 ```
@@ -169,7 +169,7 @@ function AlertDialogDemo() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="danger">Delete</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

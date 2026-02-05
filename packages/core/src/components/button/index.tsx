@@ -6,35 +6,28 @@ export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'outline' | 'gh
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon'
 export type ButtonIconPosition = 'left' | 'right'
 export type ButtonAntdSize = 'small' | 'middle' | 'large'
-export type ButtonColor = 'primary' | 'secondary' | 'danger' | 'ghost' | 'link' | 'outline'
-
 export type ButtonProps = {
   variant?: ButtonVariant
   size?: ButtonSize | ButtonAntdSize
-  danger?: boolean
   loading?: boolean
   icon?: React.ReactNode
   iconPosition?: ButtonIconPosition
   fullWidth?: boolean
   block?: boolean
-  color?: ButtonColor
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-function sizeToSize(size?: string): ButtonSize {
-  switch (size) {
-    case 'sm':
-    case 'small':
-      return 'sm'
-    case 'lg':
-    case 'large':
-      return 'lg'
-    case 'icon':
-      return 'icon'
-    case 'md':
-    case 'middle':
-    default:
-      return 'md'
-  }
+const sizeMap: Record<ButtonSize | ButtonAntdSize, ButtonSize> = {
+  sm: 'sm',
+  small: 'sm',
+  md: 'md',
+  middle: 'md',
+  lg: 'lg',
+  large: 'lg',
+  icon: 'icon',
+}
+
+function sizeToSize(size?: ButtonSize | ButtonAntdSize): ButtonSize {
+  return size ? sizeMap[size] : 'md'
 }
 
 /**
@@ -53,13 +46,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size = 'md',
-      danger,
       loading,
       icon,
       iconPosition = 'left',
       fullWidth,
       block,
-      color,
       disabled,
       type: nativeType,
       children,
@@ -67,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const resolvedVariant = variant ?? (danger ? 'danger' : (color ?? 'secondary'))
+    const resolvedVariant = variant ?? 'secondary'
     const resolvedSize = sizeToSize(size)
     const resolvedHtmlType = nativeType ?? 'button'
     const isIconOnly = Boolean(icon) && !children
