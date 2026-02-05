@@ -167,7 +167,7 @@ function App(): JSX.Element {
         {/* Tabs  */}
         <section className="demo-section">
           <h2 className="demo-section__title">Tabs</h2>
-          <Tabs defaultValue="controller">
+          <Tabs defaultValue="tab1">
             <TabsList>
               <TabsTrigger value="tab1">Tab 1</TabsTrigger>
               <TabsTrigger value="tab2">Tab 2</TabsTrigger>
