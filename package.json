@@ -45,6 +45,11 @@
     "typescript": "^5.9.3",
     "vite": "^6.0.11"
   },
+  "pnpm": {
+    "overrides": {
+      "@isaacs/brace-expansion": "5.0.1"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
       "eslint --fix",
