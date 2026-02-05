@@ -24,7 +24,7 @@ export * as Select from './components/select'
 export * as Separator from './components/separator'
 export * as Slider from './components/slider'
 export * from './components/switch'
-export * as Tabs from './components/tabs'
+export * from './components/tabs'
 export * as Toast from './components/toast'
 export * as Tooltip from './components/tooltip'
 // Theme system

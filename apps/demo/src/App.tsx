@@ -28,6 +28,10 @@ import {
   DialogTrigger,
   Label,
   Switch,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from '@mining-sdk/core'
 import { useState } from 'react'
 
@@ -158,6 +162,26 @@ function App(): JSX.Element {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </section>
+
+        {/* Tabs  */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Tabs</h2>
+          <Tabs defaultValue="controller">
+            <TabsList>
+              <TabsTrigger value="controller">Controller</TabsTrigger>
+              <TabsTrigger value="hashboard">Hashboard</TabsTrigger>
+              <TabsTrigger disabled value="psu">
+                PSU
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="controller">Controller content</TabsContent>
+
+            <TabsContent value="hashboard">Hashboard content</TabsContent>
+
+            <TabsContent value="psu">PSU content</TabsContent>
+          </Tabs>
         </section>
       </div>
     </div>
