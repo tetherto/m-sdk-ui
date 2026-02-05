@@ -37,6 +37,28 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    /* MDK button tokens (moria baseline) */
+    --mdk-button-radius: 0px;
+    --mdk-button-font-size: 14px;
+    --mdk-button-line-height: 22px;
+    --mdk-button-font-weight: 600;
+    --mdk-button-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+
+    --mdk-button-primary-bg: #f7931a;
+    --mdk-button-primary-bg-hover: #c4730f;
+    --mdk-button-primary-text: #000000;
+    --mdk-button-primary-text-hover: #ffffff;
+    --mdk-button-primary-bg-hover-overlay: rgba(255, 255, 255, 0.15);
+
+    --mdk-button-secondary-text: #ffffffcc;
+    --mdk-button-secondary-border: #ffffff33;
+    --mdk-button-secondary-border-hover: #f7931a80;
+    --mdk-button-secondary-bg: #17130f;
+
+    --mdk-button-danger-bg: #ef4444;
+    --mdk-button-danger-text: #ffffff;
+    --mdk-button-danger-border: #ef4444;
   }
 
   .dark {

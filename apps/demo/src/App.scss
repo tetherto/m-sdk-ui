@@ -33,6 +33,13 @@
     flex-wrap: wrap;
   }
 
+  &__button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(140px, max-content));
+    gap: 1rem;
+    align-items: center;
+  }
+
   &__button-sizes {
     display: flex;
     gap: 1rem;
@@ -67,4 +74,27 @@
       margin: 0;
     }
   }
+}
+
+.is-demo-hover.mdk-button--variant-primary {
+  background: linear-gradient(
+      0deg,
+      var(--mdk-button-primary-bg-hover-overlay) 0%,
+      var(--mdk-button-primary-bg-hover-overlay) 100%
+    ),
+    var(--mdk-button-primary-bg);
+  color: var(--mdk-button-primary-text-hover);
+}
+
+.is-demo-hover.mdk-button--variant-secondary {
+  border-color: var(--mdk-button-secondary-border-hover);
+}
+
+.is-demo-hover.mdk-button--variant-danger {
+  opacity: 0.9;
+}
+
+.is-demo-hover.mdk-button--variant-outline {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
 }

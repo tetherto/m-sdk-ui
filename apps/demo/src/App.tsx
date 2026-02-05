@@ -45,18 +45,37 @@ function App(): JSX.Element {
         {/* Buttons */}
         <section className="demo-section">
           <h2 className="demo-section__title">Buttons</h2>
-          <div className="demo-section__buttons">
-            <Button variant="default">Default</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="outline">Outline</Button>
+          <div className="demo-section__button-grid">
+            <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="link">Link</Button>
-          </div>
-          <div className="demo-section__button-sizes">
-            <Button size="sm">Small</Button>
-            <Button size="default">Default</Button>
-            <Button size="lg">Large</Button>
+            <Button variant="danger">Danger</Button>
+            <Button variant="outline">Outline</Button>
+
+            <Button variant="primary" disabled>
+              Primary
+            </Button>
+            <Button variant="secondary" disabled>
+              Secondary
+            </Button>
+            <Button variant="danger" disabled>
+              Danger
+            </Button>
+            <Button variant="outline" disabled>
+              Outline
+            </Button>
+
+            <Button className="is-demo-hover" variant="primary">
+              Primary
+            </Button>
+            <Button className="is-demo-hover" variant="secondary">
+              Secondary
+            </Button>
+            <Button className="is-demo-hover" variant="danger">
+              Danger
+            </Button>
+            <Button className="is-demo-hover" variant="outline">
+              Outline
+            </Button>
           </div>
         </section>
 
@@ -79,7 +98,7 @@ function App(): JSX.Element {
               </div>
               <DialogFooter>
                 <Button variant="outline">Cancel</Button>
-                <Button>Save changes</Button>
+                <Button variant="primary">Save changes</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -90,7 +109,7 @@ function App(): JSX.Element {
           <h2 className="demo-section__title">Alert Dialog</h2>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive">Delete Account</Button>
+              <Button variant="danger">Delete Account</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
