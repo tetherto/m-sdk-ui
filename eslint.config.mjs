@@ -5,7 +5,13 @@ export default antfu(
     type: 'lib',
     typescript: true,
     formatters: false,
-    ignores: ['postcss.config.js', 'vite.config.base.js'],
+    ignores: [
+      'postcss.config.js',
+      'vite.config.base.js',
+      '*/*.md',
+      'packages/**/*.md',
+      'apps/**/*.md',
+    ],
   },
   {
     rules: {
@@ -15,6 +21,9 @@ export default antfu(
       'antfu/no-top-level-await': 'off',
       'node/prefer-global/process': 'off',
       'perfectionist/sort-imports': 'off',
+      'style/quote-props': 'off',
+      'style/brace-style': 'off',
+      'antfu/if-newline': 'off',
       'unicorn/filename-case': [
         'error',
         {
