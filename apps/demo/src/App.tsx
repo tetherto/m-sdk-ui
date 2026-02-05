@@ -169,18 +169,15 @@ function App(): JSX.Element {
           <h2 className="demo-section__title">Tabs</h2>
           <Tabs defaultValue="controller">
             <TabsList>
-              <TabsTrigger value="controller">Controller</TabsTrigger>
-              <TabsTrigger value="hashboard">Hashboard</TabsTrigger>
-              <TabsTrigger disabled value="psu">
-                PSU
+              <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+              <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+              <TabsTrigger disabled value="tab3">
+                Tab 3
               </TabsTrigger>
             </TabsList>
-
-            <TabsContent value="controller">Controller content</TabsContent>
-
-            <TabsContent value="hashboard">Hashboard content</TabsContent>
-
-            <TabsContent value="psu">PSU content</TabsContent>
+            <TabsContent value="tab1">Tab 1 content</TabsContent>
+            <TabsContent value="tab2">Tab 2 content</TabsContent>
+            <TabsContent value="tab3">Tab 3 content</TabsContent>
           </Tabs>
         </section>
       </div>
