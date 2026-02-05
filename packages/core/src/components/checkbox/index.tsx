@@ -15,7 +15,7 @@ export type CheckboxProps = {
    * Color variant when checked
    * @default 'primary'
    */
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error'
+  color?: 'default' | 'primary' | 'success' | 'warning' | 'error'
   /**
    * Border radius variant
    * @default 'small'
@@ -36,12 +36,12 @@ export type CheckboxProps = {
  *
  * @example
  * ```tsx
- * <Checkbox checked={checked} onCheckedChange={setChecked} size="lg" variant="primary" />
+ * <Checkbox checked={checked} onCheckedChange={setChecked} size="lg" color="primary" />
  * ```
  */
 const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(
   (
-    { className, indicatorClassName, size = 'md', variant = 'primary', radius = 'small', ...props },
+    { className, indicatorClassName, size = 'md', color = 'primary', radius = 'small', ...props },
     ref,
   ) => (
     <CheckboxPrimitive.Root
@@ -49,7 +49,7 @@ const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root
       className={cn(
         'mdk-checkbox',
         `mdk-checkbox--${size}`,
-        `mdk-checkbox--${variant}`,
+        `mdk-checkbox--${color}`,
         `mdk-checkbox--radius-${radius}`,
         className,
       )}

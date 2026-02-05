@@ -113,27 +113,27 @@ function App(): JSX.Element {
                 <h3>Color Variants</h3>
                 <div className="demo-section__checkboxes">
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="default" variant="default" defaultChecked />
+                    <Checkbox id="default" color="default" defaultChecked />
                     <Label htmlFor="default">Default (Surface #0E0E0E)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="primary" variant="primary" defaultChecked />
+                    <Checkbox id="primary" color="primary" defaultChecked />
                     <Label htmlFor="primary">Primary (Orange #F7931A)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="success" variant="success" defaultChecked />
+                    <Checkbox id="success" color="success" defaultChecked />
                     <Label htmlFor="success">Success (Green #72F59E)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="warning" variant="warning" defaultChecked />
+                    <Checkbox id="warning" color="warning" defaultChecked />
                     <Label htmlFor="warning">Warning (Yellow #FFC107)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="error" variant="error" defaultChecked />
+                    <Checkbox id="error" color="error" defaultChecked />
                     <Label htmlFor="error">Error (Red #EF4444)</Label>
                   </div>
                 </div>
@@ -144,17 +144,17 @@ function App(): JSX.Element {
                 <h3>Size Variants</h3>
                 <div className="demo-section__checkboxes">
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="small" size="sm" variant="primary" defaultChecked />
+                    <Checkbox id="small" size="sm" color="primary" defaultChecked />
                     <Label htmlFor="small">Small (16×16px)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="medium" size="md" variant="primary" defaultChecked />
+                    <Checkbox id="medium" size="md" color="primary" defaultChecked />
                     <Label htmlFor="medium">Medium (20×20px) - Default</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="large" size="lg" variant="primary" defaultChecked />
+                    <Checkbox id="large" size="lg" color="primary" defaultChecked />
                     <Label htmlFor="large">Large (24×24px)</Label>
                   </div>
                 </div>
@@ -165,27 +165,27 @@ function App(): JSX.Element {
                 <h3>Radius Variants</h3>
                 <div className="demo-section__checkboxes">
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="radius-none" radius="none" variant="success" defaultChecked />
+                    <Checkbox id="radius-none" radius="none" color="success" defaultChecked />
                     <Label htmlFor="radius-none">None (Square corners)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="radius-small" radius="small" variant="success" defaultChecked />
+                    <Checkbox id="radius-small" radius="small" color="success" defaultChecked />
                     <Label htmlFor="radius-small">Small (4px) - Default</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="radius-medium" radius="medium" variant="success" defaultChecked />
+                    <Checkbox id="radius-medium" radius="medium" color="success" defaultChecked />
                     <Label htmlFor="radius-medium">Medium (6px)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="radius-large" radius="large" variant="success" defaultChecked />
+                    <Checkbox id="radius-large" radius="large" color="success" defaultChecked />
                     <Label htmlFor="radius-large">Large (8px)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="radius-full" radius="full" variant="success" defaultChecked />
+                    <Checkbox id="radius-full" radius="full" color="success" defaultChecked />
                     <Label htmlFor="radius-full">Full (Circular)</Label>
                   </div>
                 </div>
@@ -196,27 +196,27 @@ function App(): JSX.Element {
                 <h3>States</h3>
                 <div className="demo-section__checkboxes">
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="unchecked" variant="primary" />
+                    <Checkbox id="unchecked" color="primary" />
                     <Label htmlFor="unchecked">Unchecked</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="checked" variant="primary" defaultChecked />
+                    <Checkbox id="checked" color="primary" defaultChecked />
                     <Label htmlFor="checked">Checked</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="indeterminate" variant="primary" checked="indeterminate" />
+                    <Checkbox id="indeterminate" color="primary" checked="indeterminate" />
                     <Label htmlFor="indeterminate">Indeterminate</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="disabled-unchecked" variant="primary" disabled />
+                    <Checkbox id="disabled-unchecked" color="primary" disabled />
                     <Label htmlFor="disabled-unchecked">Disabled (Unchecked)</Label>
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="disabled-checked" variant="primary" disabled defaultChecked />
+                    <Checkbox id="disabled-checked" color="primary" disabled defaultChecked />
                     <Label htmlFor="disabled-checked">Disabled (Checked)</Label>
                   </div>
                 </div>
@@ -227,13 +227,7 @@ function App(): JSX.Element {
                 <h3>Combination Examples</h3>
                 <div className="demo-section__checkboxes">
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox
-                      id="combo-1"
-                      size="sm"
-                      variant="primary"
-                      radius="none"
-                      defaultChecked
-                    />
+                    <Checkbox id="combo-1" size="sm" color="primary" radius="none" defaultChecked />
                     <Label htmlFor="combo-1">Small + Primary + No Radius</Label>
                   </div>
 
@@ -241,7 +235,7 @@ function App(): JSX.Element {
                     <Checkbox
                       id="combo-2"
                       size="md"
-                      variant="success"
+                      color="success"
                       radius="medium"
                       defaultChecked
                     />
@@ -249,7 +243,7 @@ function App(): JSX.Element {
                   </div>
 
                   <div className="demo-section__checkboxes__item">
-                    <Checkbox id="combo-3" size="lg" variant="error" radius="full" defaultChecked />
+                    <Checkbox id="combo-3" size="lg" color="error" radius="full" defaultChecked />
                     <Label htmlFor="combo-3">Large + Error + Full Radius (Circle)</Label>
                   </div>
 
@@ -257,7 +251,7 @@ function App(): JSX.Element {
                     <Checkbox
                       id="combo-4"
                       size="lg"
-                      variant="warning"
+                      color="warning"
                       radius="large"
                       defaultChecked
                     />
@@ -274,27 +268,27 @@ function App(): JSX.Element {
                 <h3>Color Variants</h3>
                 <div className="demo-section__switches">
                   <div className="demo-section__switches__item">
-                    <Switch id="default" variant="default" defaultChecked />
+                    <Switch id="default" color="default" defaultChecked />
                     <Label htmlFor="default">Default (Surface #0E0E0E)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="primary" variant="primary" defaultChecked />
+                    <Switch id="primary" color="primary" defaultChecked />
                     <Label htmlFor="primary">Primary (Orange #F7931A)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="success" variant="success" defaultChecked />
+                    <Switch id="success" color="success" defaultChecked />
                     <Label htmlFor="success">Success (Green #72F59E)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="warning" variant="warning" defaultChecked />
+                    <Switch id="warning" color="warning" defaultChecked />
                     <Label htmlFor="warning">Warning (Yellow #FFC107)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="error" variant="error" defaultChecked />
+                    <Switch id="error" color="error" defaultChecked />
                     <Label htmlFor="error">Error (Red #EF4444)</Label>
                   </div>
                 </div>
@@ -305,17 +299,17 @@ function App(): JSX.Element {
                 <h3>Size Variants</h3>
                 <div className="demo-section__switches">
                   <div className="demo-section__switches__item">
-                    <Switch id="small" size="sm" variant="primary" defaultChecked />
+                    <Switch id="small" size="sm" color="primary" defaultChecked />
                     <Label htmlFor="small">Small (32×18px)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="medium" size="md" variant="primary" defaultChecked />
+                    <Switch id="medium" size="md" color="primary" defaultChecked />
                     <Label htmlFor="medium">Medium (42×24px) - Default</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="large" size="lg" variant="primary" defaultChecked />
+                    <Switch id="large" size="lg" color="primary" defaultChecked />
                     <Label htmlFor="large">Large (52×30px)</Label>
                   </div>
                 </div>
@@ -326,27 +320,27 @@ function App(): JSX.Element {
                 <h3>Radius Variants</h3>
                 <div className="demo-section__switches">
                   <div className="demo-section__switches__item">
-                    <Switch id="radius-none" radius="none" variant="success" defaultChecked />
+                    <Switch id="radius-none" radius="none" color="success" defaultChecked />
                     <Label htmlFor="radius-none">None (Square corners) - Default</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="radius-small" radius="small" variant="success" defaultChecked />
+                    <Switch id="radius-small" radius="small" color="success" defaultChecked />
                     <Label htmlFor="radius-small">Small (4px border-radius)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="radius-medium" radius="medium" variant="success" defaultChecked />
+                    <Switch id="radius-medium" radius="medium" color="success" defaultChecked />
                     <Label htmlFor="radius-medium">Medium (8px border-radius)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="radius-large" radius="large" variant="success" defaultChecked />
+                    <Switch id="radius-large" radius="large" color="success" defaultChecked />
                     <Label htmlFor="radius-large">Large (12px border-radius)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="radius-full" radius="full" variant="success" defaultChecked />
+                    <Switch id="radius-full" radius="full" color="success" defaultChecked />
                     <Label htmlFor="radius-full">Full (Pill-shaped)</Label>
                   </div>
                 </div>
@@ -357,22 +351,22 @@ function App(): JSX.Element {
                 <h3>States</h3>
                 <div className="demo-section__switches">
                   <div className="demo-section__switches__item">
-                    <Switch id="unchecked" variant="primary" />
+                    <Switch id="unchecked" color="primary" />
                     <Label htmlFor="unchecked">Unchecked</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="checked" variant="primary" defaultChecked />
+                    <Switch id="checked" color="primary" defaultChecked />
                     <Label htmlFor="checked">Checked</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="disabled-unchecked" variant="primary" disabled />
+                    <Switch id="disabled-unchecked" color="primary" disabled />
                     <Label htmlFor="disabled-unchecked">Disabled (Unchecked)</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="disabled-checked" variant="primary" disabled defaultChecked />
+                    <Switch id="disabled-checked" color="primary" disabled defaultChecked />
                     <Label htmlFor="disabled-checked">Disabled (Checked)</Label>
                   </div>
                 </div>
@@ -383,34 +377,22 @@ function App(): JSX.Element {
                 <h3>Combination Examples</h3>
                 <div className="demo-section__switches">
                   <div className="demo-section__switches__item">
-                    <Switch
-                      id="combo-1"
-                      size="sm"
-                      variant="primary"
-                      radius="small"
-                      defaultChecked
-                    />
+                    <Switch id="combo-1" size="sm" color="primary" radius="small" defaultChecked />
                     <Label htmlFor="combo-1">Small + Primary + Small Radius</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch
-                      id="combo-2"
-                      size="md"
-                      variant="success"
-                      radius="medium"
-                      defaultChecked
-                    />
+                    <Switch id="combo-2" size="md" color="success" radius="medium" defaultChecked />
                     <Label htmlFor="combo-2">Medium + Success + Medium Radius</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="combo-3" size="lg" variant="error" radius="none" defaultChecked />
+                    <Switch id="combo-3" size="lg" color="error" radius="none" defaultChecked />
                     <Label htmlFor="combo-3">Large + Error + No Radius</Label>
                   </div>
 
                   <div className="demo-section__switches__item">
-                    <Switch id="combo-4" size="lg" variant="warning" radius="full" defaultChecked />
+                    <Switch id="combo-4" size="lg" color="warning" radius="full" defaultChecked />
                     <Label htmlFor="combo-4">Large + Warning + Full Radius</Label>
                   </div>
                 </div>

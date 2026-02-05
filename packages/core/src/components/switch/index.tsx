@@ -13,7 +13,7 @@ export type SwitchProps = {
    * Color variant when checked
    * @default 'default'
    */
-  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error'
+  color?: 'default' | 'primary' | 'success' | 'warning' | 'error'
   /**
    * Border radius variant
    * @default 'none'
@@ -33,19 +33,19 @@ export type SwitchProps = {
  *
  * @example
  * ```tsx
- * <Switch checked={enabled} onCheckedChange={setEnabled} size="lg" variant="primary" />
+ * <Switch checked={enabled} onCheckedChange={setEnabled} size="lg" color="primary" />
  * ```
  */
 const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Root>, SwitchProps>(
   (
-    { className, thumbClassName, size = 'md', variant = 'default', radius = 'none', ...props },
+    { className, thumbClassName, size = 'md', color = 'default', radius = 'none', ...props },
     ref,
   ) => (
     <SwitchPrimitives.Root
       className={cn(
         'mdk-switch',
         `mdk-switch--${size}`,
-        `mdk-switch--${variant}`,
+        `mdk-switch--${color}`,
         `mdk-switch--radius-${radius}`,
         className,
       )}
