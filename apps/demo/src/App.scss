@@ -94,6 +94,12 @@
       margin: 0;
     }
   }
+  &__tabs {
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background-color: var(--mdk-color-background-dark);
+  }
 }
 
 .is-demo-hover.mdk-button--variant-primary {

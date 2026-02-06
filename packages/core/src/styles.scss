@@ -52,6 +52,9 @@
 
     /* Common Component Colors */
     --mdk-color-white: #ffffff;
+    --mdk-color-white-transparent: #ffffff1a;
+    --mdk-color-text-secondary: #ffffffd9;
+    --mdk-color-text-disabled: #ffffff80;
 
     /* Switch specific colors */
     --mdk-switch-unchecked-bg: var(--mdk-color-background-light);
@@ -78,6 +81,7 @@
     --mdk-button-danger-bg: #ef4444;
     --mdk-button-danger-text: #ffffff;
     --mdk-button-danger-border: #ef4444;
+
   }
 
   .dark {
