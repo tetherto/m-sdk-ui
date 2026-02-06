@@ -6877,9 +6877,6 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.28
 
-<<<<<<< Updated upstream
-  react-style-singleton@2.2.3(@types/react@18.3.28)(react@18.3.1):
-=======
   react-router-dom@7.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
@@ -6894,8 +6891,7 @@ snapshots:
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
 
-  react-style-singleton@2.2.3(@types/react@18.3.27)(react@18.3.1):
->>>>>>> Stashed changes
+  react-style-singleton@2.2.3(@types/react@18.3.28)(react@18.3.1):
     dependencies:
       get-nonce: 1.0.1
       react: 18.3.1
