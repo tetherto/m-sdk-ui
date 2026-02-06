@@ -3,22 +3,60 @@ import * as React from 'react'
 
 import { cn } from '../../utils'
 
+export type SwitchProps = {
+  /**
+   * Size variant of the switch
+   * @default 'md'
+   */
+  size?: 'sm' | 'md' | 'lg'
+  /**
+   * Color variant when checked
+   * @default 'default'
+   */
+  color?: 'default' | 'primary' | 'success' | 'warning' | 'error'
+  /**
+   * Border radius variant
+   * @default 'none'
+   */
+  radius?: 'none' | 'small' | 'medium' | 'large' | 'full'
+  /**
+   * Custom className for the root element
+   */
+  className?: string
+  /**
+   * Custom className for the thumb element
+   */
+  thumbClassName?: string
+} & React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
 /**
- * Switch component for toggle controls
+ * Switch component for toggle controls with full customization
  *
  * @example
  * ```tsx
- * <Switch checked={enabled} onCheckedChange={setEnabled} />
+ * <Switch checked={enabled} onCheckedChange={setEnabled} size="lg" color="primary" />
  * ```
  */
-const Switch = React.forwardRef<
-  React.ElementRef<typeof SwitchPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
->(({ className, ...props }, ref) => (
-  <SwitchPrimitives.Root className={cn('mdk-switch', className)} {...props} ref={ref}>
-    <SwitchPrimitives.Thumb className="mdk-switch__thumb" />
-  </SwitchPrimitives.Root>
-))
-Switch.displayName = SwitchPrimitives.Root.displayName
+const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Root>, SwitchProps>(
+  (
+    { className, thumbClassName, size = 'md', color = 'default', radius = 'none', ...props },
+    ref,
+  ) => (
+    <SwitchPrimitives.Root
+      className={cn(
+        'mdk-switch',
+        `mdk-switch--${size}`,
+        `mdk-switch--${color}`,
+        `mdk-switch--radius-${radius}`,
+        className,
+      )}
+      {...props}
+      ref={ref}
+    >
+      <SwitchPrimitives.Thumb className={cn('mdk-switch__thumb', thumbClassName)} />
+    </SwitchPrimitives.Root>
+  ),
+)
+
+Switch.displayName = 'Switch'
 
 export { Switch }

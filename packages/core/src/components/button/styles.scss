@@ -6,15 +6,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius);
-  font-size: 0.875rem;
-  font-weight: 500;
+  border-radius: var(--mdk-radius);
+  font-size: var(--mdk-font-size);
+  line-height: var(--mdk-line-height);
+  font-weight: var(--mdk-font-weight);
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
   transition: colors 0.2s;
+  box-shadow: var(--mdk-shadow);
 
   &:focus-visible {
     outline: none;
-    ring: 2px solid hsl(var(--ring));
-    ring-offset: 2px;
+    box-shadow: 0 0 0 2px hsl(var(--ring));
+    outline: 2px solid transparent;
+    outline-offset: 2px;
   }
 
   &:disabled {
@@ -23,28 +29,37 @@
   }
 
   // Variants
-  &--default {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+  &--variant-primary {
+    background: var(--mdk-button-primary-bg);
+    color: var(--mdk-button-primary-text);
 
     &:hover {
-      background: hsl(var(--primary) / 0.9);
+      background: linear-gradient(
+          0deg,
+          var(--mdk-button-primary-bg-hover-overlay) 0%,
+          var(--mdk-button-primary-bg-hover-overlay) 100%
+        ),
+        var(--mdk-button-primary-bg);
+      color: var(--mdk-button-primary-text-hover);
     }
   }
 
-  &--destructive {
-    background: hsl(var(--destructive));
-    color: hsl(var(--destructive-foreground));
+  &--variant-danger {
+    background: var(--mdk-button-danger-bg);
+    color: var(--mdk-button-danger-text);
+    border-color: var(--mdk-button-danger-border);
+    box-shadow: none;
 
     &:hover {
-      background: hsl(var(--destructive) / 0.9);
+      opacity: 0.9;
     }
   }
 
-  &--outline {
+  &--variant-outline {
     border: 1px solid hsl(var(--input));
     background: hsl(var(--background));
     color: hsl(var(--foreground));
+    box-shadow: none;
 
     &:hover {
       background: hsl(var(--accent));
@@ -52,18 +67,21 @@
     }
   }
 
-  &--secondary {
-    background: hsl(var(--secondary));
-    color: hsl(var(--secondary-foreground));
+  &--variant-secondary {
+    background: var(--mdk-button-secondary-bg);
+    color: var(--mdk-button-secondary-text);
+    border-color: var(--mdk-button-secondary-border);
+    box-shadow: none;
 
     &:hover {
-      background: hsl(var(--secondary) / 0.8);
+      border-color: var(--mdk-button-secondary-border-hover);
     }
   }
 
-  &--ghost {
+  &--variant-ghost {
     background: transparent;
     color: hsl(var(--foreground));
+    box-shadow: none;
 
     &:hover {
       background: hsl(var(--accent));
@@ -71,11 +89,12 @@
     }
   }
 
-  &--link {
+  &--variant-link {
     background: transparent;
     color: hsl(217 91% 60%); // Bright blue for visibility
     text-decoration: underline;
     text-underline-offset: 4px;
+    box-shadow: none;
 
     &:hover {
       text-decoration: underline;
@@ -84,24 +103,60 @@
   }
 
   // Sizes
-  &--sm {
+  &--size-sm {
     height: 2.25rem;
     padding: 0 0.75rem;
     border-radius: calc(var(--radius) - 2px);
   }
 
-  &--default {
+  &--size-md {
     height: 2.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5625rem 3.5rem;
+    min-width: 8.75rem;
   }
 
-  &--lg {
+  &--size-lg {
     height: 2.75rem;
     padding: 0.5rem 2rem;
   }
 
-  &--icon {
+  &--size-icon {
     height: 2.5rem;
     width: 2.5rem;
+    padding: 0;
+  }
+}
+
+.mdk-button--full-width {
+  width: 100%;
+}
+
+.mdk-button--icon-only {
+  padding: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.mdk-button__spinner {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  border: 2px solid hsl(var(--foreground) / 0.3);
+  border-top-color: hsl(var(--foreground));
+  animation: mdk-button-spin 0.7s linear infinite;
+}
+
+.mdk-button__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.mdk-button__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes mdk-button-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

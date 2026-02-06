@@ -1,5 +1,3 @@
-import type { CheckedState } from '@mining-sdk/core'
-
 import {
   Accordion,
   AccordionContent,
@@ -33,14 +31,10 @@ import {
   TabsList,
   TabsTrigger,
 } from '@mining-sdk/core'
-import { useState } from 'react'
 
 import './App.scss'
 
 function App(): JSX.Element {
-  const [checked, setChecked] = useState<CheckedState>(false)
-  const [switchEnabled, setSwitchEnabled] = useState(false)
-
   return (
     <div className="demo-app">
       <h1 className="demo-app__title">@mining-sdk/core Component Demo</h1>
@@ -49,18 +43,37 @@ function App(): JSX.Element {
         {/* Buttons */}
         <section className="demo-section">
           <h2 className="demo-section__title">Buttons</h2>
-          <div className="demo-section__buttons">
-            <Button variant="default">Default</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="outline">Outline</Button>
+          <div className="demo-section__button-grid">
+            <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="link">Link</Button>
-          </div>
-          <div className="demo-section__button-sizes">
-            <Button size="sm">Small</Button>
-            <Button size="default">Default</Button>
-            <Button size="lg">Large</Button>
+            <Button variant="danger">Danger</Button>
+            <Button variant="outline">Outline</Button>
+
+            <Button variant="primary" disabled>
+              Primary
+            </Button>
+            <Button variant="secondary" disabled>
+              Secondary
+            </Button>
+            <Button variant="danger" disabled>
+              Danger
+            </Button>
+            <Button variant="outline" disabled>
+              Outline
+            </Button>
+
+            <Button className="is-demo-hover" variant="primary">
+              Primary
+            </Button>
+            <Button className="is-demo-hover" variant="secondary">
+              Secondary
+            </Button>
+            <Button className="is-demo-hover" variant="danger">
+              Danger
+            </Button>
+            <Button className="is-demo-hover" variant="outline">
+              Outline
+            </Button>
           </div>
         </section>
 
@@ -83,7 +96,7 @@ function App(): JSX.Element {
               </div>
               <DialogFooter>
                 <Button variant="outline">Cancel</Button>
-                <Button>Save changes</Button>
+                <Button variant="primary">Save changes</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -94,7 +107,7 @@ function App(): JSX.Element {
           <h2 className="demo-section__title">Alert Dialog</h2>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive">Delete Account</Button>
+              <Button variant="danger">Delete Account</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
@@ -116,13 +129,297 @@ function App(): JSX.Element {
         <section className="demo-section">
           <h2 className="demo-section__title">Checkbox & Switch</h2>
           <div className="demo-section__form-controls">
-            <div className="demo-section__form-item">
-              <Checkbox id="terms" checked={checked} onCheckedChange={setChecked} />
-              <Label htmlFor="terms">Accept terms and conditions</Label>
+            <h2>Checkbox</h2>
+            <div className="demo-section__form-item demo-section__form-item--baseline">
+              {/* Color Variants */}
+              <section>
+                <h3>Color Variants</h3>
+                <div className="demo-section__checkboxes">
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="default" color="default" defaultChecked />
+                    <Label htmlFor="default">Default (Surface #0E0E0E)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="primary" color="primary" defaultChecked />
+                    <Label htmlFor="primary">Primary (Orange #F7931A)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="success" color="success" defaultChecked />
+                    <Label htmlFor="success">Success (Green #72F59E)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="warning" color="warning" defaultChecked />
+                    <Label htmlFor="warning">Warning (Yellow #FFC107)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="error" color="error" defaultChecked />
+                    <Label htmlFor="error">Error (Red #EF4444)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Size Variants */}
+              <section>
+                <h3>Size Variants</h3>
+                <div className="demo-section__checkboxes">
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="small" size="sm" color="primary" defaultChecked />
+                    <Label htmlFor="small">Small (16×16px)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="medium" size="md" color="primary" defaultChecked />
+                    <Label htmlFor="medium">Medium (20×20px) - Default</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="large" size="lg" color="primary" defaultChecked />
+                    <Label htmlFor="large">Large (24×24px)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Radius Variants */}
+              <section>
+                <h3>Radius Variants</h3>
+                <div className="demo-section__checkboxes">
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="radius-none" radius="none" color="success" defaultChecked />
+                    <Label htmlFor="radius-none">None (Square corners)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="radius-small" radius="small" color="success" defaultChecked />
+                    <Label htmlFor="radius-small">Small (4px) - Default</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="radius-medium" radius="medium" color="success" defaultChecked />
+                    <Label htmlFor="radius-medium">Medium (6px)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="radius-large" radius="large" color="success" defaultChecked />
+                    <Label htmlFor="radius-large">Large (8px)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="radius-full" radius="full" color="success" defaultChecked />
+                    <Label htmlFor="radius-full">Full (Circular)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* States */}
+              <section>
+                <h3>States</h3>
+                <div className="demo-section__checkboxes">
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="unchecked" color="primary" />
+                    <Label htmlFor="unchecked">Unchecked</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="checked" color="primary" defaultChecked />
+                    <Label htmlFor="checked">Checked</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="indeterminate" color="primary" checked="indeterminate" />
+                    <Label htmlFor="indeterminate">Indeterminate</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="disabled-unchecked" color="primary" disabled />
+                    <Label htmlFor="disabled-unchecked">Disabled (Unchecked)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="disabled-checked" color="primary" disabled defaultChecked />
+                    <Label htmlFor="disabled-checked">Disabled (Checked)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Combinations */}
+              <section>
+                <h3>Combination Examples</h3>
+                <div className="demo-section__checkboxes">
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="combo-1" size="sm" color="primary" radius="none" defaultChecked />
+                    <Label htmlFor="combo-1">Small + Primary + No Radius</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox
+                      id="combo-2"
+                      size="md"
+                      color="success"
+                      radius="medium"
+                      defaultChecked
+                    />
+                    <Label htmlFor="combo-2">Medium + Success + Medium Radius</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox id="combo-3" size="lg" color="error" radius="full" defaultChecked />
+                    <Label htmlFor="combo-3">Large + Error + Full Radius (Circle)</Label>
+                  </div>
+
+                  <div className="demo-section__checkboxes__item">
+                    <Checkbox
+                      id="combo-4"
+                      size="lg"
+                      color="warning"
+                      radius="large"
+                      defaultChecked
+                    />
+                    <Label htmlFor="combo-4">Large + Warning + Large Radius</Label>
+                  </div>
+                </div>
+              </section>
             </div>
-            <div className="demo-section__form-item">
-              <Switch id="airplane" checked={switchEnabled} onCheckedChange={setSwitchEnabled} />
-              <Label htmlFor="airplane">Airplane Mode</Label>
+          </div>
+          <div className="demo-section__form-controls">
+            <h2>Switch</h2>
+            <div className="demo-section__form-item demo-section__form-item--baseline">
+              <section>
+                <h3>Color Variants</h3>
+                <div className="demo-section__switches">
+                  <div className="demo-section__switches__item">
+                    <Switch id="default" color="default" defaultChecked />
+                    <Label htmlFor="default">Default (Surface #0E0E0E)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="primary" color="primary" defaultChecked />
+                    <Label htmlFor="primary">Primary (Orange #F7931A)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="success" color="success" defaultChecked />
+                    <Label htmlFor="success">Success (Green #72F59E)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="warning" color="warning" defaultChecked />
+                    <Label htmlFor="warning">Warning (Yellow #FFC107)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="error" color="error" defaultChecked />
+                    <Label htmlFor="error">Error (Red #EF4444)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Size Variants */}
+              <section>
+                <h3>Size Variants</h3>
+                <div className="demo-section__switches">
+                  <div className="demo-section__switches__item">
+                    <Switch id="small" size="sm" color="primary" defaultChecked />
+                    <Label htmlFor="small">Small (32×18px)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="medium" size="md" color="primary" defaultChecked />
+                    <Label htmlFor="medium">Medium (42×24px) - Default</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="large" size="lg" color="primary" defaultChecked />
+                    <Label htmlFor="large">Large (52×30px)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Radius Variants */}
+              <section>
+                <h3>Radius Variants</h3>
+                <div className="demo-section__switches">
+                  <div className="demo-section__switches__item">
+                    <Switch id="radius-none" radius="none" color="success" defaultChecked />
+                    <Label htmlFor="radius-none">None (Square corners) - Default</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="radius-small" radius="small" color="success" defaultChecked />
+                    <Label htmlFor="radius-small">Small (4px border-radius)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="radius-medium" radius="medium" color="success" defaultChecked />
+                    <Label htmlFor="radius-medium">Medium (8px border-radius)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="radius-large" radius="large" color="success" defaultChecked />
+                    <Label htmlFor="radius-large">Large (12px border-radius)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="radius-full" radius="full" color="success" defaultChecked />
+                    <Label htmlFor="radius-full">Full (Pill-shaped)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* States */}
+              <section>
+                <h3>States</h3>
+                <div className="demo-section__switches">
+                  <div className="demo-section__switches__item">
+                    <Switch id="unchecked" color="primary" />
+                    <Label htmlFor="unchecked">Unchecked</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="checked" color="primary" defaultChecked />
+                    <Label htmlFor="checked">Checked</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="disabled-unchecked" color="primary" disabled />
+                    <Label htmlFor="disabled-unchecked">Disabled (Unchecked)</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="disabled-checked" color="primary" disabled defaultChecked />
+                    <Label htmlFor="disabled-checked">Disabled (Checked)</Label>
+                  </div>
+                </div>
+              </section>
+
+              {/* Combinations */}
+              <section>
+                <h3>Combination Examples</h3>
+                <div className="demo-section__switches">
+                  <div className="demo-section__switches__item">
+                    <Switch id="combo-1" size="sm" color="primary" radius="small" defaultChecked />
+                    <Label htmlFor="combo-1">Small + Primary + Small Radius</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="combo-2" size="md" color="success" radius="medium" defaultChecked />
+                    <Label htmlFor="combo-2">Medium + Success + Medium Radius</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="combo-3" size="lg" color="error" radius="none" defaultChecked />
+                    <Label htmlFor="combo-3">Large + Error + No Radius</Label>
+                  </div>
+
+                  <div className="demo-section__switches__item">
+                    <Switch id="combo-4" size="lg" color="warning" radius="full" defaultChecked />
+                    <Label htmlFor="combo-4">Large + Warning + Full Radius</Label>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
         </section>

@@ -1,35 +1,187 @@
-/**
- * Checkbox Component Styles
- */
+/* ========================================
+   Checkbox Component Styles
+   ======================================== */
 
+/* Base Checkbox */
 .mdk-checkbox {
-  height: 1rem;
-  width: 1rem;
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--mdk-color-background-light);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 200ms ease;
   flex-shrink: 0;
-  border-radius: 0.125rem;
-  border: 1px solid hsl(var(--primary));
-  ring-offset: hsl(var(--background));
+
+  &:hover {
+    border-color: currentColor;
+    opacity: 0.8;
+  }
 
   &:focus-visible {
-    outline: none;
-    ring: 2px solid hsl(var(--ring));
-    ring-offset: 2px;
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
   &:disabled {
-    cursor: not-allowed;
     opacity: 0.5;
+    cursor: not-allowed;
   }
 
   &[data-state='checked'] {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    border-color: currentColor;
+  }
+}
+
+/* Indicator (Checkmark container) */
+.mdk-checkbox__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--mdk-color-white);
+}
+
+/* Icon (Checkmark SVG) */
+.mdk-checkbox__icon {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   SIZE VARIANTS
+   ======================================== */
+
+/* Small */
+.mdk-checkbox--sm {
+  width: 16px;
+  height: 16px;
+
+  .mdk-checkbox__icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Medium (Default) */
+.mdk-checkbox--md {
+  width: 20px;
+  height: 20px;
+
+  .mdk-checkbox__icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Large */
+.mdk-checkbox--lg {
+  width: 24px;
+  height: 24px;
+
+  .mdk-checkbox__icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ========================================
+   RADIUS VARIANTS
+   ======================================== */
+
+/* None (Square corners) */
+.mdk-checkbox--radius-none {
+  border-radius: 0;
+}
+
+/* Small (Slightly rounded) */
+.mdk-checkbox--radius-small {
+  border-radius: 4px;
+}
+
+/* Medium (Moderately rounded) */
+.mdk-checkbox--radius-medium {
+  border-radius: 6px;
+}
+
+/* Large (Very rounded) */
+.mdk-checkbox--radius-large {
+  border-radius: 8px;
+}
+
+/* Full (Circular) */
+.mdk-checkbox--radius-full {
+  border-radius: 9999px;
+}
+
+/* ========================================
+   COLOR VARIANTS
+   ======================================== */
+
+/* Default (Gray/Neutral) */
+.mdk-checkbox--default {
+  color: var(--mdk-color-surface);
+
+  &[data-state='checked'] {
+    background-color: var(--mdk-color-surface);
+  }
+}
+
+/* Primary (Orange) */
+.mdk-checkbox--primary {
+  color: var(--mdk-color-primary);
+
+  &[data-state='checked'] {
+    background-color: var(--mdk-color-primary);
+  }
+}
+
+/* Success (Green) */
+.mdk-checkbox--success {
+  color: var(--mdk-color-success);
+
+  &[data-state='checked'] {
+    background-color: var(--mdk-color-success);
+  }
+}
+
+/* Warning (Yellow) */
+.mdk-checkbox--warning {
+  color: var(--mdk-color-warning);
+
+  &[data-state='checked'] {
+    background-color: var(--mdk-color-warning);
+  }
+}
+
+/* Error/Danger (Red) */
+.mdk-checkbox--error {
+  color: var(--mdk-color-error);
+
+  &[data-state='checked'] {
+    background-color: var(--mdk-color-error);
+  }
+}
+
+/* ========================================
+   INDETERMINATE STATE
+   ======================================== */
+
+.mdk-checkbox[data-state='indeterminate'] {
+  background-color: currentColor;
+
+  .mdk-checkbox__indicator svg {
+    display: none;
   }
 
-  &__indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: currentColor;
+  .mdk-checkbox__indicator::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 2px;
+    background-color: var(--mdk-color-white);
+    border-radius: 1px;
   }
 }
