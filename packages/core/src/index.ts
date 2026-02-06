@@ -10,6 +10,7 @@ export * from './components/accordion'
 export * from './components/alert-dialog'
 
 export * from './components/avatar'
+export * from './components/breadcrumbs'
 export * from './components/button'
 export * from './components/checkbox'
 export * from './components/dialog'
@@ -18,7 +19,6 @@ export * as DropdownMenu from './components/dropdown-menu'
 export * from './components/label'
 export * as Popover from './components/popover'
 export * as Progress from './components/progress'
-
 export * as RadioGroup from './components/radio-group'
 export * as Select from './components/select'
 export * as Separator from './components/separator'
@@ -27,6 +27,7 @@ export * from './components/switch'
 export * from './components/tabs'
 export * as Toast from './components/toast'
 export * as Tooltip from './components/tooltip'
+export * from './components/typography'
 // Theme system
 export * from './theme'
 // Core types

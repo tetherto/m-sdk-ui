@@ -14,6 +14,8 @@
 @use './components/tabs/styles' as tabs;
 @use './components/label/styles' as label;
 @use './components/switch/styles' as switch;
+@use './components/typography/styles' as typography;
+@use './components/breadcrumbs/styles' as breadcrumbs;
 
 // CSS Variables
 @layer base {
@@ -56,6 +58,13 @@
     --mining-sdk-color-text-secondary: #ffffffd9;
     --mining-sdk-color-text-disabled: #ffffff80;
 
+    /* Breadcrumbs specific colors */
+    --mining-sdk-breadcrumbs-separator-color: var(--mining-sdk-color-primary);
+    --mining-sdk-breadcrumbs-link-color: var(--mining-sdk-color-grey-idle);
+    --mining-sdk-breadcrumbs-link-hover-color: var(--mining-sdkcolor-primary);
+    --mining-sdk-breadcrumbs-link-current-color: var(--mining-sdk-color-grey-idle);
+    --mining-sdk-breadcrumbs-back-button-color: var(--mining-sdk-color-primary);
+
     /* Switch specific colors */
     --mining-sdk-switch-unchecked-bg: var(--mining-sdk-color-background-light);
     --mining-sdk-switch-thumb-shadow: rgba(0, 0, 0, 0.2);
@@ -81,7 +90,6 @@
     --mining-sdk-button-danger-bg: #ef4444;
     --mining-sdk-button-danger-text: #ffffff;
     --mining-sdk-button-danger-border: #ef4444;
-
   }
 
   .dark {

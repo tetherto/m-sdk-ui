@@ -103,7 +103,8 @@
 }
 
 .is-demo-hover.mining-sdk-button--variant-primary {
-  background: linear-gradient(
+  background:
+    linear-gradient(
       0deg,
       var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
       var(--mining-sdk-button-primary-bg-hover-overlay) 100%
@@ -123,4 +124,17 @@
 .is-demo-hover.mining-sdk-button--variant-outline {
   background: hsl(var(--accent));
   color: hsl(var(--accent-foreground));
+  &__typography {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &--title {
+      margin: 2rem 0;
+    }
+  }
+
+  &__breadcrumbs {
+    margin-bottom: 2rem;
+  }
 }

@@ -15,6 +15,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  Breadcrumbs,
   Button,
   Checkbox,
   Dialog,
@@ -30,8 +31,9 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
+  Typography,
 } from '@mining-sdk/core'
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 
 function App(): JSX.Element {
@@ -76,7 +78,6 @@ function App(): JSX.Element {
             </Button>
           </div>
         </section>
-
         {/* Dialog */}
         <section className="demo-section">
           <h2 className="demo-section__title">Dialog</h2>
@@ -101,7 +102,6 @@ function App(): JSX.Element {
             </DialogContent>
           </Dialog>
         </section>
-
         {/* Alert Dialog */}
         <section className="demo-section">
           <h2 className="demo-section__title">Alert Dialog</h2>
@@ -124,7 +124,6 @@ function App(): JSX.Element {
             </AlertDialogContent>
           </AlertDialog>
         </section>
-
         {/* Checkbox & Switch */}
         <section className="demo-section">
           <h2 className="demo-section__title">Checkbox & Switch</h2>
@@ -423,7 +422,6 @@ function App(): JSX.Element {
             </div>
           </div>
         </section>
-
         {/* Avatar */}
         <section className="demo-section">
           <h2 className="demo-section__title">Avatar</h2>
@@ -437,7 +435,6 @@ function App(): JSX.Element {
             </Avatar>
           </div>
         </section>
-
         {/* Accordion */}
         <section className="demo-section">
           <h2 className="demo-section__title">Accordion</h2>
@@ -460,7 +457,6 @@ function App(): JSX.Element {
             </AccordionItem>
           </Accordion>
         </section>
-
         {/* Tabs  */}
         <section className="demo-section">
           <h2 className="demo-section__title">Tabs</h2>
@@ -492,6 +488,171 @@ function App(): JSX.Element {
               <TabsContent value="tab3">Tab 3 content</TabsContent>
             </Tabs>
           </div>
+        </section>
+        =======
+        {/* Typography */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Typography</h2>
+          <div className="demo-section__typography">
+            {/* Variants */}
+            <section>
+              <h3 className="demo-section__typography--title">Variants</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Typography variant="heading1">Heading 1</Typography>
+                <Typography variant="heading2">Heading 2</Typography>
+                <Typography variant="heading3">Heading 3</Typography>
+                <Typography variant="body">Body Text</Typography>
+                <Typography variant="secondary">Secondary Text</Typography>
+                <Typography variant="caption">Caption Text</Typography>
+              </div>
+            </section>
+
+            {/* Sizes */}
+            <section>
+              <h3 className="demo-section__typography--title">Sizes</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Typography size="xs">Extra Small (12px)</Typography>
+                <Typography size="sm">Small (14px)</Typography>
+                <Typography size="md">Medium (16px)</Typography>
+                <Typography size="lg">Large (18px)</Typography>
+                <Typography size="xl">Extra Large (20px)</Typography>
+                <Typography size="2xl">2X Large (24px)</Typography>
+                <Typography size="3xl">3X Large (32px)</Typography>
+                <Typography size="4xl">4X Large (40px)</Typography>
+              </div>
+            </section>
+
+            {/* Weights */}
+            <section>
+              <h3 className="demo-section__typography--title">Font Weights</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Typography weight="light">Light (300)</Typography>
+                <Typography weight="normal">Normal (400)</Typography>
+                <Typography weight="medium">Medium (500)</Typography>
+                <Typography weight="semibold">Semibold (600)</Typography>
+                <Typography weight="bold">Bold (700)</Typography>
+              </div>
+            </section>
+
+            {/* Colors */}
+            <section>
+              <h3 className="demo-section__typography--title">Colors</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Typography color="default">Default Color</Typography>
+                <Typography color="primary">Primary Color (#F7931A)</Typography>
+                <Typography color="success">Success Color (#72F59E)</Typography>
+                <Typography color="warning">Warning Color (#FFC107)</Typography>
+                <Typography color="error">Error Color (#EF4444)</Typography>
+                <Typography color="muted">Muted Color</Typography>
+              </div>
+            </section>
+
+            {/* Alignment */}
+            <section>
+              <h3 className="demo-section__typography--title">Alignment</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Typography align="left">Left aligned text</Typography>
+                <Typography align="center">Center aligned text</Typography>
+                <Typography align="right">Right aligned text</Typography>
+                <Typography align="justify">
+                  Justified text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </Typography>
+              </div>
+            </section>
+
+            {/* Truncate */}
+            <section>
+              <h3 className="demo-section__typography--title">Truncate</h3>
+              <div
+                style={{
+                  width: '300px',
+                }}
+              >
+                <Typography truncate>
+                  This is a very long text that will be truncated with an ellipsis when it exceeds
+                  the container width
+                </Typography>
+              </div>
+            </section>
+          </div>
+        </section>
+        {/* Breadcrumbs */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Breadcrumbs</h2>
+          <section className="demo-section__breadcrumbs">
+            <h3>
+              Breadcrumbs outside of
+              <code>&lt;RouterProvider&gt;</code>
+              context
+            </h3>
+            <Breadcrumbs
+              items={[
+                { label: 'Home', to: '/' },
+                { label: 'Products', to: '/products' },
+                { label: 'Details' },
+              ]}
+            />
+          </section>
+          <RouterProvider
+            router={createBrowserRouter([
+              {
+                path: '/',
+                element: (
+                  <>
+                    {/* Basic */}
+                    <section className="demo-section__breadcrumbs">
+                      <h3>Basic Breadcrumbs</h3>
+                      <Breadcrumbs
+                        items={[
+                          { label: 'Home', to: '/' },
+                          { label: 'Products', to: '/products' },
+                          { label: 'Details' },
+                        ]}
+                      />
+                    </section>
+
+                    {/* With Back Button */}
+                    <section className="demo-section__breadcrumbs">
+                      <h3>With Back Button</h3>
+                      <Breadcrumbs
+                        showBack
+                        onBackClick={() => location.reload()}
+                        items={[{ label: 'Dashboard', to: '/dashboard' }, { label: 'Settings' }]}
+                      />
+                    </section>
+
+                    {/* Custom Separator */}
+                    <section className="demo-section__breadcrumbs">
+                      <h3>Custom Separator</h3>
+                      <Breadcrumbs
+                        separator="›"
+                        items={[
+                          { label: 'Home', to: '/' },
+                          { label: 'Blog', to: '/blog' },
+                          { label: 'Article' },
+                        ]}
+                      />
+                    </section>
+
+                    {/* With onClick */}
+                    <section className="demo-section__breadcrumbs">
+                      <h3>With Click Handlers</h3>
+                      <Breadcrumbs
+                        items={[
+                          // eslint-disable-next-line no-alert
+                          { label: 'Home', onClick: () => alert('Home clicked') },
+                          // eslint-disable-next-line no-alert
+                          { label: 'Products', onClick: () => alert('Products clicked') },
+                          { label: 'Current Page' },
+                        ]}
+                      />
+                    </section>
+                  </>
+                ),
+              },
+            ])}
+          />
         </section>
       </div>
     </div>
