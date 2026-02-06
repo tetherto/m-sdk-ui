@@ -19,6 +19,7 @@ export default antfu(
       'ts/consistent-type-definitions': ['error', 'type'],
       'no-console': ['warn'],
       'antfu/no-top-level-await': 'off',
+      'antfu/top-level-function': 'off',
       'node/prefer-global/process': 'off',
       'perfectionist/sort-imports': 'off',
       'style/quote-props': 'off',
