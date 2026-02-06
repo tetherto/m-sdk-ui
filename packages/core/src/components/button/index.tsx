@@ -64,13 +64,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const isIconOnly = Boolean(icon) && !children
 
     const classes = cn(
-      'mdk-button',
-      `mdk-button--variant-${resolvedVariant}`,
-      `mdk-button--size-${resolvedSize}`,
+      'mining-sdk-button',
+      `mining-sdk-button--variant-${resolvedVariant}`,
+      `mining-sdk-button--size-${resolvedSize}`,
       {
-        'mdk-button--full-width': fullWidth || block,
-        'mdk-button--loading': loading,
-        'mdk-button--icon-only': isIconOnly,
+        'mining-sdk-button--full-width': fullWidth || block,
+        'mining-sdk-button--loading': loading,
+        'mining-sdk-button--icon-only': isIconOnly,
       },
       className,
     )
@@ -84,15 +84,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         {...props}
       >
-        {loading && <span className="mdk-button__spinner" aria-hidden="true" />}
+        {loading && <span className="mining-sdk-button__spinner" aria-hidden="true" />}
         {icon && iconPosition === 'left' && (
-          <span className="mdk-button__icon" aria-hidden="true">
+          <span className="mining-sdk-button__icon" aria-hidden="true">
             {icon}
           </span>
         )}
-        {children && <span className="mdk-button__label">{children}</span>}
+        {children && <span className="mining-sdk-button__label">{children}</span>}
         {icon && iconPosition === 'right' && (
-          <span className="mdk-button__icon" aria-hidden="true">
+          <span className="mining-sdk-button__icon" aria-hidden="true">
             {icon}
           </span>
         )}

@@ -2,19 +2,19 @@
  * Button Component Styles
  */
 
-.mdk-button {
+.mining-sdk-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--mdk-radius);
-  font-size: var(--mdk-font-size);
-  line-height: var(--mdk-line-height);
-  font-weight: var(--mdk-font-weight);
+  border-radius: var(--mining-sdk-radius);
+  font-size: var(--mining-sdk-font-size);
+  line-height: var(--mining-sdk-line-height);
+  font-weight: var(--mining-sdk-font-weight);
   gap: 0.5rem;
   border: 1px solid transparent;
   cursor: pointer;
   transition: colors 0.2s;
-  box-shadow: var(--mdk-shadow);
+  box-shadow: var(--mining-sdk-shadow);
 
   &:focus-visible {
     outline: none;
@@ -30,24 +30,24 @@
 
   // Variants
   &--variant-primary {
-    background: var(--mdk-button-primary-bg);
-    color: var(--mdk-button-primary-text);
+    background: var(--mining-sdk-button-primary-bg);
+    color: var(--mining-sdk-button-primary-text);
 
     &:hover {
       background: linear-gradient(
           0deg,
-          var(--mdk-button-primary-bg-hover-overlay) 0%,
-          var(--mdk-button-primary-bg-hover-overlay) 100%
+          var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
+          var(--mining-sdk-button-primary-bg-hover-overlay) 100%
         ),
-        var(--mdk-button-primary-bg);
-      color: var(--mdk-button-primary-text-hover);
+        var(--mining-sdk-button-primary-bg);
+      color: var(--mining-sdk-button-primary-text-hover);
     }
   }
 
   &--variant-danger {
-    background: var(--mdk-button-danger-bg);
-    color: var(--mdk-button-danger-text);
-    border-color: var(--mdk-button-danger-border);
+    background: var(--mining-sdk-button-danger-bg);
+    color: var(--mining-sdk-button-danger-text);
+    border-color: var(--mining-sdk-button-danger-border);
     box-shadow: none;
 
     &:hover {
@@ -68,13 +68,13 @@
   }
 
   &--variant-secondary {
-    background: var(--mdk-button-secondary-bg);
-    color: var(--mdk-button-secondary-text);
-    border-color: var(--mdk-button-secondary-border);
+    background: var(--mining-sdk-button-secondary-bg);
+    color: var(--mining-sdk-button-secondary-text);
+    border-color: var(--mining-sdk-button-secondary-border);
     box-shadow: none;
 
     &:hover {
-      border-color: var(--mdk-button-secondary-border-hover);
+      border-color: var(--mining-sdk-button-secondary-border-hover);
     }
   }
 
@@ -127,35 +127,35 @@
   }
 }
 
-.mdk-button--full-width {
+.mining-sdk-button--full-width {
   width: 100%;
 }
 
-.mdk-button--icon-only {
+.mining-sdk-button--icon-only {
   padding: 0;
   aspect-ratio: 1 / 1;
 }
 
-.mdk-button__spinner {
+.mining-sdk-button__spinner {
   width: 1rem;
   height: 1rem;
   border-radius: 9999px;
   border: 2px solid hsl(var(--foreground) / 0.3);
   border-top-color: hsl(var(--foreground));
-  animation: mdk-button-spin 0.7s linear infinite;
+  animation: mining-sdk-button-spin 0.7s linear infinite;
 }
 
-.mdk-button__icon {
+.mining-sdk-button__icon {
   display: inline-flex;
   align-items: center;
 }
 
-.mdk-button__label {
+.mining-sdk-button__label {
   display: inline-flex;
   align-items: center;
 }
 
-@keyframes mdk-button-spin {
+@keyframes mining-sdk-button-spin {
   to {
     transform: rotate(360deg);
   }

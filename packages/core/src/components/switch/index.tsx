@@ -43,16 +43,16 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Root>, 
   ) => (
     <SwitchPrimitives.Root
       className={cn(
-        'mdk-switch',
-        `mdk-switch--${size}`,
-        `mdk-switch--${color}`,
-        `mdk-switch--radius-${radius}`,
+        'mining-sdk-switch',
+        `mining-sdk-switch--${size}`,
+        `mining-sdk-switch--${color}`,
+        `mining-sdk-switch--radius-${radius}`,
         className,
       )}
       {...props}
       ref={ref}
     >
-      <SwitchPrimitives.Thumb className={cn('mdk-switch__thumb', thumbClassName)} />
+      <SwitchPrimitives.Thumb className={cn('mining-sdk-switch__thumb', thumbClassName)} />
     </SwitchPrimitives.Root>
   ),
 )

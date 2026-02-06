@@ -98,29 +98,29 @@
     padding: 16px;
     border-radius: 8px;
     margin-bottom: 16px;
-    background-color: var(--mdk-color-background-dark);
+    background-color: var(--mining-sdk-color-background-dark);
   }
 }
 
-.is-demo-hover.mdk-button--variant-primary {
+.is-demo-hover.mining-sdk-button--variant-primary {
   background: linear-gradient(
       0deg,
-      var(--mdk-button-primary-bg-hover-overlay) 0%,
-      var(--mdk-button-primary-bg-hover-overlay) 100%
+      var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
+      var(--mining-sdk-button-primary-bg-hover-overlay) 100%
     ),
-    var(--mdk-button-primary-bg);
-  color: var(--mdk-button-primary-text-hover);
+    var(--mining-sdk-button-primary-bg);
+  color: var(--mining-sdk-button-primary-text-hover);
 }
 
-.is-demo-hover.mdk-button--variant-secondary {
-  border-color: var(--mdk-button-secondary-border-hover);
+.is-demo-hover.mining-sdk-button--variant-secondary {
+  border-color: var(--mining-sdk-button-secondary-border-hover);
 }
 
-.is-demo-hover.mdk-button--variant-danger {
+.is-demo-hover.mining-sdk-button--variant-danger {
   opacity: 0.9;
 }
 
-.is-demo-hover.mdk-button--variant-outline {
+.is-demo-hover.mining-sdk-button--variant-outline {
   background: hsl(var(--accent));
   color: hsl(var(--accent-foreground));
 }

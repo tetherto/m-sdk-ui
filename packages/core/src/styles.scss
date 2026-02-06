@@ -40,47 +40,47 @@
     --radius: 0.5rem;
 
     /* Brand Colors */
-    --mdk-color-primary: #f7931a;
-    --mdk-color-success: #72f59e;
-    --mdk-color-error: #ef4444;
-    --mdk-color-warning: #ffc107;
+    --mining-sdk-color-primary: #f7931a;
+    --mining-sdk-color-success: #72f59e;
+    --mining-sdk-color-error: #ef4444;
+    --mining-sdk-color-warning: #ffc107;
 
     /* Backgrounds */
-    --mdk-color-background-dark: #17130f;
-    --mdk-color-background-light: #e5e7eb;
-    --mdk-color-surface: #0e0e0e;
+    --mining-sdk-color-background-dark: #17130f;
+    --mining-sdk-color-background-light: #e5e7eb;
+    --mining-sdk-color-surface: #0e0e0e;
 
     /* Common Component Colors */
-    --mdk-color-white: #ffffff;
-    --mdk-color-white-transparent: #ffffff1a;
-    --mdk-color-text-secondary: #ffffffd9;
-    --mdk-color-text-disabled: #ffffff80;
+    --mining-sdk-color-white: #ffffff;
+    --mining-sdk-color-white-transparent: #ffffff1a;
+    --mining-sdk-color-text-secondary: #ffffffd9;
+    --mining-sdk-color-text-disabled: #ffffff80;
 
     /* Switch specific colors */
-    --mdk-switch-unchecked-bg: var(--mdk-color-background-light);
-    --mdk-switch-thumb-shadow: rgba(0, 0, 0, 0.2);
-    --mdk-switch-thumb-shadow-checked: rgba(0, 0, 0, 0.3);
-    /* MDK button tokens (moria baseline) */
-    --mdk-radius: 0px;
-    --mdk-font-size: 14px;
-    --mdk-line-height: 22px;
-    --mdk-font-weight: 600;
-    --mdk-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    --mining-sdk-switch-unchecked-bg: var(--mining-sdk-color-background-light);
+    --mining-sdk-switch-thumb-shadow: rgba(0, 0, 0, 0.2);
+    --mining-sdk-switch-thumb-shadow-checked: rgba(0, 0, 0, 0.3);
+    /* mining-sdk button tokens (moria baseline) */
+    --mining-sdk-radius: 0px;
+    --mining-sdk-font-size: 14px;
+    --mining-sdk-line-height: 22px;
+    --mining-sdk-font-weight: 600;
+    --mining-sdk-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
 
-    --mdk-button-primary-bg: #f7931a;
-    --mdk-button-primary-bg-hover: #c4730f;
-    --mdk-button-primary-text: #000000;
-    --mdk-button-primary-text-hover: #ffffff;
-    --mdk-button-primary-bg-hover-overlay: rgba(255, 255, 255, 0.15);
+    --mining-sdk-button-primary-bg: #f7931a;
+    --mining-sdk-button-primary-bg-hover: #c4730f;
+    --mining-sdk-button-primary-text: #000000;
+    --mining-sdk-button-primary-text-hover: #ffffff;
+    --mining-sdk-button-primary-bg-hover-overlay: rgba(255, 255, 255, 0.15);
 
-    --mdk-button-secondary-text: #ffffffcc;
-    --mdk-button-secondary-border: #ffffff33;
-    --mdk-button-secondary-border-hover: #f7931a80;
-    --mdk-button-secondary-bg: #17130f;
+    --mining-sdk-button-secondary-text: #ffffffcc;
+    --mining-sdk-button-secondary-border: #ffffff33;
+    --mining-sdk-button-secondary-border-hover: #f7931a80;
+    --mining-sdk-button-secondary-bg: #17130f;
 
-    --mdk-button-danger-bg: #ef4444;
-    --mdk-button-danger-text: #ffffff;
-    --mdk-button-danger-border: #ef4444;
+    --mining-sdk-button-danger-bg: #ef4444;
+    --mining-sdk-button-danger-text: #ffffff;
+    --mining-sdk-button-danger-border: #ef4444;
 
   }
 

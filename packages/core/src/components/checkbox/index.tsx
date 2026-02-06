@@ -47,15 +47,17 @@ const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root
     <CheckboxPrimitive.Root
       ref={ref}
       className={cn(
-        'mdk-checkbox',
-        `mdk-checkbox--${size}`,
-        `mdk-checkbox--${color}`,
-        `mdk-checkbox--radius-${radius}`,
+        'mining-sdk-checkbox',
+        `mining-sdk-checkbox--${size}`,
+        `mining-sdk-checkbox--${color}`,
+        `mining-sdk-checkbox--radius-${radius}`,
         className,
       )}
       {...props}
     >
-      <CheckboxPrimitive.Indicator className={cn('mdk-checkbox__indicator', indicatorClassName)}>
+      <CheckboxPrimitive.Indicator
+        className={cn('mining-sdk-checkbox__indicator', indicatorClassName)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -64,7 +66,7 @@ const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="mdk-checkbox__icon"
+          className="mining-sdk-checkbox__icon"
         >
           <polyline points="20 6 9 17 4 12" />
         </svg>

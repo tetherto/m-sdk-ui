@@ -12,7 +12,11 @@ const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={cn('mdk-accordion__item', className)} {...props} />
+  <AccordionPrimitive.Item
+    ref={ref}
+    className={cn('mining-sdk-accordion__item', className)}
+    {...props}
+  />
 ))
 AccordionItem.displayName = 'AccordionItem'
 
@@ -23,10 +27,10 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="mdk-accordion__header">
+  <AccordionPrimitive.Header className="mining-sdk-accordion__header">
     <AccordionPrimitive.Trigger
       ref={ref}
-      className={cn('mdk-accordion__trigger', className)}
+      className={cn('mining-sdk-accordion__trigger', className)}
       {...props}
     >
       {children}
@@ -40,7 +44,7 @@ const AccordionTrigger = React.forwardRef<
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="mdk-accordion__icon"
+        className="mining-sdk-accordion__icon"
       >
         <polyline points="6 9 12 15 18 9" />
       </svg>
@@ -56,8 +60,8 @@ const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content ref={ref} className="mdk-accordion__content" {...props}>
-    <div className={cn('mdk-accordion__content-inner', className)}>{children}</div>
+  <AccordionPrimitive.Content ref={ref} className="mining-sdk-accordion__content" {...props}>
+    <div className={cn('mining-sdk-accordion__content-inner', className)}>{children}</div>
   </AccordionPrimitive.Content>
 ))
 AccordionContent.displayName = AccordionPrimitive.Content.displayName
