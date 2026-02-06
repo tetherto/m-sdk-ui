@@ -1,12 +1,19 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import * as React from 'react'
+import { Cross2Icon } from '@radix-ui/react-icons'
 
 import { cn } from '../../utils'
+import { Button } from '../button'
 
 const Dialog = DialogPrimitive.Root
 const DialogTrigger = DialogPrimitive.Trigger
 const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
+
+export type DialogHeaderProps = {
+  closable?: boolean
+  onClose?: () => void
+}
 
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
@@ -37,9 +44,28 @@ DialogContent.displayName = DialogPrimitive.Content.displayName
  */
 function DialogHeader({
   className,
+  children,
+  closable,
+  onClose,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
-  return <div className={cn('mdk-dialog__header', className)} {...props} />
+}: DialogHeaderProps & React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
+  return (
+    <div className={cn('mdk-dialog__header', className)} {...props}>
+      <div className={cn('mdk-dialog__header__container')}>{children}</div>
+      {closable && (
+        <DialogClose asChild>
+          <Button
+            size="sm"
+            className={cn('mdk-dialog__header__close')}
+            variant="outline"
+            onClick={onClose}
+          >
+            <Cross2Icon />
+          </Button>
+        </DialogClose>
+      )}
+    </div>
+  )
 }
 DialogHeader.displayName = 'DialogHeader'
 

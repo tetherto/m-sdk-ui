@@ -62,7 +62,7 @@ function App(): JSX.Element {
               <Button variant="outline">Open Dialog</Button>
             </DialogTrigger>
             <DialogContent>
-              <DialogHeader>
+              <DialogHeader closable>
                 <DialogTitle>Welcome to @mining-sdk/core</DialogTitle>
                 <DialogDescription>
                   This is a dialog component built with Radix UI primitives.
