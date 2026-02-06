@@ -99,11 +99,16 @@
     border-radius: 8px;
     margin-bottom: 16px;
     background-color: var(--mining-sdk-color-background-dark);
+
+    &__content {
+      color: var(--mining-sdk-color-text-secondary);
+    }
   }
 }
 
 .is-demo-hover.mining-sdk-button--variant-primary {
-  background: linear-gradient(
+  background:
+    linear-gradient(
       0deg,
       var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
       var(--mining-sdk-button-primary-bg-hover-overlay) 100%

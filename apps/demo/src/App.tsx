@@ -471,9 +471,15 @@ function App(): JSX.Element {
                 <TabsTrigger value="tab2">Tab 2</TabsTrigger>
                 <TabsTrigger value="tab3">Tab 3</TabsTrigger>
               </TabsList>
-              <TabsContent value="tab1">Tab 1 content</TabsContent>
-              <TabsContent value="tab2">Tab 2 content</TabsContent>
-              <TabsContent value="tab3">Tab 3 content</TabsContent>
+              <TabsContent className="demo-section__tabs__content" value="tab1">
+                Tab 1 content
+              </TabsContent>
+              <TabsContent className="demo-section__tabs__content" value="tab2">
+                Tab 2 content
+              </TabsContent>
+              <TabsContent className="demo-section__tabs__content" value="tab3">
+                Tab 3 content
+              </TabsContent>
             </Tabs>
           </div>
           <div className="demo-section__tabs">
@@ -487,9 +493,15 @@ function App(): JSX.Element {
                   Tab 3
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="tab1">Tab 1 content</TabsContent>
-              <TabsContent value="tab2">Tab 2 content</TabsContent>
-              <TabsContent value="tab3">Tab 3 content</TabsContent>
+              <TabsContent className="demo-section__tabs__content" value="tab1">
+                Tab 1 content
+              </TabsContent>
+              <TabsContent className="demo-section__tabs__content" value="tab2">
+                Tab 2 content
+              </TabsContent>
+              <TabsContent className="demo-section__tabs__content" value="tab3">
+                Tab 3 content
+              </TabsContent>
             </Tabs>
           </div>
         </section>
