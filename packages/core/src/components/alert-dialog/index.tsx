@@ -34,18 +34,18 @@ const AlertDialogContent = React.forwardRef<
 ))
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
 
-function AlertDialogHeader({
+const AlertDialogHeader = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
+}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
   return <div className={cn('mining-sdk-dialog__header', className)} {...props} />
 }
 AlertDialogHeader.displayName = 'AlertDialogHeader'
 
-function AlertDialogFooter({
+const AlertDialogFooter = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
+}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
   return <div className={cn('mining-sdk-dialog__footer', className)} {...props} />
 }
 AlertDialogFooter.displayName = 'AlertDialogFooter'

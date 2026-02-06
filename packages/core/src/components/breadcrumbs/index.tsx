@@ -68,12 +68,12 @@ export type BreadcrumbsProps = {
   backClassName?: string
 }
 
-function renderBreadcrumbItem(
+const renderBreadcrumbItem = (
   item: BreadcrumbItem,
   isLast: boolean,
   isInRouter: boolean,
   itemClassName?: string,
-): React.ReactElement {
+): React.ReactElement => {
   const ariaCurrent = isLast ? 'page' : undefined
   const LinkComponent = routerModule?.Link
 

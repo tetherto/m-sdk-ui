@@ -12,6 +12,6 @@ import { clsx } from 'clsx'
  * cn('base-class', condition && 'conditional-class', { 'object-class': true })
  * ```
  */
-export function cn(...inputs: ClassValue[]): string {
+export const cn = (...inputs: ClassValue[]): string => {
   return clsx(inputs)
 }

@@ -7,7 +7,7 @@ import type { Theme } from './index'
 /**
  * Get the system theme preference
  */
-export function getSystemTheme(): 'light' | 'dark' {
+export const getSystemTheme = (): 'light' | 'dark' => {
   if (typeof window === 'undefined') return 'light'
 
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -16,7 +16,7 @@ export function getSystemTheme(): 'light' | 'dark' {
 /**
  * Apply theme to document
  */
-export function applyTheme(theme: Theme): void {
+export const applyTheme = (theme: Theme): void => {
   const root = document.documentElement
   const resolvedTheme = theme === 'system' ? getSystemTheme() : theme
 
@@ -28,7 +28,7 @@ export function applyTheme(theme: Theme): void {
 /**
  * Get stored theme from localStorage
  */
-export function getStoredTheme(storageKey = 'theme'): Theme | null {
+export const getStoredTheme = (storageKey = 'theme'): Theme | null => {
   if (typeof window === 'undefined') return null
 
   try {
@@ -41,7 +41,7 @@ export function getStoredTheme(storageKey = 'theme'): Theme | null {
 /**
  * Store theme in localStorage
  */
-export function setStoredTheme(theme: Theme, storageKey = 'theme'): void {
+export const setStoredTheme = (theme: Theme, storageKey = 'theme'): void => {
   if (typeof window === 'undefined') return
 
   try {

@@ -43,10 +43,10 @@ DialogContent.displayName = DialogPrimitive.Content.displayName
 /**
  * Dialog header component
  */
-function DialogHeader({
+const DialogHeader = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
+}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
   return <div className={cn('mining-sdk-dialog__header', className)} {...props} />
 }
 DialogHeader.displayName = 'DialogHeader'
@@ -54,10 +54,10 @@ DialogHeader.displayName = 'DialogHeader'
 /**
  * Dialog footer component
  */
-function DialogFooter({
+const DialogFooter = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
+}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
   return <div className={cn('mining-sdk-dialog__footer', className)} {...props} />
 }
 DialogFooter.displayName = 'DialogFooter'

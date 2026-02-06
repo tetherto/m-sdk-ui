@@ -5,14 +5,14 @@
 /**
  * Format number with commas
  */
-export function formatNumber(num: number): string {
+export const formatNumber = (num: number): string => {
   return new Intl.NumberFormat('en-US').format(num)
 }
 
 /**
  * Format currency
  */
-export function formatCurrency(amount: number, currency = 'USD'): string {
+export const formatCurrency = (amount: number, currency = 'USD'): string => {
   return new Intl.NumberFormat('en-US', {
     currency,
     style: 'currency',
@@ -22,7 +22,7 @@ export function formatCurrency(amount: number, currency = 'USD'): string {
 /**
  * Format date
  */
-export function formatDate(date: Date | string, options?: Intl.DateTimeFormatOptions): string {
+export const formatDate = (date: Date | string, options?: Intl.DateTimeFormatOptions): string => {
   const dateObj = typeof date === 'string' ? new Date(date) : date
   return new Intl.DateTimeFormat('en-US', options).format(dateObj)
 }
@@ -30,7 +30,7 @@ export function formatDate(date: Date | string, options?: Intl.DateTimeFormatOpt
 /**
  * Format relative time
  */
-export function formatRelativeTime(date: Date | string): string {
+export const formatRelativeTime = (date: Date | string): string => {
   const dateObj = typeof date === 'string' ? new Date(date) : date
   const now = new Date()
   const diffInSeconds = Math.floor((now.getTime() - dateObj.getTime()) / 1000)
@@ -38,5 +38,6 @@ export function formatRelativeTime(date: Date | string): string {
   if (diffInSeconds < 60) return 'just now'
   if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`
   if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`
+
   return `${Math.floor(diffInSeconds / 86400)}d ago`
 }
