@@ -100,6 +100,20 @@
     margin-bottom: 16px;
     background-color: var(--mining-sdk-color-background-dark);
   }
+
+  &__typography {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &--title {
+      margin: 2rem 0;
+    }
+  }
+
+  &__breadcrumbs {
+    margin-bottom: 2rem;
+  }
 }
 
 .is-demo-hover.mining-sdk-button--variant-primary {
@@ -124,17 +138,4 @@
 .is-demo-hover.mining-sdk-button--variant-outline {
   background: hsl(var(--accent));
   color: hsl(var(--accent-foreground));
-  &__typography {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    &--title {
-      margin: 2rem 0;
-    }
-  }
-
-  &__breadcrumbs {
-    margin-bottom: 2rem;
-  }
 }

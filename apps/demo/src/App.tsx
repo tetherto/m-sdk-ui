@@ -489,7 +489,6 @@ function App(): JSX.Element {
             </Tabs>
           </div>
         </section>
-        =======
         {/* Typography */}
         <section className="demo-section">
           <h2 className="demo-section__title">Typography</h2>

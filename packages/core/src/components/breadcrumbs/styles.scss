@@ -16,7 +16,7 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--mdk-breadcrumbs-back-button-color);
+  color: var(--mining-sdk-breadcrumbs-back-button-color);
   cursor: pointer;
   transition: opacity 200ms ease;
 
@@ -25,7 +25,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--mdk-color-primary);
+    outline: 2px solid var(--mining-sdk-color-primary);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -57,16 +57,16 @@
 /* Breadcrumb Links */
 .mdk-breadcrumbs__link {
   font-size: 0.875rem;
-  color: var(--mdk-breadcrumbs-link-color);
+  color: var(--mining-sdk-breadcrumbs-link-color);
   text-decoration: none;
   transition: color 200ms ease;
 
   &:hover {
-    color: var(--mdk-breadcrumbs-link-hover-color);
+    color: var(--mining-sdk-breadcrumbs-link-hover-color);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--mdk-breadcrumbs-link-hover-color);
+    outline: 2px solid var(--mining-sdk-breadcrumbs-link-hover-color);
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -75,10 +75,10 @@
     all: unset;
     cursor: pointer;
     font-size: 0.875rem;
-    color: var(--mdk-breadcrumbs-link-color);
+    color: var(--mining-sdk-breadcrumbs-link-color);
 
     &:hover {
-      color: var(--mdk-breadcrumbs-link-hover-color);
+      color: var(--mining-sdk-breadcrumbs-link-hover-color);
     }
   }
 
@@ -89,7 +89,7 @@
 
 /* Separator */
 .mdk-breadcrumbs__separator {
-  color: var(--mdk-breadcrumbs-separator-color);
+  color: var(--mining-sdk-breadcrumbs-separator-color);
   font-size: 0.875rem;
   user-select: none;
 }
