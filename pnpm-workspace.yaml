@@ -5,3 +5,6 @@ trustPolicy: no-downgrade
 packages:
   - 'apps/*'
   - 'packages/*'
+
+overrides:
+  '@isaacs/brace-expansion': 5.0.1
