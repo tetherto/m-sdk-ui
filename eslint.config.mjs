@@ -22,7 +22,12 @@ export default antfu(
       'antfu/top-level-function': 'off',
       'node/prefer-global/process': 'off',
       'perfectionist/sort-imports': 'off',
+      'style/jsx-one-expression-per-line': 'off',
       'style/quote-props': 'off',
+      'style/arrow-parens': 'off',
+      'style/indent-binary-ops': 'off',
+      'style/operator-linebreak': 'off',
+      'style/jsx-wrap-multilines': 'off',
       'style/brace-style': 'off',
       'antfu/if-newline': 'off',
       'unicorn/filename-case': [
