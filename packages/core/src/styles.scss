@@ -110,6 +110,11 @@
     --mining-sdk-switch-unchecked-bg: var(--mining-sdk-color-background-light);
     --mining-sdk-switch-thumb-shadow: rgba(0, 0, 0, 0.2);
     --mining-sdk-switch-thumb-shadow-checked: rgba(0, 0, 0, 0.3);
+
+    /* Dialog specific colors */
+    --mining-sdk-dialog-box-shadow-color: rgb(0 0 0 / 0.1);
+    --mining-sdk-dialog-border-color: rgb(0 0 0 / 0.23);
+
     /* mining-sdk button tokens (moria baseline) */
     --mining-sdk-radius: 0px;
     --mining-sdk-font-size: 14px;
