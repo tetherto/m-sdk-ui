@@ -1,0 +1,89 @@
+/**
+ * Tooltip Component Styles (Moria Theme)
+ *
+ * Based on moria-app-ui tooltip design:
+ * - Dark background (#0E0E0E)
+ * - Orange border (#F7931A)
+ * - Smooth fade in/out animations
+ * - Mobile responsive
+ */
+
+.mining-sdk-tooltip__content {
+  /* Layout */
+  max-width: 250px;
+  padding: 4px 6px;
+  z-index: 10001;
+  word-wrap: break-word;
+
+  /* Colors */
+  color: var(--mining-sdk-tooltip-text, var(--mining-sdk-color-white, #ffffff));
+  background-color: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
+  border: 1px solid var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a));
+
+  /* Typography */
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  /* Effects */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+
+  /* Animations */
+  animation-duration: 0.09s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+
+  /* Entry animation */
+  &[data-state='delayed-open'],
+  &[data-state='instant-open'] {
+    animation-name: mining-sdk-tooltip-fade-in;
+  }
+
+  /* Exit animation */
+  &[data-state='closed'] {
+    animation-name: mining-sdk-tooltip-fade-out;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-in;
+  }
+
+  /* Responsive: Mobile adjustments */
+  @media (max-width: 768px) {
+    max-width: 200px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Arrow styling */
+.mining-sdk-tooltip__arrow {
+  fill: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
+
+  /* Add border to arrow for seamless integration */
+  filter: drop-shadow(
+    0 0 0.5px var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a))
+  );
+}
+
+/* Animations */
+@keyframes mining-sdk-tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes mining-sdk-tooltip-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
