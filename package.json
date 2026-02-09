@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "turbo build",
+    "build:demo": "turbo build --filter=@mining-sdk/demo",
     "build:scss": "turbo build:scss",
     "build:ts": "turbo build:ts",
     "check": "turbo check",
@@ -21,6 +22,7 @@
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "prepare": "husky",
+    "preview:demo": "turbo preview --filter=@mining-sdk/demo",
     "typecheck": "turbo typecheck",
     "watch": "turbo watch",
     "watch:scss": "turbo watch:scss",
