@@ -16,6 +16,7 @@
 @use './components/switch/styles' as switch;
 @use './components/typography/styles' as typography;
 @use './components/breadcrumbs/styles' as breadcrumbs;
+@use './components/radio/styles' as radio;
 
 /* JetBrains Mono */
 @font-face {
@@ -98,6 +99,7 @@
     --mining-sdk-color-white-transparent: #ffffff1a;
     --mining-sdk-color-text-secondary: #ffffffd9;
     --mining-sdk-color-text-disabled: #ffffff80;
+    --mining-sdk-border-default-color: #424242;
 
     /* Breadcrumbs specific colors */
     --mining-sdk-breadcrumbs-separator-color: var(--mining-sdk-color-primary);
