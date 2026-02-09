@@ -47,6 +47,24 @@
     flex-wrap: wrap;
   }
 
+  &__date-pickers {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    section {
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
   &__switches,
   &__checkboxes {
     display: flex;
