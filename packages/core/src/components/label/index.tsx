@@ -16,7 +16,7 @@ const Label = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => (
-  <LabelPrimitive.Root ref={ref} className={cn('mdk-label', className)} {...props} />
+  <LabelPrimitive.Root ref={ref} className={cn('mining-sdk-label', className)} {...props} />
 ))
 Label.displayName = LabelPrimitive.Root.displayName
 

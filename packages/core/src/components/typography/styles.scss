@@ -1,0 +1,173 @@
+/* ========================================
+   Typography Component Styles
+   ======================================== */
+
+.mining-sdk-typography {
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================================
+   VARIANT STYLES
+   ======================================== */
+
+/* Heading 1 */
+.mining-sdk-typography--heading1 {
+  font-size: 2.5rem; // 40px
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Heading 2 */
+.mining-sdk-typography--heading2 {
+  font-size: 2rem; // 32px
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Heading 3 */
+.mining-sdk-typography--heading3 {
+  font-size: 1.5rem; // 24px
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Body Text */
+.mining-sdk-typography--body {
+  font-size: 1rem; // 16px
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Secondary Text */
+.mining-sdk-typography--secondary {
+  font-size: 0.875rem; // 14px
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Caption Text */
+.mining-sdk-typography--caption {
+  font-size: 0.75rem; // 12px
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* ========================================
+   SIZE OVERRIDES
+   ======================================== */
+
+.mining-sdk-typography--size-xs {
+  font-size: 0.75rem; // 12px
+}
+
+.mining-sdk-typography--size-sm {
+  font-size: 0.875rem; // 14px
+}
+
+.mining-sdk-typography--size-md {
+  font-size: 1rem; // 16px
+}
+
+.mining-sdk-typography--size-lg {
+  font-size: 1.125rem; // 18px
+}
+
+.mining-sdk-typography--size-xl {
+  font-size: 1.25rem; // 20px
+}
+
+.mining-sdk-typography--size-2xl {
+  font-size: 1.5rem; // 24px
+}
+
+.mining-sdk-typography--size-3xl {
+  font-size: 2rem; // 32px
+}
+
+.mining-sdk-typography--size-4xl {
+  font-size: 2.5rem; // 40px
+}
+
+/* ========================================
+   WEIGHT OVERRIDES
+   ======================================== */
+
+.mining-sdk-typography--weight-light {
+  font-weight: 300;
+}
+
+.mining-sdk-typography--weight-normal {
+  font-weight: 400;
+}
+
+.mining-sdk-typography--weight-medium {
+  font-weight: 500;
+}
+
+.mining-sdk-typography--weight-semibold {
+  font-weight: 600;
+}
+
+.mining-sdk-typography--weight-bold {
+  font-weight: 700;
+}
+
+/* ========================================
+   ALIGNMENT
+   ======================================== */
+
+.mining-sdk-typography--align-left {
+  text-align: left;
+}
+
+.mining-sdk-typography--align-center {
+  text-align: center;
+}
+
+.mining-sdk-typography--align-right {
+  text-align: right;
+}
+
+.mining-sdk-typography--align-justify {
+  text-align: justify;
+}
+
+/* ========================================
+   COLOR VARIANTS
+   ======================================== */
+
+.mining-sdk-typography--color-default {
+  color: inherit;
+}
+
+.mining-sdk-typography--color-primary {
+  color: var(--mining-sdk-color-primary);
+}
+
+.mining-sdk-typography--color-success {
+  color: var(--mining-sdk-color-success);
+}
+
+.mining-sdk-typography--color-warning {
+  color: var(--mining-sdk-color-warning);
+}
+
+.mining-sdk-typography--color-error {
+  color: var(--mining-sdk-color-error);
+}
+
+.mining-sdk-typography--color-muted {
+  color: var(--mining-sdk-color-grey-idle);
+  opacity: 0.8;
+}
+
+.mining-sdk-typography--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

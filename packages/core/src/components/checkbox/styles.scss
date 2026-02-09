@@ -3,12 +3,12 @@
    ======================================== */
 
 /* Base Checkbox */
-.mdk-checkbox {
+.mining-sdk-checkbox {
   all: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--mdk-color-background-light);
+  border: 2px solid var(--mining-sdk-color-background-light);
   background-color: transparent;
   cursor: pointer;
   transition: all 200ms ease;
@@ -35,17 +35,17 @@
 }
 
 /* Indicator (Checkmark container) */
-.mdk-checkbox__indicator {
+.mining-sdk-checkbox__indicator {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: var(--mdk-color-white);
+  color: var(--mining-sdk-color-white);
 }
 
 /* Icon (Checkmark SVG) */
-.mdk-checkbox__icon {
+.mining-sdk-checkbox__icon {
   width: 100%;
   height: 100%;
 }
@@ -55,33 +55,33 @@
    ======================================== */
 
 /* Small */
-.mdk-checkbox--sm {
+.mining-sdk-checkbox--sm {
   width: 16px;
   height: 16px;
 
-  .mdk-checkbox__icon {
+  .mining-sdk-checkbox__icon {
     width: 10px;
     height: 10px;
   }
 }
 
 /* Medium (Default) */
-.mdk-checkbox--md {
+.mining-sdk-checkbox--md {
   width: 20px;
   height: 20px;
 
-  .mdk-checkbox__icon {
+  .mining-sdk-checkbox__icon {
     width: 12px;
     height: 12px;
   }
 }
 
 /* Large */
-.mdk-checkbox--lg {
+.mining-sdk-checkbox--lg {
   width: 24px;
   height: 24px;
 
-  .mdk-checkbox__icon {
+  .mining-sdk-checkbox__icon {
     width: 16px;
     height: 16px;
   }
@@ -92,27 +92,27 @@
    ======================================== */
 
 /* None (Square corners) */
-.mdk-checkbox--radius-none {
+.mining-sdk-checkbox--radius-none {
   border-radius: 0;
 }
 
 /* Small (Slightly rounded) */
-.mdk-checkbox--radius-small {
+.mining-sdk-checkbox--radius-small {
   border-radius: 4px;
 }
 
 /* Medium (Moderately rounded) */
-.mdk-checkbox--radius-medium {
+.mining-sdk-checkbox--radius-medium {
   border-radius: 6px;
 }
 
 /* Large (Very rounded) */
-.mdk-checkbox--radius-large {
+.mining-sdk-checkbox--radius-large {
   border-radius: 8px;
 }
 
 /* Full (Circular) */
-.mdk-checkbox--radius-full {
+.mining-sdk-checkbox--radius-full {
   border-radius: 9999px;
 }
 
@@ -121,47 +121,47 @@
    ======================================== */
 
 /* Default (Gray/Neutral) */
-.mdk-checkbox--default {
-  color: var(--mdk-color-surface);
+.mining-sdk-checkbox--default {
+  color: var(--mining-sdk-color-surface);
 
   &[data-state='checked'] {
-    background-color: var(--mdk-color-surface);
+    background-color: var(--mining-sdk-color-surface);
   }
 }
 
 /* Primary (Orange) */
-.mdk-checkbox--primary {
-  color: var(--mdk-color-primary);
+.mining-sdk-checkbox--primary {
+  color: var(--mining-sdk-color-primary);
 
   &[data-state='checked'] {
-    background-color: var(--mdk-color-primary);
+    background-color: var(--mining-sdk-color-primary);
   }
 }
 
 /* Success (Green) */
-.mdk-checkbox--success {
-  color: var(--mdk-color-success);
+.mining-sdk-checkbox--success {
+  color: var(--mining-sdk-color-success);
 
   &[data-state='checked'] {
-    background-color: var(--mdk-color-success);
+    background-color: var(--mining-sdk-color-success);
   }
 }
 
 /* Warning (Yellow) */
-.mdk-checkbox--warning {
-  color: var(--mdk-color-warning);
+.mining-sdk-checkbox--warning {
+  color: var(--mining-sdk-color-warning);
 
   &[data-state='checked'] {
-    background-color: var(--mdk-color-warning);
+    background-color: var(--mining-sdk-color-warning);
   }
 }
 
 /* Error/Danger (Red) */
-.mdk-checkbox--error {
-  color: var(--mdk-color-error);
+.mining-sdk-checkbox--error {
+  color: var(--mining-sdk-color-error);
 
   &[data-state='checked'] {
-    background-color: var(--mdk-color-error);
+    background-color: var(--mining-sdk-color-error);
   }
 }
 
@@ -169,19 +169,19 @@
    INDETERMINATE STATE
    ======================================== */
 
-.mdk-checkbox[data-state='indeterminate'] {
+.mining-sdk-checkbox[data-state='indeterminate'] {
   background-color: currentColor;
 
-  .mdk-checkbox__indicator svg {
+  .mining-sdk-checkbox__indicator svg {
     display: none;
   }
 
-  .mdk-checkbox__indicator::after {
+  .mining-sdk-checkbox__indicator::after {
     content: '';
     display: block;
     width: 60%;
     height: 2px;
-    background-color: var(--mdk-color-white);
+    background-color: var(--mining-sdk-color-white);
     border-radius: 1px;
   }
 }

@@ -33,9 +33,16 @@ import '@mining-sdk/core/styles.css'
 ### 3. Use Components
 
 ```tsx
-import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@mining-sdk/core'
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@mining-sdk/core'
 
-function MyComponent() {
+const MyComponent = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -59,8 +66,8 @@ function MyComponent() {
 import { Button } from '@mining-sdk/core'
 
 // Variants
-<Button variant="default">Default</Button>
-<Button variant="destructive">Destructive</Button>
+<Button variant="primary">Primary</Button>
+<Button variant="danger">Danger</Button>
 <Button variant="outline">Outline</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="ghost">Ghost</Button>
@@ -68,7 +75,7 @@ import { Button } from '@mining-sdk/core'
 
 // Sizes
 <Button size="sm">Small</Button>
-<Button size="default">Default</Button>
+<Button size="md">Default</Button>
 <Button size="lg">Large</Button>
 <Button size="icon">🔥</Button>
 ```
@@ -79,7 +86,7 @@ import { Button } from '@mining-sdk/core'
 import { Checkbox, Label } from '@mining-sdk/core'
 import { useState } from 'react'
 
-function CheckboxDemo() {
+const CheckboxDemo = () => {
   const [checked, setChecked] = useState(false)
 
   return (
@@ -97,7 +104,7 @@ function CheckboxDemo() {
 import { Label, Switch } from '@mining-sdk/core'
 import { useState } from 'react'
 
-function SwitchDemo() {
+const SwitchDemo = () => {
   const [enabled, setEnabled] = useState(false)
 
   return (
@@ -114,14 +121,12 @@ function SwitchDemo() {
 ```tsx
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@mining-sdk/core'
 
-function AccordionDemo() {
+const AccordionDemo = () => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
-        </AccordionContent>
+        <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger>Is it styled?</AccordionTrigger>
@@ -139,7 +144,7 @@ function AccordionDemo() {
 ```tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@mining-sdk/core'
 
-function AvatarDemo() {
+const AvatarDemo = () => {
   return (
     <Avatar>
       <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -165,11 +170,11 @@ import {
   Button,
 } from '@mining-sdk/core'
 
-function AlertDialogDemo() {
+const AlertDialogDemo = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="danger">Delete</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -266,11 +271,7 @@ The `cn()` utility merges class names:
 ```tsx
 import { cn } from '@mining-sdk/core'
 
-const className = cn(
-  'base-class',
-  condition && 'conditional-class',
-  { 'object-class': true },
-)
+const className = cn('base-class', condition && 'conditional-class', { 'object-class': true })
 ```
 
 ## Best Practices
