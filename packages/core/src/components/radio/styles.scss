@@ -301,7 +301,7 @@
   &[data-state='checked'] {
     background-color: var(--mining-sdk-color-primary);
     border-color: var(--mining-sdk-color-primary);
-    color: #000000;
+    color: var(--mining-sdk-button-primary-text);
   }
 
   &:hover {
@@ -316,7 +316,7 @@
   &[data-state='checked'] {
     background-color: var(--mining-sdk-color-success);
     border-color: var(--mining-sdk-color-success);
-    color: #000000;
+    color: var(--mining-sdk-button-primary-text);
   }
 
   &:hover {
@@ -331,7 +331,7 @@
   &[data-state='checked'] {
     background-color: var(--mining-sdk-color-warning);
     border-color: var(--mining-sdk-color-warning);
-    color: #000000;
+    color: var(--mining-sdk-button-primary-text);
   }
 
   &:hover {
