@@ -20,10 +20,7 @@ import {
   Checkbox,
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
   Label,
   Switch,
@@ -35,6 +32,7 @@ import {
 } from '@mining-sdk/core'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
+import { ControlledDialog } from './components/controlled-dialog'
 
 const App = (): JSX.Element => (
   <div className="demo-app">
@@ -80,26 +78,27 @@ const App = (): JSX.Element => (
       {/* Dialog */}
       <section className="demo-section">
         <h2 className="demo-section__title">Dialog</h2>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline">Open Dialog</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader closable>
-              <DialogTitle>Welcome to @mining-sdk/core</DialogTitle>
-              <DialogDescription>
-                This is a dialog component built with Radix UI primitives.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="demo-section__dialog-content">
-              <p>You can add any content here.</p>
-            </div>
-            <DialogFooter>
-              <Button variant="outline">Cancel</Button>
-              <Button variant="primary">Save changes</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+        <div className="demo-section__dialog-grid">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">Open Dialog</Button>
+            </DialogTrigger>
+            <DialogContent
+              closable
+              title="Welcome to @mining-sdk/core"
+              description="This is a dialog component built with Radix UI primitives."
+            >
+              <div className="demo-section__dialog-content">
+                <p>You can add any content here.</p>
+              </div>
+              <DialogFooter>
+                <Button variant="outline">Cancel</Button>
+                <Button variant="primary">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          <ControlledDialog />
+        </div>
       </section>
       {/* Alert Dialog */}
       <section className="demo-section">

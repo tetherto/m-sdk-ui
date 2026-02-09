@@ -15,6 +15,13 @@ export type DialogHeaderProps = {
   onClose?: () => void
 }
 
+export type DialogContentProps = {
+  title?: string
+  description?: string
+  closeOnClickOutside?: boolean
+  closeOnEscape?: boolean
+} & DialogHeaderProps
+
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
@@ -26,26 +33,6 @@ const DialogOverlay = React.forwardRef<
   />
 ))
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
-
-/**
- * Dialog content component
- */
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn('mining-sdk-dialog__content', className)}
-      {...props}
-    >
-      {children}
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
-DialogContent.displayName = DialogPrimitive.Content.displayName
 
 /**
  * Dialog header component
@@ -78,17 +65,6 @@ const DialogHeader = ({
 DialogHeader.displayName = 'DialogHeader'
 
 /**
- * Dialog footer component
- */
-const DialogFooter = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
-  return <div className={cn('mining-sdk-dialog__footer', className)} {...props} />
-}
-DialogFooter.displayName = 'DialogFooter'
-
-/**
  * Dialog title component
  */
 const DialogTitle = React.forwardRef<
@@ -117,6 +93,84 @@ const DialogDescription = React.forwardRef<
   />
 ))
 DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+/**
+ * Dialog content component
+ */
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  DialogContentProps & React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(
+  (
+    {
+      className,
+      closable,
+      onClose,
+      title,
+      description,
+      children,
+      closeOnClickOutside = true,
+      closeOnEscape = true,
+      onInteractOutside,
+      onEscapeKeyDown,
+      ...props
+    },
+    ref,
+  ) => {
+    type DialogPrimitiveContentProps = React.ComponentProps<typeof DialogPrimitive.Content>
+
+    const handleInteractOutside: DialogPrimitiveContentProps['onInteractOutside'] = (e) => {
+      if (!closeOnClickOutside) {
+        e.preventDefault()
+      }
+
+      onInteractOutside?.(e)
+    }
+
+    const handleEscapeKeyDown: DialogPrimitiveContentProps['onEscapeKeyDown'] = (e) => {
+      if (!closeOnEscape) {
+        e.preventDefault()
+      }
+
+      closeOnEscape?.valueOf()
+    }
+
+    return (
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogPrimitive.Content
+          ref={ref}
+          className={cn('mining-sdk-dialog__content', className)}
+          onInteractOutside={handleInteractOutside}
+          onEscapeKeyDown={handleEscapeKeyDown}
+          {...props}
+        >
+          <DialogHeader closable={closable} onClose={onClose}>
+            {title && (
+              <>
+                <DialogTitle>{title}</DialogTitle>
+                {description && <DialogDescription>{description}</DialogDescription>}
+              </>
+            )}
+          </DialogHeader>
+          {children}
+        </DialogPrimitive.Content>
+      </DialogPortal>
+    )
+  },
+)
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+/**
+ * Dialog footer component
+ */
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
+  return <div className={cn('mining-sdk-dialog__footer', className)} {...props} />
+}
+DialogFooter.displayName = 'DialogFooter'
 
 export {
   Dialog,

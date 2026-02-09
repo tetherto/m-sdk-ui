@@ -33,7 +33,8 @@
     flex-wrap: wrap;
   }
 
-  &__button-grid {
+  &__button-grid,
+  &__dialog-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(140px, max-content));
     gap: 1rem;
