@@ -1,12 +1,26 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import * as React from 'react'
+import { Cross2Icon } from '@radix-ui/react-icons'
 
 import { cn } from '../../utils'
+import { Button } from '../button'
 
 const Dialog = DialogPrimitive.Root
 const DialogTrigger = DialogPrimitive.Trigger
 const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
+
+export type DialogHeaderProps = {
+  closable?: boolean
+  onClose?: VoidFunction
+}
+
+export type DialogContentProps = {
+  title?: string
+  description?: string
+  closeOnClickOutside?: boolean
+  closeOnEscape?: boolean
+} & DialogHeaderProps
 
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
@@ -21,46 +35,34 @@ const DialogOverlay = React.forwardRef<
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 /**
- * Dialog content component
- */
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn('mining-sdk-dialog__content', className)}
-      {...props}
-    >
-      {children}
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
-DialogContent.displayName = DialogPrimitive.Content.displayName
-
-/**
  * Dialog header component
  */
 const DialogHeader = ({
   className,
+  children,
+  closable,
+  onClose,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
-  return <div className={cn('mining-sdk-dialog__header', className)} {...props} />
+}: DialogHeaderProps & React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
+  return (
+    <div className={cn('mining-sdk-dialog__header', className)} {...props}>
+      <div className="mining-sdk-dialog__header__container">{children}</div>
+      {closable && (
+        <DialogClose asChild>
+          <Button
+            size="sm"
+            className="mining-sdk-dialog__header__close"
+            variant="outline"
+            onClick={onClose}
+          >
+            <Cross2Icon />
+          </Button>
+        </DialogClose>
+      )}
+    </div>
+  )
 }
 DialogHeader.displayName = 'DialogHeader'
-
-/**
- * Dialog footer component
- */
-const DialogFooter = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
-  return <div className={cn('mining-sdk-dialog__footer', className)} {...props} />
-}
-DialogFooter.displayName = 'DialogFooter'
 
 /**
  * Dialog title component
@@ -91,6 +93,83 @@ const DialogDescription = React.forwardRef<
   />
 ))
 DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+type DialogPrimitiveContentProps = React.ComponentProps<typeof DialogPrimitive.Content>
+
+/**
+ * Dialog content component
+ */
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  DialogContentProps & React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(
+  (
+    {
+      className,
+      closable,
+      onClose,
+      title,
+      description,
+      children,
+      closeOnClickOutside = true,
+      closeOnEscape = true,
+      onInteractOutside,
+      onEscapeKeyDown,
+      ...props
+    },
+    ref,
+  ) => {
+    const handleInteractOutside: DialogPrimitiveContentProps['onInteractOutside'] = (event) => {
+      if (!closeOnClickOutside) {
+        event.preventDefault()
+      }
+
+      onInteractOutside?.(event)
+    }
+
+    const handleEscapeKeyDown: DialogPrimitiveContentProps['onEscapeKeyDown'] = (event) => {
+      if (!closeOnEscape) {
+        event.preventDefault()
+      }
+      onEscapeKeyDown?.(event)
+    }
+
+    return (
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogPrimitive.Content
+          ref={ref}
+          className={cn('mining-sdk-dialog__content', className)}
+          onInteractOutside={handleInteractOutside}
+          onEscapeKeyDown={handleEscapeKeyDown}
+          {...props}
+        >
+          <DialogHeader closable={closable} onClose={onClose}>
+            {title && (
+              <>
+                <DialogTitle>{title}</DialogTitle>
+                {description && <DialogDescription>{description}</DialogDescription>}
+              </>
+            )}
+          </DialogHeader>
+          {children}
+        </DialogPrimitive.Content>
+      </DialogPortal>
+    )
+  },
+)
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+/**
+ * Dialog footer component
+ */
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
+  return <div className={cn('mining-sdk-dialog__footer', className)} {...props} />
+}
+DialogFooter.displayName = 'DialogFooter'
 
 export {
   Dialog,

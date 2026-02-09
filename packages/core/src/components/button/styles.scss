@@ -34,7 +34,8 @@
     color: var(--mining-sdk-button-primary-text);
 
     &:hover {
-      background: linear-gradient(
+      background:
+        linear-gradient(
           0deg,
           var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
           var(--mining-sdk-button-primary-bg-hover-overlay) 100%
