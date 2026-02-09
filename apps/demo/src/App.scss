@@ -27,6 +27,17 @@
     margin-bottom: 1rem;
   }
 
+  &__description {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  &__hint {
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
+  }
+
   &__buttons {
     display: flex;
     gap: 1rem;
@@ -162,6 +173,7 @@
     &--title {
       margin: 2rem 0;
     }
+    
     &--item {
       display: flex;
       flex-direction: column;
@@ -193,28 +205,44 @@
       }
     }
   }
-}
 
-.is-demo-hover.mining-sdk-button--variant-primary {
-  background:
-    linear-gradient(
-      0deg,
-      var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
-      var(--mining-sdk-button-primary-bg-hover-overlay) 100%
-    ),
-    var(--mining-sdk-button-primary-bg);
-  color: var(--mining-sdk-button-primary-text-hover);
-}
+  &__toast-controls {
+    margin-bottom: 1.5rem;
+  }
 
-.is-demo-hover.mining-sdk-button--variant-secondary {
-  border-color: var(--mining-sdk-button-secondary-border-hover);
-}
+  &__toast-positions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-.is-demo-hover.mining-sdk-button--variant-danger {
-  opacity: 0.9;
-}
+  &__toast-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
 
-.is-demo-hover.mining-sdk-button--variant-outline {
-  background: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
+  .is-demo-hover.mining-sdk-button--variant-primary {
+    background:
+      linear-gradient(
+        0deg,
+        var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
+        var(--mining-sdk-button-primary-bg-hover-overlay) 100%
+      ),
+      var(--mining-sdk-button-primary-bg);
+    color: var(--mining-sdk-button-primary-text-hover);
+  }
+
+  .is-demo-hover.mining-sdk-button--variant-secondary {
+    border-color: var(--mining-sdk-button-secondary-border-hover);
+  }
+
+  .is-demo-hover.mining-sdk-button--variant-danger {
+    opacity: 0.9;
+  }
+
+  .is-demo-hover.mining-sdk-button--variant-outline {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
 }

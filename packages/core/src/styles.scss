@@ -20,6 +20,7 @@
 @use './components/radio/styles' as radio;
 @use './components/tooltip/styles' as tooltip;
 @use './components/popover/styles' as popover;
+@use './components/toast/styles' as toast;
 
 /* JetBrains Mono */
 @font-face {
@@ -102,6 +103,14 @@
     --mining-sdk-color-text-secondary: #ffffffd9;
     --mining-sdk-color-text-disabled: #ffffff80;
     --mining-sdk-border-default-color: #424242;
+
+    /* Neutral / Gray scale */
+    --mining-sdk-color-gray-900: #1f1f1f;
+    --mining-sdk-color-gray-400: #8e8e8e;
+    --mining-sdk-color-gray-300: #e1e0e0;
+
+    /* White overlays */
+    --mining-sdk-color-white-12: #ffffff1f;
 
     /* Breadcrumbs specific colors */
     --mining-sdk-breadcrumbs-separator-color: var(--mining-sdk-color-primary);
