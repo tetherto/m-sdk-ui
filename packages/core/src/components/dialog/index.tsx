@@ -94,6 +94,8 @@ const DialogDescription = React.forwardRef<
 ))
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 
+type DialogPrimitiveContentProps = React.ComponentProps<typeof DialogPrimitive.Content>
+
 /**
  * Dialog content component
  */
@@ -117,22 +119,19 @@ const DialogContent = React.forwardRef<
     },
     ref,
   ) => {
-    type DialogPrimitiveContentProps = React.ComponentProps<typeof DialogPrimitive.Content>
-
-    const handleInteractOutside: DialogPrimitiveContentProps['onInteractOutside'] = (e) => {
+    const handleInteractOutside: DialogPrimitiveContentProps['onInteractOutside'] = (event) => {
       if (!closeOnClickOutside) {
-        e.preventDefault()
+        event.preventDefault()
       }
 
-      onInteractOutside?.(e)
+      onInteractOutside?.(event)
     }
 
-    const handleEscapeKeyDown: DialogPrimitiveContentProps['onEscapeKeyDown'] = (e) => {
+    const handleEscapeKeyDown: DialogPrimitiveContentProps['onEscapeKeyDown'] = (event) => {
       if (!closeOnEscape) {
-        e.preventDefault()
+        event.preventDefault()
       }
-
-      closeOnEscape?.valueOf()
+      onEscapeKeyDown?.(event)
     }
 
     return (
