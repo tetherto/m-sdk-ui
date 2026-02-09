@@ -41,6 +41,12 @@
     align-items: center;
   }
 
+  &__icons-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
   &__switches,
   &__checkboxes {
     display: flex;

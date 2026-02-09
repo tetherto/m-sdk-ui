@@ -34,3 +34,5 @@ export * from './theme'
 export * from './types'
 // Core utilities
 export * from './utils'
+
+export * from '@radix-ui/react-icons'

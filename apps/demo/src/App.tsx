@@ -33,6 +33,7 @@ import {
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
+import { Icons } from './components/icons'
 
 const App = (): JSX.Element => (
   <div className="demo-app">
@@ -638,6 +639,11 @@ const App = (): JSX.Element => (
             },
           ])}
         />
+      </section>
+      {/* Icons */}
+      <section className="demo-section">
+        <h2 className="demo-section__title">Icons</h2>
+        <Icons />
       </section>
     </div>
   </div>
