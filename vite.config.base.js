@@ -7,7 +7,7 @@ import { resolve } from 'node:path'
  * This config is designed for library mode with SCSS support.
  * Each package can extend this base config.
  */
-export function createLibConfig({ packageDir, packageName }) {
+export const createLibConfig = ({ packageDir }) => {
   return defineConfig({
     build: {
       lib: {

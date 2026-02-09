@@ -43,7 +43,9 @@ The **Mining SDK** is a comprehensive toolkit providing:
 This monorepo contains 2 main packages in a simplified architecture:
 
 ### `@mining-sdk/core`
+
 Core UI components, utilities, types, and theme system. This package includes:
+
 - Radix UI primitives (Button, Dialog, Switch, etc.)
 - Core utilities (cn, formatters, validators)
 - Type definitions
@@ -51,7 +53,9 @@ Core UI components, utilities, types, and theme system. This package includes:
 - SCSS-based styling
 
 ### `@mining-sdk/foundation`
+
 Complete foundation with features, state management, and utilities. This package includes:
+
 - Domain-specific components (mining operations)
 - Feature components (complete features)
 - Custom React hooks (70+ hooks)
@@ -148,7 +152,7 @@ pnpm lint:fix
 import { Button, Dialog, Switch } from '@mining-sdk/core'
 import '@mining-sdk/core/styles.css'
 
-function App() {
+const App = () => {
   return <Button variant="outline">Click me</Button>
 }
 ```
@@ -194,21 +198,25 @@ pnpm watch:scss
 ### Development Workflows
 
 **Full Stack Development:**
+
 ```bash
 pnpm dev  # Watches all packages + runs demo
 ```
 
 **Package Development:**
+
 ```bash
 pnpm dev:packages  # Watches packages without demo
 ```
 
 **Demo App Only:**
+
 ```bash
 pnpm dev:demo  # Runs demo with HMR
 ```
 
 For detailed information, see:
+
 - [Build Scripts Guide](docs/BUILD_SCRIPTS.md) - Commands and workflows
 - [Watch Mode Guide](docs/WATCH_MODE_GUIDE.md) - Development with auto-reload
 - [Build System Overview](docs/BUILD_SYSTEM.md) - Turborepo architecture

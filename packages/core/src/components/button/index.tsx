@@ -26,7 +26,7 @@ const sizeMap: Record<ButtonSize | ButtonAntdSize, ButtonSize> = {
   icon: 'icon',
 }
 
-function sizeToSize(size?: ButtonSize | ButtonAntdSize): ButtonSize {
+const sizeToSize = (size?: ButtonSize | ButtonAntdSize): ButtonSize => {
   return size ? sizeMap[size] : 'md'
 }
 

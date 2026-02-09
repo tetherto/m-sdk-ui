@@ -43,9 +43,16 @@ import '@mining-sdk/core/styles.css'
 ### Example
 
 ```tsx
-import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@mining-sdk/core'
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@mining-sdk/core'
 
-function App() {
+const App = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>

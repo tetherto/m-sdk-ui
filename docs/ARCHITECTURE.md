@@ -106,7 +106,7 @@ graph LR
 **Usage**:
 
 ```typescript
-import { DeviceType, formatHashrate, isValidMiner } from '@mining-sdk/core';
+import { DeviceType, formatHashrate, isValidMiner } from '@mining-sdk/core'
 ```
 
 ---
@@ -126,7 +126,7 @@ import { DeviceType, formatHashrate, isValidMiner } from '@mining-sdk/core';
 **Usage**:
 
 ```typescript
-import { Button, DataTable, LineChart } from '@mining-sdk/components-foundation';
+import { Button, DataTable, LineChart } from '@mining-sdk/components-foundation'
 ```
 
 **Key Features**:
@@ -153,7 +153,7 @@ import { Button, DataTable, LineChart } from '@mining-sdk/components-foundation'
 **Usage**:
 
 ```typescript
-import { MinerCard, HashRateChart, DeviceExplorer } from '@mining-sdk/components-domain';
+import { MinerCard, HashRateChart, DeviceExplorer } from '@mining-sdk/components-domain'
 ```
 
 ---
@@ -177,7 +177,7 @@ import { MinerCard, HashRateChart, DeviceExplorer } from '@mining-sdk/components
 ```typescript
 import { DashboardModule, DeviceManagementModule } from "@mining-sdk/features";
 
-function App() {
+const App = () => {
   return (
     <DashboardModule
       siteId="site-1"
@@ -209,7 +209,7 @@ function App() {
 ```typescript
 import { useGetListThingsQuery, useGetOperationsHashrateQuery } from "@mining-sdk/api-client";
 
-function DeviceList() {
+const DeviceList=()=> {
   const { data, isLoading } = useGetListThingsQuery({ siteId: "site-1" });
 
   if (isLoading) return <Loading />;
@@ -234,12 +234,12 @@ function DeviceList() {
 **Usage**:
 
 ```typescript
-import { useDebounce, useLocalStorage, useRealTimeMetrics } from '@mining-sdk/hooks';
+import { useDebounce, useLocalStorage, useRealTimeMetrics } from '@mining-sdk/hooks'
 
-function SearchBar() {
-  const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search, 300);
-  const [recentSearches, setRecentSearches] = useLocalStorage('recent-searches', []);
+const SearchBar = () => {
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search, 300)
+  const [recentSearches, setRecentSearches] = useLocalStorage('recent-searches', [])
 
   // ... rest of component
 }
@@ -263,11 +263,11 @@ function SearchBar() {
 **Usage**:
 
 ```typescript
-import { useAppSelector, useAppDispatch, selectSelectedDevices } from '@mining-sdk/state';
+import { useAppSelector, useAppDispatch, selectSelectedDevices } from '@mining-sdk/state'
 
-function DeviceActions() {
-  const dispatch = useAppDispatch();
-  const selectedDevices = useAppSelector(selectSelectedDevices);
+const DeviceActions = () => {
+  const dispatch = useAppDispatch()
+  const selectedDevices = useAppSelector(selectSelectedDevices)
 
   // ... rest of component
 }
@@ -292,7 +292,7 @@ function DeviceActions() {
 ```typescript
 import { ThemeProvider, useTheme } from "@mining-sdk/theme";
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider defaultTheme="dark">
       <YourApp />
@@ -300,7 +300,7 @@ function App() {
   );
 }
 
-function ThemeToggle() {
+const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
   return <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>Toggle</button>;
 }
@@ -374,8 +374,8 @@ function ThemeToggle() {
 
 ### Bundle Size Targets
 
-| Package                      | Target Size (gzipped) | Current Size |
-| ---------------------------- | --------------------- | ------------ |
+| Package                             | Target Size (gzipped) | Current Size |
+| ----------------------------------- | --------------------- | ------------ |
 | `@mining-sdk/core`                  | < 50KB                | TBD          |
 | `@mining-sdk/components-foundation` | < 150KB               | TBD          |
 | `@mining-sdk/components-domain`     | < 200KB               | TBD          |
