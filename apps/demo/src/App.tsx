@@ -23,11 +23,20 @@ import {
   DialogFooter,
   DialogTrigger,
   Label,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  SimplePopover,
+  SimpleTooltip,
   Switch,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
   Typography,
 } from '@mining-sdk/core'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -640,6 +649,243 @@ const App = (): JSX.Element => (
           ])}
         />
       </section>
+      {/* Tooltip */}
+      <section className="demo-section">
+        <h2 className="demo-section__title">Tooltip</h2>
+        <div className="demo-section__tooltip">
+          <section>
+            <h3>Simple Tooltip (Convenient Wrapper)</h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <SimpleTooltip content="This is a helpful tooltip">
+                <Button variant="primary">Hover me (top)</Button>
+              </SimpleTooltip>
+
+              <SimpleTooltip content="Tooltip on the right side" side="right">
+                <Button variant="secondary">Hover me (right)</Button>
+              </SimpleTooltip>
+
+              <SimpleTooltip content="Tooltip at the bottom" side="bottom">
+                <Button variant="outline">Hover me (bottom)</Button>
+              </SimpleTooltip>
+
+              <SimpleTooltip content="Tooltip on the left side" side="left">
+                <Button variant="danger">Hover me (left)</Button>
+              </SimpleTooltip>
+            </div>
+          </section>
+
+          <section style={{ marginTop: '2rem' }}>
+            <h3>Compound Components (Full Control)</h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="primary">Fast tooltip (100ms)</Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div style={{ maxWidth: '200px' }}>
+                      This tooltip appears quickly with a 100ms delay
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider delayDuration={500}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="secondary">Slow tooltip (500ms)</Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right" showArrow={false}>
+                    <div style={{ maxWidth: '250px' }}>
+                      <strong>No Arrow</strong>
+                      <br />
+                      This tooltip has a longer delay and no arrow
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </section>
+
+          <section style={{ marginTop: '2rem' }}>
+            <h3>Rich Content Tooltips</h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <SimpleTooltip
+                content={
+                  <div style={{ maxWidth: '300px' }}>
+                    <strong style={{ color: '#f7931a' }}>Mining Status</strong>
+                    <div style={{ marginTop: '8px', fontSize: '11px' }}>
+                      <div>Hashrate: 100 TH/s</div>
+                      <div>Temperature: 65°C</div>
+                      <div>Power: 3250W</div>
+                    </div>
+                  </div>
+                }
+              >
+                <Button variant="primary">Miner Info</Button>
+              </SimpleTooltip>
+
+              <SimpleTooltip
+                content={
+                  <div>
+                    <div style={{ fontWeight: 600, marginBottom: '4px' }}>Long Text Example</div>
+                    <div style={{ fontSize: '11px' }}>
+                      This tooltip demonstrates word wrapping for longer content. The text will
+                      automatically wrap within the maximum width constraint.
+                    </div>
+                  </div>
+                }
+                side="bottom"
+              >
+                <Button variant="outline">Long Content</Button>
+              </SimpleTooltip>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      {/* Popover */}
+      <section className="demo-section">
+        <h2 className="demo-section__title">Popover</h2>
+        <div className="demo-section__popover">
+          <section>
+            <h3>Simple Popover (Convenient Wrapper)</h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <SimplePopover
+                trigger={<Button variant="primary">Open Popover</Button>}
+                content={
+                  <div style={{ padding: '8px' }}>
+                    <h4 style={{ margin: '0 0 8px 0' }}>Popover Title</h4>
+                    <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
+                      This is a simple popover with basic content.
+                    </p>
+                  </div>
+                }
+              />
+
+              <SimplePopover
+                trigger={<Button variant="secondary">With Close Button</Button>}
+                content={
+                  <div style={{ padding: '8px' }}>
+                    <h4 style={{ margin: '0 0 8px 0' }}>Closeable Popover</h4>
+                    <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
+                      Click the X button in the top-right to close.
+                    </p>
+                  </div>
+                }
+                showClose
+              />
+
+              <SimplePopover
+                trigger={<Button variant="outline">With Arrow</Button>}
+                content={
+                  <div style={{ padding: '8px' }}>
+                    <h4 style={{ margin: '0 0 8px 0' }}>Arrow Popover</h4>
+                    <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
+                      This popover includes a small arrow pointing to the trigger.
+                    </p>
+                  </div>
+                }
+                showArrow
+                side="top"
+              />
+            </div>
+          </section>
+
+          <section style={{ marginTop: '2rem' }}>
+            <h3>Compound Components (Full Control)</h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="primary">Custom Popover</Button>
+                </PopoverTrigger>
+                <PopoverContent side="bottom" align="start">
+                  <div style={{ width: '300px' }}>
+                    <h4 style={{ margin: '0 0 12px 0', color: '#f7931a' }}>Mining Controls</h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Auto-tune</span>
+                        <Switch defaultChecked />
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Low power mode</span>
+                        <Switch />
+                      </div>
+                      <div style={{ marginTop: '8px' }}>
+                        <Button variant="primary" style={{ width: '100%' }}>
+                          Apply Settings
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="secondary">Position Options</Button>
+                </PopoverTrigger>
+                <PopoverContent side="right" align="center">
+                  <div style={{ padding: '8px' }}>
+                    <h4 style={{ margin: '0 0 8px 0' }}>Positioned Right</h4>
+                    <p style={{ margin: 0, fontSize: '13px', opacity: 0.9 }}>
+                      This popover appears on the right side of the trigger.
+                    </p>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </section>
+
+          <section style={{ marginTop: '2rem' }}>
+            <h3>Rich Content Example</h3>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="primary">Miner Details</Button>
+                </PopoverTrigger>
+                <PopoverContent showClose>
+                  <div style={{ width: '350px' }}>
+                    <h3 style={{ margin: '0 0 16px 0', color: '#f7931a', fontSize: '16px' }}>
+                      Antminer S19 Pro
+                    </h3>
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: '120px 1fr',
+                        gap: '8px',
+                        fontSize: '13px',
+                      }}
+                    >
+                      <div style={{ opacity: 0.7 }}>Hashrate:</div>
+                      <div style={{ fontWeight: 500 }}>110 TH/s</div>
+                      <div style={{ opacity: 0.7 }}>Temperature:</div>
+                      <div style={{ fontWeight: 500, color: '#72f59e' }}>65°C</div>
+                      <div style={{ opacity: 0.7 }}>Power:</div>
+                      <div style={{ fontWeight: 500 }}>3250W</div>
+                      <div style={{ opacity: 0.7 }}>Efficiency:</div>
+                      <div style={{ fontWeight: 500 }}>29.5 W/TH</div>
+                      <div style={{ opacity: 0.7 }}>Uptime:</div>
+                      <div style={{ fontWeight: 500 }}>45d 12h 30m</div>
+                      <div style={{ opacity: 0.7 }}>Status:</div>
+                      <div style={{ fontWeight: 500, color: '#72f59e' }}>Online</div>
+                    </div>
+                    <div style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
+                      <Button variant="primary" style={{ flex: 1 }}>
+                        Restart
+                      </Button>
+                      <Button variant="secondary" style={{ flex: 1 }}>
+                        Configure
+                      </Button>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </section>
+        </div>
+      </section>
+
       {/* Icons */}
       <section className="demo-section">
         <h2 className="demo-section__title">Icons</h2>
