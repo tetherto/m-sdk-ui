@@ -12,7 +12,7 @@ const DialogClose = DialogPrimitive.Close
 
 export type DialogHeaderProps = {
   closable?: boolean
-  onClose?: () => void
+  onClose?: VoidFunction
 }
 
 export type DialogContentProps = {
