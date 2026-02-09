@@ -1,0 +1,159 @@
+/**
+ * Popover Component Styles (Moria Theme)
+ *
+ * Based on moria-app-ui popover usage:
+ * - Dark background (SIMPLE_BLACK #000000)
+ * - Smooth animations
+ * - Responsive width constraints
+ */
+
+.mining-sdk-popover__content {
+  /* Layout */
+  width: 100%;
+  max-width: 500px;
+  padding: 16px;
+  z-index: 10001;
+
+  /* Colors */
+  background-color: var(--mining-sdk-popover-bg, #000000);
+  color: var(--mining-sdk-popover-text, var(--mining-sdk-color-white, #ffffff));
+  border: 1px solid
+    var(--mining-sdk-popover-border, var(--mining-sdk-color-white-transparent, #ffffff1a));
+
+  /* Effects */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+
+  /* Position relative for close button */
+  position: relative;
+
+  /* Animations */
+  animation-duration: 0.2s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+
+  /* Entry animations based on side */
+  &[data-state='open'][data-side='top'] {
+    animation-name: mining-sdk-popover-slide-down-fade;
+  }
+
+  &[data-state='open'][data-side='right'] {
+    animation-name: mining-sdk-popover-slide-left-fade;
+  }
+
+  &[data-state='open'][data-side='bottom'] {
+    animation-name: mining-sdk-popover-slide-up-fade;
+  }
+
+  &[data-state='open'][data-side='left'] {
+    animation-name: mining-sdk-popover-slide-right-fade;
+  }
+
+  /* Exit animations */
+  &[data-state='closed'] {
+    animation-name: mining-sdk-popover-fade-out;
+    animation-duration: 0.15s;
+  }
+
+  /* Responsive: Mobile adjustments */
+  @media (max-width: 768px) {
+    max-width: calc(100vw - 32px);
+    min-width: 250px;
+  }
+}
+
+/* Arrow styling */
+.mining-sdk-popover__arrow {
+  fill: var(--mining-sdk-popover-bg, #000000);
+  filter: drop-shadow(0 0 1px var(--mining-sdk-popover-border, #ffffff1a));
+}
+
+/* Close button */
+.mining-sdk-popover__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  color: var(--mining-sdk-popover-text, var(--mining-sdk-color-white, #ffffff));
+  opacity: 0.7;
+  cursor: pointer;
+  transition:
+    opacity 0.2s,
+    background-color 0.2s;
+
+  &:hover {
+    opacity: 1;
+    background-color: var(--mining-sdk-color-white-transparent, #ffffff1a);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mining-sdk-color-primary, #f7931a);
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Animations */
+@keyframes mining-sdk-popover-slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mining-sdk-popover-slide-down-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mining-sdk-popover-slide-left-fade {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes mining-sdk-popover-slide-right-fade {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes mining-sdk-popover-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
