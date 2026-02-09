@@ -13,6 +13,7 @@ export * from './components/avatar'
 export * from './components/breadcrumbs'
 export * from './components/button'
 export * from './components/checkbox'
+export * from './components/date-picker'
 export * from './components/dialog'
 // Re-export Radix primitives with namespaces to avoid conflicts
 export * as DropdownMenu from './components/dropdown-menu'
