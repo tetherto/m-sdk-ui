@@ -46,12 +46,12 @@ const DialogHeader = ({
 }: DialogHeaderProps & React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
   return (
     <div className={cn('mining-sdk-dialog__header', className)} {...props}>
-      <div className={cn('mining-sdk-dialog__header__container')}>{children}</div>
+      <div className="mining-sdk-dialog__header__container">{children}</div>
       {closable && (
         <DialogClose asChild>
           <Button
             size="sm"
-            className={cn('mining-sdk-dialog__header__close')}
+            className="mining-sdk-dialog__header__close"
             variant="outline"
             onClick={onClose}
           >
