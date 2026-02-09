@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 export const ControlledDialog = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
