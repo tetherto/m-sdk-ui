@@ -92,7 +92,7 @@ const App = (): JSX.Element => (
                 <p>You can add any content here.</p>
               </div>
               <DialogFooter>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="secondary">Cancel</Button>
                 <Button variant="primary">Save changes</Button>
               </DialogFooter>
             </DialogContent>

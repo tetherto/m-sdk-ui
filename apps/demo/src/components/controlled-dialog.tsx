@@ -20,7 +20,7 @@ export const ControlledDialog = (): JSX.Element => {
           <p>Use the buttons below to close the dialog.</p>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={() => setIsOpen(false)}>
+          <Button variant="secondary" onClick={() => setIsOpen(false)}>
             Cancel
           </Button>
           <Button variant="primary" onClick={() => setIsOpen(false)}>
