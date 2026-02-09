@@ -9,10 +9,10 @@ export const ControlledDialog = (): JSX.Element => {
         <Button variant="outline">Open Controlled Dialog</Button>
       </DialogTrigger>
       <DialogContent
+        closable
         closeOnClickOutside={false}
         closeOnEscape={false}
-        title="Welcome to @mining-sdk/core"
-        description="This is a controlled dialog"
+        title="This is a controlled dialog"
       >
         <div className="demo-section__dialog-content">
           <p>This dialog doesn't have a close button and a description.</p>
