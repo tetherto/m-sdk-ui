@@ -50,7 +50,7 @@
     position: relative;
 
     padding-bottom: 28px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.229);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.23);
 
     &__container {
       display: flex;
@@ -60,8 +60,8 @@
 
     &__close {
       position: relative;
-      right: -1.5rem;
-      top: -1.5rem;
+      right: -1rem;
+      top: -0.75rem;
       border: 0;
     }
 
@@ -73,6 +73,8 @@
   &__footer {
     display: flex;
     flex-direction: column-reverse;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.23);
 
     @media (min-width: 640px) {
       flex-direction: row;
