@@ -16,6 +16,8 @@
 @use './components/switch/styles' as switch;
 @use './components/typography/styles' as typography;
 @use './components/breadcrumbs/styles' as breadcrumbs;
+@use './components/tooltip/styles' as tooltip;
+@use './components/popover/styles' as popover;
 
 /* JetBrains Mono */
 @font-face {
@@ -113,6 +115,16 @@
     /* Dialog specific colors */
     --mining-sdk-dialog-box-shadow-color: rgb(0 0 0 / 0.1);
     --mining-sdk-dialog-border-color: rgba(255, 255, 255, 0.1);
+
+    /* Tooltip specific colors */
+    --mining-sdk-tooltip-bg: #0e0e0e;
+    --mining-sdk-tooltip-text: #ffffff;
+    --mining-sdk-tooltip-border: #f7931a;
+
+    /* Popover specific colors */
+    --mining-sdk-popover-bg: #000000;
+    --mining-sdk-popover-text: #ffffff;
+    --mining-sdk-popover-border: #ffffff1a;
 
     /* mining-sdk button tokens (moria baseline) */
     --mining-sdk-radius: 0px;
