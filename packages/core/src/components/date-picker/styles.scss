@@ -1,0 +1,440 @@
+/**
+ * Date Picker Component Styles (Moria Theme)
+ *
+ * Based on moria-app-ui PresetDateRangePicker:
+ * - Dark theme with black backgrounds
+ * - Orange primary color (#F7931A)
+ * - Transparent white borders and text
+ * - Modal interface for range picker
+ *
+ * react-day-picker v9 class names
+ */
+
+/* ===== Trigger Button ===== */
+.mining-sdk-date-picker__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  max-width: 245px;
+  width: fit-content;
+  padding: 8px 12px;
+  min-height: 40px;
+  background-color: var(--mining-sdk-date-picker-bg, #000000);
+  border: 1px solid var(--mining-sdk-date-picker-border, #ffffff33);
+  border-radius: 0;
+  color: var(--mining-sdk-date-picker-text, #ffffff);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: var(--mining-sdk-date-picker-hover-bg, #f7931a33);
+    border-color: var(--mining-sdk-date-picker-hover-border, transparent);
+    color: var(--mining-sdk-date-picker-hover-text, #f7931a);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mining-sdk-date-picker-focus, #f7931a);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &[data-state='open'] {
+    background-color: var(--mining-sdk-date-picker-hover-bg, #f7931a33);
+    border-color: var(--mining-sdk-date-picker-hover-border, transparent);
+    color: var(--mining-sdk-date-picker-hover-text, #f7931a);
+  }
+}
+
+.mining-sdk-date-picker__icon {
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.mining-sdk-date-picker__text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Calendar Content (single date popover) ===== */
+.mining-sdk-popover__content.mining-sdk-date-picker__content {
+  width: auto !important;
+  max-width: none !important;
+  padding: 0;
+}
+
+/* ===== Calendar Base Styles (react-day-picker v9) ===== */
+.mining-sdk-date-picker__calendar {
+  color: var(--mining-sdk-date-picker-text, #ffffff);
+
+  /* Root */
+  &.rdp-root {
+    --rdp-accent-color: #f7931a;
+    --rdp-accent-background-color: #f7931a33;
+  }
+
+  /* Navigation bar */
+  .rdp-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+  }
+
+  .rdp-button_previous,
+  .rdp-button_next {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mining-sdk-date-picker-nav-bg, #0f0f0f);
+    border: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+    border-radius: 0;
+    color: var(--mining-sdk-date-picker-text, #ffffff);
+    cursor: pointer;
+    padding: 0;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: var(--mining-sdk-date-picker-nav-hover-bg, #161514);
+      border-color: var(--mining-sdk-date-picker-hover-border, #ffffff33);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  .rdp-chevron {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  .rdp-caption_label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mining-sdk-date-picker-text, #ffffff);
+  }
+
+  /* Months container */
+  .rdp-months {
+    display: flex;
+    /* Keep calendars side-by-side - do NOT wrap */
+    flex-wrap: nowrap;
+    gap: 16px;
+    position: relative;
+    /* Prevent shrinking */
+    flex-shrink: 0;
+  }
+
+  .rdp-month {
+    border: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+    background-color: var(--mining-sdk-date-picker-month-bg, #00000080);
+    padding: 12px;
+    border-radius: 0;
+    position: relative;
+    width: fit-content;
+  }
+
+  .rdp-month_caption {
+    margin-bottom: 8px;
+  }
+
+  /* Month grid - use native table layout for proper column sizing */
+  .rdp-month_grid {
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    width: 100%;
+  }
+
+  /* Weekday headers */
+  .rdp-weekdays {
+    /* Keep native table display */
+  }
+
+  .rdp-weekday {
+    height: 24px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--mining-sdk-date-picker-weekday, #ffffff80);
+    text-transform: uppercase;
+    padding: 0;
+  }
+
+  /* Week rows */
+  .rdp-weeks {
+    /* Keep native tbody display */
+  }
+
+  .rdp-week {
+    /* Keep native tr display */
+  }
+
+  /* Day cells - let table auto-distribute width equally across 7 columns */
+  .rdp-day {
+    height: 30px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+  }
+
+  /* Day button (the actual clickable element) */
+  .rdp-day_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--mining-sdk-date-picker-text, #ffffff);
+    border-radius: 0;
+    cursor: pointer;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+
+    &:hover {
+      background-color: var(--mining-sdk-date-picker-day-hover-bg, #ffffff1a);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--mining-sdk-date-picker-focus, #f7931a);
+      outline-offset: -1px;
+      z-index: 1;
+    }
+  }
+
+  /* Selected day */
+  .rdp-selected .rdp-day_button {
+    background-color: var(--mining-sdk-date-picker-selected-bg, #f7931a);
+    color: var(--mining-sdk-date-picker-selected-text, #000000);
+    font-weight: 500;
+
+    &:hover {
+      background-color: var(--mining-sdk-date-picker-selected-hover-bg, #c4730f);
+    }
+  }
+
+  /* Today */
+  .rdp-today .rdp-day_button {
+    font-weight: 600;
+    color: var(--mining-sdk-date-picker-today, #f7931a);
+  }
+
+  .rdp-today.rdp-selected .rdp-day_button {
+    color: var(--mining-sdk-date-picker-selected-text, #000000);
+  }
+
+  /* Outside current month */
+  .rdp-outside .rdp-day_button {
+    opacity: 0.3;
+  }
+
+  /* Disabled days */
+  .rdp-disabled .rdp-day_button {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  /* Range selection styles */
+  .rdp-range_start .rdp-day_button {
+    background-color: var(--mining-sdk-date-picker-selected-bg, #f7931a);
+    color: var(--mining-sdk-date-picker-selected-text, #000000);
+    font-weight: 500;
+  }
+
+  .rdp-range_end .rdp-day_button {
+    background-color: var(--mining-sdk-date-picker-selected-bg, #f7931a);
+    color: var(--mining-sdk-date-picker-selected-text, #000000);
+    font-weight: 500;
+  }
+
+  .rdp-range_middle .rdp-day_button {
+    background-color: var(--mining-sdk-date-picker-range-bg, #f7931a33);
+    color: var(--mining-sdk-date-picker-text, #ffffff);
+  }
+
+  /* Dropdown (year/month selectors if used) */
+  .rdp-dropdown {
+    background-color: var(--mining-sdk-date-picker-dropdown-bg, #000000);
+    border: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+    color: var(--mining-sdk-date-picker-text, #ffffff);
+    padding: 4px;
+    border-radius: 0;
+  }
+}
+
+/* ===== Modal Layout (DateRangePicker) ===== */
+/* Combined selector to override Popover's max-width: 500px */
+.mining-sdk-popover__content.mining-sdk-date-picker__modal {
+  width: auto !important;
+  max-width: none !important;
+  padding: 16px;
+  background-color: var(--mining-sdk-date-picker-modal-bg, #0f0f0f);
+  border: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+}
+
+.mining-sdk-date-picker__modal-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+  margin-bottom: 16px;
+}
+
+.mining-sdk-date-picker__modal-title {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--mining-sdk-date-picker-text, #ffffff);
+  margin: 0;
+}
+
+.mining-sdk-date-picker__modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mining-sdk-date-picker__calendar-container {
+  display: flex;
+  justify-content: center;
+  /* Prevent the container from shrinking calendars */
+  min-width: 0;
+  width: 100%;
+}
+
+/* ===== Meta Section (Summary + Presets) ===== */
+.mining-sdk-date-picker__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mining-sdk-date-picker__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--mining-sdk-date-picker-summary-bg, #161514);
+  border: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+  font-size: 14px;
+  color: var(--mining-sdk-date-picker-muted, #ffffff80);
+}
+
+.mining-sdk-date-picker__summary-title {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.mining-sdk-date-picker__summary-dates {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mining-sdk-date-picker__summary-date {
+  color: var(--mining-sdk-date-picker-highlight, #f7931a);
+  font-weight: 500;
+}
+
+.mining-sdk-date-picker__summary-count {
+  font-size: 14px;
+}
+
+.mining-sdk-date-picker__presets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+/* ===== Modal Footer ===== */
+.mining-sdk-date-picker__modal-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
+
+  button {
+    flex: 1;
+    min-width: 120px;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* ===== Panel Labels (Start/End Date for range picker) ===== */
+.mining-sdk-date-picker__calendar-container {
+  /* Adjust nav position to account for label margin */
+  .rdp-nav {
+    top: 32px;
+  }
+
+  .rdp-month {
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .rdp-month::before {
+    position: absolute;
+    left: 12px;
+    top: -20px;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 14px;
+    letter-spacing: 1.32px;
+    text-transform: uppercase;
+    color: var(--mining-sdk-date-picker-label, #ffffff80);
+  }
+
+  .rdp-month:not(:last-child)::before {
+    content: 'start date';
+  }
+
+  .rdp-month:last-child::before {
+    content: 'end date';
+  }
+
+  /* Single month picker - no labels */
+  .rdp-months:has(.rdp-month:only-child) .rdp-month {
+    margin-top: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+

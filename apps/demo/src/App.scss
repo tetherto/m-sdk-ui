@@ -27,6 +27,17 @@
     margin-bottom: 1rem;
   }
 
+  &__description {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  &__hint {
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
+  }
+
   &__buttons {
     display: flex;
     gap: 1rem;
@@ -41,10 +52,55 @@
     align-items: center;
   }
 
+  &__select-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+  }
+
   &__icons-grid {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  &__date-pickers {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    section {
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
   }
 
   &__switches,
@@ -149,6 +205,7 @@
     &--title {
       margin: 2rem 0;
     }
+    
     &--item {
       display: flex;
       flex-direction: column;
@@ -180,28 +237,44 @@
       }
     }
   }
-}
 
-.is-demo-hover.mining-sdk-button--variant-primary {
-  background:
-    linear-gradient(
-      0deg,
-      var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
-      var(--mining-sdk-button-primary-bg-hover-overlay) 100%
-    ),
-    var(--mining-sdk-button-primary-bg);
-  color: var(--mining-sdk-button-primary-text-hover);
-}
+  &__toast-controls {
+    margin-bottom: 1.5rem;
+  }
 
-.is-demo-hover.mining-sdk-button--variant-secondary {
-  border-color: var(--mining-sdk-button-secondary-border-hover);
-}
+  &__toast-positions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-.is-demo-hover.mining-sdk-button--variant-danger {
-  opacity: 0.9;
-}
+  &__toast-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
 
-.is-demo-hover.mining-sdk-button--variant-outline {
-  background: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
+  .is-demo-hover.mining-sdk-button--variant-primary {
+    background:
+      linear-gradient(
+        0deg,
+        var(--mining-sdk-button-primary-bg-hover-overlay) 0%,
+        var(--mining-sdk-button-primary-bg-hover-overlay) 100%
+      ),
+      var(--mining-sdk-button-primary-bg);
+    color: var(--mining-sdk-button-primary-text-hover);
+  }
+
+  .is-demo-hover.mining-sdk-button--variant-secondary {
+    border-color: var(--mining-sdk-button-secondary-border-hover);
+  }
+
+  .is-demo-hover.mining-sdk-button--variant-danger {
+    opacity: 0.9;
+  }
+
+  .is-demo-hover.mining-sdk-button--variant-outline {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
 }
