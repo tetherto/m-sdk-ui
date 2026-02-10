@@ -57,7 +57,7 @@
 /* Breadcrumb Links */
 .mining-sdk-breadcrumbs__link {
   font-size: 0.875rem;
-  color: var(--mining-sdk-breadcrumbs-link-color);
+  color: rgb(var(--mining-sdk-breadcrumbs-link-color));
   text-decoration: none;
   transition: color 200ms ease;
 
@@ -75,7 +75,7 @@
     all: unset;
     cursor: pointer;
     font-size: 0.875rem;
-    color: var(--mining-sdk-breadcrumbs-link-color);
+    color: rgb(var(--mining-sdk-breadcrumbs-link-color));
 
     &:hover {
       color: var(--mining-sdk-breadcrumbs-link-hover-color);

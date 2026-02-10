@@ -89,6 +89,11 @@
     }
   }
 
+  &__tags {
+    display: flex;
+    gap: 1rem;
+  }
+
   &__button-sizes {
     display: flex;
     gap: 1rem;

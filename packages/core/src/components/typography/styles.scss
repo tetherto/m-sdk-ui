@@ -150,7 +150,7 @@
 }
 
 .mining-sdk-typography--color-success {
-  color: var(--mining-sdk-color-success);
+  color: rgb(var(--mining-sdk-color-success));
 }
 
 .mining-sdk-typography--color-warning {
@@ -158,7 +158,7 @@
 }
 
 .mining-sdk-typography--color-error {
-  color: var(--mining-sdk-color-error);
+  color: rgb(var(--mining-sdk-color-error));
 }
 
 .mining-sdk-typography--color-muted {

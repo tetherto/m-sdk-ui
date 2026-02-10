@@ -22,6 +22,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogTrigger,
+  Indicator,
   Label,
   Popover,
   PopoverContent,
@@ -36,6 +37,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
+  Tag,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -926,7 +928,7 @@ const App = (): JSX.Element => (
             <h3>Rich Content Tooltips</h3>
             <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
               <SimpleTooltip
-                content={(
+                content={
                   <div style={{ maxWidth: '300px' }}>
                     <strong style={{ color: '#f7931a' }}>Mining Status</strong>
                     <div style={{ marginTop: '8px', fontSize: '11px' }}>
@@ -935,13 +937,13 @@ const App = (): JSX.Element => (
                       <div>Power: 3250W</div>
                     </div>
                   </div>
-                )}
+                }
               >
                 <Button variant="primary">Miner Info</Button>
               </SimpleTooltip>
 
               <SimpleTooltip
-                content={(
+                content={
                   <div>
                     <div style={{ fontWeight: 600, marginBottom: '4px' }}>Long Text Example</div>
                     <div style={{ fontSize: '11px' }}>
@@ -949,7 +951,7 @@ const App = (): JSX.Element => (
                       automatically wrap within the maximum width constraint.
                     </div>
                   </div>
-                )}
+                }
                 side="bottom"
               >
                 <Button variant="outline">Long Content</Button>
@@ -968,39 +970,39 @@ const App = (): JSX.Element => (
             <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
               <SimplePopover
                 trigger={<Button variant="primary">Open Popover</Button>}
-                content={(
+                content={
                   <div style={{ padding: '8px' }}>
                     <h4 style={{ margin: '0 0 8px 0' }}>Popover Title</h4>
                     <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
                       This is a simple popover with basic content.
                     </p>
                   </div>
-                )}
+                }
               />
 
               <SimplePopover
                 trigger={<Button variant="secondary">With Close Button</Button>}
-                content={(
+                content={
                   <div style={{ padding: '8px' }}>
                     <h4 style={{ margin: '0 0 8px 0' }}>Closeable Popover</h4>
                     <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
                       Click the X button in the top-right to close.
                     </p>
                   </div>
-                )}
+                }
                 showClose
               />
 
               <SimplePopover
                 trigger={<Button variant="outline">With Arrow</Button>}
-                content={(
+                content={
                   <div style={{ padding: '8px' }}>
                     <h4 style={{ margin: '0 0 8px 0' }}>Arrow Popover</h4>
                     <p style={{ margin: 0, fontSize: '14px', opacity: 0.9 }}>
                       This popover includes a small arrow pointing to the trigger.
                     </p>
                   </div>
-                )}
+                }
                 showArrow
                 side="top"
               />
@@ -1106,6 +1108,226 @@ const App = (): JSX.Element => (
         <h2 className="demo-section__title">Icons</h2>
         <Icons />
       </section>
+
+      {/* Tags */}
+      <section className="demo-section">
+        <h2 className="demo-section__title">Tags</h2>
+        <div className="demo-section__tags">
+          <Tag color="green">Active</Tag>
+          <Tag color="amber">Pending</Tag>
+          <Tag color="red">Inactive</Tag>
+          <Tag color="blue">Processing</Tag>
+          <Tag color="dark">Draft</Tag>
+        </div>
+      </section>
+
+      <div className="indicator-demo">
+        {/* Size Variants */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Size Variants</h2>
+          <div className="demo-section__content">
+            <Indicator color="green" size="sm">
+              Small
+            </Indicator>
+            <Indicator color="green" size="md">
+              Medium
+            </Indicator>
+            <Indicator color="green" size="lg">
+              Large
+            </Indicator>
+          </div>
+        </section>
+
+        {/* All Colors - Small */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">All Colors (Small)</h2>
+          <div className="demo-section__content">
+            <Indicator color="red" size="sm">
+              Red
+            </Indicator>
+            <Indicator color="gray" size="sm">
+              Gray
+            </Indicator>
+            <Indicator color="blue" size="sm">
+              Blue
+            </Indicator>
+            <Indicator color="yellow" size="sm">
+              Yellow
+            </Indicator>
+            <Indicator color="green" size="sm">
+              Green
+            </Indicator>
+            <Indicator color="purple" size="sm">
+              Purple
+            </Indicator>
+            <Indicator color="amber" size="sm">
+              Amber
+            </Indicator>
+            <Indicator color="slate" size="sm">
+              Slate
+            </Indicator>
+          </div>
+        </section>
+
+        {/* All Colors - Large */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">All Colors (Large)</h2>
+          <div className="demo-section__content">
+            <Indicator color="red" size="lg">
+              Red
+            </Indicator>
+            <Indicator color="gray" size="lg">
+              Gray
+            </Indicator>
+            <Indicator color="blue" size="lg">
+              Blue
+            </Indicator>
+            <Indicator color="yellow" size="lg">
+              Yellow
+            </Indicator>
+            <Indicator color="green" size="lg">
+              Green
+            </Indicator>
+            <Indicator color="purple" size="lg">
+              Purple
+            </Indicator>
+            <Indicator color="amber" size="lg">
+              Amber
+            </Indicator>
+            <Indicator color="slate" size="lg">
+              Slate
+            </Indicator>
+          </div>
+        </section>
+
+        {/* Status Indicators */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Status Indicators</h2>
+          <div className="demo-section__content">
+            <Indicator color="red">Offline</Indicator>
+            <Indicator color="red">Error</Indicator>
+            <Indicator color="gray">Sleep</Indicator>
+            <Indicator color="amber">Low</Indicator>
+            <Indicator color="green">Normal</Indicator>
+            <Indicator color="purple">High</Indicator>
+            <Indicator color="slate">Empty</Indicator>
+          </div>
+        </section>
+
+        {/* System Status */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">System Status (Large)</h2>
+          <div className="demo-section__content">
+            <Indicator color="green" size="lg">
+              <span>Running</span>
+              <span>10</span>
+            </Indicator>
+            <Indicator color="blue" size="lg">
+              Starting
+            </Indicator>
+            <Indicator color="amber" size="lg">
+              Warning
+            </Indicator>
+            <Indicator color="red" size="lg">
+              Stopped
+            </Indicator>
+            <Indicator color="gray" size="lg">
+              Idle
+            </Indicator>
+          </div>
+        </section>
+
+        {/* Status Dashboard Example */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Status Dashboard</h2>
+          <div className="demo-section__content demo-section__content--vertical">
+            <div className="demo-row">
+              <span className="demo-label">Offline</span>
+              <Indicator color="gray">0</Indicator>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">Error</span>
+              <Indicator color="red">0</Indicator>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">Sleep</span>
+              <Indicator color="blue">0</Indicator>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">Low</span>
+              <Indicator color="yellow">0</Indicator>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">Normal</span>
+              <Indicator color="green">39</Indicator>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">High</span>
+              <Indicator color="purple">0</Indicator>
+            </div>
+            <div className="demo-row">
+              <span className="demo-label">Empty</span>
+              <Indicator color="slate">69</Indicator>
+            </div>
+          </div>
+        </section>
+
+        {/* Compact Status Bar */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Compact Status Bar (Small)</h2>
+          <div className="demo-section__content demo-section__content--dark">
+            <Indicator color="gray" size="sm">
+              Offline 0
+            </Indicator>
+            <Indicator color="red" size="sm">
+              Error 0
+            </Indicator>
+            <Indicator color="blue" size="sm">
+              Sleep 0
+            </Indicator>
+            <Indicator color="yellow" size="sm">
+              Low 0
+            </Indicator>
+            <Indicator color="green" size="sm">
+              Normal 39
+            </Indicator>
+            <Indicator color="purple" size="sm">
+              High 0
+            </Indicator>
+            <Indicator color="slate" size="sm">
+              Empty 69
+            </Indicator>
+          </div>
+        </section>
+
+        {/* Compact Status Bar Large */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Compact Status Bar (Large)</h2>
+          <div className="demo-section__content demo-section__content--dark">
+            <Indicator color="gray" size="lg">
+              Offline 0
+            </Indicator>
+            <Indicator color="red" size="lg">
+              Error 0
+            </Indicator>
+            <Indicator color="blue" size="lg">
+              Sleep 0
+            </Indicator>
+            <Indicator color="yellow" size="lg">
+              Low 0
+            </Indicator>
+            <Indicator color="green" size="lg">
+              Normal 39
+            </Indicator>
+            <Indicator color="purple" size="lg">
+              High 0
+            </Indicator>
+            <Indicator color="slate" size="lg">
+              Empty 69
+            </Indicator>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 )
