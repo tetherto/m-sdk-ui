@@ -18,6 +18,7 @@ export * from './components/dialog'
 // Re-export Radix primitives with namespaces to avoid conflicts
 export * as DropdownMenu from './components/dropdown-menu'
 export * from './components/indicator'
+export * from './components/input'
 export * from './components/label'
 export * from './components/popover'
 export * as Progress from './components/progress'
