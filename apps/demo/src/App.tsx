@@ -32,6 +32,13 @@ import {
   Radio,
   RadioCard,
   RadioGroup,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
   SimplePopover,
   SimpleTooltip,
   Switch,
@@ -174,6 +181,28 @@ const App = (): JSX.Element => {
             <Button className="is-demo-hover" variant="outline">
               Outline
             </Button>
+          </div>
+        </section>
+        {/* Select */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Select</h2>
+          <div className="demo-section__form-controls">
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Actions" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Actions</SelectLabel>
+                  <SelectItem value="move-miner">Move Miner</SelectItem>
+                  <SelectItem value="repair">Repair</SelectItem>
+                  <SelectItem value="inventory-logs">Inventory Logs</SelectItem>
+                  <SelectItem value="go-to-explorer">Go To Explorer</SelectItem>
+                  <SelectItem value="add-comment">Add Comment</SelectItem>
+                  <SelectItem value="delete-miner">Delete Miner</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
         </section>
         {/* Dialog */}

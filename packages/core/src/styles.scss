@@ -20,6 +20,7 @@
 @use './components/radio/styles' as radio;
 @use './components/tooltip/styles' as tooltip;
 @use './components/popover/styles' as popover;
+@use './components/select/styles' as select;
 @use './components/toast/styles' as toast;
 
 /* JetBrains Mono */
@@ -137,6 +138,11 @@
     --mining-sdk-popover-bg: #000000;
     --mining-sdk-popover-text: #ffffff;
     --mining-sdk-popover-border: #ffffff1a;
+
+    /* Select specific colors */
+    --mining-sdk-select-content-bg: #1a1a1a;
+    --mining-sdk-select-item-text: #e1e0e0;
+    --mining-sdk-select-item-highlighted-text: #1a1a1a;
 
     /* mining-sdk button tokens (moria baseline) */
     --mining-sdk-radius: 0px;
