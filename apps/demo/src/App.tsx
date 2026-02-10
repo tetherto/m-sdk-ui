@@ -187,10 +187,7 @@ const App = (): JSX.Element => {
         {/* Select */}
         <section className="demo-section">
           <h2 className="demo-section__title">Select</h2>
-          <div
-            className="demo-section__form-controls"
-            style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
-          >
+          <div className="demo-section__select-grid">
             <section>
               <h3>Basic</h3>
               <Select>

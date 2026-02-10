@@ -52,6 +52,33 @@
     align-items: center;
   }
 
+  &__select-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+  }
+
   &__icons-grid {
     display: flex;
     gap: 1rem;
