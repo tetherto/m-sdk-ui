@@ -13,6 +13,7 @@
 @use './components/date-picker/styles' as date-picker;
 @use './components/dialog/styles' as dialog;
 @use './components/tabs/styles' as tabs;
+@use './components/input/styles' as input;
 @use './components/label/styles' as label;
 @use './components/switch/styles' as switch;
 @use './components/typography/styles' as typography;
@@ -138,6 +139,11 @@
     --mining-sdk-popover-bg: #000000;
     --mining-sdk-popover-text: #ffffff;
     --mining-sdk-popover-border: #ffffff1a;
+
+    /* Input specific colors */
+    --mining-sdk-input-bg: #363636;
+    --mining-sdk-input-placeholder-color: #999999;
+    --mining-sdk-input-border-hover: #777777;
 
     /* Select specific colors */
     --mining-sdk-select-content-bg: #1a1a1a;

@@ -79,6 +79,18 @@
     }
   }
 
+  &__input-grid {
+    align-items: stretch;
+
+    section {
+      min-width: 0;
+    }
+
+    &__search {
+      align-self: flex-end;
+    }
+  }
+
   &__icons-grid {
     display: flex;
     gap: 1rem;

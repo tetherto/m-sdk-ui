@@ -25,6 +25,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogTrigger,
+  Input,
   Label,
   Popover,
   PopoverContent,
@@ -286,6 +287,38 @@ const App = (): JSX.Element => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
+            </section>
+          </div>
+        </section>
+        {/* Input */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Form Elements</h2>
+          <div className="demo-section__select-grid demo-section__input-grid">
+            <section>
+              <h3>Default</h3>
+              <Input label="MAC Address" placeholder="Enter MAC address" id="mac-default" />
+            </section>
+            <section className="demo-section__input-grid__search">
+              <h3>Search</h3>
+              <Input variant="search" placeholder="Search" id="search-default" />
+            </section>
+            <section>
+              <h3>With value</h3>
+              <Input
+                label="MAC Address"
+                placeholder="Enter MAC address"
+                defaultValue="00:11:22:33:44:55"
+                id="mac-filled"
+              />
+            </section>
+            <section>
+              <h3>Disabled</h3>
+              <Input
+                label="MAC Address"
+                placeholder="Enter MAC address"
+                disabled
+                id="mac-disabled"
+              />
             </section>
           </div>
         </section>
