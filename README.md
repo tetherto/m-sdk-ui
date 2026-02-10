@@ -64,16 +64,40 @@ pnpm build
 pnpm dev
 
 # Run specific package
-pnpm dev --filter @mining-sdk/components-foundation
+pnpm dev --filter @mining-sdk/core
 
 # Build all packages
 pnpm build
 
-# Run tests
-pnpm test
+# Build with full verbose output
+pnpm build:verbose
 
-# Lint and typecheck
-pnpm check
+# Lint code
+pnpm lint
+
+# Type check
+pnpm typecheck
+
+# Format code
+pnpm format
+
+# Run all checks (lint + typecheck + format + build)
+pnpm fullcheck
+```
+
+### Turbo Output Modes
+
+The project uses Turbo's **stream UI** by default for real-time output. You can also use:
+
+```bash
+# Full verbose output (all logs, even from cache)
+pnpm build --output-logs=full
+
+# Hash only (minimal output)
+pnpm build --output-logs=hash-only
+
+# Errors only
+pnpm build --output-logs=errors-only
 ```
 
 ---
