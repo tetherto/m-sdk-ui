@@ -145,9 +145,19 @@
     }
   }
 
-  &__tags {
+  &__tags,
+  &__indicators {
     display: flex;
     gap: 1rem;
+  }
+  &__indicators {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &--content {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
   }
 
   &__button-sizes {
@@ -205,7 +215,7 @@
     &--title {
       margin: 2rem 0;
     }
-    
+
     &--item {
       display: flex;
       flex-direction: column;

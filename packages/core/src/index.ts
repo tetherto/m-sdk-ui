@@ -29,7 +29,6 @@ export * from './components/switch'
 export * from './components/tabs'
 export * from './components/tag'
 export * from './components/toast'
-export * as Toast from './components/toast'
 export * from './components/tooltip'
 export * from './components/typography'
 // Theme system
