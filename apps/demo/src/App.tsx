@@ -897,15 +897,13 @@ const App = (): JSX.Element => {
           {/* Basic Opened Accordion */}
           <section>
             <Accordion isOpened title="Basic Opened Accordion">
-              <AccordionContent>
-                This is a basic opened accordion. You can put any content here, such as text, lists,
-                or even other components.
-              </AccordionContent>
+              This is a basic opened accordion. You can put any content here, such as text, lists,
+              or even other components.
             </Accordion>
           </section>
 
           {/* Multiple Accordion */}
-          <section>
+          <section style={{ marginTop: '2rem' }}>
             <Accordion title="Multiple Accordion">
               <AccordionItem value="faq-1">
                 <AccordionTrigger>What is Bitcoin mining?</AccordionTrigger>

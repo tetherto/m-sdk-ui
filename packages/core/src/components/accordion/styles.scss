@@ -94,6 +94,8 @@
 
 .mining-sdk-accordion__content[data-state='open'] {
   animation: accordion-down 0.2s ease-out;
+  border: 1px solid var(--mining-sdk-color-primary);
+  border-top: none;
 }
 
 .mining-sdk-accordion__content[data-state='closed'] {
