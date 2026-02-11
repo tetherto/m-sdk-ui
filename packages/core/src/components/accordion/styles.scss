@@ -1,59 +1,122 @@
-/**
- * Accordion Component Styles
- */
-
+/* Base Accordion Styles */
 .mining-sdk-accordion {
-  &__item {
-    border-bottom: 1px solid hsl(var(--border));
-  }
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(var(--mining-sdk-color-black), 0.05);
+}
 
-  &__header {
-    display: flex;
-  }
+.mining-sdk-accordion--solid-background {
+  background-color: transparent;
+}
 
-  &__trigger {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0;
-    font-weight: 500;
-    transition: all 0.2s;
+.mining-sdk-accordion__item {
+  border: none;
+}
 
-    &:hover {
-      text-decoration: underline;
-    }
+.mining-sdk-accordion__item[data-state='open'] {
+  border: 1px solid var(--mining-sdk-dialog-border-color);
+}
 
-    &[data-state='open'] svg {
-      transform: rotate(180deg);
-    }
-  }
+.mining-sdk-accordion__item[data-state='open']:not(.mining-sdk-accordion--solid-background) {
+  background-color: transparent;
+}
 
-  &__icon {
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
+/* Header & Trigger */
+.mining-sdk-accordion__header {
+  display: flex;
+}
 
-  &__content {
-    overflow: hidden;
-    font-size: 0.875rem;
-    transition: all 0.2s;
+.mining-sdk-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: inherit;
+  text-align: left;
+  border: 1px solid var(--mining-sdk-color-primary);
+}
 
-    &[data-state='closed'] {
-      animation: accordion-up 0.2s ease-out;
-    }
+.mining-sdk-accordion__trigger--no-border {
+  border: none;
+}
 
-    &[data-state='open'] {
-      animation: accordion-down 0.2s ease-out;
-    }
-  }
+.mining-sdk-accordion__trigger a {
+  text-decoration: none;
+}
 
-  &__content-inner {
-    padding-bottom: 1rem;
-    padding-top: 0;
+@media (max-width: 768px) {
+  .mining-sdk-accordion__trigger {
+    font-size: 16px;
+    padding: 8px 16px;
   }
 }
 
+/* Toggler Icon */
+.mining-sdk-accordion__toggler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--mining-sdk-dialog-border-color);
+  flex-shrink: 0;
+}
+
+/* Icon visibility based on state */
+.mining-sdk-accordion__icon--minus {
+  display: none;
+}
+
+.mining-sdk-accordion__icon--plus {
+  display: block;
+}
+
+.mining-sdk-accordion__trigger[data-state='open'] .mining-sdk-accordion__icon--minus {
+  display: block;
+}
+
+.mining-sdk-accordion__trigger[data-state='open'] .mining-sdk-accordion__icon--plus {
+  display: none;
+}
+
+/* Content */
+.mining-sdk-accordion__content {
+  overflow: hidden;
+}
+
+.mining-sdk-accordion__content[data-state='open'] {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.mining-sdk-accordion__content[data-state='closed'] {
+  animation: accordion-up 0.2s ease-out;
+}
+
+.mining-sdk-accordion__content-inner {
+  padding: 10px;
+}
+
+.mining-sdk-accordion__content-inner--no-padding {
+  padding: 0;
+}
+
+.mining-sdk-accordion__content-inner--row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Animations */
 @keyframes accordion-down {
   from {
     height: 0;
