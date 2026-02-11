@@ -8,8 +8,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--mining-sdk-color-background-light);
-  background-color: transparent;
+  border: 2px solid var(--mining-sdk-button-secondary-border);
+  background-color: var(--mining-sdk-color-white-transparent);
   cursor: pointer;
   transition: all 200ms ease;
   flex-shrink: 0;
@@ -140,10 +140,10 @@
 
 /* Success (Green) */
 .mining-sdk-checkbox--success {
-  color: var(--mining-sdk-color-success);
+  color: rgb(var(--mining-sdk-color-success));
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-success);
+    background-color: rgb(var(--mining-sdk-color-success));
   }
 }
 
@@ -158,10 +158,10 @@
 
 /* Error/Danger (Red) */
 .mining-sdk-checkbox--error {
-  color: var(--mining-sdk-color-error);
+  color: rgb(var(--mining-sdk-color-error));
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-error);
+    background-color: rgb(var(--mining-sdk-color-error));
   }
 }
 

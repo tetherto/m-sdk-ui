@@ -75,17 +75,6 @@ jobs:
         with:
           ref: "${{ github.event.pull_request.head.sha || github.sha }}"
           clean: true
-
-      - name: 🔒 Check pnpm-lock.yaml consistency
-        run: |
-          echo "🔒 Verifying pnpm-lock.yaml consistency..."
-          pnpm install --frozen-lockfile --prefer-offline || (
-            echo "❌ pnpm-lock.yaml is out of sync with package.json."
-            echo "💡 Run \`pnpm install\` and commit the updated lockfile."
-            exit 1
-          )
-          echo "✅ pnpm-lock.yaml is consistent"
-
       - name: 📦 Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -99,6 +88,16 @@ jobs:
 
       - name: 📥 Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: 🔒 Check pnpm-lock.yaml consistency
+        run: |
+          echo "🔒 Verifying pnpm-lock.yaml consistency..."
+          pnpm install --frozen-lockfile --prefer-offline || (
+            echo "❌ pnpm-lock.yaml is out of sync with package.json."
+            echo "💡 Run \`pnpm install\` and commit the updated lockfile."
+            exit 1
+          )
+          echo "✅ pnpm-lock.yaml is consistent"
 
       - name: 🧹 Linting
         run: |

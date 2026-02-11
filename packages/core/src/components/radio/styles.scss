@@ -138,7 +138,7 @@
 
 /* Success (Green) */
 .mining-sdk-radio--success {
-  color: var(--mining-sdk-color-success);
+  color: rgb(var(--mining-sdk-color-success));
 
   &[data-state='checked'] {
     background-color: transparent;
@@ -156,7 +156,7 @@
 
 /* Error/Danger (Red) */
 .mining-sdk-radio--error {
-  color: var(--mining-sdk-color-error);
+  color: rgb(var(--mining-sdk-color-error));
 
   &[data-state='checked'] {
     background-color: transparent;
@@ -314,13 +314,13 @@
   color: var(--mining-sdk-color-text-secondary);
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-success);
-    border-color: var(--mining-sdk-color-success);
+    background-color: rgb(var(--mining-sdk-color-success));
+    border-color: rgb(var(--mining-sdk-color-success));
     color: var(--mining-sdk-button-primary-text);
   }
 
   &:hover {
-    border-color: var(--mining-sdk-color-success);
+    border-color: rgb(var(--mining-sdk-color-success));
   }
 }
 
@@ -344,12 +344,12 @@
   color: var(--mining-sdk-color-text-secondary);
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-error);
-    border-color: var(--mining-sdk-color-error);
+    background-color: rgb(var(--mining-sdk-color-error));
+    border-color: rgb(var(--mining-sdk-color-error));
     color: var(--mining-sdk-color-white);
   }
 
   &:hover {
-    border-color: var(--mining-sdk-color-error);
+    border-color: rgb(var(--mining-sdk-color-error));
   }
 }

@@ -5,6 +5,7 @@
     "jsx": "react-jsx",
     "rootDir": "./src",
     "declarationDir": "./dist",
+    "noEmit": false,
     "outDir": "./dist"
   },
   "include": ["src/**/*"],
