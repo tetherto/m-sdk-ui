@@ -1,0 +1,54 @@
+.mining-sdk-error-boundary {
+  border: 1px solid var(--mining-sdk-color-brick-red);
+  margin: 5px;
+  padding: 12px;
+
+  &__title {
+    font-size: 14px;
+    color: var(--mining-sdk-color-white);
+    user-select: none;
+    margin-bottom: 8px;
+  }
+
+  &__component-name {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  &__message {
+    font-size: 13px;
+    color: var(--mining-sdk-color-brick-red);
+    margin-bottom: 8px;
+  }
+
+  &__details {
+    margin-top: 8px;
+  }
+
+  &__summary {
+    font-size: 13px;
+    color: var(--mining-sdk-color-gray-400);
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 0;
+
+    &:hover {
+      color: var(--mining-sdk-color-white);
+    }
+  }
+
+  &__stack {
+    margin: 8px 0 0;
+    padding: 8px;
+    background: #ffffff08;
+    overflow-x: auto;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--mining-sdk-color-gray-400);
+
+    code {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  }
+}
