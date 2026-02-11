@@ -300,3 +300,8 @@
     color: hsl(var(--accent-foreground));
   }
 }
+
+// Override NotFoundPage in demo to not take full viewport height
+.mining-sdk-not-found-page--demo {
+  min-height: 300px;
+}

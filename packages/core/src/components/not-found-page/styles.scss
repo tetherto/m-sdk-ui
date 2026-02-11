@@ -1,0 +1,27 @@
+.mining-sdk-not-found-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--mining-sdk-color-surface);
+  padding: 24px;
+
+  &__title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--mining-sdk-color-white);
+    margin-bottom: 12px;
+  }
+
+  &__message {
+    font-size: 18px;
+    color: var(--mining-sdk-color-gray-400);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  &__button {
+    margin-top: 8px;
+  }
+}
