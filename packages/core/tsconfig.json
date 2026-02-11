@@ -4,8 +4,8 @@
     "composite": true,
     "jsx": "react-jsx",
     "rootDir": "./src",
-    "noEmit": false,
     "declarationDir": "./dist",
+    "noEmit": false,
     "outDir": "./dist"
   },
   "include": ["src/**/*"],
