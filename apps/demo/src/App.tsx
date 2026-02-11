@@ -19,6 +19,7 @@ import {
   Breadcrumbs,
   Button,
   Checkbox,
+  CubeIcon,
   DatePicker,
   DateRangePicker,
   Dialog,
@@ -26,9 +27,13 @@ import {
   DialogFooter,
   DialogTrigger,
   DropdownMenu,
+  EmptyState,
+  ErrorBoundary,
+  ErrorCard,
   Indicator,
   Input,
   Label,
+  NotFoundPage,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -59,6 +64,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
   Typography,
+  withErrorBoundary,
 } from '@mining-sdk/core'
 import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -72,6 +78,21 @@ type ToastItem = {
   title: string
   description: string | undefined
 }
+
+// Demo component that throws on button click (for ErrorBoundary demo)
+const BuggyCounter = (): JSX.Element => {
+  const [count, setCount] = useState(0)
+  if (count >= 3) {
+    throw new Error('Counter exceeded maximum value of 2!')
+  }
+  return (
+    <Button variant="secondary" onClick={() => setCount((c) => c + 1)}>
+      Click count: {count} (crashes at 3)
+    </Button>
+  )
+}
+
+const SafeBuggyCounter = withErrorBoundary(BuggyCounter, 'BuggyCounter')
 
 const TOAST_DURATION = 5000
 
@@ -1836,6 +1857,131 @@ const App = (): JSX.Element => {
               </div>
             </section>
           </section>
+        </section>
+        {/* Empty State */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Empty State</h2>
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+            <section>
+              <h3>Default (md)</h3>
+              <div style={{ border: '1px solid #ffffff1a', padding: '16px', width: '280px' }}>
+                <EmptyState description="No data available" />
+              </div>
+            </section>
+
+            <section>
+              <h3>Simple image</h3>
+              <div style={{ border: '1px solid #ffffff1a', padding: '16px', width: '280px' }}>
+                <EmptyState description="No miners found" image="simple" />
+              </div>
+            </section>
+
+            <section>
+              <h3>Small</h3>
+              <div style={{ border: '1px solid #ffffff1a', padding: '16px', width: '200px' }}>
+                <EmptyState description="Empty" size="sm" />
+              </div>
+            </section>
+
+            <section>
+              <h3>Large</h3>
+              <div style={{ border: '1px solid #ffffff1a', padding: '16px', width: '320px' }}>
+                <EmptyState description="No results match your search criteria" size="lg" />
+              </div>
+            </section>
+
+            <section>
+              <h3>Custom description (ReactNode)</h3>
+              <div style={{ border: '1px solid #ffffff1a', padding: '16px', width: '280px' }}>
+                <EmptyState
+                  description={
+                    <span>
+                      No pools configured. <strong style={{ color: '#f7931a' }}>Add one now</strong>
+                    </span>
+                  }
+                />
+              </div>
+            </section>
+
+            <section>
+              <h3>Custom image (Radix Icon)</h3>
+              <div style={{ border: '1px solid #ffffff1a', padding: '16px', width: '280px' }}>
+                <EmptyState
+                  description="Custom icon example"
+                  image={<CubeIcon width="48" height="48" color="#f7931a" />}
+                />
+              </div>
+            </section>
+          </div>
+        </section>
+
+        {/* Error Boundary */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Error Boundary</h2>
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+            <section>
+              <h3>withErrorBoundary HOC</h3>
+              <p style={{ fontSize: '13px', opacity: 0.7, marginBottom: '12px' }}>
+                Click the button 3 times to trigger the error boundary
+              </p>
+              <SafeBuggyCounter />
+            </section>
+
+            <section>
+              <h3>ErrorBoundary wrapper with custom fallback</h3>
+              <ErrorBoundary
+                fallback={
+                  <div style={{ color: '#ff3b30', padding: '12px', border: '1px solid #ff3b30' }}>
+                    Custom fallback UI - error was caught!
+                  </div>
+                }
+              >
+                <div>This content is protected by an ErrorBoundary</div>
+              </ErrorBoundary>
+            </section>
+          </div>
+        </section>
+
+        {/* Error Card */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Error Card</h2>
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+            <section style={{ width: '320px' }}>
+              <h3>Card variant (default)</h3>
+              <ErrorCard error="Connection to miner timed out after 30 seconds" />
+            </section>
+
+            <section style={{ width: '320px' }}>
+              <h3>Card with multi-line error</h3>
+              <ErrorCard
+                error={
+                  'Failed to fetch hashrate data\nServer returned status 503\nRetry in 5 seconds'
+                }
+                title="API Error"
+              />
+            </section>
+
+            <section style={{ width: '320px' }}>
+              <h3>Inline variant</h3>
+              <ErrorCard
+                error="Invalid MAC address format"
+                title="Validation Error"
+                variant="inline"
+              />
+            </section>
+          </div>
+        </section>
+
+        {/* Not Found Page */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Not Found Page</h2>
+          <div style={{ border: '1px solid #ffffff1a', overflow: 'hidden' }}>
+            <NotFoundPage
+              // eslint-disable-next-line no-alert
+              onGoHome={() => alert('Navigate home')}
+              className="mining-sdk-not-found-page--demo"
+            />
+          </div>
         </section>
       </div>
     </div>
