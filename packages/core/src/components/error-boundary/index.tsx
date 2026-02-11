@@ -71,14 +71,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       return (
         <div className={cn('mining-sdk-error-boundary', className)}>
           <div className="mining-sdk-error-boundary__title">
-            {componentName ? (
+            {componentName && (
               <>
                 Error in{' '}
                 <span className="mining-sdk-error-boundary__component-name">{componentName}</span>
               </>
-            ) : (
-              'Something went wrong'
             )}
+            {!componentName && 'Something went wrong'}
           </div>
           <div className="mining-sdk-error-boundary__message">
             {error?.message ?? 'An unexpected error occurred'}
