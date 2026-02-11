@@ -40,6 +40,7 @@
     "dev": "tsc --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "format": "eslint . --fix",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -54,14 +55,14 @@
     "@mining-sdk/core": "workspace:*"
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "^2.5.0",
-    "@testing-library/react": "^16.1.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitest/ui": "^3.0.11",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-redux": "^9.2.0",
-    "vitest": "^3.0.11"
+    "@reduxjs/toolkit": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitest/ui": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-redux": "catalog:",
+    "vitest": "catalog:"
   }
 }

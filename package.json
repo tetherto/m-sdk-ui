@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "turbo build",
+    "build:verbose": "turbo build --output-logs=full",
     "build:demo": "turbo build --filter=@mining-sdk/demo",
     "build:scss": "turbo build:scss",
     "build:ts": "turbo build:ts",
@@ -18,10 +19,11 @@
     "dev": "turbo dev",
     "dev:demo": "turbo dev --filter=@mining-sdk/demo",
     "dev:packages": "turbo dev --filter=!@mining-sdk/demo",
-    "format": "prettier --write .",
+    "format": "turbo format",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "prepare": "husky",
+    "fullcheck": "pnpm lint && pnpm typecheck && pnpm format && pnpm build",
     "preview:demo": "turbo preview --filter=@mining-sdk/demo",
     "typecheck": "turbo typecheck",
     "watch": "turbo watch",
@@ -30,7 +32,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.7.3",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^5.1.4",
     "autoprefixer": "^10.4.24",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
@@ -45,7 +47,7 @@
     "sass": "^1.97.3",
     "turbo": "^2.8.2",
     "typescript": "^5.9.3",
-    "vite": "^6.0.11"
+    "vite": "^7.3.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [

@@ -4,6 +4,7 @@
     "composite": true,
     "jsx": "react-jsx",
     "rootDir": "./src",
+    "noEmit": false,
     "declarationDir": "./dist",
     "outDir": "./dist"
   },

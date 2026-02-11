@@ -21,3 +21,5 @@ export * from './state'
 
 // Re-export test utilities
 export * from './test-utils'
+
+export const version = '0.0.0'
