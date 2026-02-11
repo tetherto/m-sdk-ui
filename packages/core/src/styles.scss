@@ -21,6 +21,8 @@
 @use './components/radio/styles' as radio;
 @use './components/tooltip/styles' as tooltip;
 @use './components/popover/styles' as popover;
+@use './components/tag/styles' as tag;
+@use './components/indicator/styles' as indicator;
 @use './components/select/styles' as select;
 @use './components/toast/styles' as toast;
 
@@ -90,8 +92,8 @@
 
     /* Brand Colors */
     --mining-sdk-color-primary: #f7931a;
-    --mining-sdk-color-success: #72f59e;
-    --mining-sdk-color-error: #ef4444;
+    --mining-sdk-color-success: 114, 245, 158; /* #1db954 in Hex */
+    --mining-sdk-color-error: 239, 68, 68; /* #ef4444 in Hex */
     --mining-sdk-color-warning: #ffc107;
 
     /* Backgrounds */
@@ -105,6 +107,15 @@
     --mining-sdk-color-text-secondary: #ffffffd9;
     --mining-sdk-color-text-disabled: #ffffff80;
     --mining-sdk-border-default-color: #424242;
+    --mining-sdk-color-brick-red: #ff3b30;
+    --mining-sdk-color-brick-green: #34c759;
+    --mining-sdk-color-dark-green: #18251c;
+    --mining-sdk-color-grey-idle: 107, 114, 128; /* #6b7280 in Hex */
+    --mining-sdk-color-orange-warning: 245, 158, 11; /* #f59e0b in Hex */
+    --mining-sdk-color-low-yellow: 246, 238, 92; /* #f6ee5c in Hex */
+    --mining-sdk-color-sleep-blue: 59, 130, 246; /* #3b82f6 in Hex */
+    --mining-sdk-color-dark-grey: 159, 166, 172; /* #9fa6ac in Hex */
+    --mining-sdk-color-purple-high: 139, 92, 246; /* #8b5cf6 in Hex */
 
     /* Neutral / Gray scale */
     --mining-sdk-color-gray-900: #1f1f1f;
@@ -122,7 +133,7 @@
     --mining-sdk-breadcrumbs-back-button-color: var(--mining-sdk-color-primary);
 
     /* Switch specific colors */
-    --mining-sdk-switch-unchecked-bg: var(--mining-sdk-color-background-light);
+    --mining-sdk-switch-unchecked-bg: #343434;
     --mining-sdk-switch-thumb-shadow: rgba(0, 0, 0, 0.2);
     --mining-sdk-switch-thumb-shadow-checked: rgba(0, 0, 0, 0.3);
 

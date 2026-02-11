@@ -1,0 +1,36 @@
+/* Tag Base Styles */
+.mining-sdk-tag {
+  display: inline-block;
+  text-align: center;
+  padding-inline: 7px;
+  font-size: 12px;
+  line-height: 1.25rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+
+  /* Color Variants */
+  &--dark {
+    background-color: var(--mining-sdk-color-dark-green);
+    color: var(--mining-sdk-color-white);
+  }
+
+  &--red {
+    background-color: var(--mining-sdk-color-brick-red);
+    color: var(--mining-sdk-color-white);
+  }
+
+  &--green {
+    background-color: var(--mining-sdk-color-brick-green);
+    color: var(--mining-sdk-color-white);
+  }
+
+  &--amber {
+    background-color: rgb(var(--mining-sdk-color-orange-warning));
+    color: var(--mining-sdk-color-white);
+  }
+
+  &--blue {
+    background-color: var(--mining-sdk-color-sleep-blue);
+    color: var(--mining-sdk-color-white);
+  }
+}

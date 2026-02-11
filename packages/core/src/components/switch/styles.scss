@@ -164,11 +164,11 @@
   background-color: var(--mining-sdk-switch-unchecked-bg);
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-success);
+    background-color: rgb(var(--mining-sdk-color-success));
   }
 
   &:focus-visible {
-    outline-color: var(--mining-sdk-color-success);
+    outline-color: rgb(var(--mining-sdk-color-success));
   }
 }
 
@@ -191,11 +191,11 @@
   background-color: var(--mining-sdk-switch-unchecked-bg);
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-error);
+    background-color: rgb(var(--mining-sdk-color-error));
   }
 
   &:focus-visible {
-    outline-color: var(--mining-sdk-color-error);
+    outline-color: rgb(var(--mining-sdk-color-error));
   }
 }
 
