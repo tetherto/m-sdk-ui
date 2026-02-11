@@ -1,0 +1,27 @@
+.mining-sdk-error-card {
+  &--card {
+    border: 1px solid var(--mining-sdk-color-brick-red);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &--inline {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--mining-sdk-color-brick-red);
+  }
+
+  &__message {
+    font-size: 14px;
+    color: var(--mining-sdk-color-brick-red);
+    line-height: 1.5;
+  }
+}
