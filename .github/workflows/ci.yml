@@ -82,17 +82,12 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: 📦 Setup pnpm
-        run: npm install -g pnpm@${{ env.PNPM_VERSION }}
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: 🔒 Check pnpm-lock.yaml consistency
-        run: |
-          echo "🔒 Verifying pnpm-lock.yaml consistency..."
-          pnpm install --frozen-lockfile --prefer-offline || (
-            echo "❌ pnpm-lock.yaml is out of sync with package.json."
-            echo "💡 Run \`pnpm install\` and commit the updated lockfile."
-            exit 1
-          )
-          echo "✅ pnpm-lock.yaml is consistent"
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: 🧹 Linting
         run: |
