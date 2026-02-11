@@ -12,8 +12,8 @@
 
 /* ===== Trigger Button ===== */
 .mining-sdk-date-picker__trigger {
-  display: inline-flex;
-  align-items: center;
+  @include inline_flex_align;
+
   justify-content: flex-start;
   gap: 8px;
   max-width: 245px;

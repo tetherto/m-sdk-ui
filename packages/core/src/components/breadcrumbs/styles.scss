@@ -10,9 +10,9 @@
 
 /* Back Button */
 .mining-sdk-breadcrumbs__back {
+  @include inline_flex_align;
+  
   all: unset;
-  display: inline-flex;
-  align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
