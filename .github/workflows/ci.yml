@@ -36,6 +36,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+          run_install: false
 
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v6
@@ -81,12 +82,19 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+          run_install: false
 
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
+
+      - name: 🔍 Verify pnpm installation
+        run: |
+          echo "Verifying pnpm is available..."
+          which pnpm
+          pnpm --version
 
       - name: 🔒 Check pnpm-lock.yaml consistency
         run: |
@@ -136,6 +144,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+          run_install: false
 
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v6
