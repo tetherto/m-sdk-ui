@@ -5,31 +5,34 @@
  * You can customize these CSS variables to match your design system.
  */
 
-// Component Styles (must be first with @use)
-@use './components/accordion/styles' as accordion;
-@use './components/avatar/styles' as avatar;
-@use './components/button/styles' as button;
-@use './components/checkbox/styles' as checkbox;
-@use './components/date-picker/styles' as date-picker;
-@use './components/dialog/styles' as dialog;
-@use './components/empty-state/styles' as empty-state;
-@use './components/error-boundary/styles' as error-boundary;
-@use './components/error-card/styles' as error-card;
-@use './components/not-found-page/styles' as not-found-page;
-@use './components/tabs/styles' as tabs;
-@use './components/input/styles' as input;
-@use './components/label/styles' as label;
-@use './components/switch/styles' as switch;
-@use './components/typography/styles' as typography;
-@use './components/breadcrumbs/styles' as breadcrumbs;
-@use './components/radio/styles' as radio;
-@use './components/tooltip/styles' as tooltip;
-@use './components/popover/styles' as popover;
-@use './components/tag/styles' as tag;
-@use './components/indicator/styles' as indicator;
-@use './components/select/styles' as select;
-@use './components/dropdown-menu/styles' as dropdown-menu;
-@use './components/toast/styles' as toast;
+// Shared Mixins (global scope — available in all component files below)
+@import './mixins';
+
+// Component Styles
+@import './components/accordion/styles';
+@import './components/avatar/styles';
+@import './components/button/styles';
+@import './components/checkbox/styles';
+@import './components/date-picker/styles';
+@import './components/dialog/styles';
+@import './components/empty-state/styles';
+@import './components/error-boundary/styles';
+@import './components/error-card/styles';
+@import './components/not-found-page/styles';
+@import './components/tabs/styles';
+@import './components/input/styles';
+@import './components/label/styles';
+@import './components/switch/styles';
+@import './components/typography/styles';
+@import './components/breadcrumbs/styles';
+@import './components/radio/styles';
+@import './components/tooltip/styles';
+@import './components/popover/styles';
+@import './components/tag/styles';
+@import './components/indicator/styles';
+@import './components/select/styles';
+@import './components/dropdown-menu/styles';
+@import './components/toast/styles';
 
 /* JetBrains Mono */
 @font-face {
