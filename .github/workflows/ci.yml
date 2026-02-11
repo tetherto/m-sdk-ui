@@ -1,5 +1,4 @@
 name: Mining SDK CI Pipeline
-
 on:
   push:
     branches: [main, develop, staging]
@@ -29,18 +28,19 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v6
         with:
-          ref: '${{ github.event.pull_request.head.sha || github.sha }}'
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
           clean: true
-
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
 
       - name: 📦 Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
 
       - name: 📥 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -60,7 +60,7 @@ jobs:
           )
           echo "✅ Vulnerability audit complete"
 
-  # 🔍 Code Quality & Security (Parallel with build)
+  # 🔍 Code Quality & Security (Parallel with others)
   quality:
     name: 🔍 Code Quality & Security
     runs-on: ubuntu-latest
@@ -73,21 +73,31 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v6
         with:
-          ref: '${{ github.event.pull_request.head.sha || github.sha }}'
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
           clean: true
-
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
       - name: 📦 Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
 
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
       - name: 📥 Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: 🔒 Check pnpm-lock.yaml consistency
+        run: |
+          echo "🔒 Verifying pnpm-lock.yaml consistency..."
+          pnpm install --frozen-lockfile --prefer-offline || (
+            echo "❌ pnpm-lock.yaml is out of sync with package.json."
+            echo "💡 Run \`pnpm install\` and commit the updated lockfile."
+            exit 1
+          )
+          echo "✅ pnpm-lock.yaml is consistent"
 
       - name: 🧹 Linting
         run: |
@@ -120,18 +130,19 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v6
         with:
-          ref: '${{ github.event.pull_request.head.sha || github.sha }}'
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
           clean: true
-
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
 
       - name: 📦 Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
 
       - name: 📥 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -179,7 +190,7 @@ jobs:
       - name: 📥 Checkout code for summary
         uses: actions/checkout@v6
         with:
-          ref: '${{ github.event.pull_request.head.sha || github.sha }}'
+          ref: "${{ github.event.pull_request.head.sha || github.sha }}"
           clean: true
 
       - name: 📊 Performance Summary
@@ -206,7 +217,6 @@ jobs:
           echo ""
           echo "🔧 Optimizations Applied:"
           echo "  ✅ Supply chain security checks (pnpm audit)"
-          echo "  ✅ Lockfile consistency verification"
           echo "  ✅ ESLint cache strategy optimized"
           echo "  ✅ Zero tolerance for linter warnings"
           echo "  ✅ TypeScript strict type checking"
@@ -220,7 +230,6 @@ jobs:
           echo "🎉 All checks passed! Ready for merge."
           echo ""
           echo "🚀 Performance Highlights:"
-          echo "  • Lockfile: Verified and consistent"
           echo "  • Linting: Zero tolerance for warnings"
           echo "  • TypeScript: Type checking passed"
           echo "  • Build: Production ready"
