@@ -44,17 +44,15 @@
   }
 
   &__header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    @include flex_align_start_between;
     position: relative;
 
     padding-bottom: 28px;
     border-bottom: 1px solid var(--mining-sdk-dialog-border-color);
 
     &__container {
-      display: flex;
-      flex-direction: column;
+      @include flex_column;
+      
       gap: 0.375rem;
     }
 

@@ -8,8 +8,8 @@
  */
 
 .mining-sdk-select__trigger {
-  display: inline-flex;
-  align-items: center;
+  @include inline_flex_align;
+  
   justify-content: space-between;
   height: 2.5rem;
   padding: 0 0.75rem 0 1rem;
@@ -23,7 +23,9 @@
   border: 1px solid var(--mining-sdk-button-secondary-border, #ffffff33);
   border-radius: var(--mining-sdk-radius, 0px);
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 
   &:hover {
     border-color: var(--mining-sdk-button-secondary-border-hover, #f7931a80);
@@ -84,9 +86,9 @@
 }
 
 .mining-sdk-select__item {
+  @include flex_align;
+  
   position: relative;
-  display: flex;
-  align-items: center;
   padding: 0.5rem 2rem 0.5rem 0.75rem;
   font-size: 14px;
   outline: none;
@@ -107,11 +109,10 @@
 }
 
 .mining-sdk-select__item-indicator {
+  @include flex_center;
+
   position: absolute;
   right: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--mining-sdk-select-item-highlighted-text, #1a1a1a);
 }
 

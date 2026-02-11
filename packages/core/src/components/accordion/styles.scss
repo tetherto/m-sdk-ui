@@ -12,10 +12,9 @@
   }
 
   &__trigger {
-    display: flex;
+    @include flex_align_between;
+    
     flex: 1;
-    align-items: center;
-    justify-content: space-between;
     padding: 1rem 0;
     font-weight: 500;
     transition: all 0.2s;
