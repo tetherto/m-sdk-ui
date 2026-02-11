@@ -17,6 +17,12 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   z-index: 10000;
   padding: 6px 4px;
+
+  &--align-width {
+    width: var(--radix-dropdown-menu-trigger-width);
+    min-width: unset;
+    max-height: var(--radix-dropdown-menu-content-available-height);
+  }
 }
 
 .mining-sdk-dropdown-menu__item {

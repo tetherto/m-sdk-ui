@@ -315,7 +315,7 @@ const App = (): JSX.Element => {
                 <DropdownMenu.Trigger asChild>
                   <Button variant="secondary">Actions</Button>
                 </DropdownMenu.Trigger>
-                <DropdownMenu.Content>
+                <DropdownMenu.Content alignWidth>
                   <DropdownMenu.Item onClick={() => {}}>
                     Copy <DropdownMenu.Shortcut>⌘C</DropdownMenu.Shortcut>
                   </DropdownMenu.Item>
@@ -362,6 +362,32 @@ const App = (): JSX.Element => {
                       <DropdownMenu.Item onClick={() => {}}>JSON</DropdownMenu.Item>
                     </DropdownMenu.SubContent>
                   </DropdownMenu.Sub>
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
+            </section>
+            <section>
+              <h3>Above trigger</h3>
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger asChild>
+                  <Button variant="secondary">Open above</Button>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content side="top">
+                  <DropdownMenu.Item onClick={() => {}}>Option A</DropdownMenu.Item>
+                  <DropdownMenu.Item onClick={() => {}}>Option B</DropdownMenu.Item>
+                  <DropdownMenu.Item onClick={() => {}}>Option C</DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
+            </section>
+            <section>
+              <h3>To the side</h3>
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger asChild>
+                  <Button variant="secondary">Open right</Button>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content side="right">
+                  <DropdownMenu.Item onClick={() => {}}>Option 1</DropdownMenu.Item>
+                  <DropdownMenu.Item onClick={() => {}}>Option 2</DropdownMenu.Item>
+                  <DropdownMenu.Item onClick={() => {}}>Option 3</DropdownMenu.Item>
                 </DropdownMenu.Content>
               </DropdownMenu.Root>
             </section>

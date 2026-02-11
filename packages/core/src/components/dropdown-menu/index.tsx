@@ -9,18 +9,34 @@ const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 const DropdownMenuPortal = DropdownMenuPrimitive.Portal
 
+type DropdownMenuContentProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Content
+> & {
+  /**
+   * When true, content width matches the trigger width.
+   * Uses Radix's --radix-dropdown-menu-trigger-width CSS variable.
+   * @default false
+   */
+  alignWidth?: boolean
+}
+
 /**
  * DropdownMenuContent - The dropdown panel
  */
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
+  DropdownMenuContentProps
+>(({ className, sideOffset = 4, alignWidth = false, align, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
-      className={cn('mining-sdk-dropdown-menu__content', className)}
+      align={align ?? (alignWidth ? 'start' : undefined)}
+      className={cn(
+        'mining-sdk-dropdown-menu__content',
+        alignWidth && 'mining-sdk-dropdown-menu__content--align-width',
+        className,
+      )}
       {...props}
     />
   </DropdownMenuPrimitive.Portal>
