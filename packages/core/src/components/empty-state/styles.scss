@@ -1,0 +1,50 @@
+.mining-sdk-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  --mining-sdk-empty-state-description-color: var(--mining-sdk-color-gray-400);
+
+  // Size variants
+  &--sm {
+    padding: 8px 0;
+    gap: 4px;
+
+    .mining-sdk-empty-state__description {
+      font-size: 12px;
+    }
+  }
+
+  &--md {
+    padding: 24px 0;
+    gap: 8px;
+
+    .mining-sdk-empty-state__description {
+      font-size: 14px;
+    }
+  }
+
+  &--lg {
+    padding: 48px 0;
+    gap: 12px;
+
+    .mining-sdk-empty-state__description {
+      font-size: 16px;
+    }
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    color: var(--mining-sdk-color-gray-400);
+  }
+
+  &__description {
+    color: var(--mining-sdk-empty-state-description-color);
+    line-height: 1.5;
+  }
+}
