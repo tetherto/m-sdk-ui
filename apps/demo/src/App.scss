@@ -204,6 +204,41 @@
     gap: 1rem;
   }
 
+  &__card-grid {
+    @include flex_align_start;
+
+    flex-wrap: wrap;
+    gap: 24px;
+
+    &__card {
+      &--wide {
+        width: 320px;
+      }
+
+      &--narrow {
+        width: 280px;
+      }
+    }
+
+    &__body-text {
+      font-size: 13px;
+      opacity: 0.9;
+
+      &__row {
+        margin-bottom: 8px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &__paragraph {
+      margin: 0;
+      font-size: 13px;
+    }
+  }
+
   &__accordion {
     width: 100%;
   }
