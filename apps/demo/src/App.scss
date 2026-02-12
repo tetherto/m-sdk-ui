@@ -339,6 +339,49 @@
   }
 }
 
+// TagInput custom dropdown example (screenshot style)
+
+.tag-input-custom-dropdown__empty {
+  padding: 0.5rem 0.75rem;
+  font-size: 14px;
+  color: var(--mining-sdk-color-text-secondary, #ffffffd9);
+}
+
+.tag-input-custom-dropdown__option {
+  @include flex_align;
+
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--mining-sdk-dropdown-menu-item-text, #e1e0e0);
+
+  &--selected {
+    background-color: #583a16;
+    color: var(--mining-sdk-color-white, #ffffff);
+    border-radius: 0;
+  }
+
+  &:not(.tag-input-custom-dropdown__option--selected) {
+    border-radius: 4px;
+  }
+
+  &--highlighted:not(.tag-input-custom-dropdown__option--selected) {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &:hover:not(.tag-input-custom-dropdown__option--selected) {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.tag-input-custom-dropdown__check {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--mining-sdk-color-primary, #f7931a);
+}
+
 // Override NotFoundPage in demo to not take full viewport height
 .mining-sdk-not-found-page--demo {
   min-height: 300px;

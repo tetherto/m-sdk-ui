@@ -42,7 +42,7 @@
     border-color 0.2s,
     background-color 0.2s;
 
-  &:hover:not(.mining-sdk-tag-input__wrapper--disabled) {
+  &:hover:not(.mining-sdk-tag-input__wrapper--disabled):not(:focus-within) {
     border-color: var(--mining-sdk-input-border-hover, #777777);
   }
 
@@ -139,7 +139,10 @@
 .mining-sdk-tag-input__dropdown {
   min-width: var(--radix-popover-trigger-width);
   max-height: 12rem;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px; /* override popover's 16px for compact dropdown */
+  background-color: var(--mining-sdk-dropdown-menu-content-bg, #1a1a1a); /* match dropdown menu */
 }
 
 .mining-sdk-tag-input__list {

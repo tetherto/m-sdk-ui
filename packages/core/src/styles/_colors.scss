@@ -53,6 +53,7 @@
 
     /* Neutral / Gray scale */
     --mining-sdk-color-gray-900: #1f1f1f;
+    --mining-sdk-color-gray-500: #777777;
     --mining-sdk-color-gray-400: #8e8e8e;
     --mining-sdk-color-gray-300: #e1e0e0;
 
@@ -88,7 +89,7 @@
     /* Input specific colors */
     --mining-sdk-input-bg: #363636;
     --mining-sdk-input-placeholder-color: #999999;
-    --mining-sdk-input-border-hover: #777777;
+    --mining-sdk-input-border-hover: var(--mining-sdk-color-gray-500);
 
     /* Select specific colors */
     --mining-sdk-select-content-bg: #1a1a1a;

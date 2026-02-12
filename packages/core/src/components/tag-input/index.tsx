@@ -6,6 +6,31 @@ import { cn } from '../../utils'
 
 export type TagInputOption = string | { value: string; label: string }
 
+export type TagInputDropdownProps = {
+  /** Filtered options to display */
+  filteredOptions: TagInputOption[]
+  /** Current tags (selected values) - use to show selected state in custom dropdown */
+  selectedTags: string[]
+  /** Index of the currently highlighted option (for keyboard nav) */
+  highlightedIndex: number
+  /** Call to update highlighted index (e.g. on mouse enter) */
+  setHighlightedIndex: (index: number) => void
+  /** Call when user selects an option */
+  onSelect: (opt: TagInputOption) => void
+  /** Current input value (for custom filtering) */
+  inputValue: string
+  /** HTML id for the combobox (for aria) */
+  id: string
+  /** ID for the listbox element */
+  listboxId: string
+  /** Helper to get option id for aria-activedescendant. Use: id={getOptionId(i)} */
+  getOptionId: (index: number) => string
+  /** Helper to get option value from TagInputOption */
+  getOptionValue: (opt: TagInputOption) => string
+  /** Helper to get option label from TagInputOption */
+  getOptionLabel: (opt: TagInputOption) => string
+}
+
 export type TagInputProps = {
   /**
    * Controlled tags (array of tag values)
@@ -63,6 +88,11 @@ export type TagInputProps = {
    * Custom className for the wrapper
    */
   wrapperClassName?: string
+  /**
+   * Render custom dropdown content. When provided, replaces the default dropdown.
+   * Use this to apply your own styling or structure.
+   */
+  renderDropdown?: (props: TagInputDropdownProps) => React.ReactNode
 }
 
 function getOptionValue(opt: TagInputOption): string {
@@ -97,6 +127,36 @@ function defaultFilter(options: TagInputOption[], query: string): TagInputOption
  *   placeholder="Search..."
  * />
  * ```
+ *
+ * @example
+ * ```tsx
+ * // Custom dropdown with selected state (checkmark + different background)
+ * <TagInput
+ *   value={tags}
+ *   onTagsChange={setTags}
+ *   options={options}
+ *   renderDropdown={({ filteredOptions, selectedTags, highlightedIndex, setHighlightedIndex, onSelect, listboxId, getOptionId, getOptionValue, getOptionLabel }) => (
+ *     <div id={listboxId} role="listbox" className="my-custom-list">
+ *       {filteredOptions.map((opt, i) => {
+ *         const isSelected = selectedTags.includes(getOptionValue(opt))
+ *         return (
+ *           <div
+ *             key={getOptionValue(opt)}
+ *             id={getOptionId(i)}
+ *             role="option"
+ *             aria-selected={i === highlightedIndex}
+ *             onMouseDown={(e) => { e.preventDefault(); onSelect(opt) }}
+ *             onMouseEnter={() => setHighlightedIndex(i)}
+ *           >
+ *             {getOptionLabel(opt)}
+ *             {isSelected && <CheckIcon />}
+ *           </div>
+ *         )
+ *       })}
+ *     </div>
+ *   )}
+ * />
+ * ```
  */
 const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
   (
@@ -114,6 +174,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
       id: idProp,
       className,
       wrapperClassName,
+      renderDropdown,
     },
     ref,
   ) => {
@@ -123,6 +184,8 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
     const [highlightedIndex, setHighlightedIndex] = React.useState(0)
     const inputRef = React.useRef<HTMLInputElement>(null)
     const listRef = React.useRef<HTMLDivElement>(null)
+    const wrapperRef = React.useRef<HTMLDivElement>(null)
+    const dropdownRef = React.useRef<HTMLDivElement>(null)
 
     const tags = value
     const setTags = onTagsChange ?? (() => {})
@@ -160,7 +223,13 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
           const opt = filteredOptions[highlightedIndex]
           if (opt !== undefined) {
             const v = getOptionValue(opt)
-            if (addTag(v)) nextTags = [...tags, v]
+            const idx = tags.indexOf(v)
+            if (idx >= 0) {
+              nextTags = tags.filter((_, i) => i !== idx)
+              removeTag(idx)
+            } else if (addTag(v)) {
+              nextTags = [...tags, v]
+            }
           } else if (allowCustomTags && inputValue.trim()) {
             const v = inputValue.trim()
             if (addTag(v)) nextTags = [...tags, v]
@@ -196,7 +265,13 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
     )
 
     const handleOptionSelect = (opt: TagInputOption): void => {
-      addTag(getOptionValue(opt))
+      const v = getOptionValue(opt)
+      const index = tags.indexOf(v)
+      if (index >= 0) {
+        removeTag(index)
+      } else {
+        addTag(v)
+      }
       inputRef.current?.focus()
     }
 
@@ -204,9 +279,14 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
       setOpen(true)
     }
 
-    const handleBlur = (): void => {
-      // Delay close so click on option can register
-      setTimeout(() => setOpen(false), 150)
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>): void => {
+      const relatedTarget = e.relatedTarget as Node | null
+      const isInWrapper = relatedTarget && wrapperRef.current?.contains(relatedTarget)
+      const isInDropdown = relatedTarget && dropdownRef.current?.contains(relatedTarget)
+      const keepOpen = isInWrapper || isInDropdown
+      if (!keepOpen) {
+        setTimeout(() => setOpen(false), 150)
+      }
     }
 
     const showSearchIcon = variant === 'search'
@@ -221,6 +301,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
       <Popover open={open} onOpenChange={handleOpenChange} modal={false}>
         <PopoverAnchor asChild>
           <div
+            ref={wrapperRef}
             className={cn(
               'mining-sdk-tag-input__wrapper',
               showSearchIcon && 'mining-sdk-tag-input__wrapper--search',
@@ -290,6 +371,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
           </div>
         </PopoverAnchor>
         <PopoverContent
+          ref={dropdownRef}
           align="start"
           side="bottom"
           sideOffset={4}
@@ -297,36 +379,52 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
           onCloseAutoFocus={(e) => e.preventDefault()}
           className="mining-sdk-tag-input__dropdown"
         >
-          <div
-            ref={listRef}
-            id={`${id}-listbox`}
-            role="listbox"
-            className="mining-sdk-tag-input__list"
-          >
-            {filteredOptions.length === 0 ? (
-              <div className="mining-sdk-tag-input__empty">No options</div>
-            ) : (
-              filteredOptions.map((opt, i) => (
-                <div
-                  key={getOptionValue(opt)}
-                  id={`${id}-option-${i}`}
-                  role="option"
-                  aria-selected={i === highlightedIndex}
-                  className={cn(
-                    'mining-sdk-tag-input__option',
-                    i === highlightedIndex && 'mining-sdk-tag-input__option--highlighted',
-                  )}
-                  onMouseDown={(e) => {
-                    e.preventDefault()
-                    handleOptionSelect(opt)
-                  }}
-                  onMouseEnter={() => setHighlightedIndex(i)}
-                >
-                  {getOptionLabel(opt)}
-                </div>
-              ))
-            )}
-          </div>
+          {renderDropdown ? (
+            renderDropdown({
+              filteredOptions,
+              selectedTags: tags,
+              highlightedIndex,
+              setHighlightedIndex,
+              onSelect: handleOptionSelect,
+              inputValue,
+              id,
+              listboxId: `${id}-listbox`,
+              getOptionId: (i) => `${id}-option-${i}`,
+              getOptionValue,
+              getOptionLabel,
+            })
+          ) : (
+            <div
+              ref={listRef}
+              id={`${id}-listbox`}
+              role="listbox"
+              className="mining-sdk-tag-input__list"
+            >
+              {filteredOptions.length === 0 ? (
+                <div className="mining-sdk-tag-input__empty">No options</div>
+              ) : (
+                filteredOptions.map((opt, i) => (
+                  <div
+                    key={getOptionValue(opt)}
+                    id={`${id}-option-${i}`}
+                    role="option"
+                    aria-selected={i === highlightedIndex}
+                    className={cn(
+                      'mining-sdk-tag-input__option',
+                      i === highlightedIndex && 'mining-sdk-tag-input__option--highlighted',
+                    )}
+                    onMouseDown={(e) => {
+                      e.preventDefault()
+                      handleOptionSelect(opt)
+                    }}
+                    onMouseEnter={() => setHighlightedIndex(i)}
+                  >
+                    {getOptionLabel(opt)}
+                  </div>
+                ))
+              )}
+            </div>
+          )}
         </PopoverContent>
       </Popover>
     )
