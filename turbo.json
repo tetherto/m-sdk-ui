@@ -55,6 +55,13 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
     "check": {
       "dependsOn": ["lint", "format", "typecheck"]
     },

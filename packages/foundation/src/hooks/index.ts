@@ -16,6 +16,4 @@
 // export * from './use-copy-to-clipboard'
 // export * from './use-online'
 // export * from './use-window-size'
-
-// Placeholder export to make this a valid module
-export {}
+export * from './use-pagination'

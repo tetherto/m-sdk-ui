@@ -20,6 +20,8 @@
     "dev:demo": "turbo dev --filter=@mining-sdk/demo",
     "dev:packages": "turbo dev --filter=!@mining-sdk/demo",
     "format": "turbo format",
+    "test": "turbo test",
+    "test:watch": "turbo test:watch",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "prepare": "husky",

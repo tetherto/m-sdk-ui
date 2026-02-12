@@ -26,6 +26,7 @@ export default antfu(
       'style/quote-props': 'off',
       'style/arrow-parens': 'off',
       'style/indent-binary-ops': 'off',
+      'style/multiline-ternary': 'off',
       'style/operator-linebreak': 'off',
       'style/jsx-wrap-multilines': 'off',
       'style/brace-style': 'off',

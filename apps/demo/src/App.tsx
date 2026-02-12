@@ -71,6 +71,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
+import PaginationExample from './examples/Pagination-Example'
 
 type ToastItem = {
   id: string
@@ -313,6 +314,11 @@ const App = (): JSX.Element => {
               </Select>
             </section>
           </div>
+        </section>
+        {/* Pagination */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Pagination</h2>
+          <PaginationExample></PaginationExample>
         </section>
         {/* Dropdown Menu */}
         <section className="demo-section">

@@ -10,5 +10,4 @@
 // export * from './test-providers'
 // export * from './custom-matchers'
 
-// Placeholder export to make this a valid module
-export {}
+export * from './mocks'

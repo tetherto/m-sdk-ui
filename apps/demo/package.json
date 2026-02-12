@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@mining-sdk/core": "workspace:*",
+    "@mining-sdk/foundation": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
