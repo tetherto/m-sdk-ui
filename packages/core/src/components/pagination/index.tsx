@@ -17,6 +17,7 @@ import {
 } from '../select'
 
 type Direction = 'forward' | 'backward'
+type PageItem = 'page' | 'ellipsis'
 
 export type PaginationProps = {
   /**
@@ -132,12 +133,12 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
     // Generate page numbers to display
     const getPageNumbers = (): {
-      type: 'page' | 'ellipsis'
+      type: PageItem
       value: number
       direction?: Direction
     }[] => {
       const pages: {
-        type: 'page' | 'ellipsis'
+        type: PageItem
         value: number
         direction?: Direction
       }[] = []
@@ -156,8 +157,8 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         }
 
         // Show pages around current
-        const start = Math.max(2, current - 1)
-        const end = Math.min(totalPages - 1, current + 1)
+        const start = Math.max(2, current - 2)
+        const end = Math.min(totalPages - 1, current + 2)
 
         for (let i = start; i <= end; i++) {
           pages.push({ type: 'page', value: i })

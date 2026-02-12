@@ -1,7 +1,5 @@
 .mining-sdk-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  @include flex_center_justify_end;
   gap: 12px;
   font-family: 'JetBrains Mono', monospace;
 
@@ -13,16 +11,13 @@
 
   &__controls,
   &__pages {
-    display: flex;
-    align-items: center;
+    @include flex_align;
     gap: 8px;
   }
 
   &__ellipsis {
+    @include flex_center;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-width: 32px;
     height: 32px;
     background: transparent;
@@ -65,8 +60,7 @@
   }
 
   &__size-changer {
-    display: flex;
-    align-items: center;
+    @include flex_align;
 
     &--trigger {
       min-width: 32px;

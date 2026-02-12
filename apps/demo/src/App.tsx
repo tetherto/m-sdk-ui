@@ -318,7 +318,7 @@ const App = (): JSX.Element => {
         {/* Pagination */}
         <section className="demo-section">
           <h2 className="demo-section__title">Pagination</h2>
-          <PaginationExample></PaginationExample>
+          <PaginationExample />
         </section>
         {/* Dropdown Menu */}
         <section className="demo-section">
