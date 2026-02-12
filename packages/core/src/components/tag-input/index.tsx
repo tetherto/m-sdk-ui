@@ -4,7 +4,8 @@ import * as React from 'react'
 import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 import { cn } from '../../utils'
 
-export type TagInputOption = string | { value: string; label: string }
+// eslint-disable-next-line style/member-delimiter-style -- CI expects comma for this inline type
+export type TagInputOption = string | { value: string, label: string }
 
 export type TagInputDropdownProps = {
   /** Filtered options to display */
