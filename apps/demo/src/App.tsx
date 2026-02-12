@@ -71,7 +71,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
-import PaginationExample from './examples/Pagination-Example'
+import PaginationExample from './examples/pagination-example'
 
 type ToastItem = {
   id: string
