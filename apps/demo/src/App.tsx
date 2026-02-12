@@ -34,6 +34,7 @@ import {
   Indicator,
   Input,
   Label,
+  Loader,
   NotFoundPage,
   Popover,
   PopoverContent,
@@ -51,6 +52,7 @@ import {
   SelectValue,
   SimplePopover,
   SimpleTooltip,
+  Spinner,
   Switch,
   Tabs,
   TabsContent,
@@ -357,6 +359,121 @@ const App = (): JSX.Element => {
         <section className="demo-section">
           <h2 className="demo-section__title">Pagination</h2>
           <PaginationExample />
+        </section>
+        {/* Spinner */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Spinner</h2>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '2rem',
+            }}
+          >
+            {/* Basic usage */}
+            <div className="demo-item">
+              <p className="demo-label">Basic Spinner (slow)</p>
+              <div style={{ display: 'flex', gap: '2rem', margin: '2rem' }}>
+                <Spinner speed="slow" />
+                <Spinner speed="slow" type="circle" />
+              </div>
+            </div>
+
+            {/* With label */}
+            <div className="demo-item">
+              <p className="demo-label">With Label</p>
+              <div style={{ display: 'flex', gap: '2rem', margin: '2rem' }}>
+                <Spinner speed="slow" label="Loading data..." />
+                <Spinner speed="slow" color="secondary" type="circle" label="Loading data..." />
+              </div>
+            </div>
+
+            {/* Different sizes */}
+            <div className="demo-item">
+              <p className="demo-label">Size Variants</p>
+              <div style={{ display: 'flex', gap: '4rem', margin: '2rem' }}>
+                <Spinner size="sm" />
+                <Spinner size="sm" type="circle" />
+                <Spinner size="md" />
+                <Spinner size="md" type="circle" />
+                <Spinner size="lg" />
+                <Spinner size="lg" type="circle" />
+              </div>
+            </div>
+
+            {/* Speed variants */}
+            <div className="demo-item">
+              <p className="demo-label">Speed Variants</p>
+              <div style={{ display: 'flex', gap: '4rem', margin: '2rem' }}>
+                <div className="text-center">
+                  <Spinner speed="slow" />
+                  <p className="text-sm text-gray-400 mt-2">Slow</p>
+                </div>
+                <div className="text-center">
+                  <Spinner speed="normal" />
+                  <p className="text-sm text-gray-400 mt-2">Normal</p>
+                </div>
+                <div className="text-center">
+                  <Spinner speed="fast" />
+                  <p className="text-sm text-gray-400 mt-2">Fast</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/*  Loader */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Loader</h2>
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '2rem',
+            }}
+          >
+            {/* Basic usage */}
+            <div className="demo-item" style={{ display: 'flex' }}>
+              <p className="demo-label">Default Loader</p>
+              <Loader />
+            </div>
+
+            {/* Size variants */}
+            <div className="demo-item">
+              <p className="demo-label">Size Variants</p>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <Loader size={6} />
+                <Loader size={10} />
+                <Loader size={14} />
+                <Loader size={20} />
+              </div>
+            </div>
+
+            {/* Count variants */}
+            <div className="demo-item">
+              <p className="demo-label">Count Variants</p>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <Loader count={3} />
+                <Loader count={5} />
+                <Loader count={7} />
+              </div>
+            </div>
+
+            {/* Color variants */}
+            <div className="demo-item">
+              <Typography className="demo-label">Color Variants</Typography>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <Loader color="orange" />
+                <Loader color="red" />
+                <Loader color="gray" />
+                <Loader color="blue" />
+              </div>
+            </div>
+          </div>
         </section>
         {/* Dropdown Menu */}
         <section className="demo-section">
