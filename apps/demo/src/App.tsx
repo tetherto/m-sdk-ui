@@ -57,6 +57,7 @@ import {
   TabsList,
   TabsTrigger,
   Tag,
+  TagInput,
   Toast,
   TOAST_POSITIONS,
   Toaster,
@@ -155,6 +156,7 @@ const App = (): JSX.Element => {
 
   const [toasts, setToasts] = useState<ToastItem[]>([])
   const [toastPosition, setToastPosition] = useState<ToastPosition>('top-right')
+  const [tagInputTags, setTagInputTags] = useState<string[]>([])
 
   const showToast = (
     variant: ToastVariant,
@@ -493,6 +495,28 @@ const App = (): JSX.Element => {
             <section>
               <h3>Validation error</h3>
               <Input label="Email" placeholder="Email" error="Email is required" id="email-error" />
+            </section>
+            <section>
+              <h3>TagInput</h3>
+              <TagInput
+                value={tagInputTags}
+                onTagsChange={setTagInputTags}
+                onSubmit={(tags) => {
+                  console.warn('TagInput submit:', tags)
+                }}
+                options={[
+                  'Bitdeer M30',
+                  'Bitdeer A1346',
+                  'Bitdeer M56',
+                  'Bitdeer S19XP',
+                  'Bitmain Hydro',
+                  'Bitmain Imm',
+                  'MicroBT Wonder',
+                  'MicroBT Kehua',
+                ]}
+                placeholder="Search miners..."
+                variant="search"
+              />
             </section>
           </div>
         </section>
