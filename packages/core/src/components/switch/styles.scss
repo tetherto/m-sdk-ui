@@ -1,9 +1,10 @@
 /* Base Switch (Track/Background) */
+
 .mining-sdk-switch {
+  @include inline_flex_align;
+  
   all: unset;
   position: relative;
-  display: inline-flex;
-  align-items: center;
   cursor: pointer;
   transition: background-color 200ms ease;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);

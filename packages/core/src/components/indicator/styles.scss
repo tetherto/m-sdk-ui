@@ -1,7 +1,8 @@
 /* Indicator Base Styles */
+
 .mining-sdk-indicator {
-  display: inline-flex;
-  align-items: center;
+  @include inline_flex_align;
+  
   border-radius: 0.25rem;
   font-weight: 500;
   transition: opacity 0.2s;
@@ -10,9 +11,8 @@
   &__label {
     white-space: nowrap;
     &--large {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include flex_column_align_center;
+      
       gap: 8px;
     }
   }

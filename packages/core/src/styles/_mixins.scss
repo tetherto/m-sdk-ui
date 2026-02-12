@@ -8,6 +8,16 @@
   align-items: center;
 }
 
+@mixin flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin inline_flex_align {
+  display: inline-flex;
+  align-items: center;
+}
+
 @mixin flex_justify_end {
   display: flex;
   justify-content: flex-end;

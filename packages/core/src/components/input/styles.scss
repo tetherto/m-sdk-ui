@@ -8,8 +8,8 @@
  */
 
 .mining-sdk-input-root {
-  display: flex;
-  flex-direction: column;
+  @include flex_column;
+  
   gap: 0.5rem;
   width: 100%;
   min-width: 0;
@@ -22,9 +22,9 @@
 }
 
 .mining-sdk-input__wrapper {
+  @include flex_align;
+
   position: relative;
-  display: flex;
-  align-items: center;
   width: 100%;
   min-width: 0;
 
@@ -58,18 +58,17 @@
 }
 
 .mining-sdk-input__icon {
+  @include flex_center;
+
   position: absolute;
   right: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--mining-sdk-input-placeholder-color, #999999);
   pointer-events: none;
 }
 
 .mining-sdk-input {
-  display: flex;
-  align-items: center;
+  @include flex_align;
+
   width: 100%;
   height: 2.5rem;
   padding: 0 0.75rem;

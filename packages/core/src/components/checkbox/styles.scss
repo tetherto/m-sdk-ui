@@ -4,9 +4,9 @@
 
 /* Base Checkbox */
 .mining-sdk-checkbox {
+  @include inline_flex_align;
+  
   all: unset;
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
   border: 2px solid var(--mining-sdk-button-secondary-border);
   background-color: var(--mining-sdk-color-white-transparent);
@@ -36,9 +36,8 @@
 
 /* Indicator (Checkmark container) */
 .mining-sdk-checkbox__indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex_center;
+  
   width: 100%;
   height: 100%;
   color: var(--mining-sdk-color-white);

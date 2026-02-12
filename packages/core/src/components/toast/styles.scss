@@ -1,23 +1,23 @@
 $viewport-padding: 24px;
 
 .mining_sdk_toast {
+  @include flex_column;
+
   gap: 8px;
-  display: flex;
   max-width: 384px;
   min-width: 384px;
   padding: 20px 16px;
-  flex-direction: column;
   background: var(--mining-sdk-color-gray-900);
 
   &__viewport {
+    @include flex_column;
+
     position: fixed;
     gap: 8px;
     margin: 0;
-    display: flex;
     z-index: 9999;
     outline: none;
     list-style: none;
-    flex-direction: column;
     padding: $viewport-padding;
 
     // Position modifiers
@@ -144,10 +144,9 @@ $viewport-padding: 24px;
     gap: 12px;
 
     &-content {
+      @include flex_align_start_between;
+      
       flex: 1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
       gap: 8px;
     }
   }

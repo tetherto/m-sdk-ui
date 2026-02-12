@@ -12,8 +12,8 @@
 
 /* ===== Trigger Button ===== */
 .mining-sdk-date-picker__trigger {
-  display: inline-flex;
-  align-items: center;
+  @include inline_flex_align;
+
   justify-content: flex-start;
   gap: 8px;
   max-width: 245px;
@@ -87,8 +87,8 @@
 
   /* Navigation bar */
   .rdp-nav {
-    display: flex;
-    align-items: center;
+    @include flex_align;
+    
     gap: 4px;
     position: absolute;
     top: 12px;
@@ -98,10 +98,10 @@
 
   .rdp-button_previous,
   .rdp-button_next {
+    @include inline_flex_align;
+    
     width: 28px;
     height: 28px;
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
     background-color: var(--mining-sdk-date-picker-nav-bg, #0f0f0f);
     border: 1px solid var(--mining-sdk-date-picker-border, #ffffff1a);
@@ -201,8 +201,8 @@
 
   /* Day button (the actual clickable element) */
   .rdp-day_button {
-    display: inline-flex;
-    align-items: center;
+    @include inline_flex_align;
+    
     justify-content: center;
     width: 32px;
     height: 100%;
@@ -316,14 +316,14 @@
 }
 
 .mining-sdk-date-picker__modal-body {
-  display: flex;
-  flex-direction: column;
+  @include flex_column;
+  
   gap: 16px;
 }
 
 .mining-sdk-date-picker__calendar-container {
-  display: flex;
-  justify-content: center;
+  @include flex_justify_center;
+
   /* Prevent the container from shrinking calendars */
   min-width: 0;
   width: 100%;
@@ -331,14 +331,14 @@
 
 /* ===== Meta Section (Summary + Presets) ===== */
 .mining-sdk-date-picker__meta {
-  display: flex;
-  flex-direction: column;
+  @include flex_column;
+  
   gap: 16px;
 }
 
 .mining-sdk-date-picker__summary {
-  display: flex;
-  flex-direction: column;
+  @include flex_column;
+  
   gap: 8px;
   padding: 12px;
   background-color: var(--mining-sdk-date-picker-summary-bg, #161514);
@@ -355,8 +355,8 @@
 }
 
 .mining-sdk-date-picker__summary-dates {
-  display: flex;
-  align-items: center;
+  @include flex_align;
+  
   gap: 8px;
   flex-wrap: wrap;
 }

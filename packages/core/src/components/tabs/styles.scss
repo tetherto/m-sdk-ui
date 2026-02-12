@@ -17,15 +17,15 @@
   }
 
   &__trigger {
+    @include inline_flex_align;
+
     position: relative;
     z-index: 1;
     border: none;
     cursor: pointer;
     font-weight: 400;
-    align-items: center;
     padding: 0.875rem 0;
     font-size: 0.875rem;
-    display: inline-flex;
     background: transparent;
     justify-content: center;
     transition: color 0.3s ease-in-out;

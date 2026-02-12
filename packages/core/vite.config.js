@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
   publicDir: 'public',
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/styles.scss'),
+      entry: resolve(__dirname, 'src/styles/index.scss'),
       formats: ['es'],
     },
     outDir: resolve(__dirname, 'dist'),
@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => ({
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
+        silenceDeprecations: ['import'],
       },
     },
   },

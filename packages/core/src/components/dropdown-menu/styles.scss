@@ -26,9 +26,9 @@
 }
 
 .mining-sdk-dropdown-menu__item {
+  @include flex_align;
+
   position: relative;
-  display: flex;
-  align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
   font-size: 14px;
@@ -71,10 +71,9 @@
 }
 
 .mining-sdk-dropdown-menu__item-indicator {
+  @include flex_center;
+
   margin-left: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--mining-sdk-dropdown-menu-item-highlighted-text, #1a1a1a);
 }
 

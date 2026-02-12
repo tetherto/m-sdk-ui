@@ -1,8 +1,6 @@
 .mining-sdk-empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex_column_center;
+  
   text-align: center;
 
   --mining-sdk-empty-state-description-color: var(--mining-sdk-color-gray-400);
@@ -36,9 +34,8 @@
   }
 
   &__image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex_center;
+    
     line-height: 1;
     color: var(--mining-sdk-color-gray-400);
   }
