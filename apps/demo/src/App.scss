@@ -3,9 +3,27 @@
  */
 
 .demo-app {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  &__nav {
+    border-right: 0.5px solid var(--mining-sdk-color-primary);
+  }
+
+  &__nav-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--mining-sdk-color-primary);
+    padding: 0 10px 12px;
+    white-space: nowrap;
+  }
+
+  &__main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+  }
 
   &__title {
     font-size: 2.5rem;
@@ -251,10 +269,7 @@
     }
   }
   &__tabs {
-    padding: 16px;
-    border-radius: 8px;
     margin-bottom: 16px;
-    background-color: var(--mining-sdk-color-background-dark);
   }
 
   &__typography {
