@@ -894,24 +894,43 @@ const App = (): JSX.Element => {
         {/* Accordion */}
         <section className="demo-section">
           <h2 className="demo-section__title">Accordion</h2>
-          <Accordion type="single" collapsible className="demo-section__accordion">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It comes with default styles that can be customized with CSS variables.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Can I use it in my project?</AccordionTrigger>
-              <AccordionContent>
-                Absolutely! It's part of the @mining-sdk/core package in this monorepo.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          {/* Basic Opened Accordion */}
+          <section>
+            <Accordion isOpened title="Basic Opened Accordion">
+              This is a basic opened accordion. You can put any content here, such as text, lists,
+              or even other components.
+            </Accordion>
+          </section>
+
+          {/* Multiple Accordion */}
+          <section style={{ marginTop: '2rem' }}>
+            <Accordion title="Multiple Accordion">
+              <AccordionItem value="faq-1">
+                <AccordionTrigger>What is Bitcoin mining?</AccordionTrigger>
+                <AccordionContent>
+                  Bitcoin mining is the process of creating new bitcoins by solving complex
+                  mathematical problems that verify transactions in the currency. When a bitcoin is
+                  successfully mined, the miner receives a predetermined amount of bitcoin.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-2">
+                <AccordionTrigger>What equipment do I need?</AccordionTrigger>
+                <AccordionContent>
+                  You'll need specialized hardware called ASIC miners (Application-Specific
+                  Integrated Circuits), a reliable power supply, adequate cooling systems, and a
+                  stable internet connection.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-3">
+                <AccordionTrigger>How much does it cost to start mining?</AccordionTrigger>
+                <AccordionContent>
+                  Initial costs vary widely depending on the scale of your operation. A single ASIC
+                  miner can cost between $2,000 to $10,000+, plus ongoing electricity costs which
+                  can be substantial.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </section>
         </section>
         {/* Tabs  */}
         <section className="demo-section">
