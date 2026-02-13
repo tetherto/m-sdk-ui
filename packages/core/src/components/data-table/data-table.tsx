@@ -305,9 +305,6 @@ export function DataTable<I = unknown>({
 
   const hasData = Boolean(data.length)
 
-  // TODO: Rename pagination pagesize change handler prop
-  // TODO: Glow border when overflow
-
   return (
     <div className={cn('mining-sdk-table', wrapperClassName)}>
       <div

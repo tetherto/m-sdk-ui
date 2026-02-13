@@ -30,7 +30,6 @@ export default antfu(
       'style/operator-linebreak': 'off',
       'style/jsx-wrap-multilines': 'off',
       'style/brace-style': 'off',
-      // 'pnpm/json-enforce-catalog': 'warn',
       'antfu/if-newline': 'off',
       'unicorn/filename-case': [
         'error',
