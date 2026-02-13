@@ -7,7 +7,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { cn } from '../../utils'
 import { Checkbox } from '../checkbox'
 import { TableHeader } from './data-table-header'
@@ -282,12 +282,6 @@ export function DataTable<I = unknown>({
     getExpandedRowModel: getExpandedRowModel(),
   })
 
-  const [scrollLeft, setScrollLeft] = useState(0)
-
-  const handleContentScroll = (event: React.UIEvent<HTMLDivElement>): void => {
-    setScrollLeft((event.target as HTMLDivElement).scrollLeft)
-  }
-
   const handlePageChange = (pageNumber: number): void => {
     tableBackend.resetRowSelection()
     tableBackend.setPageIndex(pageNumber - 1)
@@ -307,16 +301,7 @@ export function DataTable<I = unknown>({
 
   return (
     <div className={cn('mining-sdk-table', wrapperClassName)}>
-      <div
-        className={cn(
-          'mining-sdk-table-content-section',
-          {
-            'mining-sdk-table-content-section-ping-left': scrollLeft > 0,
-          },
-          contentClassName,
-        )}
-        onScroll={handleContentScroll}
-      >
+      <div className={cn('mining-sdk-table-content-section', contentClassName)}>
         <table
           className={cn('mining-sdk-table-element', tableClassName, {
             'mining-sdk-table-element--width-full': fullWidth,
