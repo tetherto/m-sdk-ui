@@ -1,7 +1,7 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import * as React from 'react'
 
-import { MinusIcon, PlusIcon } from '@radix-ui/react-icons'
+import { ChevronDownIcon, ChevronRightIcon, MinusIcon, PlusIcon } from '@radix-ui/react-icons'
 import { cn } from '../../utils'
 
 const AccordionRoot = AccordionPrimitive.Root
@@ -13,6 +13,9 @@ type AccordionProps = {
   unpadded?: boolean
   noBorder?: boolean
   solidBackground?: boolean
+  showToggleIcon?: boolean
+  toggleIconPosition?: 'left' | 'right'
+  customLabel?: React.ReactNode
   onValueChange?: (value: string | string[]) => void
 } & Omit<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>,
@@ -48,26 +51,61 @@ AccordionItem.displayName = 'AccordionItem'
  * @example
  * ```tsx
  * <AccordionTrigger>Click to expand</AccordionTrigger>
+ * <AccordionTrigger showToggleIcon={false} customLabel={<Badge>New</Badge>}>
+ *   Title with custom label
+ * </AccordionTrigger>
  * ```
  */
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="mining-sdk-accordion__header">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn('mining-sdk-accordion__trigger', className)}
-      {...props}
-    >
-      {children}
-      <div className="mining-sdk-accordion__toggler">
-        <MinusIcon className="mining-sdk-accordion__icon--minus" />
-        <PlusIcon className="mining-sdk-accordion__icon--plus" />
-      </div>
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-))
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    timestamp?: string
+    showToggleIcon?: boolean
+    toggleIconPosition?: 'left' | 'right'
+    customLabel?: React.ReactNode
+  }
+>(
+  (
+    {
+      className,
+      children,
+      toggleIconPosition = 'left',
+      showToggleIcon = true,
+      customLabel,
+      ...props
+    },
+    ref,
+  ) => (
+    <AccordionPrimitive.Header className="mining-sdk-accordion__header">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn('mining-sdk-accordion__trigger', className)}
+        {...props}
+      >
+        <div className="mining-sdk-accordion__trigger-left">
+          {showToggleIcon && toggleIconPosition === 'left' && (
+            <div className="mining-sdk-accordion__toggler">
+              <ChevronRightIcon className="mining-sdk-accordion__icon--minus" />
+              <ChevronDownIcon className="mining-sdk-accordion__icon--plus" />
+            </div>
+          )}
+          <span className="mining-sdk-accordion__title">{children}</span>
+        </div>
+        <div className="mining-sdk-accordion__trigger-right">
+          {customLabel && toggleIconPosition !== 'right' && (
+            <div className="mining-sdk-accordion__custom-label">{customLabel}</div>
+          )}
+          {showToggleIcon && toggleIconPosition === 'right' && (
+            <div className="mining-sdk-accordion__toggler">
+              <MinusIcon className="mining-sdk-accordion__icon--minus" />
+              <PlusIcon className="mining-sdk-accordion__icon--plus" />
+            </div>
+          )}
+        </div>
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  ),
+)
 AccordionTrigger.displayName = 'AccordionTrigger'
 
 /**
@@ -95,16 +133,26 @@ AccordionContent.displayName = 'AccordionContent'
  *
  * @example
  * ```tsx
- *
+ * // Basic accordion
  * <Accordion title="FAQ">
  *   <AccordionItem value="item-1">
  *     <AccordionTrigger>Question 1</AccordionTrigger>
  *     <AccordionContent>Answer 1</AccordionContent>
  *   </AccordionItem>
- *   <AccordionItem value="item-2">
- *     <AccordionTrigger>Question 2</AccordionTrigger>
- *     <AccordionContent>Answer 2</AccordionContent>
- *   </AccordionItem>
+ * </Accordion>
+ *
+ * // With timestamp
+ * <Accordion title="Foundry EU Primary" timestamp="2025-01-15 14:32">
+ *   <p>Content here</p>
+ * </Accordion>
+ *
+ * // With custom label
+ * <Accordion
+ *   title="Basic Opened Accordion"
+ *   customLabel={<Badge variant="success">Active</Badge>}
+ *   showToggleIcon={false}
+ * >
+ *   <p>Content here</p>
  * </Accordion>
  * ```
  */
@@ -116,6 +164,9 @@ const Accordion = ({
   unpadded = false,
   noBorder = false,
   solidBackground = false,
+  showToggleIcon = true,
+  toggleIconPosition = 'left',
+  customLabel,
   onValueChange,
   className,
   ...props
@@ -135,7 +186,12 @@ const Accordion = ({
       {...props}
     >
       <AccordionItem value={itemValue}>
-        <AccordionTrigger className={cn(noBorder && 'mining-sdk-accordion__trigger--no-border')}>
+        <AccordionTrigger
+          showToggleIcon={showToggleIcon}
+          customLabel={customLabel}
+          toggleIconPosition={toggleIconPosition}
+          className={cn(noBorder && 'mining-sdk-accordion__trigger--no-border')}
+        >
           {title}
         </AccordionTrigger>
         <AccordionContent
