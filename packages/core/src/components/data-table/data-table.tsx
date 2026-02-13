@@ -214,18 +214,27 @@ export function DataTable<I = unknown>({
         ? [
             columnHelper.display({
               id: 'row-select',
-              header: ({ table }) => (
-                <Checkbox
-                  size="sm"
-                  checked={table.getIsAllPageRowsSelected()}
-                  // indeterminate={table.getIsSomePageRowsSelected()}
-                  onCheckedChange={(value) => {
-                    if (typeof value === 'boolean') {
-                      table.toggleAllPageRowsSelected(value)
-                    }
-                  }}
-                />
-              ),
+              header: ({ table }) => {
+                let checked: boolean | 'indeterminate' = false
+
+                if (table.getIsSomePageRowsSelected()) {
+                  checked = 'indeterminate'
+                } else {
+                  checked = table.getIsAllPageRowsSelected()
+                }
+
+                return (
+                  <Checkbox
+                    size="sm"
+                    checked={checked}
+                    onCheckedChange={(value) => {
+                      if (typeof value === 'boolean') {
+                        table.toggleAllPageRowsSelected(value)
+                      }
+                    }}
+                  />
+                )
+              },
               cell: ({ row }) => (
                 <Checkbox
                   size="sm"
@@ -296,8 +305,6 @@ export function DataTable<I = unknown>({
 
   const hasData = Boolean(data.length)
 
-  // TODO: Make indeterminate checkbox
-  // TODO: Fix border radius on checkbox
   // TODO: Rename pagination pagesize change handler prop
   // TODO: Glow border when overflow
 
