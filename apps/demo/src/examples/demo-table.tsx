@@ -44,8 +44,9 @@ const columns = [
     cell: (info) => <div style={{ textAlign: 'end' }}>{info.getValue()}</div>,
   }),
   {
+    id: 'type-0',
     accessorKey: 'type',
-    header: 'type-1',
+    header: 'type-0',
     minSize: 400,
   },
   columnHelper.accessor((row) => row.power, {
@@ -53,6 +54,7 @@ const columns = [
     cell: (info) => info.getValue(),
   }),
   {
+    id: 'type-1',
     accessorKey: 'type',
     header: 'type-1',
     minSize: 400,
@@ -62,8 +64,9 @@ const columns = [
     cell: (info) => info.getValue(),
   }),
   {
+    id: 'type-2',
     accessorKey: 'type',
-    header: 'type-1',
+    header: 'type-2',
     minSize: 400,
   },
   columnHelper.accessor((row) => row.power, {
