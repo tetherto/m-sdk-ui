@@ -69,7 +69,7 @@ export type PaginationProps = {
   /**
    * Callback when page size changes
    */
-  onShowSizeChange?: (current: number, size: number) => void
+  onSizeChange?: (current: number, size: number) => void
 }
 
 /**
@@ -98,7 +98,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       size = 'sm',
       className,
       onChange,
-      onShowSizeChange,
+      onSizeChange,
       ...props
     },
     ref,
@@ -119,7 +119,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const handlePageSizeChange = (newSize: number): void => {
       const newTotalPages = Math.ceil(total / newSize)
       const newCurrent = current > newTotalPages ? newTotalPages : current
-      onShowSizeChange?.(newCurrent, newSize)
+      onSizeChange?.(newCurrent, newSize)
       onChange?.(newCurrent, newSize)
     }
 

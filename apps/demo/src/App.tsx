@@ -85,6 +85,7 @@ import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
 import { AccordionExample } from './examples/accordion-example'
 import PaginationExample from './examples/pagination-example'
+import { DemoTable } from './examples/demo-table'
 
 type ToastItem = {
   id: string
@@ -141,6 +142,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Data Display',
     icon: <LayersIcon />,
     items: [
+      { id: 'table', label: 'Table' },
       { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
@@ -1195,6 +1197,12 @@ const App = (): JSX.Element => {
                   </section>
                 </div>
               </div>
+            </section>
+          )}
+          {/* Table */}
+          {activeSection === 'table' && (
+            <section className="demo-section">
+              <DemoTable />
             </section>
           )}
           {/* Avatar */}
