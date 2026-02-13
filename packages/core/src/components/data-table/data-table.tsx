@@ -24,7 +24,7 @@ import type {
   DataTableRowSelectionState,
   DataTableSortingState,
 } from './types'
-import { LoaderIcon } from '../icons/loader'
+import { Spinner } from '../spinner'
 
 export type DataTableProps<I = unknown> = {
   /**
@@ -333,7 +333,7 @@ export function DataTable<I = unknown>({
         {!hasData && <EmptyTableBody hideContent={loading} />}
         {loading && (
           <div className="mining-sdk-table-content-section-loader-overlay">
-            <LoaderIcon />
+            <Spinner />
           </div>
         )}
       </div>

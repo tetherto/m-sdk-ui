@@ -1,0 +1,41 @@
+/* Loader container */
+.mining-sdk-loader {
+  @include flex_center;
+  height: 200px;
+}
+
+/* Dot element */
+.mining-sdk-loader__dot {
+  display: inline-block;
+  transform: scale(2);
+  animation: mining-sdk-loader-pulse 1s linear infinite;
+}
+
+/* Color variants - inactive state */
+.mining-sdk-loader__dot--orange {
+  background-color: rgb(var(--ming-sdk-color-soft-apricot));
+  --active-color: var(--mining-sdk-color-primary);
+}
+
+.mining-sdk-loader__dot--red {
+  background-color: rgb(var(--mining-sdk-color-soft-red));
+  --active-color: rgb(var(--mining-sdk-color-error));
+}
+
+.mining-sdk-loader__dot--gray {
+  background-color: rgb(var(--mining-sdk-color-soft-gray));
+  --active-color: rgb(var(--mining-sdk-color-grey-idle));
+}
+
+.mining-sdk-loader__dot--blue {
+  background-color: rgb(var(--mining-sdk-color-soft-blue));
+  --active-color: rgb(var(--mining-sdk-color-sleep-blue));
+}
+
+/* Pulse animation */
+@keyframes mining-sdk-loader-pulse {
+  50% {
+    background-color: var(--active-color);
+    transform: scale(1);
+  }
+}

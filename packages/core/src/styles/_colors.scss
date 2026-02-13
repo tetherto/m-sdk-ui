@@ -27,10 +27,20 @@
     --mining-sdk-color-error: 239, 68, 68; /* #ef4444 in Hex */
     --mining-sdk-color-warning: #ffc107;
 
+    /* Loader/Spinner Colors */
+    --ming-sdk-color-soft-apricot: 255, 236, 186; /* #ffecba in Hex */
+    --mining-sdk-color-soft-red: 254, 202, 202; /* #fecaca in Hex */
+    --mining-sdk-color-soft-gray: 229, 231, 235; /* #e5e7eb in Hex */
+    --mining-sdk-color-soft-blue: 219, 234, 254; /* #dbeafe in Hex */
+    --mining-sdk-color-soft-yellow: 254, 243, 199; /* #fef3c7 in Hex */
+    --mining-sdk-color-soft-green: 209, 250, 229; /* #d1fae5 in Hex */
+    --mining-sdk-color-soft-purple: 243, 232, 255; /* #f3e8ff in Hex */
+    --mining-sdk-color-soft-amber: 254, 243, 199; /* #fef3c7 in Hex */
+
     /* Backgrounds */
+    --mining-sdk-color-surface: #0e0e0e;
     --mining-sdk-color-background-dark: #17130f;
     --mining-sdk-color-background-light: #e5e7eb;
-    --mining-sdk-color-surface: #0e0e0e;
 
     /* Common Component Colors */
     --mining-sdk-color-white: #ffffff;
@@ -53,8 +63,10 @@
 
     /* Neutral / Gray scale */
     --mining-sdk-color-gray-900: #1f1f1f;
+    --mining-sdk-color-gray-500: #777777;
     --mining-sdk-color-gray-400: #8e8e8e;
     --mining-sdk-color-gray-300: #e1e0e0;
+    --mining-sdk-color-gray-stone: #898887;
 
     /* White overlays */
     --mining-sdk-color-white-12: #ffffff1f;
@@ -88,7 +100,7 @@
     /* Input specific colors */
     --mining-sdk-input-bg: #363636;
     --mining-sdk-input-placeholder-color: #999999;
-    --mining-sdk-input-border-hover: #777777;
+    --mining-sdk-input-border-hover: var(--mining-sdk-color-gray-500);
 
     /* Select specific colors */
     --mining-sdk-select-content-bg: #1a1a1a;
@@ -133,6 +145,16 @@
     --mining-sdk-button-danger-bg: #ef4444;
     --mining-sdk-button-danger-text: #ffffff;
     --mining-sdk-button-danger-border: #ef4444;
+
+    /* Sidebar specific colors */
+    --mining-sdk-sidebar-bg: var(--mining-sdk-color-surface);
+    --mining-sdk-sidebar-item-hover-bg: rgba(255, 255, 255, 0.05);
+    --mining-sdk-sidebar-overlay-bg: var(--mining-sdk-color-surface);
+    --mining-sdk-sidebar-border-color: var(--mining-sdk-color-primary);
+    --mining-sdk-sidebar-item-color: var(--mining-sdk-color-gray-stone);
+    --mining-sdk-sidebar-overlay-border: var(--mining-sdk-color-primary);
+    --mining-sdk-sidebar-item-active-color: var(--mining-sdk-color-primary);
+    --mining-sdk-sidebar-toggle-bg: var(--mining-sdk-color-background-dark);
   }
 
   .dark {
