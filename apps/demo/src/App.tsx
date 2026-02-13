@@ -23,6 +23,7 @@ import {
   Card,
   ChatBubbleIcon,
   Checkbox,
+  CheckIcon,
   CubeIcon,
   DashboardIcon,
   DatePicker,
@@ -43,6 +44,7 @@ import {
   InputIcon,
   Label,
   LayersIcon,
+  Loader,
   NotFoundPage,
   PersonIcon,
   Popover,
@@ -62,12 +64,14 @@ import {
   Sidebar,
   SimplePopover,
   SimpleTooltip,
+  Spinner,
   Switch,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
   Tag,
+  TagInput,
   Toast,
   TOAST_POSITIONS,
   Toaster,
@@ -159,6 +163,15 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'breadcrumbs', label: 'Breadcrumbs' },
       { id: 'pagination', label: 'Pagination' },
       { id: 'sidebar', label: 'Sidebar' },
+    ],
+  },
+  {
+    id: 'loading',
+    label: 'Loading',
+    icon: <CubeIcon />,
+    items: [
+      { id: 'spinner', label: 'Spinner' },
+      { id: 'loader', label: 'Loader' },
     ],
   },
   {
@@ -313,6 +326,8 @@ const App = (): JSX.Element => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
   const [toasts, setToasts] = useState<ToastItem[]>([])
   const [toastPosition, setToastPosition] = useState<ToastPosition>('top-right')
+  const [tagInputTags, setTagInputTags] = useState<string[]>([])
+  const [tagInputCustomTags, setTagInputCustomTags] = useState<string[]>([])
   const mainRef = useRef<HTMLDivElement>(null)
 
   const handleNavClick = (item: SidebarMenuItem): void => {
@@ -639,6 +654,94 @@ const App = (): JSX.Element => {
                     placeholder="Email"
                     error="Email is required"
                     id="email-error"
+                  />
+                </section>
+                <section>
+                  <h3>TagInput</h3>
+                  <TagInput
+                    label="Search miners"
+                    value={tagInputTags}
+                    onTagsChange={setTagInputTags}
+                    onSubmit={(tags) => {
+                      console.warn('TagInput submit:', tags)
+                    }}
+                    options={[
+                      'Bitdeer M30',
+                      'Bitdeer A1346',
+                      'Bitdeer M56',
+                      'Bitdeer S19XP',
+                      'Bitmain Hydro',
+                      'Bitmain Imm',
+                      'MicroBT Wonder',
+                      'MicroBT Kehua',
+                    ]}
+                    placeholder="Search miners..."
+                    variant="search"
+                  />
+                </section>
+                <section>
+                  <h3>TagInput with custom dropdown</h3>
+                  <TagInput
+                    label="Search miners"
+                    value={tagInputCustomTags}
+                    onTagsChange={setTagInputCustomTags}
+                    onSubmit={(tags) => {
+                      console.warn('TagInput submit:', tags)
+                    }}
+                    options={[
+                      'Bitdeer M30',
+                      'Bitdeer A1346',
+                      'Bitdeer M56',
+                      'Bitdeer S19XP',
+                      'Bitmain Hydro',
+                      'Bitmain Imm',
+                      'MicroBT Wonder',
+                      'MicroBT Kehua',
+                    ]}
+                    placeholder="Search miners..."
+                    variant="search"
+                    renderDropdown={({
+                      filteredOptions,
+                      selectedTags,
+                      highlightedIndex,
+                      setHighlightedIndex,
+                      onSelect,
+                      listboxId,
+                      getOptionId,
+                      getOptionValue,
+                      getOptionLabel,
+                    }) => (
+                      <div id={listboxId} role="listbox" className="tag-input-custom-dropdown">
+                        {filteredOptions.length === 0 ? (
+                          <div className="tag-input-custom-dropdown__empty">No options</div>
+                        ) : (
+                          filteredOptions.map((opt, i) => {
+                            const value = getOptionValue(opt)
+                            const isSelected = selectedTags.includes(value)
+                            const isHighlighted = i === highlightedIndex
+                            return (
+                              <div
+                                key={value}
+                                id={getOptionId(i)}
+                                role="option"
+                                aria-selected={isHighlighted}
+                                className={`tag-input-custom-dropdown__option ${isSelected ? 'tag-input-custom-dropdown__option--selected' : ''} ${isHighlighted ? 'tag-input-custom-dropdown__option--highlighted' : ''}`}
+                                onMouseDown={(e) => {
+                                  e.preventDefault()
+                                  onSelect(opt)
+                                }}
+                                onMouseEnter={() => setHighlightedIndex(i)}
+                              >
+                                {getOptionLabel(opt)}
+                                {isSelected && (
+                                  <CheckIcon className="tag-input-custom-dropdown__check" />
+                                )}
+                              </div>
+                            )
+                          })
+                        )}
+                      </div>
+                    )}
                   />
                 </section>
               </div>
@@ -2262,6 +2365,124 @@ const App = (): JSX.Element => {
             </section>
           )}
 
+          {/* Spinner */}
+          {activeSection === 'spinner' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Spinner</h2>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '2rem',
+                }}
+              >
+                {/* Basic usage */}
+                <div className="demo-item">
+                  <p className="demo-label">Basic Spinner (slow)</p>
+                  <div style={{ display: 'flex', gap: '2rem', margin: '2rem' }}>
+                    <Spinner speed="slow" />
+                    <Spinner speed="slow" type="circle" />
+                  </div>
+                </div>
+
+                {/* With label */}
+                <div className="demo-item">
+                  <p className="demo-label">With Label</p>
+                  <div style={{ display: 'flex', gap: '2rem', margin: '2rem' }}>
+                    <Spinner speed="slow" label="Loading data..." />
+                    <Spinner speed="slow" color="secondary" type="circle" label="Loading data..." />
+                  </div>
+                </div>
+
+                {/* Different sizes */}
+                <div className="demo-item">
+                  <p className="demo-label">Size Variants</p>
+                  <div style={{ display: 'flex', gap: '4rem', margin: '2rem' }}>
+                    <Spinner size="sm" />
+                    <Spinner size="sm" type="circle" />
+                    <Spinner size="md" />
+                    <Spinner size="md" type="circle" />
+                    <Spinner size="lg" />
+                    <Spinner size="lg" type="circle" />
+                  </div>
+                </div>
+
+                {/* Speed variants */}
+                <div className="demo-item">
+                  <p className="demo-label">Speed Variants</p>
+                  <div style={{ display: 'flex', gap: '4rem', margin: '2rem' }}>
+                    <div className="text-center">
+                      <Spinner speed="slow" />
+                      <p className="text-sm text-gray-400 mt-2">Slow</p>
+                    </div>
+                    <div className="text-center">
+                      <Spinner speed="normal" />
+                      <p className="text-sm text-gray-400 mt-2">Normal</p>
+                    </div>
+                    <div className="text-center">
+                      <Spinner speed="fast" />
+                      <p className="text-sm text-gray-400 mt-2">Fast</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+          {/* Loader */}
+          {activeSection === 'loader' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Loader</h2>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '2rem',
+                }}
+              >
+                {/* Basic usage */}
+                <div className="demo-item" style={{ display: 'flex' }}>
+                  <p className="demo-label">Default Loader</p>
+                  <Loader />
+                </div>
+
+                {/* Size variants */}
+                <div className="demo-item">
+                  <p className="demo-label">Size Variants</p>
+                  <div style={{ display: 'flex', gap: '1rem' }}>
+                    <Loader size={6} />
+                    <Loader size={10} />
+                    <Loader size={14} />
+                    <Loader size={20} />
+                  </div>
+                </div>
+
+                {/* Count variants */}
+                <div className="demo-item">
+                  <p className="demo-label">Count Variants</p>
+                  <div style={{ display: 'flex', gap: '1rem' }}>
+                    <Loader count={3} />
+                    <Loader count={5} />
+                    <Loader count={7} />
+                  </div>
+                </div>
+
+                {/* Color variants */}
+                <div className="demo-item">
+                  <Typography className="demo-label">Color Variants</Typography>
+                  <div style={{ display: 'flex', gap: '1rem' }}>
+                    <Loader color="orange" />
+                    <Loader color="red" />
+                    <Loader color="gray" />
+                    <Loader color="blue" />
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
           {/* Error Boundary */}
           {activeSection === 'error-boundary' && (
             <section className="demo-section">
