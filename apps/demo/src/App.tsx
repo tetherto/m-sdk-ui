@@ -87,7 +87,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
+import FormExample from './examples/form-example'
 import PaginationExample from './examples/pagination-example'
+import TextAreaExample from './examples/textarea-example'
 
 type ToastItem = {
   id: string
@@ -124,6 +126,8 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'checkbox-switch', label: 'Checkbox & Switch' },
       { id: 'radio', label: 'Radio' },
       { id: 'date-pickers', label: 'Date Pickers' },
+      { id: 'textarea', label: 'TextArea' },
+      { id: 'form', label: 'Form' },
     ],
   },
   {
@@ -745,6 +749,20 @@ const App = (): JSX.Element => {
                   />
                 </section>
               </div>
+            </section>
+          )}
+          {/* TextArea */}
+          {activeSection === 'textarea' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">TextArea</h2>
+              <TextAreaExample />
+            </section>
+          )}
+          {/* Form */}
+          {activeSection === 'form' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Form</h2>
+              <FormExample />
             </section>
           )}
           {/* Dialog */}
