@@ -13,7 +13,7 @@ const miners = Array.from({ length: 105 })
     power: 'b',
     value: 1,
   })
-  .map((val, index) => ({
+  .map((_val, index) => ({
     id: index,
     type: ['Alpha', 'Beta', 'Gamma'][Math.floor(Math.random() * 3)],
     power: ['High', 'Medium', 'Low'][Math.floor(Math.random() * 3)],
