@@ -73,6 +73,7 @@ import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
 import PaginationExample from './examples/pagination-example'
+import { DemoTable } from './examples/demo-table'
 
 type ToastItem = {
   id: string
@@ -542,6 +543,10 @@ const App = (): JSX.Element => {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
+        </section>
+        {/* Table */}
+        <section className="demo-section">
+          <DemoTable />
         </section>
         {/* Checkbox & Switch */}
         <section className="demo-section">

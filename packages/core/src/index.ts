@@ -14,6 +14,7 @@ export * from './components/breadcrumbs'
 export * from './components/button'
 export * from './components/card'
 export * from './components/checkbox'
+export * from './components/data-table'
 export * from './components/date-picker'
 export * from './components/dialog'
 // Re-export Radix primitives with namespaces to avoid conflicts
@@ -21,6 +22,7 @@ export * as DropdownMenu from './components/dropdown-menu'
 export * from './components/empty-state'
 export * from './components/error-boundary'
 export * from './components/error-card'
+export * from './components/icons'
 export * from './components/indicator'
 export * from './components/input'
 export * from './components/label'
@@ -44,7 +46,5 @@ export * from './theme'
 export * from './types'
 // Core utilities
 export * from './utils'
-
-export * from '@radix-ui/react-icons'
 
 export const version = '0.0.0'
