@@ -1,0 +1,48 @@
+.mining-sdk-chart-container {
+  &__header {
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  &__body {
+    position: relative;
+    min-height: 200px;
+  }
+
+  &__footer {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid hsl(var(--foreground) / 0.1);
+    font-size: 0.75rem;
+    color: hsl(var(--foreground) / 0.7);
+  }
+
+  &__loading,
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: hsl(var(--foreground) / 0.6);
+  }
+
+  &__spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--foreground) / 0.3);
+    border-top-color: hsl(var(--foreground));
+    animation: mining-sdk-chart-spin 0.7s linear infinite;
+  }
+}
+
+@keyframes mining-sdk-chart-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

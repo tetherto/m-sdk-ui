@@ -13,12 +13,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  AreaChart,
   Avatar,
   AvatarFallback,
   AvatarImage,
+  BarChart,
   Breadcrumbs,
   Button,
+  ChartContainer,
   Checkbox,
+  computeStats,
   CubeIcon,
   DatePicker,
   DateRangePicker,
@@ -30,9 +34,11 @@ import {
   EmptyState,
   ErrorBoundary,
   ErrorCard,
+  GaugeChart,
   Indicator,
   Input,
   Label,
+  LineChart,
   NotFoundPage,
   Popover,
   PopoverContent,
@@ -312,6 +318,197 @@ const App = (): JSX.Element => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
+            </section>
+          </div>
+        </section>
+        {/* Charts */}
+        <section className="demo-section">
+          <h2 className="demo-section__title">Charts</h2>
+          <p className="demo-section__description">
+            Presentational chart components. Data is passed via props; no fetching.
+          </p>
+          <div className="demo-section__charts">
+            <section>
+              <h3>Line Chart (basic)</h3>
+              <ChartContainer title="Revenue over time">
+                <LineChart
+                  height={250}
+                  data={{
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [
+                      {
+                        label: 'Revenue',
+                        data: [12, 19, 8, 15, 22, 18],
+                      },
+                    ],
+                  }}
+                />
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>Line Chart (Hash Rate style)</h3>
+              <ChartContainer
+                title="Hash Rate"
+                footer={(() => {
+                  const miningOsData = [75.46, 75.46, 75.48, 75.45, 75.47, 75.46]
+                  const stats = computeStats(miningOsData)
+                  return (
+                    <span>
+                      Min {stats.min.toFixed(2)} PH/s · Max {stats.max.toFixed(2)} PH/s · Avg{' '}
+                      {stats.avg.toFixed(2)} PH/s
+                    </span>
+                  )
+                })()}
+              >
+                <LineChart
+                  height={250}
+                  formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
+                  data={{
+                    labels: ['12:45', '12:50', '12:55', '13:00', '13:05', '13:10'],
+                    datasets: [
+                      {
+                        label: 'Mining OS Hash Rate',
+                        data: [75.46, 75.46, 75.48, 75.45, 75.47, 75.46],
+                        borderColor: 'hsl(180 70% 50%)',
+                      },
+                      {
+                        label: 'Aggr Pool Hash Rate',
+                        data: [58, 59, 60, 58, 59, 60],
+                        borderColor: 'hsl(220 70% 45%)',
+                      },
+                      {
+                        label: 'F2pool Hash Rate',
+                        data: [0, 0, 0, 0, 0, 0],
+                        borderColor: 'hsl(270 60% 60%)',
+                      },
+                      {
+                        label: 'Ocean Hash Rate',
+                        data: [58, 59, 60, 58, 59, 60],
+                        borderColor: 'hsl(0 70% 55%)',
+                      },
+                    ],
+                  }}
+                />
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>Line Chart (with points + footer)</h3>
+              <ChartContainer
+                title="Temperature"
+                footer={(() => {
+                  const vals = [22, 24, 23, 25, 26, 24]
+                  const s = computeStats(vals)
+                  return (
+                    <span>
+                      Min {s.min}°C · Max {s.max}°C · Avg {s.avg.toFixed(1)}°C
+                    </span>
+                  )
+                })()}
+              >
+                <LineChart
+                  height={250}
+                  showPoints
+                  formatYLabel={(v) => `${v}°C`}
+                  data={{
+                    labels: ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+                    datasets: [
+                      {
+                        label: 'Temperature',
+                        data: [22, 24, 23, 25, 26, 24],
+                      },
+                    ],
+                  }}
+                />
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>Line Chart (currency format)</h3>
+              <ChartContainer
+                title="Daily revenue"
+                footer={(() => {
+                  const vals = [1200, 1350, 1100, 1420, 1380, 1500]
+                  const s = computeStats(vals)
+                  return (
+                    <span>
+                      Min ${s.min.toLocaleString()} · Max ${s.max.toLocaleString()} · Avg $
+                      {s.avg.toFixed(0)}
+                    </span>
+                  )
+                })()}
+              >
+                <LineChart
+                  height={250}
+                  formatYLabel={(v) => `$${(v / 1000).toFixed(1)}k`}
+                  data={{
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    datasets: [
+                      {
+                        label: 'Revenue',
+                        data: [1200, 1350, 1100, 1420, 1380, 1500],
+                      },
+                    ],
+                  }}
+                />
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>Bar Chart</h3>
+              <ChartContainer title="Mining output">
+                <BarChart
+                  height={250}
+                  data={{
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                      {
+                        label: 'TH/s',
+                        data: [65, 72, 68, 75, 70, 80, 78],
+                      },
+                    ],
+                  }}
+                />
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>Area Chart</h3>
+              <ChartContainer title="Hashrate trend">
+                <AreaChart
+                  height={250}
+                  data={{
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                    datasets: [
+                      {
+                        label: 'Hashrate',
+                        data: [100, 95, 110, 105, 120, 115],
+                      },
+                    ],
+                  }}
+                />
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>Gauge Chart</h3>
+              <ChartContainer title="System utilization">
+                <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                  <GaugeChart percent={0.75} id="gauge-1" />
+                  <GaugeChart
+                    percent={0.35}
+                    id="gauge-2"
+                    colors={['#72F59E', '#FFC107', '#EF4444']}
+                  />
+                  <GaugeChart percent={0.92} id="gauge-3" hideText />
+                </div>
+              </ChartContainer>
+            </section>
+            <section>
+              <h3>ChartContainer states</h3>
+              <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                <ChartContainer title="Loading" loading>
+                  <div style={{ height: 200 }} />
+                </ChartContainer>
+                <ChartContainer title="Empty" empty emptyMessage="No data for this period">
+                  <div style={{ height: 200 }} />
+                </ChartContainer>
+              </div>
             </section>
           </div>
         </section>
