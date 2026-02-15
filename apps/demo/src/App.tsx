@@ -94,6 +94,7 @@ import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
 import PaginationExample from './examples/pagination-example'
+import { DemoTable } from './examples/demo-table'
 
 type ToastItem = {
   id: string
@@ -150,6 +151,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Data Display',
     icon: <LayersIcon />,
     items: [
+      { id: 'table', label: 'Table' },
       { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
@@ -657,100 +659,6 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
-          {/* Charts - Bar Chart */}
-          {activeSection === 'bar-chart' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Bar Chart</h2>
-              <div className="demo-section__charts">
-                <section>
-                  <h3>Mining output</h3>
-                  <ChartContainer title="Mining output">
-                    <BarChart
-                      height={250}
-                      data={{
-                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                        datasets: [
-                          {
-                            label: 'TH/s',
-                            data: [65, 72, 68, 75, 70, 80, 78],
-                          },
-                        ],
-                      }}
-                    />
-                  </ChartContainer>
-                </section>
-              </div>
-            </section>
-          )}
-          {/* Charts - Area Chart */}
-          {activeSection === 'area-chart' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Area Chart</h2>
-              <div className="demo-section__charts">
-                <section>
-                  <h3>Hashrate trend</h3>
-                  <ChartContainer title="Hashrate trend">
-                    <AreaChart
-                      height={250}
-                      data={{
-                        labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
-                        datasets: [
-                          {
-                            label: 'Hashrate',
-                            data: [100, 95, 110, 105, 120, 115],
-                          },
-                        ],
-                      }}
-                    />
-                  </ChartContainer>
-                </section>
-              </div>
-            </section>
-          )}
-          {/* Charts - Gauge Chart */}
-          {activeSection === 'gauge-chart' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Gauge Chart</h2>
-              <div className="demo-section__charts">
-                <section>
-                  <h3>System utilization</h3>
-                  <ChartContainer title="System utilization">
-                    <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-                      <GaugeChart percent={0.75} id="gauge-1" />
-                      <GaugeChart
-                        percent={0.35}
-                        id="gauge-2"
-                        colors={['#72F59E', '#FFC107', '#EF4444']}
-                      />
-                      <GaugeChart percent={0.92} id="gauge-3" hideText />
-                    </div>
-                  </ChartContainer>
-                </section>
-              </div>
-            </section>
-          )}
-          {/* Charts - ChartContainer */}
-          {activeSection === 'chart-container' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">ChartContainer</h2>
-              <p className="demo-section__description">
-                Wrapper for chart content with loading and empty states.
-              </p>
-              <div className="demo-section__charts">
-                <section>
-                  <h3>States</h3>
-                  <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-                    <ChartContainer title="Loading" loading>
-                      <div style={{ height: 200 }} />
-                    </ChartContainer>
-                    <ChartContainer title="Empty" empty emptyMessage="No data for this period">
-                      <div style={{ height: 200 }} />
-                    </ChartContainer>
-                  </div>
-                </section>
-              </div>
-            </section>
-          )}
           {/* Pagination */}
           {activeSection === 'pagination' && (
             <section className="demo-section">
@@ -858,6 +766,31 @@ const App = (): JSX.Element => {
                       <DropdownMenu.Item onClick={() => {}}>Option 3</DropdownMenu.Item>
                     </DropdownMenu.Content>
                   </DropdownMenu.Root>
+                </section>
+              </div>
+            </section>
+          )}
+          {/* Charts - Bar Chart */}
+          {activeSection === 'bar-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Bar Chart</h2>
+              <div className="demo-section__charts">
+                <section>
+                  <h3>Mining output</h3>
+                  <ChartContainer title="Mining output">
+                    <BarChart
+                      height={250}
+                      data={{
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [
+                          {
+                            label: 'TH/s',
+                            data: [65, 72, 68, 75, 70, 80, 78],
+                          },
+                        ],
+                      }}
+                    />
+                  </ChartContainer>
                 </section>
               </div>
             </section>
@@ -989,6 +922,75 @@ const App = (): JSX.Element => {
                       </div>
                     )}
                   />
+                </section>
+              </div>
+            </section>
+          )}
+          {/* Charts - Area Chart */}
+          {activeSection === 'area-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Area Chart</h2>
+              <div className="demo-section__charts">
+                <section>
+                  <h3>Hashrate trend</h3>
+                  <ChartContainer title="Hashrate trend">
+                    <AreaChart
+                      height={250}
+                      data={{
+                        labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                        datasets: [
+                          {
+                            label: 'Hashrate',
+                            data: [100, 95, 110, 105, 120, 115],
+                          },
+                        ],
+                      }}
+                    />
+                  </ChartContainer>
+                </section>
+              </div>
+            </section>
+          )}
+          {/* Charts - Gauge Chart */}
+          {activeSection === 'gauge-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Gauge Chart</h2>
+              <div className="demo-section__charts">
+                <section>
+                  <h3>System utilization</h3>
+                  <ChartContainer title="System utilization">
+                    <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                      <GaugeChart percent={0.75} id="gauge-1" />
+                      <GaugeChart
+                        percent={0.35}
+                        id="gauge-2"
+                        colors={['#72F59E', '#FFC107', '#EF4444']}
+                      />
+                      <GaugeChart percent={0.92} id="gauge-3" hideText />
+                    </div>
+                  </ChartContainer>
+                </section>
+              </div>
+            </section>
+          )}
+          {/* Charts - ChartContainer */}
+          {activeSection === 'chart-container' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">ChartContainer</h2>
+              <p className="demo-section__description">
+                Wrapper for chart content with loading and empty states.
+              </p>
+              <div className="demo-section__charts">
+                <section>
+                  <h3>States</h3>
+                  <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                    <ChartContainer title="Loading" loading>
+                      <div style={{ height: 200 }} />
+                    </ChartContainer>
+                    <ChartContainer title="Empty" empty emptyMessage="No data for this period">
+                      <div style={{ height: 200 }} />
+                    </ChartContainer>
+                  </div>
                 </section>
               </div>
             </section>
@@ -1459,6 +1461,13 @@ const App = (): JSX.Element => {
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
               </div>
+            </section>
+          )}
+          {/* Table */}
+          {activeSection === 'table' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Table</h2>
+              <DemoTable />
             </section>
           )}
           {/* Accordion */}

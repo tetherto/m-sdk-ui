@@ -1,0 +1,340 @@
+import {
+  createColumnHelper,
+  getCoreRowModel,
+  getExpandedRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
+
+import { useMemo } from 'react'
+import { cn } from '../../utils'
+import { Checkbox } from '../checkbox'
+import { TableHeader } from './data-table-header'
+import { EmptyTableBody, TableBody } from './data-table-body'
+import { useControllableState } from '@radix-ui/react-use-controllable-state'
+import { Pagination } from '../pagination'
+import { MinusIcon, PlusIcon } from '@radix-ui/react-icons'
+import { Button } from '../button'
+import type {
+  DataTableColumnDef,
+  DataTableExpandedState,
+  DataTablePaginationState,
+  DataTableRow,
+  DataTableRowSelectionState,
+  DataTableSortingState,
+} from './types'
+import { Spinner } from '../spinner'
+
+export type DataTableProps<I = unknown> = {
+  /**
+   * The data to be shown in the table. See https://tanstack.com/table/v8/docs/guide/data
+   */
+  data: I[]
+  /**
+   * The column configuration table. See https://tanstack.com/table/v8/docs/guide/column-defs
+   */
+  columns: DataTableColumnDef<I, any>[]
+  /**
+   * Is table full width
+   * @default true
+   */
+  fullWidth?: boolean
+  /**
+   * Show a checkbox column and enables selection
+   * @default false
+   */
+  enableRowSelection?: boolean
+  /**
+   * Specify the selected rows. If `undefined`, the selections are managed internally
+   * Object with the key of row ID and a boolean specifying if the row is selected.
+   * The default row ID is the index. This can be changed using `getRowId` prop
+   * @default undefined
+   */
+  selections?: DataTableRowSelectionState
+  /**
+   * Callback to be called when the row are selected / unselected
+   */
+  onSelectionsChange?: (selections: DataTableRowSelectionState) => void
+  /**
+   * Show pagination
+   * @default true
+   */
+  enablePagination?: boolean
+  /**
+   * Specify the pagination params. Object of shape { pageIndex: number, pageSize: number }.
+   * If `undefined` then the pagination is managed internally.
+   * @default undefined
+   */
+  pagination?: DataTablePaginationState
+  /**
+   * Callback to be called when the pagination params change
+   */
+  onPaginationChange?: (pagination: DataTablePaginationState) => void
+  /**
+   * Specify the sorting params.
+   * If `undefined` then the sorting is managed internally.
+   * @default undefined
+   */
+  sorting?: DataTableSortingState
+  /**
+   * Callback to be called when the sorting changes
+   */
+  onSortingChange?: (sorting: DataTableSortingState) => void
+  /**
+   * Classname of the wrapper element
+   */
+  wrapperClassName?: string
+  /**
+   * Classname of the content element
+   */
+  contentClassName?: string
+  /**
+   * Classname of the table element
+   */
+  tableClassName?: string
+  /**
+   * Show a loading indicator overlay
+   * @default false
+   */
+  loading?: boolean
+  /**
+   * Show a columns with a button which can expand the row
+   * @default false
+   */
+  enableRowExpansion?: boolean
+  /**
+   * Callback to check if a row can be expanded
+   * @default false
+   */
+  canRowExpand?: (row: DataTableRow<I>) => boolean
+  /**
+   * Specify the expanded rows
+   * If `undefined`, the expansions are managed internally
+   * Object with the key of row ID and a boolean specifying if the row is selected.
+   * The default row ID is the index. This can be changed using `getRowId` prop
+   */
+  expandedRows?: DataTableExpandedState
+  /**
+   * Callback to be called when the rows are expanded or collapsed
+   */
+  onExpandedRowsChange?: (expandedRows: DataTableExpandedState) => void
+  /**
+   * Render the content of the expanded row. Required when `enableRowExpansion` is `true`
+   */
+  renderExpandedContent?: (row: DataTableRow<I>) => React.ReactNode
+  /**
+   * Get the row ID for a row. If not specified index is the default row ID.
+   */
+  getRowId?: (row: I, index: number, parent?: DataTableRow<I>) => string
+}
+
+const DEFAULT_PAGE_SIZE = 10
+
+export function DataTable<I = unknown>({
+  data,
+  columns: providedColumns,
+  fullWidth = true,
+  enableRowSelection = false,
+  selections: providedSelections,
+  onSelectionsChange,
+  enablePagination = true,
+  pagination: providedPagination,
+  onPaginationChange,
+  sorting: providedSorting,
+  onSortingChange,
+  wrapperClassName,
+  contentClassName,
+  tableClassName,
+  loading,
+  enableRowExpansion = false,
+  canRowExpand = () => true,
+  expandedRows: providedExpandedRows,
+  onExpandedRowsChange,
+  renderExpandedContent,
+  getRowId,
+}: DataTableProps<I>): JSX.Element {
+  const [sorting, setSorting] = useControllableState<DataTableSortingState>({
+    prop: providedSorting,
+    defaultProp: [],
+    onChange: onSortingChange,
+  })
+
+  const [pagination, setPagination] = useControllableState<DataTablePaginationState>({
+    prop: providedPagination,
+    defaultProp: {
+      pageIndex: 0,
+      pageSize: DEFAULT_PAGE_SIZE,
+    },
+    onChange: onPaginationChange,
+  })
+
+  const [rowSelection, setRowSelection] = useControllableState<DataTableRowSelectionState>({
+    prop: providedSelections,
+    defaultProp: {},
+    onChange: onSelectionsChange,
+  })
+
+  const [expandedRows, setExpandedRows] = useControllableState<DataTableExpandedState>({
+    prop: providedExpandedRows,
+    defaultProp: {},
+    onChange: onExpandedRowsChange,
+  })
+
+  const tableLocalState = useMemo(() => {
+    const localState = {
+      sorting,
+      rowSelection,
+      ...(enablePagination ? { pagination } : {}),
+      ...(enableRowExpansion ? { expanded: expandedRows } : {}),
+    }
+
+    return localState
+  }, [sorting, rowSelection, enablePagination, pagination, enableRowExpansion, expandedRows])
+
+  const columnHelper = createColumnHelper<I>()
+
+  const columns = useMemo(
+    () => [
+      ...(enableRowExpansion
+        ? [
+            columnHelper.display({
+              id: 'row-expand',
+              header: '',
+              cell: ({ row }) => (
+                <Button size="sm" onClick={row.getToggleExpandedHandler()}>
+                  {row.getIsExpanded() ? <MinusIcon /> : <PlusIcon />}
+                </Button>
+              ),
+              maxSize: 50,
+            }),
+          ]
+        : []),
+      ...(enableRowSelection
+        ? [
+            columnHelper.display({
+              id: 'row-select',
+              header: ({ table }) => {
+                let checked: boolean | 'indeterminate' = false
+
+                if (table.getIsSomePageRowsSelected()) {
+                  checked = 'indeterminate'
+                } else {
+                  checked = table.getIsAllPageRowsSelected()
+                }
+
+                return (
+                  <Checkbox
+                    size="sm"
+                    checked={checked}
+                    onCheckedChange={(value) => {
+                      if (typeof value === 'boolean') {
+                        table.toggleAllPageRowsSelected(value)
+                      }
+                    }}
+                  />
+                )
+              },
+              cell: ({ row }) => (
+                <Checkbox
+                  size="sm"
+                  checked={row.getIsSelected()}
+                  disabled={!row.getCanSelect()}
+                  onCheckedChange={row.getToggleSelectedHandler()}
+                />
+              ),
+              maxSize: 50,
+            }),
+          ]
+        : []),
+      ...providedColumns,
+    ],
+    [providedColumns, enableRowSelection],
+  )
+
+  const tableBackend = useReactTable({
+    // Basic Options
+    data,
+    columns,
+    getRowId,
+
+    // Pagination
+    onPaginationChange: setPagination,
+
+    // Sorting
+    onSortingChange: setSorting,
+
+    // Selections
+    enableRowSelection,
+    onRowSelectionChange: setRowSelection,
+
+    // Expansion
+    getRowCanExpand: canRowExpand,
+    onExpandedChange: setExpandedRows,
+
+    // Table State
+    state: tableLocalState,
+
+    // Pipeline
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    ...(enablePagination ? { getPaginationRowModel: getPaginationRowModel() } : {}),
+    getExpandedRowModel: getExpandedRowModel(),
+  })
+
+  const handlePageChange = (pageNumber: number): void => {
+    tableBackend.resetRowSelection()
+    tableBackend.setPageIndex(pageNumber - 1)
+  }
+
+  const handlePageSizeChange = (pageNumber: number, size: number): void =>
+    tableBackend.setPagination({
+      ...pagination,
+      pageIndex: pageNumber - 1,
+      pageSize: size,
+    })
+
+  const needsPagination = tableBackend.getPageCount() > 1
+  const showPagination = enablePagination && needsPagination
+
+  const hasData = Boolean(data.length)
+
+  return (
+    <div className={cn('mining-sdk-table', wrapperClassName)}>
+      <div className={cn('mining-sdk-table-content-section', contentClassName)}>
+        <table
+          className={cn('mining-sdk-table-element', tableClassName, {
+            'mining-sdk-table-element--width-full': fullWidth,
+          })}
+          style={{
+            minWidth: tableBackend.getCenterTotalSize(),
+          }}
+        >
+          <TableHeader table={tableBackend} />
+          {hasData && (
+            <TableBody table={tableBackend} renderExpandedContent={renderExpandedContent} />
+          )}
+        </table>
+        {!hasData && <EmptyTableBody hideContent={loading} />}
+        {loading && (
+          <div className="mining-sdk-table-content-section-loader-overlay">
+            <Spinner />
+          </div>
+        )}
+      </div>
+      {showPagination && (
+        <div className="mining-sdk-table-pagination-section">
+          <Pagination
+            total={data.length}
+            current={pagination.pageIndex + 1}
+            onChange={handlePageChange}
+            pageSize={pagination.pageSize}
+            onSizeChange={handlePageSizeChange}
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
+export { createColumnHelper as getDataTableColumnHelper } from '@tanstack/react-table'

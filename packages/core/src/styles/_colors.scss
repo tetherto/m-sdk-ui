@@ -38,7 +38,7 @@
     --mining-sdk-color-soft-amber: 254, 243, 199; /* #fef3c7 in Hex */
 
     /* Backgrounds */
-    --mining-sdk-color-surface: #0f0f0f;
+    --mining-sdk-color-surface: #0e0e0e;
     --mining-sdk-color-background-dark: #17130f;
     --mining-sdk-color-background-light: #e5e7eb;
 
@@ -112,6 +112,18 @@
     --mining-sdk-dropdown-menu-item-text: #e1e0e0;
     --mining-sdk-dropdown-menu-item-highlighted-text: #1a1a1a;
 
+    /* Data Table specific colors */
+    --mining-sdk-table-border: #ffffff1a;
+    --mining-sdk-table-row-border: #303030;
+
+    --mining-sdk-table-loader-overlay-bg: #00000033;
+    --mining-sdk-table-header-bg: #17130f;
+    --mining-sdk-table-header-hover-bg: #303030;
+    --mining-sdk-table-body-hover-bg: #1d1d1d;
+
+    --mining-sdk-table-table-text-primary: #ffffff80;
+    --mining-sdk-table-table-text-secondary: #ffffffb3;
+
     /* mining-sdk button tokens (mining-os baseline) */
     --mining-sdk-radius: 0px;
     --mining-sdk-font-size: 14px;
@@ -133,6 +145,9 @@
     --mining-sdk-button-danger-bg: #ef4444;
     --mining-sdk-button-danger-text: #ffffff;
     --mining-sdk-button-danger-border: #ef4444;
+
+    /* Accordion specific colors */
+    --mining-sdk-accordion-item-bg: #0e0e0e80;
 
     /* Sidebar specific colors */
     --mining-sdk-sidebar-bg: var(--mining-sdk-color-surface);
