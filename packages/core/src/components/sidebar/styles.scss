@@ -1,0 +1,272 @@
+$border-width: 0.5px;
+$transition-duration: 0.3s;
+$sidebar-collapsed-width: 65px;
+$sidebar-expanded-width: 220px;
+
+.mining-sdk-sidebar {
+  @include flex_column;
+
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  flex-shrink: 0;
+  padding-top: 20px;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  width: $sidebar-collapsed-width;
+  background: var(--mining-sdk-sidebar-bg, var(--mining-sdk-color-surface));
+  border-right: $border-width solid
+    var(--mining-sdk-sidebar-border-color, var(--mining-sdk-color-primary));
+  transition:
+    width $transition-duration ease-in-out,
+    transform $transition-duration ease-in-out;
+
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Corner decoration */
+  &::after {
+    content: '';
+    top: -9px;
+    right: -10px;
+    width: 20.5px;
+    height: 20px;
+    position: absolute;
+    transform: rotate(45deg);
+    background: var(--mining-sdk-sidebar-bg, var(--mining-sdk-color-surface));
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    border-right: $border-width solid
+      var(--mining-sdk-sidebar-border-color, var(--mining-sdk-color-primary));
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+.mining-sdk-sidebar--expanded {
+  width: $sidebar-expanded-width;
+}
+
+.mining-sdk-sidebar--hidden {
+  pointer-events: none;
+  transform: translateX(-100%);
+}
+
+/* ─── Overlay Mode (mobile) ─────────────────────────────────────────────── */
+
+.mining-sdk-sidebar--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-100%);
+
+  .mining-sdk-sidebar__toggle {
+    display: none;
+  }
+}
+
+.mining-sdk-sidebar--overlay-visible {
+  overflow: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+
+  .mining-sdk-sidebar__toggle {
+    display: flex;
+  }
+}
+
+.mining-sdk-sidebar__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: rgba(0, 0, 0, 0.5); // TODO: Change Color Later
+}
+
+/* ─── Toggle Button ─────────────────────────────────────────────────────── */
+
+.mining-sdk-sidebar__toggle {
+  @include flex_center;
+
+  position: absolute;
+  top: 42px;
+  padding: 0;
+  z-index: 11;
+  width: 25px;
+  height: 25px;
+  right: -13px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: var(--mining-sdk-sidebar-toggle-bg);
+  color: var(--mining-sdk-sidebar-border-color, var(--mining-sdk-color-primary));
+  border: 1px solid var(--mining-sdk-sidebar-border-color, var(--mining-sdk-color-primary));
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ─── Menu ──────────────────────────────────────────────────────────────── */
+
+.mining-sdk-sidebar__menu {
+  @include flex_column_align_center;
+
+  gap: 2px;
+  flex: 1;
+  width: 100%;
+  padding: 0 10px;
+  overflow-y: auto;
+  user-select: none;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  animation: mining-sdk-sidebar-fade-in 0.3s ease-in;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Menu Item ─────────────────────────────────────────────────────────── */
+
+.mining-sdk-sidebar__item {
+  @include flex_center;
+
+  padding: 0;
+  width: 100%;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  column-gap: 12px;
+  white-space: nowrap;
+  flex-direction: row;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: transparent;
+  color: var(--mining-sdk-sidebar-item-color, var(--mining-sdk-color-gray-400));
+}
+
+/* Expanded sidebar: items get left-aligned with padding */
+.mining-sdk-sidebar--expanded .mining-sdk-sidebar__item {
+  padding: 5px 10px;
+  min-width: 190px;
+  justify-content: flex-start;
+}
+
+.mining-sdk-sidebar__item--active {
+  color: var(--mining-sdk-sidebar-item-active-color, var(--mining-sdk-color-primary));
+}
+
+.mining-sdk-sidebar__item--disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Sub-item styles (source-order wins over expanded at same specificity) */
+.mining-sdk-sidebar__item.mining-sdk-sidebar__item--sub {
+  height: 32px;
+  min-width: 0;
+  padding: 8px 12px;
+  justify-content: flex-start;
+}
+
+.mining-sdk-sidebar__item--sub.mining-sdk-sidebar__item--active {
+  color: var(--mining-sdk-sidebar-item-active-color, var(--mining-sdk-color-primary));
+}
+
+/* ─── Item Parts ────────────────────────────────────────────────────────── */
+
+.mining-sdk-sidebar__item-icon {
+  @include flex_center;
+
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mining-sdk-sidebar__item-label {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Group ─────────────────────────────────────────────────────────────── */
+
+.mining-sdk-sidebar__group {
+  @include flex_column_align_start;
+
+  width: 100%;
+  position: relative;
+}
+
+.mining-sdk-sidebar__group-toggle {
+  @include flex_center;
+
+  cursor: pointer;
+  margin-left: auto;
+  padding: 2px;
+}
+
+.mining-sdk-sidebar__group-items {
+  @include flex_column;
+
+  padding: 5px;
+  font-size: 12px;
+  user-select: none;
+  margin-left: 12px;
+  width: calc(100% - 12px);
+
+  .mining-sdk-sidebar__group-items {
+    margin-left: 8px;
+    width: calc(100% - 8px);
+  }
+}
+
+/* ─── Overlay Flyout ────────────────────────────────────────────────────── */
+
+.mining-sdk-sidebar__overlay {
+  @include flex_column;
+
+  z-index: 100;
+  padding: 5px 0;
+  position: fixed;
+  min-width: 180px;
+  box-sizing: border-box;
+  animation: mining-sdk-sidebar-fade-in 0.15s ease-in;
+  background: var(--mining-sdk-sidebar-overlay-bg, var(--mining-sdk-color-surface));
+  border: 1px solid var(--mining-sdk-sidebar-overlay-border, var(--mining-sdk-color-primary));
+
+  @media (max-height: 590px) {
+    transform: translateY(-90%);
+  }
+}
+
+/* Nested flyout: positioned relative to parent group */
+.mining-sdk-sidebar__overlay--nested {
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+/* Overlay items always show labels */
+.mining-sdk-sidebar__overlay .mining-sdk-sidebar__item {
+  height: 32px;
+  padding: 4px 12px;
+  justify-content: flex-start;
+}
