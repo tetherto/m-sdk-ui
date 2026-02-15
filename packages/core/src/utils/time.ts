@@ -86,6 +86,7 @@ export const breakTimeIntoIntervals = (
  */
 export const getSmallestAndLargestTs = (
   array: TimeInterval[],
+  // eslint-disable-next-line style/member-delimiter-style
 ): { start: number | null; end: number | null } => {
   if (array.length === 0) {
     return { start: null, end: null }
