@@ -67,15 +67,18 @@ export const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
     }, [options, legendPosition])
 
     const chartData = React.useMemo(() => {
-      const datasets = data.datasets?.map((ds, i) => ({
-        ...ds,
-        fill: true,
-        tension: 0.3,
-        borderColor: ds.borderColor ?? defaultChartColors[i % defaultChartColors.length],
-        backgroundColor:
-          ds.backgroundColor ??
-          addColorOpacityForFill(defaultChartColors[i % defaultChartColors.length] as string),
-      }))
+      const datasets = data.datasets?.map((ds, i) => {
+        const lineColor =
+          (typeof ds.borderColor === 'string' ? ds.borderColor : undefined) ??
+          (defaultChartColors[i % defaultChartColors.length] as string)
+        return {
+          ...ds,
+          fill: true,
+          tension: 0.3,
+          borderColor: ds.borderColor ?? lineColor,
+          backgroundColor: ds.backgroundColor ?? addColorOpacityForFill(lineColor),
+        }
+      })
       return { ...data, datasets }
     }, [data])
 

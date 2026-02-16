@@ -17,6 +17,21 @@ export const AreaChartExample: React.FC = () => {
           <AreaChart height={250} data={AREA_CHART_HASHRATE_TREND} legendPosition="bottom" />
         </ChartContainer>
       </section>
+      <section>
+        <h3>Custom color (blue)</h3>
+        <ChartContainer title="Hashrate">
+          <AreaChart
+            height={250}
+            data={{
+              ...AREA_CHART_HASHRATE_TREND,
+              datasets: AREA_CHART_HASHRATE_TREND.datasets.map((ds) => ({
+                ...ds,
+                borderColor: 'hsl(217 91% 60%)',
+              })),
+            }}
+          />
+        </ChartContainer>
+      </section>
     </div>
   )
 }
