@@ -48,6 +48,8 @@ export * from './components/tag-input'
 export * from './components/toast'
 export * from './components/tooltip'
 export * from './components/typography'
+// Constants
+export * from './constants/units'
 // Theme system
 export * from './theme'
 // Core types

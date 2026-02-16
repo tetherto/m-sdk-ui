@@ -1,4 +1,4 @@
-import { ChartContainer, computeStats, LineChart } from '@mining-sdk/core'
+import { ChartContainer, computeStats, LineChart, UNITS } from '@mining-sdk/core'
 import React, { useState } from 'react'
 import {
   LINE_CHART_DAILY_REVENUE,
@@ -90,15 +90,17 @@ export const LineChartExample: React.FC = () => {
           title="Temperature"
           footer={
             <span>
-              Min {temperatureStats.min}°C · Max {temperatureStats.max}°C · Avg{' '}
-              {temperatureStats.avg.toFixed(1)}°C
+              Min {temperatureStats.min}
+              {UNITS.TEMPERATURE_C} · Max {temperatureStats.max}
+              {UNITS.TEMPERATURE_C} · Avg {temperatureStats.avg.toFixed(1)}
+              {UNITS.TEMPERATURE_C}
             </span>
           }
         >
           <LineChart
             height={250}
             showPoints
-            formatYLabel={(v) => `${v}°C`}
+            formatYLabel={(v) => `${v}${UNITS.TEMPERATURE_C}`}
             data={LINE_CHART_TEMPERATURE}
           />
         </ChartContainer>
