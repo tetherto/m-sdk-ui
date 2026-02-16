@@ -1,5 +1,3 @@
-const WEBAPP_NAME = 'Change this later'
-
 export const ACTION_TYPES = {
   // Container actions
   SWITCH_CONTAINER: 'switchContainer',
@@ -84,7 +82,7 @@ export const ACTION_NAMES_MAP = {
   [ACTION_TYPES.FORGET_THINGS]: 'Remove Thing',
 
   // Rack actions
-  [ACTION_TYPES.RACK_REBOOT]: `Reboot ${WEBAPP_NAME}`,
+  [ACTION_TYPES.RACK_REBOOT]: `Reboot Application`,
 } as const
 
 export const MINER_ACTIONS = [

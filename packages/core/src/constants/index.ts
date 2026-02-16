@@ -1,7 +1,4 @@
 export const POOL_NAME = 'Pool'
-export const WEBAPP_NAME = 'MiningOS'
-export const WEBAPP_SHORT_NAME = 'MOS'
-export const WEBAPP_DISPLAY_NAME = 'Mining OS'
 
 export const DATE_RANGE = {
   M1: '1m',
