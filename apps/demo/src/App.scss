@@ -84,6 +84,12 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
+    &--2-col {
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     section {
       @include flex_column;
       gap: 0.75rem;
