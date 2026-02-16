@@ -51,7 +51,7 @@
 
   &__legend-label {
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--mining-sdk-chart-container-legend-label);
   }
 
   &__header-row {
@@ -73,7 +73,7 @@
     margin: 0;
     font-size: 0.875rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--mining-sdk-chart-container-title);
   }
 
   &__range-selector {
