@@ -18,7 +18,6 @@ import {
   Button,
   Card,
   ChatBubbleIcon,
-  Checkbox,
   CheckIcon,
   CubeIcon,
   DashboardIcon,
@@ -35,10 +34,8 @@ import {
   ExclamationTriangleIcon,
   GearIcon,
   HomeIcon,
-  Indicator,
   Input,
   InputIcon,
-  Label,
   LayersIcon,
   Loader,
   NotFoundPage,
@@ -46,9 +43,6 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  Radio,
-  RadioCard,
-  RadioGroup,
   Select,
   SelectContent,
   SelectGroup,
@@ -84,10 +78,15 @@ import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
 import { AccordionExample } from './examples/accordion-example'
+import { CascaderExample } from './examples/cascader-example'
+import { CheckboxExample } from './examples/checkbox-example'
 import { DemoTable } from './examples/demo-table'
 import FormExample from './examples/form-example'
+import { IndicatorsExample } from './examples/indicators-example'
 import PaginationExample from './examples/pagination-example'
+import { RadioExample } from './examples/radio-example'
 import TextAreaExample from './examples/textarea-example'
+import { TypographyExample } from './examples/typography-example'
 
 type ToastItem = {
   id: string
@@ -136,6 +135,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'dialog', label: 'Dialog' },
       { id: 'alert-dialog', label: 'Alert Dialog' },
       { id: 'dropdown-menu', label: 'Dropdown Menu' },
+      { id: 'cascader', label: 'Cascader' },
       { id: 'tooltip', label: 'Tooltip' },
       { id: 'popover', label: 'Popover' },
       { id: 'toast', label: 'Toast' },
@@ -816,407 +816,7 @@ const App = (): JSX.Element => {
             </section>
           )}
           {/* Checkbox & Switch */}
-          {activeSection === 'checkbox-switch' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Checkbox & Switch</h2>
-              <div className="demo-section__form-controls">
-                <h2>Checkbox</h2>
-                <div className="demo-section__form-item demo-section__form-item--baseline">
-                  {/* Color Variants */}
-                  <section>
-                    <h3>Color Variants</h3>
-                    <div className="demo-section__checkboxes">
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-default" color="default" defaultChecked />
-                        <Label htmlFor="default">Default (Surface #0E0E0E)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-primary" color="primary" defaultChecked />
-                        <Label htmlFor="checkbox-primary">Primary (Orange #F7931A)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-success" color="success" defaultChecked />
-                        <Label htmlFor="checkbox-success">Success (Green #72F59E)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-warning" color="warning" defaultChecked />
-                        <Label htmlFor="checkbox-warning">Warning (Yellow #FFC107)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-error" color="error" defaultChecked />
-                        <Label htmlFor="checkbox-error">Error (Red #EF4444)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Size Variants */}
-                  <section>
-                    <h3>Size Variants</h3>
-                    <div className="demo-section__checkboxes">
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-small" size="sm" color="primary" defaultChecked />
-                        <Label htmlFor="checkbox-small">Small (16×16px)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-medium" size="md" color="primary" defaultChecked />
-                        <Label htmlFor="checkbox-medium">Medium (20×20px) - Default</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-large" size="lg" color="primary" defaultChecked />
-                        <Label htmlFor="checkbox-large">Large (24×24px)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Radius Variants */}
-                  <section>
-                    <h3>Radius Variants</h3>
-                    <div className="demo-section__checkboxes">
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-radius-none"
-                          radius="none"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-radius-none">None (Square corners)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-radius-small"
-                          radius="small"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-radius-small">Small (4px) - Default</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-radius-medium"
-                          radius="medium"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-radius-medium">Medium (6px)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-radius-large"
-                          radius="large"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-radius-large">Large (8px)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-radius-full"
-                          radius="full"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-radius-full">Full (Circular)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* States */}
-                  <section>
-                    <h3>States</h3>
-                    <div className="demo-section__checkboxes">
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-unchecked" color="primary" />
-                        <Label htmlFor="checkbox-unchecked">Unchecked</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-checked" color="primary" defaultChecked />
-                        <Label htmlFor="checkbox-checked">Checked</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-indeterminate"
-                          color="primary"
-                          checked="indeterminate"
-                        />
-                        <Label htmlFor="checkbox-indeterminate">Indeterminate</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox id="checkbox-disabled-unchecked" color="primary" disabled />
-                        <Label htmlFor="checkbox-disabled-unchecked">Disabled (Unchecked)</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-disabled-checked"
-                          color="primary"
-                          disabled
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-disabled-checked">Disabled (Checked)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Combinations */}
-                  <section>
-                    <h3>Combination Examples</h3>
-                    <div className="demo-section__checkboxes">
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-combo-1"
-                          size="sm"
-                          color="primary"
-                          radius="none"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-combo-1">Small + Primary + No Radius</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-combo-2"
-                          size="md"
-                          color="success"
-                          radius="medium"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-combo-2">Medium + Success + Medium Radius</Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-combo-3"
-                          size="lg"
-                          color="error"
-                          radius="full"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-combo-3">
-                          Large + Error + Full Radius (Circle)
-                        </Label>
-                      </div>
-
-                      <div className="demo-section__checkboxes__item">
-                        <Checkbox
-                          id="checkbox-combo-4"
-                          size="lg"
-                          color="warning"
-                          radius="large"
-                          defaultChecked
-                        />
-                        <Label htmlFor="checkbox-combo-4">Large + Warning + Large Radius</Label>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
-              <div className="demo-section__form-controls">
-                <h2>Switch</h2>
-                <div className="demo-section__form-item demo-section__form-item--baseline">
-                  <section>
-                    <h3>Color Variants</h3>
-                    <div className="demo-section__switches">
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-default" color="default" defaultChecked />
-                        <Label htmlFor="switch-default">Default (Surface #0E0E0E)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-primary" color="primary" defaultChecked />
-                        <Label htmlFor="switch-primary">Primary (Orange #F7931A)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-success" color="success" defaultChecked />
-                        <Label htmlFor="switch-success">Success (Green #72F59E)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-warning" color="warning" defaultChecked />
-                        <Label htmlFor="switch-warning">Warning (Yellow #FFC107)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-error" color="error" defaultChecked />
-                        <Label htmlFor="switch-error">Error (Red #EF4444)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Size Variants */}
-                  <section>
-                    <h3>Size Variants</h3>
-                    <div className="demo-section__switches">
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-small" size="sm" color="primary" defaultChecked />
-                        <Label htmlFor="switch-small">Small (32×18px)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-medium" size="md" color="primary" defaultChecked />
-                        <Label htmlFor="switch-medium">Medium (42×24px) - Default</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-large" size="lg" color="primary" defaultChecked />
-                        <Label htmlFor="switch-large">Large (52×30px)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Radius Variants */}
-                  <section>
-                    <h3>Radius Variants</h3>
-                    <div className="demo-section__switches">
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-radius-none"
-                          radius="none"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-radius-none">None (Square corners) - Default</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-radius-small"
-                          radius="small"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-radius-small">Small (4px border-radius)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-radius-medium"
-                          radius="medium"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-radius-medium">Medium (8px border-radius)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-radius-large"
-                          radius="large"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-radius-large">Large (12px border-radius)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-radius-full"
-                          radius="full"
-                          color="success"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-radius-full">Full (Pill-shaped)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* States */}
-                  <section>
-                    <h3>States</h3>
-                    <div className="demo-section__switches">
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-unchecked" color="primary" />
-                        <Label htmlFor="switch-unchecked">Unchecked</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-checked" color="primary" defaultChecked />
-                        <Label htmlFor="switch-checked">Checked</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch id="switch-disabled-unchecked" color="primary" disabled />
-                        <Label htmlFor="switch-disabled-unchecked">Disabled (Unchecked)</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-disabled-checked"
-                          color="primary"
-                          disabled
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-disabled-checked">Disabled (Checked)</Label>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Combinations */}
-                  <section>
-                    <h3>Combination Examples</h3>
-                    <div className="demo-section__switches">
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-combo-1"
-                          size="sm"
-                          color="primary"
-                          radius="small"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-combo-1">Small + Primary + Small Radius</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-combo-2"
-                          size="md"
-                          color="success"
-                          radius="medium"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-combo-2">Medium + Success + Medium Radius</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-combo-3"
-                          size="lg"
-                          color="error"
-                          radius="none"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-combo-3">Large + Error + No Radius</Label>
-                      </div>
-
-                      <div className="demo-section__switches__item">
-                        <Switch
-                          id="switch-combo-4"
-                          size="lg"
-                          color="warning"
-                          radius="full"
-                          defaultChecked
-                        />
-                        <Label htmlFor="switch-combo-4">Large + Warning + Full Radius</Label>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </section>
-          )}
+          {activeSection === 'checkbox-switch' && <CheckboxExample />}
           {/* Table */}
           {activeSection === 'table' && (
             <section className="demo-section">
@@ -1240,6 +840,8 @@ const App = (): JSX.Element => {
           )}
           {/* Accordion */}
           {activeSection === 'accordion' && <AccordionExample />}
+          {/* cascader */}
+          {activeSection === 'cascader' && <CascaderExample />}
           {/* Card */}
           {activeSection === 'card' && (
             <section className="demo-section">
@@ -1315,94 +917,7 @@ const App = (): JSX.Element => {
             </section>
           )}
           {/* Typography */}
-          {activeSection === 'typography' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Typography</h2>
-              <div className="demo-section__typography">
-                {/* Variants */}
-                <section>
-                  <h3 className="demo-section__typography--title">Variants</h3>
-                  <div className="demo-section__typography--item">
-                    <Typography variant="heading1">Heading 1</Typography>
-                    <Typography variant="heading2">Heading 2</Typography>
-                    <Typography variant="heading3">Heading 3</Typography>
-                    <Typography variant="body">Body Text</Typography>
-                    <Typography variant="secondary">Secondary Text</Typography>
-                    <Typography variant="caption">Caption Text</Typography>
-                  </div>
-                </section>
-
-                {/* Sizes */}
-                <section>
-                  <h3 className="demo-section__typography--title">Sizes</h3>
-                  <div className="demo-section__typography--item">
-                    <Typography size="xs">Extra Small (12px)</Typography>
-                    <Typography size="sm">Small (14px)</Typography>
-                    <Typography size="md">Medium (16px)</Typography>
-                    <Typography size="lg">Large (18px)</Typography>
-                    <Typography size="xl">Extra Large (20px)</Typography>
-                    <Typography size="2xl">2X Large (24px)</Typography>
-                    <Typography size="3xl">3X Large (32px)</Typography>
-                    <Typography size="4xl">4X Large (40px)</Typography>
-                  </div>
-                </section>
-
-                {/* Weights */}
-                <section>
-                  <h3 className="demo-section__typography--title">Font Weights</h3>
-                  <div className="demo-section__typography--item">
-                    <Typography weight="light">Light (300)</Typography>
-                    <Typography weight="normal">Normal (400)</Typography>
-                    <Typography weight="medium">Medium (500)</Typography>
-                    <Typography weight="semibold">Semibold (600)</Typography>
-                    <Typography weight="bold">Bold (700)</Typography>
-                  </div>
-                </section>
-
-                {/* Colors */}
-                <section>
-                  <h3 className="demo-section__typography--title">Colors</h3>
-                  <div className="demo-section__typography--item">
-                    <Typography color="default">Default Color</Typography>
-                    <Typography color="primary">Primary Color (#F7931A)</Typography>
-                    <Typography color="success">Success Color (#72F59E)</Typography>
-                    <Typography color="warning">Warning Color (#FFC107)</Typography>
-                    <Typography color="error">Error Color (#EF4444)</Typography>
-                    <Typography color="muted">Muted Color</Typography>
-                  </div>
-                </section>
-
-                {/* Alignment */}
-                <section>
-                  <h3 className="demo-section__typography--title">Alignment</h3>
-                  <div className="demo-section__typography--item">
-                    <Typography align="left">Left aligned text</Typography>
-                    <Typography align="center">Center aligned text</Typography>
-                    <Typography align="right">Right aligned text</Typography>
-                    <Typography align="justify">
-                      Justified text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </Typography>
-                  </div>
-                </section>
-
-                {/* Truncate */}
-                <section>
-                  <h3 className="demo-section__typography--title">Truncate</h3>
-                  <div
-                    style={{
-                      width: '300px',
-                    }}
-                  >
-                    <Typography truncate>
-                      This is a very long text that will be truncated with an ellipsis when it
-                      exceeds the container width
-                    </Typography>
-                  </div>
-                </section>
-              </div>
-            </section>
-          )}
+          {activeSection === 'typography' && <TypographyExample />}
           {/* Breadcrumbs */}
           {activeSection === 'breadcrumbs' && (
             <section className="demo-section">
@@ -1486,140 +1001,7 @@ const App = (): JSX.Element => {
             </section>
           )}
           {/* Radio */}
-          {activeSection === 'radio' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Radio</h2>
-
-              {/* RadioCard - Time Selector */}
-              <h3>RadioCard - Time Selector</h3>
-              <section className="demo-section__radio-card">
-                <RadioGroup defaultValue="5min" orientation="horizontal" noGap>
-                  <RadioCard value="5min" label="5 Min" />
-                  <RadioCard value="30min" label="30 Min" />
-                  <RadioCard value="3h" label="3 H" />
-                  <RadioCard value="1d" label="1 D" />
-                </RadioGroup>
-              </section>
-
-              {/* RadioCard Sizes */}
-              <h3>RadioCard Sizes</h3>
-              <section className="demo-section__radio-card">
-                <div className="demo-section__radio-card--column">
-                  <RadioGroup defaultValue="sm" orientation="horizontal">
-                    <RadioCard value="sm" label="Small" size="sm" />
-                    <RadioCard value="sm2" label="Small" size="sm" />
-                  </RadioGroup>
-                  <RadioGroup defaultValue="md" orientation="horizontal">
-                    <RadioCard value="md" label="Medium" size="md" />
-                    <RadioCard value="md2" label="Medium" size="md" />
-                  </RadioGroup>
-                  <RadioGroup defaultValue="lg" orientation="horizontal">
-                    <RadioCard value="lg" label="Large" size="lg" />
-                    <RadioCard value="lg2" label="Large" size="lg" />
-                  </RadioGroup>
-                </div>
-              </section>
-
-              {/* RadioCard Colors */}
-              <h3>RadioCard Colors</h3>
-              <section className="demo-section__radio-card">
-                <RadioGroup defaultValue="primary" orientation="horizontal">
-                  <RadioCard value="primary" label="Primary" color="primary" />
-                  <RadioCard value="success" label="Success" color="success" />
-                  <RadioCard value="warning" label="Warning" color="warning" />
-                  <RadioCard value="error" label="Error" color="error" />
-                </RadioGroup>
-              </section>
-
-              {/* RadioCard Radius */}
-              <h3>RadioCard Radius</h3>
-              <section className="demo-section__radio-card">
-                <RadioGroup defaultValue="small" orientation="horizontal">
-                  <RadioCard value="none" label="None" radius="none" />
-                  <RadioCard value="small" label="Small" radius="small" />
-                  <RadioCard value="medium" label="Medium" radius="medium" />
-                  <RadioCard value="full" label="Full" radius="full" />
-                </RadioGroup>
-              </section>
-
-              <section className="demo-section__radio">
-                {/* Color Variants */}
-                <section>
-                  <h3>Color Variants</h3>
-                  <RadioGroup defaultValue="primary">
-                    <div className="demo-section__radio--item">
-                      <Radio value="default" color="default" id="radio-default" />
-                      <Label htmlFor="radio-default">Default</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio value="primary" color="primary" id="radio-primary" />
-                      <Label htmlFor="radio-primary">Primary</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio value="success" color="success" id="radio-success" />
-                      <Label htmlFor="radio-success">Success</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio value="warning" color="warning" id="radio-warning" />
-                      <Label htmlFor="radio-warning">Warning</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio value="error" color="error" id="radio-error" />
-                      <Label htmlFor="radio-error">Error</Label>
-                    </div>
-                  </RadioGroup>
-                </section>
-
-                {/* Sizes */}
-                <section>
-                  <h3>Sizes</h3>
-                  <RadioGroup defaultValue="md" orientation="horizontal">
-                    <Radio value="sm" size="sm" />
-                    <Radio value="md" size="md" />
-                    <Radio value="lg" size="lg" />
-                  </RadioGroup>
-                </section>
-
-                {/* Radius */}
-                <section>
-                  <h3>Radius Variants</h3>
-                  <RadioGroup defaultValue="full" orientation="horizontal">
-                    <Radio value="none" radius="none" />
-                    <Radio value="small" radius="small" />
-                    <Radio value="medium" radius="medium" />
-                    <Radio value="large" radius="large" />
-                    <Radio value="full" radius="full" />
-                  </RadioGroup>
-                </section>
-                {/*  States */}
-                <section>
-                  <h3>States</h3>
-                  <RadioGroup defaultValue="checked">
-                    <div className="demo-section__radio--item">
-                      <Radio value="unchecked" id="radio-state-unchecked" />
-                      <Label htmlFor="radio-state-unchecked">Unchecked</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio value="checked" id="radio-state-checked" />
-                      <Label htmlFor="radio-state-checked">Checked</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio
-                        value="disabled-unchecked"
-                        disabled
-                        id="radio-state-disabled-unchecked"
-                      />
-                      <Label htmlFor="radio-state-disabled-unchecked">Disabled (Unchecked)</Label>
-                    </div>
-                    <div className="demo-section__radio--item">
-                      <Radio value="checked" disabled id="radio-state-disabled-checked" />
-                      <Label htmlFor="radio-state-disabled-checked">Disabled (Checked)</Label>
-                    </div>
-                  </RadioGroup>
-                </section>
-              </section>
-            </section>
-          )}
+          {activeSection === 'radio' && <RadioExample />}
           {/* Tooltip */}
           {activeSection === 'tooltip' && (
             <section className="demo-section">
@@ -2156,135 +1538,7 @@ const App = (): JSX.Element => {
             </section>
           )}
           {/* Indicators */}
-          {activeSection === 'indicators' && (
-            <section className="demo-section">
-              <h2 className="demo-section__title">Indicators</h2>
-              <section className="demo-section__indicators">
-                {/* Size Variants */}
-                <section>
-                  <h3>Size Variants</h3>
-                  <div className="demo-section__indicators--content">
-                    <Indicator color="green" size="sm">
-                      Small
-                    </Indicator>
-                    <Indicator color="green" size="md">
-                      Medium
-                    </Indicator>
-                    <Indicator color="green" size="lg">
-                      Large
-                    </Indicator>
-                  </div>
-                </section>
-
-                {/* All Colors  */}
-                <section>
-                  <h3>All Colors</h3>
-                  <div className="demo-section__indicators--content">
-                    <Indicator color="red" size="lg">
-                      Red
-                    </Indicator>
-                    <Indicator color="gray" size="lg">
-                      Gray
-                    </Indicator>
-                    <Indicator color="blue" size="lg">
-                      Blue
-                    </Indicator>
-                    <Indicator color="yellow" size="lg">
-                      Yellow
-                    </Indicator>
-                    <Indicator color="green" size="lg">
-                      Green
-                    </Indicator>
-                    <Indicator color="purple" size="lg">
-                      Purple
-                    </Indicator>
-                    <Indicator color="amber" size="lg">
-                      Amber
-                    </Indicator>
-                    <Indicator color="slate" size="lg">
-                      Slate
-                    </Indicator>
-                  </div>
-                </section>
-
-                {/* Status Indicators */}
-                <section>
-                  <h3>Status Indicators</h3>
-                  <div className="demo-section__indicators--content">
-                    <Indicator color="red">Offline</Indicator>
-                    <Indicator color="red">Error</Indicator>
-                    <Indicator color="gray">Sleep</Indicator>
-                    <Indicator color="amber">Low</Indicator>
-                    <Indicator color="green">Normal</Indicator>
-                    <Indicator color="purple">High</Indicator>
-                    <Indicator color="slate">Empty</Indicator>
-                  </div>
-                </section>
-
-                {/* System Status */}
-                <section>
-                  <h3>System Status (Large)</h3>
-                  <div className="demo-section__indicators--content">
-                    <Indicator color="green" size="lg">
-                      <span>Running</span>
-                      <span>10</span>
-                    </Indicator>
-                    <Indicator color="blue" size="lg">
-                      <span>Sleep</span>
-                      <span>0</span>
-                    </Indicator>
-                    <Indicator color="amber" size="lg">
-                      <span>Empty</span>
-                      <span>4</span>
-                    </Indicator>
-                    <Indicator color="red" size="lg">
-                      <span>Error</span>
-                      <span>2</span>
-                    </Indicator>
-                    <Indicator color="gray" size="lg">
-                      <span>Offline</span>
-                      <span>1</span>
-                    </Indicator>
-                  </div>
-                </section>
-
-                {/* Status Dashboard Example */}
-                <section>
-                  <h3>Status Dashboard</h3>
-                  <div className="demo-section__indicators--content">
-                    <div>
-                      <code>Offline</code>
-                      <Indicator color="gray">0</Indicator>
-                    </div>
-                    <div>
-                      <code>Error</code>
-                      <Indicator color="red">0</Indicator>
-                    </div>
-                    <div>
-                      <code>Sleep</code>
-                      <Indicator color="blue">0</Indicator>
-                    </div>
-                    <div>
-                      <code>Low</code>
-                      <Indicator color="yellow">0</Indicator>
-                    </div>
-                    <div>
-                      <code>Normal</code>
-                      <Indicator color="green">39</Indicator>
-                    </div>
-                    <div>
-                      <code>High</code>
-                      <Indicator color="purple">0</Indicator>
-                    </div>
-                    <div>
-                      <code>Empty</code>
-                      <Indicator color="slate">69</Indicator>
-                    </div>
-                  </div>
-                </section>
-              </section>
-            </section>
-          )}
+          {activeSection === 'indicators' && <IndicatorsExample />}
           {/* Empty State */}
           {activeSection === 'empty-state' && (
             <section className="demo-section">

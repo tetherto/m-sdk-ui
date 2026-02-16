@@ -29,6 +29,7 @@ export default antfu(
       'style/multiline-ternary': 'off',
       'style/operator-linebreak': 'off',
       'style/jsx-wrap-multilines': 'off',
+      'style/jsx-curly-newline': 'off',
       'style/brace-style': 'off',
       'antfu/if-newline': 'off',
       'unicorn/filename-case': [

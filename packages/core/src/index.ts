@@ -13,11 +13,12 @@ export * from './components/avatar'
 export * from './components/breadcrumbs'
 export * from './components/button'
 export * from './components/card'
+// Re-export Radix primitives with namespaces to avoid conflicts
+export * from './components/cascader'
 export * from './components/checkbox'
 export * from './components/data-table'
 export * from './components/date-picker'
 export * from './components/dialog'
-// Re-export Radix primitives with namespaces to avoid conflicts
 export * as DropdownMenu from './components/dropdown-menu'
 export * from './components/empty-state'
 export * from './components/error-boundary'

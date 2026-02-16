@@ -201,7 +201,7 @@
 
   &__form-controls {
     @include flex_column;
-    
+
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -274,7 +274,7 @@
 
   &__typography {
     @include flex_between;
-    
+
     flex-wrap: wrap;
 
     &--title {
@@ -283,7 +283,7 @@
 
     &--item {
       @include flex_column;
-      
+
       gap: 1rem;
     }
   }
@@ -295,7 +295,7 @@
   &__tooltip,
   &__popover {
     @include flex_column;
-    
+
     gap: 2rem;
 
     section {
@@ -325,7 +325,7 @@
 
   &__toast-buttons {
     @include flex_wrap;
-    
+
     gap: 0.75rem;
   }
 
@@ -400,4 +400,8 @@
 // Override NotFoundPage in demo to not take full viewport height
 .mining-sdk-not-found-page--demo {
   min-height: 300px;
+}
+
+.cascader-section {
+  margin-bottom: 3rem;
 }
