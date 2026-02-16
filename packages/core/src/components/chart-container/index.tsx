@@ -18,6 +18,12 @@ export type RangeSelectorProps = {
   options: RangeSelectorOption[]
   value: string
   onChange: (value: string) => void
+  /** Custom class for the button group wrapper */
+  className?: string
+  /** Custom styles for the button group wrapper */
+  style?: React.CSSProperties
+  /** Custom class for each range button */
+  buttonClassName?: string
 }
 
 export type HighlightedValueProps = {
@@ -25,6 +31,10 @@ export type HighlightedValueProps = {
   value: string | number
   /** Optional unit (e.g. "PH/s") - rendered smaller in muted color */
   unit?: string
+  /** Custom class for the highlighted value wrapper */
+  className?: string
+  /** Custom styles for the highlighted value wrapper */
+  style?: React.CSSProperties
 }
 
 export type LegendItem = {
@@ -51,6 +61,8 @@ export type ChartContainerProps = {
   emptyMessage?: string
   /** Footer content (e.g. Min/Max/Avg stats) */
   footer?: React.ReactNode
+  /** Custom class for the footer wrapper */
+  footerClassName?: string
   className?: string
   children: React.ReactNode
 }
@@ -77,6 +89,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
       empty,
       emptyMessage = 'No data available',
       footer,
+      footerClassName,
       className,
       children,
     },
@@ -105,7 +118,11 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
             <div className="mining-sdk-chart-container__range-area">
               {rangeSelector && rangeSelector.options.length > 0 && (
                 <div
-                  className="mining-sdk-chart-container__range-selector"
+                  className={cn(
+                    'mining-sdk-chart-container__range-selector',
+                    rangeSelector.className,
+                  )}
+                  style={rangeSelector.style}
                   role="group"
                   aria-label="Time range"
                 >
@@ -118,6 +135,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
                         'mining-sdk-chart-container__range-btn',
                         rangeSelector.value === opt.value &&
                           'mining-sdk-chart-container__range-btn--active',
+                        rangeSelector.buttonClassName,
                       )}
                       onClick={() => rangeSelector.onChange(opt.value)}
                     >
@@ -147,7 +165,13 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
             </div>
             <div className="mining-sdk-chart-container__highlight-area">
               {highlightedValue && (
-                <div className="mining-sdk-chart-container__highlighted-value">
+                <div
+                  className={cn(
+                    'mining-sdk-chart-container__highlighted-value',
+                    highlightedValue.className,
+                  )}
+                  style={highlightedValue.style}
+                >
                   <span className="mining-sdk-chart-container__highlighted-value__number">
                     {highlightedValue.value}
                   </span>
@@ -195,7 +219,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
           </>
         )}
         {footer && !loading && !empty && (
-          <div className="mining-sdk-chart-container__footer">{footer}</div>
+          <div className={cn('mining-sdk-chart-container__footer', footerClassName)}>{footer}</div>
         )}
       </div>
     )
