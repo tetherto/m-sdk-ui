@@ -1,4 +1,4 @@
-const WEBAPP_NAME = 'Change this later'
+import { WEBAPP_NAME } from './index'
 
 export const ACTION_TYPES = {
   // Container actions
