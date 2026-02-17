@@ -78,6 +78,7 @@ import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
 import { AccordionExample } from './examples/accordion-example'
+import { BadgeExample } from './examples/badge-example'
 import { CascaderExample } from './examples/cascader-example'
 import { CheckboxExample } from './examples/checkbox-example'
 import { DemoTable } from './examples/demo-table'
@@ -148,6 +149,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'table', label: 'Table' },
       { id: 'avatar', label: 'Avatar' },
+      { id: 'badge', label: 'Badge' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
       { id: 'typography', label: 'Typography' },
@@ -838,6 +840,8 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
+          {/* Badge */}
+          {activeSection === 'badge' && <BadgeExample />}
           {/* Accordion */}
           {activeSection === 'accordion' && <AccordionExample />}
           {/* cascader */}

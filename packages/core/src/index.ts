@@ -10,10 +10,11 @@ export * from './components/accordion'
 export * from './components/alert-dialog'
 
 export * from './components/avatar'
+// Re-export Radix primitives with namespaces to avoid conflicts
+export * from './components/badge'
 export * from './components/breadcrumbs'
 export * from './components/button'
 export * from './components/card'
-// Re-export Radix primitives with namespaces to avoid conflicts
 export * from './components/cascader'
 export * from './components/checkbox'
 export * from './components/data-table'
