@@ -2,7 +2,7 @@
  * Default chart options using theme colors
  */
 
-import type { Chart } from 'chart.js'
+import type { Chart, ChartEvent, Plugin } from 'chart.js'
 import { defaultChartColors } from '../constants/charts'
 
 export { defaultChartColors }
@@ -79,7 +79,7 @@ const buildLegendLabels = (chart: Chart): LegendLabelItem[] => {
 }
 
 /** Chart.js plugin that adds bottom margin below the legend */
-export const legendMarginPlugin = {
+export const legendMarginPlugin: Plugin<any> = {
   id: 'legendMargin',
   beforeInit(chart: Chart) {
     const legend = chart.legend
@@ -103,11 +103,11 @@ export const defaultChartOptions = {
       display: true,
       position: 'top' as const,
       align: 'start' as const,
-      onHover: (_event: { native: MouseEvent }) => {
+      onHover: (_event: ChartEvent) => {
         const canvas = _event.native?.target as HTMLCanvasElement | null
         if (canvas) canvas.style.cursor = 'pointer'
       },
-      onLeave: (_event: { native: MouseEvent }) => {
+      onLeave: (_event: ChartEvent) => {
         const canvas = _event.native?.target as HTMLCanvasElement | null
         if (canvas) canvas.style.cursor = 'default'
       },
@@ -123,12 +123,14 @@ export const defaultChartOptions = {
   scales: {
     x: {
       display: true,
+      beginAtZero: true,
       border: { display: false },
       grid: { display: false, color: '#4a4a4a' },
       ticks: { color: 'rgba(255, 255, 255, 0.7)', maxRotation: 0 },
     },
     y: {
       display: true,
+      beginAtZero: true,
       border: { display: false },
       grid: { display: true, color: '#4a4a4a' },
       ticks: { color: 'rgba(255, 255, 255, 0.7)', padding: 8 },
