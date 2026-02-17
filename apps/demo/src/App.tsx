@@ -84,6 +84,7 @@ import { CheckboxExample } from './examples/checkbox-example'
 import { DemoTable } from './examples/demo-table'
 import FormExample from './examples/form-example'
 import { IndicatorsExample } from './examples/indicators-example'
+import { ListViewFilterExample } from './examples/list-view-filter-example'
 import PaginationExample from './examples/pagination-example'
 import { RadioExample } from './examples/radio-example'
 import TextAreaExample from './examples/textarea-example'
@@ -148,6 +149,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     icon: <LayersIcon />,
     items: [
       { id: 'table', label: 'Table' },
+      { id: 'list-view-filter', label: 'List view filter' },
       { id: 'avatar', label: 'Avatar' },
       { id: 'badge', label: 'Badge' },
       { id: 'accordion', label: 'Accordion' },
@@ -825,6 +827,8 @@ const App = (): JSX.Element => {
               <DemoTable />
             </section>
           )}
+          {/* Table */}
+          {activeSection === 'list-view-filter' && <ListViewFilterExample />}
           {/* Avatar */}
           {activeSection === 'avatar' && (
             <section className="demo-section">

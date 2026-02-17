@@ -134,6 +134,24 @@
   right: 0.75rem;
   color: var(--mining-sdk-input-placeholder-color, #999999);
   pointer-events: none;
+
+  &--cross {
+    display: none;
+  }
+
+  &[data-has-tags='true'] {
+    pointer-events: auto;
+    cursor: pointer;
+
+    &:hover {
+      .mining-sdk-tag-input__icon--glass {
+        display: none;
+      }
+      .mining-sdk-tag-input__icon--cross {
+        display: block;
+      }
+    }
+  }
 }
 
 .mining-sdk-tag-input__dropdown {
