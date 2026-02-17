@@ -220,7 +220,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
             <div className="mining-sdk-chart-container__chart-area">
               {loading && (
                 <div className="mining-sdk-chart-container__loading-overlay">
-                  <Loader size={8} count={3} />
+                  <Loader />
                 </div>
               )}
               {empty && !loading && (
@@ -242,7 +242,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
             <div className="mining-sdk-chart-container__body">
               {loading && (
                 <div className="mining-sdk-chart-container__loading-overlay">
-                  <Loader size={8} count={3} />
+                  <Loader />
                 </div>
               )}
               {empty && !loading && (
