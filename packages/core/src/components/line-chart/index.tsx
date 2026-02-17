@@ -13,7 +13,11 @@ import 'chartjs-adapter-date-fns'
 import * as React from 'react'
 import { Line } from 'react-chartjs-2'
 import { cn } from '../../utils'
-import { defaultChartColors, defaultChartOptions } from '../../utils/chart-options'
+import {
+  defaultChartColors,
+  defaultChartOptions,
+  legendMarginPlugin,
+} from '../../utils/chart-options'
 
 ChartJS.register(
   CategoryScale,
@@ -39,8 +43,8 @@ export type LineChartProps = {
   showPoints?: boolean
   /** Show built-in legend (default: true). Set false when using ChartContainer legendData */
   showLegend?: boolean
-  /** Legend position (default: top) */
-  legendPosition?: 'top' | 'bottom' | 'left' | 'right'
+  /** Set of dataset indices to hide (controlled externally, e.g. by ChartContainer custom legend) */
+  hiddenDatasets?: Set<number>
   /** Enable zoom (wheel/pinch) and pan (default: true) */
   enableZoom?: boolean
   /** Chart height in pixels */
@@ -66,7 +70,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
       formatYLabel,
       showPoints = false,
       showLegend = true,
-      legendPosition = 'top',
+      hiddenDatasets,
       enableZoom = true,
       height = 300,
       className,
@@ -78,14 +82,11 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
         ...defaultChartOptions,
         ...options,
       }
-      base.plugins = {
-        ...base.plugins,
-        legend: {
-          ...base.plugins?.legend,
-          display: showLegend,
-          position: legendPosition,
-          align: legendPosition === 'bottom' || legendPosition === 'top' ? 'start' : 'center',
-        },
+      if (!showLegend) {
+        base.plugins = {
+          ...base.plugins,
+          legend: { ...base.plugins?.legend, display: false },
+        }
       }
       if (enableZoom) {
         base.plugins = {
@@ -142,11 +143,12 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
           },
         },
       }
-    }, [options, formatXLabel, formatYLabel, showPoints, showLegend, legendPosition, enableZoom])
+    }, [options, formatXLabel, formatYLabel, showPoints, showLegend, enableZoom])
 
     const chartData = React.useMemo(() => {
       const datasets = data.datasets?.map((ds, i) => ({
         ...ds,
+        hidden: hiddenDatasets?.has(i) ?? false,
         pointRadius: showPoints ? 3 : 0,
         pointHoverRadius: showPoints ? 6 : 4,
         borderColor: ds.borderColor ?? defaultChartColors[i % defaultChartColors.length],
@@ -154,7 +156,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
           ds.backgroundColor ?? `${defaultChartColors[i % defaultChartColors.length]}40`,
       }))
       return { ...data, datasets }
-    }, [data, showPoints])
+    }, [data, showPoints, hiddenDatasets])
 
     return (
       <div
@@ -162,7 +164,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
         className={cn('mining-sdk-line-chart', className)}
         style={{ height, width: '100%' }}
       >
-        <Line data={chartData} options={mergedOptions} />
+        <Line data={chartData} options={mergedOptions} plugins={[legendMarginPlugin]} />
       </div>
     )
   },

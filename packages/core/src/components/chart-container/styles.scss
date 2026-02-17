@@ -1,7 +1,4 @@
 .mining-sdk-chart-container {
-  background-color: var(--mining-sdk-chart-container-bg);
-  padding: 20px;
-
   &--grid {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -43,6 +40,11 @@
   &__legend-item {
     @include flex_align;
     gap: 0.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
   }
 
   &__legend-box {
@@ -154,25 +156,23 @@
     color: hsl(var(--foreground) / 0.7);
   }
 
-  &__loading,
   &__empty {
     @include flex_center;
     min-height: 200px;
     color: hsl(var(--foreground) / 0.6);
   }
 
-  &__spinner {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 9999px;
-    border: 2px solid hsl(var(--foreground) / 0.3);
-    border-top-color: hsl(var(--foreground));
-    animation: mining-sdk-chart-spin 0.7s linear infinite;
+  &__loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    @include flex_center;
+    background: transparent;
+    pointer-events: none;
   }
-}
 
-@keyframes mining-sdk-chart-spin {
-  to {
-    transform: rotate(360deg);
+  &__chart-area,
+  &__body {
+    position: relative;
   }
 }

@@ -1,5 +1,5 @@
 import { ChartContainer, computeStats, LineChart, UNITS } from '@mining-sdk/core'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   LINE_CHART_DAILY_REVENUE,
   LINE_CHART_HASH_RATE,
@@ -14,9 +14,52 @@ const RANGE_OPTIONS = [
   { label: '1 D', value: '1d' },
 ] as const
 
+const RANGE_LABELS: Record<string, string[]> = {
+  '5m': ['12:55', '12:56', '12:57', '12:58', '12:59', '13:00'],
+  '30m': ['12:30', '12:35', '12:40', '12:45', '12:50', '12:55', '13:00'],
+  '3h': ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00'],
+  '1d': ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00', '00:00'],
+}
+
+/** Generate slightly different hash-rate data per range for the demo */
+const generateHashRateData = (range: string): typeof LINE_CHART_HASH_RATE => {
+  const labels = RANGE_LABELS[range] ?? RANGE_LABELS['5m']!
+  const count = labels.length
+  const seed = range.charCodeAt(0) + range.charCodeAt(range.length - 1)
+  const vary = (base: number, i: number): number =>
+    +(base + Math.sin(seed + i * 1.7) * base * 0.04).toFixed(2)
+  return {
+    labels,
+    datasets: LINE_CHART_HASH_RATE.datasets.map((ds) => ({
+      ...ds,
+      data: Array.from({ length: count }, (_, i) => {
+        const base = (ds.data as number[])[0] ?? 0
+        return base === 0 ? 0 : vary(base, i)
+      }),
+    })),
+  }
+}
+
 export const LineChartExample: React.FC = () => {
   const [range, setRange] = useState('5m')
-  const hashRatePrimaryData = (LINE_CHART_HASH_RATE.datasets[0]?.data ?? []) as number[]
+  const [hashRateData, setHashRateData] = useState(() => generateHashRateData('5m'))
+  const [hashRateLoading, setHashRateLoading] = useState(false)
+
+  const handleRangeChange = useCallback((value: string) => {
+    setRange(value)
+    setHashRateLoading(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hashRateLoading) return
+    const timer = setTimeout(() => {
+      setHashRateData(generateHashRateData(range))
+      setHashRateLoading(false)
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [hashRateLoading, range])
+
+  const hashRatePrimaryData = (hashRateData.datasets[0]?.data ?? []) as number[]
   const hashRateStats = computeStats(hashRatePrimaryData)
 
   const temperatureData = (LINE_CHART_TEMPERATURE.datasets[0]?.data ?? []) as number[]
@@ -55,7 +98,8 @@ export const LineChartExample: React.FC = () => {
         <h3>With highlighted value and range selector</h3>
         <ChartContainer
           title="Hash Rate"
-          legendData={LINE_CHART_HASH_RATE.datasets.map((ds) => ({
+          loading={hashRateLoading}
+          legendData={hashRateData.datasets.map((ds) => ({
             label: ds.label as string,
             color: (ds.borderColor ??
               (ds as { backgroundColor?: string }).backgroundColor) as string,
@@ -67,7 +111,7 @@ export const LineChartExample: React.FC = () => {
           rangeSelector={{
             options: RANGE_OPTIONS.map((o) => ({ label: o.label, value: o.value })),
             value: range,
-            onChange: setRange,
+            onChange: handleRangeChange,
           }}
           footer={
             <span>
@@ -80,7 +124,7 @@ export const LineChartExample: React.FC = () => {
             height={250}
             showLegend={false}
             formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
-            data={LINE_CHART_HASH_RATE}
+            data={hashRateData}
           />
         </ChartContainer>
       </section>
