@@ -1,0 +1,32 @@
+$_prefix: 'mining-sdk-pool-details-popover';
+
+.#{$_prefix} {
+  display: inline-block;
+
+  .mining-sdk-dialog__content {
+    gap: 16px;
+    border: none;
+    padding: 16px;
+    background-color: var(--mining-sdk-color-black);
+  }
+
+  .mining-sdk-dialog__header {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .mining-sdk-dialog__title {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+
+  &__body {
+    padding: 0;
+
+    .mining-sdk-pool-details-card {
+      background-color: var(--mining-sdk-color-surface);
+      border: 1px solid var(--mining-sdk-dialog-border-color);
+    }
+  }
+}

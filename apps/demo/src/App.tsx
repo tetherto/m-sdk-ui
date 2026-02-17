@@ -1,5 +1,6 @@
 import type { DateRange, SidebarMenuItem, ToastPosition, ToastVariant } from '@mining-sdk/core'
 import {
+  ActiveIncidentsCard,
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -42,6 +43,8 @@ import {
   Loader,
   NotFoundPage,
   PersonIcon,
+  PoolDetailsCard,
+  PoolDetailsPopover,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -56,6 +59,7 @@ import {
   Sidebar,
   SimplePopover,
   SimpleTooltip,
+  SkeletonBlock,
   Spinner,
   Switch,
   Tabs,
@@ -192,6 +196,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'spinner', label: 'Spinner' },
       { id: 'loader', label: 'Loader' },
+      { id: 'skeleton', label: 'Skeleton' },
     ],
   },
   {
@@ -202,6 +207,16 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'error-boundary', label: 'Error Boundary' },
       { id: 'error-card', label: 'Error Card' },
       { id: 'not-found-page', label: 'Not Found Page' },
+    ],
+  },
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    icon: <BarChartIcon />,
+    items: [
+      { id: 'active-incidents-card', label: 'Active Incidents Card' },
+      { id: 'pool-details-card', label: 'Pool Details Card' },
+      { id: 'pool-details-popover', label: 'Pool Details Popover' },
     ],
   },
 ]
@@ -1806,6 +1821,71 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
+          {/* Skeleton */}
+          {activeSection === 'skeleton' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Skeleton</h2>
+
+              <h3>Default (32px height)</h3>
+              <div style={{ maxWidth: 400, marginBottom: 32 }}>
+                <SkeletonBlock />
+              </div>
+
+              <h3>Custom Heights</h3>
+              <div
+                style={{
+                  maxWidth: 400,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 14,
+                  marginBottom: 32,
+                }}
+              >
+                <SkeletonBlock height={16} />
+                <SkeletonBlock height={24} />
+                <SkeletonBlock height={32} />
+                <SkeletonBlock height={48} />
+              </div>
+
+              <h3>Custom Widths</h3>
+              <div
+                style={{
+                  maxWidth: 400,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 14,
+                  marginBottom: 32,
+                }}
+              >
+                <SkeletonBlock width="25%" />
+                <SkeletonBlock width="50%" />
+                <SkeletonBlock width="75%" />
+                <SkeletonBlock width="100%" />
+              </div>
+
+              <h3>Circle (Avatar placeholder)</h3>
+              <div style={{ display: 'flex', gap: 16, marginBottom: 32 }}>
+                <SkeletonBlock circle height={32} />
+                <SkeletonBlock circle height={48} />
+                <SkeletonBlock circle height={64} />
+              </div>
+
+              <h3>Custom Border Radius</h3>
+              <div
+                style={{
+                  maxWidth: 400,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 14,
+                  marginBottom: 32,
+                }}
+              >
+                <SkeletonBlock borderRadius={0} />
+                <SkeletonBlock borderRadius={8} />
+                <SkeletonBlock borderRadius={16} />
+              </div>
+            </section>
+          )}
           {/* Error Boundary */}
           {activeSection === 'error-boundary' && (
             <section className="demo-section">
@@ -1951,6 +2031,171 @@ const App = (): JSX.Element => {
                     onClose={() => setMobileSidebarOpen(false)}
                   />
                 </section>
+              </div>
+            </section>
+          )}
+
+          {/* Active Incidents Card */}
+          {activeSection === 'active-incidents-card' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Active Incidents Card</h2>
+
+              <h3>With Data</h3>
+              <div style={{ maxWidth: 520, marginBottom: 32 }}>
+                <ActiveIncidentsCard
+                  label="Active Alerts"
+                  items={[
+                    {
+                      id: '1',
+                      title: 'max_inlet_temp_critical',
+                      subtitle: 'Inlet Temperature too high. Miner turned off',
+                      body: '05-02-2026 12:37:54 Bitmain Hydro 2 a_e_2',
+                      severity: 'critical',
+                    },
+                    {
+                      id: '2',
+                      title: 'max_inlet_temp_critical',
+                      subtitle: 'Inlet Temperature too high. Miner turned off',
+                      body: '05-02-2026 12:37:54 Bitmain Hydro 1 a_d_2',
+                      severity: 'critical',
+                    },
+                    {
+                      id: '3',
+                      title: 'max_inlet_temp_critical',
+                      subtitle: 'Inlet Temperature too high. Miner turned off',
+                      body: '05-02-2026 12:37:54 Bitmain Hydro 1 a_c_2',
+                      severity: 'critical',
+                    },
+                    {
+                      id: '4',
+                      title: 'max_inlet_temp_critical',
+                      subtitle: 'Inlet Temperature too high. Miner turned off',
+                      body: '05-02-2026 12:37:54 Bitmain Hydro 1 a_b_2',
+                      severity: 'critical',
+                    },
+                    {
+                      id: '5',
+                      title: 'circulating_pump_fault',
+                      subtitle: 'Circulating pump failure',
+                      body: '20-01-2026 20:36:10 Bitmain Imm 1',
+                      severity: 'high',
+                    },
+                    {
+                      id: '6',
+                      title: 'secondary_pump_fault',
+                      subtitle:
+                        'Secondary circulation pump failure Secondary circulation pump 1 fault',
+                      body: '14-01-2026 18:16:35 Bitmain Imm 2',
+                      severity: 'high',
+                    },
+                    {
+                      id: '7',
+                      title: 'secondary_pump_fault',
+                      subtitle:
+                        'Secondary circulation pump failure Secondary circulation pump 2 fault',
+                      body: '14-01-2026 18:16:35 Bitmain Imm 2',
+                      severity: 'high',
+                    },
+                    {
+                      id: '8',
+                      title: 'fan_speed_anomaly',
+                      subtitle: 'Fan RPM inconsistent with target speed',
+                      body: '13-01-2026 09:45:22 Bitmain Hydro 3 b_a_1',
+                      severity: 'medium',
+                    },
+                    {
+                      id: '9',
+                      title: 'low_hashrate_warning',
+                      subtitle: 'Hashrate dropped below 50% of expected',
+                      body: '12-01-2026 14:22:18 Bitmain Hydro 1 a_f_3',
+                      severity: 'high',
+                    },
+                    {
+                      id: '10',
+                      title: 'network_latency_high',
+                      subtitle: 'Pool connection latency above 200ms',
+                      body: '11-01-2026 08:15:44 Bitmain Imm 3',
+                      severity: 'medium',
+                    },
+                  ]}
+                  // eslint-disable-next-line no-alert
+                  onItemClick={(id) => alert(`Clicked incident: ${id}`)}
+                />
+              </div>
+
+              <h3>Loading State</h3>
+              <div style={{ maxWidth: 520, marginBottom: 32 }}>
+                <ActiveIncidentsCard label="Active Alerts" isLoading skeletonRows={4} />
+              </div>
+
+              <h3>Empty State</h3>
+              <div style={{ maxWidth: 520 }}>
+                <ActiveIncidentsCard
+                  label="Active Alerts"
+                  items={[]}
+                  emptyMessage="No active alerts"
+                />
+              </div>
+            </section>
+          )}
+
+          {/* Pool Details Card */}
+          {activeSection === 'pool-details-card' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Pool Details Card</h2>
+
+              <div style={{ maxWidth: 420, marginBottom: 32 }}>
+                <PoolDetailsCard
+                  label="Pool Info"
+                  details={[
+                    { title: 'Id:', value: 'minerpool-f2pool-shelf-0' },
+                    { title: 'Rack:', value: 'minerpool-f2pool-shelf' },
+                    { title: 'User name:', value: 'haven7346' },
+                    { title: 'Balance:', value: 0 },
+                    { title: 'Unsettled:', value: 0 },
+                    { title: 'Revenue last 24hrs:', value: 0.0001 },
+                    { title: 'Active Worker Count:', value: 7 },
+                  ]}
+                />
+              </div>
+
+              <h3>Empty State</h3>
+              <div style={{ maxWidth: 420 }}>
+                <PoolDetailsCard label="Pool Info" details={[]} />
+              </div>
+            </section>
+          )}
+
+          {/* Pool Details Popover */}
+          {activeSection === 'pool-details-popover' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Pool Details Popover</h2>
+
+              <h3>Default</h3>
+              <div style={{ marginBottom: 32 }}>
+                <PoolDetailsPopover
+                  title="Pool details"
+                  triggerLabel="Show details"
+                  details={[
+                    { title: 'Id:', value: 'minerpool-f2pool-shelf-0' },
+                    { title: 'Rack:', value: 'minerpool-f2pool-shelf' },
+                    { title: 'User name:', value: 'haven7346' },
+                    { title: 'Balance:', value: 0 },
+                    { title: 'Unsettled:', value: 0 },
+                    { title: 'Revenue last 24hrs:', value: 0.0001 },
+                    { title: 'Active Worker Count:', value: 7 },
+                  ]}
+                />
+              </div>
+
+              <h3>Disabled</h3>
+              <div>
+                <PoolDetailsPopover
+                  title="Pool details"
+                  triggerLabel="Show details"
+                  disabled
+                  details={[]}
+                />
               </div>
             </section>
           )}

@@ -11,6 +11,7 @@ const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
 
 export type DialogHeaderProps = {
+  bare?: boolean
   closable?: boolean
   onClose?: VoidFunction
 }
@@ -38,22 +39,30 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
  * Dialog header component
  */
 const DialogHeader = ({
-  className,
-  children,
-  closable,
   onClose,
+  closable,
+  children,
+  className,
+  bare = false,
   ...props
 }: DialogHeaderProps & React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
   return (
-    <div className={cn('mining-sdk-dialog__header', className)} {...props}>
+    <div
+      className={cn(
+        'mining-sdk-dialog__header',
+        { 'mining-sdk-dialog__header--bare': bare },
+        className,
+      )}
+      {...props}
+    >
       <div className="mining-sdk-dialog__header__container">{children}</div>
       {closable && (
         <DialogClose asChild>
           <Button
             size="sm"
-            className="mining-sdk-dialog__header__close"
-            variant="outline"
+            variant="ghost"
             onClick={onClose}
+            className="mining-sdk-dialog__header__close"
           >
             <Cross2Icon />
           </Button>
@@ -111,6 +120,7 @@ const DialogContent = React.forwardRef<
       title,
       description,
       children,
+      bare,
       closeOnClickOutside = true,
       closeOnEscape = true,
       onInteractOutside,
@@ -144,7 +154,7 @@ const DialogContent = React.forwardRef<
           onEscapeKeyDown={handleEscapeKeyDown}
           {...props}
         >
-          <DialogHeader closable={closable} onClose={onClose}>
+          <DialogHeader closable={closable} onClose={onClose} bare={bare}>
             {title && (
               <>
                 <DialogTitle>{title}</DialogTitle>

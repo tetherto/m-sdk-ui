@@ -4,6 +4,12 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 
 // Accordion root
 .mining-sdk-accordion {
+  @include flex_column;
+
+  background-color: rgba(var(--mining-sdk-color-black), 0.05);
+}
+
+.mining-sdk-accordion--solid-background {
   background-color: transparent;
 
   &--solid-background {
@@ -25,6 +31,7 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
   // Accordion trigger
   &__trigger {
     @include flex_align_between;
+    
     width: 100%;
     padding: 1rem 1.5rem;
     background-color: transparent;
@@ -40,6 +47,23 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 
     &[data-state='open'] {
       border-bottom-color: var(--mining-sdk-popover-border);
+
+      .mining-sdk-accordion__trigger {
+        @include flex_align_between;
+
+        width: 100%;
+        font-size: 20px;
+        font-weight: 400;
+        gap: 10px;
+        cursor: pointer;
+        user-select: none;
+        padding: 10px 20px;
+        border: none;
+        background: none;
+        color: inherit;
+        text-align: left;
+        border: 1px solid var(--mining-sdk-color-primary);
+      }
 
       .mining-sdk-accordion__icon--minus {
         opacity: 1;

@@ -7,6 +7,7 @@
 
 // Component Styles
 @import '../components/accordion/styles';
+@import '../components/active-incidents-card/styles';
 @import '../components/avatar/styles';
 @import '../components/button/styles';
 @import '../components/card/styles';
@@ -33,10 +34,13 @@
 @import '../components/textarea/styles';
 @import '../components/indicator/styles';
 @import '../components/select/styles';
+@import '../components/skeleton/styles';
 @import '../components/dropdown-menu/styles';
 @import '../components/toast/styles';
 @import '../components/pagination/styles';
 @import '../components/data-table/styles';
+@import '../components/pool-details-card/styles';
+@import '../components/pool-details-popover/styles';
 @import '../components/sidebar/styles';
 @import '../components/spinner/styles';
 @import '../components/loader/styles';

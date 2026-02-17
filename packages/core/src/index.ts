@@ -6,7 +6,7 @@
 
 // Styled components
 export * from './components/accordion'
-
+export * from './components/active-incidents-card'
 export * from './components/alert-dialog'
 
 export * from './components/area-chart'
@@ -34,12 +34,15 @@ export * from './components/line-chart'
 export * from './components/loader'
 export * from './components/not-found-page'
 export * from './components/pagination'
+export * from './components/pool-details-card'
+export * from './components/pool-details-popover'
 export * from './components/popover'
 export * as Progress from './components/progress'
 export * from './components/radio'
 export * from './components/select'
 export * as Separator from './components/separator'
 export * from './components/sidebar'
+export * from './components/skeleton'
 export * as Slider from './components/slider'
 export * from './components/spinner'
 export * from './components/switch'
