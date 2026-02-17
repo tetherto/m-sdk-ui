@@ -1,0 +1,178 @@
+.mining-sdk-chart-container {
+  &--grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      'title rangeselector'
+      'legend highlightedvalue'
+      'chart chart';
+    gap: 0.5rem 1rem;
+    align-items: start;
+
+    .mining-sdk-chart-container__title-area {
+      grid-area: title;
+    }
+    .mining-sdk-chart-container__range-area {
+      grid-area: rangeselector;
+      justify-self: end;
+    }
+    .mining-sdk-chart-container__legend-area {
+      grid-area: legend;
+    }
+    .mining-sdk-chart-container__highlight-area {
+      grid-area: highlightedvalue;
+      justify-self: end;
+    }
+    .mining-sdk-chart-container__chart-area {
+      grid-area: chart;
+      min-height: 200px;
+      width: 100%;
+    }
+  }
+
+  &__legend {
+    @include flex_wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  &__legend-item {
+    @include flex_align;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+
+  &__legend-box {
+    width: 10px;
+    height: 10px;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  &__legend-label {
+    font-size: 0.75rem;
+    color: var(--mining-sdk-chart-container-legend-label);
+  }
+
+  &__header-row {
+    @include flex_align_start_between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__header-left {
+    flex: 0 0 auto;
+  }
+
+  &__header-right {
+    @include flex_align;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--mining-sdk-chart-container-title);
+  }
+
+  &__range-selector {
+    @include flex_align;
+    gap: 0;
+    border-radius: 0;
+    overflow: hidden;
+    border: 1px solid hsl(var(--foreground) / 0.2);
+  }
+
+  &__range-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: hsl(var(--foreground) / 0.8);
+    background: transparent;
+    border: none;
+    border-right: 1px solid hsl(var(--foreground) / 0.2);
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &:hover {
+      background: hsl(var(--foreground) / 0.08);
+      color: hsl(var(--foreground));
+    }
+
+    &--active {
+      background: hsl(var(--foreground) / 0.12);
+      color: hsl(var(--foreground));
+    }
+  }
+
+  &__highlighted-value {
+    @include flex_align;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  &__highlighted-value__number {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--mining-sdk-color-primary);
+  }
+
+  &__highlighted-value__unit {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: hsl(var(--foreground) / 0.8);
+  }
+
+  &__body {
+    position: relative;
+    min-height: 200px;
+
+    &--with-highlight {
+      @include flex_align_start;
+      gap: 1rem;
+    }
+  }
+
+  &__chart-slot {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__footer {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid hsl(var(--foreground) / 0.1);
+    font-size: 0.75rem;
+    color: hsl(var(--foreground) / 0.7);
+  }
+
+  &__empty {
+    @include flex_center;
+    min-height: 200px;
+    color: hsl(var(--foreground) / 0.6);
+  }
+
+  &__loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    @include flex_center;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  &__chart-area,
+  &__body {
+    position: relative;
+  }
+}

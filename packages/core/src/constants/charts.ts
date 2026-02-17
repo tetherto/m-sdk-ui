@@ -1,3 +1,12 @@
+/** Default color palette for chart datasets (line, bar, area) */
+export const defaultChartColors = [
+  'hsl(25 95% 53%)', // primary orange
+  'hsl(142 76% 64%)', // success green
+  'hsl(217 91% 60%)', // blue
+  'hsl(45 93% 47%)', // warning yellow
+  'hsl(0 84% 60%)', // error red
+] as const
+
 export const CHART_LABELS = {
   HASHRATE: 'Hashrate',
   EFFICIENCY: 'Efficiency',
