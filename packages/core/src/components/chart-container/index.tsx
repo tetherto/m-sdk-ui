@@ -111,15 +111,16 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
     const hasHeaderRow1 = header ?? title ?? (rangeSelector && rangeSelector.options.length > 0)
     const hasLegendRow = legendData && legendData.length > 0
 
+    const injectHiddenDatasets = (child: React.ReactNode): React.ReactNode =>
+      React.isValidElement(child)
+        ? React.cloneElement(child as React.ReactElement<{ hiddenDatasets?: Set<number> }>, {
+            hiddenDatasets: hiddenIndices,
+          })
+        : child
+
     const chartChildren =
       hasLegendRow && hiddenIndices.size > 0
-        ? React.Children.map(children, (child) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child as React.ReactElement<{ hiddenDatasets?: Set<number> }>, {
-                  hiddenDatasets: hiddenIndices,
-                })
-              : child,
-          )
+        ? React.Children.map(children, injectHiddenDatasets)
         : children
 
     return (
