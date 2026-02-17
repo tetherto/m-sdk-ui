@@ -12,6 +12,7 @@
     @include flex_column;
 
     overflow-y: auto;
+
     &--options {
       flex: 1;
       min-width: 16rem;
@@ -43,8 +44,10 @@
 
     &-checkbox {
       flex-shrink: 0;
+
       background-color: var(--mining-sdk-cascader-checkbox-bg);
       border-color: var(--mining-sdk-border-default-color);
+
       &[data-state='indeterminate'] {
         background-color: var(--mining-sdk-cascader-checkbox-bg);
         border-color: var(--mining-sdk-cascader-active-bg);
@@ -71,10 +74,9 @@
   }
 
   &__category-label {
+    @include text_ellipsis;
+
     flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     transition: color 0.2s ease;
   }
 
