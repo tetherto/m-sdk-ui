@@ -113,7 +113,8 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
 
     const chartChildren =
       hasLegendRow && hiddenIndices.size > 0
-        ? React.Children.map(children, (child) =>
+        ? // eslint-disable-next-line antfu/consistent-list-newline
+          React.Children.map(children, (child) =>
             React.isValidElement(child)
               ? React.cloneElement(child as React.ReactElement<{ hiddenDatasets?: Set<number> }>, {
                   hiddenDatasets: hiddenIndices,
