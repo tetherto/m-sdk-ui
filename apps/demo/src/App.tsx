@@ -913,7 +913,7 @@ const App = (): JSX.Element => {
               <DemoTable />
             </section>
           )}
-          {/* Table */}
+          {/* List view filter */}
           {activeSection === 'list-view-filter' && <ListViewFilterExample />}
           {/* Avatar */}
           {activeSection === 'avatar' && (

@@ -88,7 +88,7 @@ $sidebar-expanded-width: 220px;
   position: fixed;
   inset: 0;
   z-index: 49;
-  background: rgba(0, 0, 0, 0.5); // TODO: Change Color Later
+  background: var(--mining-sdk-sidebar-backdrop-bg, rgba(0, 0, 0, 0.5));
 }
 
 /* ─── Toggle Button ─────────────────────────────────────────────────────── */

@@ -13,7 +13,12 @@ import 'chartjs-adapter-date-fns'
 import * as React from 'react'
 import { Line } from 'react-chartjs-2'
 import { cn } from '../../utils'
-import { defaultChartColors, defaultChartOptions } from '../../utils/chart-options'
+import {
+  colorWithAlpha,
+  defaultChartColors,
+  defaultChartOptions,
+  legendMarginPlugin,
+} from '../../utils/chart-options'
 
 ChartJS.register(
   CategoryScale,
@@ -56,20 +61,22 @@ export const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
     )
 
     const chartData = React.useMemo(() => {
-      const datasets = data.datasets?.map((ds, i) => ({
-        ...ds,
-        fill: true,
-        tension: 0.3,
-        borderColor: ds.borderColor ?? defaultChartColors[i % defaultChartColors.length],
-        backgroundColor:
-          ds.backgroundColor ?? `${defaultChartColors[i % defaultChartColors.length]}40`,
-      }))
+      const datasets = data.datasets?.map((ds, i) => {
+        const lineColor = ds.borderColor ?? defaultChartColors[i % defaultChartColors.length]
+        return {
+          ...ds,
+          fill: true,
+          tension: 0.3,
+          borderColor: lineColor,
+          backgroundColor: ds.backgroundColor ?? colorWithAlpha(String(lineColor), 0.2),
+        }
+      })
       return { ...data, datasets }
     }, [data])
 
     return (
       <div ref={ref} className={cn('mining-sdk-area-chart', className)} style={{ height }}>
-        <Line data={chartData} options={mergedOptions} />
+        <Line data={chartData} options={mergedOptions} plugins={[legendMarginPlugin]} />
       </div>
     )
   },
