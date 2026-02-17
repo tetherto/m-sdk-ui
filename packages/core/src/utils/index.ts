@@ -12,6 +12,9 @@ export * from './array'
 // Async utilities
 export * from './async'
 
+// Chart utilities
+export * from './chart-options'
+
 // Class name merging
 export * from './cn'
 

@@ -42,6 +42,14 @@ catalog:
   'class-variance-authority': ^0.7.1
   clsx: ^2.1.1
   date-fns: ^4.1.0
+  chart.js: ^4.4.9
+  chartjs-adapter-date-fns: ^3.0.0
+  chartjs-plugin-datalabels: ^2.2.0
+  chartjs-plugin-zoom: ^2.0.1
+  lightweight-charts: ^4.1.7
+  react-chartjs-2: ^5.2.0
+  prop-types: ^15.8.1
+  react-gauge-chart: ^0.5.1
   jsdom: ^28.0.0
   react: ^18.3.1
   react-hook-form: ^7.54.0

@@ -17,6 +17,7 @@ import {
   Breadcrumbs,
   Button,
   Card,
+  ChartContainer,
   ChatBubbleIcon,
   CheckIcon,
   CubeIcon,
@@ -32,6 +33,7 @@ import {
   ErrorBoundary,
   ErrorCard,
   ExclamationTriangleIcon,
+  GaugeChart,
   GearIcon,
   HomeIcon,
   Input,
@@ -77,6 +79,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
+import { AreaChartExample } from './examples/area-chart-example'
+import { BarChartExample } from './examples/bar-chart-example'
+import { LineChartExample } from './examples/line-chart-example'
 import { AccordionExample } from './examples/accordion-example'
 import { CascaderExample } from './examples/cascader-example'
 import { CheckboxExample } from './examples/checkbox-example'
@@ -155,6 +160,18 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'indicators', label: 'Indicators' },
       { id: 'icons', label: 'Icons' },
       { id: 'empty-state', label: 'Empty State' },
+    ],
+  },
+  {
+    id: 'charts',
+    label: 'Charts',
+    icon: <BarChartIcon />,
+    items: [
+      { id: 'line-chart', label: 'Line Chart' },
+      { id: 'bar-chart', label: 'Bar Chart' },
+      { id: 'area-chart', label: 'Area Chart' },
+      { id: 'gauge-chart', label: 'Gauge Chart' },
+      { id: 'chart-container', label: 'ChartContainer' },
     ],
   },
   {
@@ -508,6 +525,16 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
+          {/* Charts - Line Chart */}
+          {activeSection === 'line-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Line Chart</h2>
+              <p className="demo-section__description">
+                Presentational chart components. Data is passed via props; no fetching.
+              </p>
+              <LineChartExample />
+            </section>
+          )}
           {/* Pagination */}
           {activeSection === 'pagination' && (
             <section className="demo-section">
@@ -617,6 +644,13 @@ const App = (): JSX.Element => {
                   </DropdownMenu.Root>
                 </section>
               </div>
+            </section>
+          )}
+          {/* Charts - Bar Chart */}
+          {activeSection === 'bar-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Bar Chart</h2>
+              <BarChartExample />
             </section>
           )}
           {/* Input */}
@@ -750,6 +784,57 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
+          {/* Charts - Area Chart */}
+          {activeSection === 'area-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Area Chart</h2>
+              <AreaChartExample />
+            </section>
+          )}
+          {/* Charts - Gauge Chart */}
+          {activeSection === 'gauge-chart' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Gauge Chart</h2>
+              <div className="demo-section__charts">
+                <section>
+                  <h3>System utilization</h3>
+                  <ChartContainer title="System utilization">
+                    <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                      <GaugeChart percent={0.75} id="gauge-1" />
+                      <GaugeChart
+                        percent={0.35}
+                        id="gauge-2"
+                        colors={['#72F59E', '#FFC107', '#EF4444']}
+                      />
+                      <GaugeChart percent={0.92} id="gauge-3" hideText />
+                    </div>
+                  </ChartContainer>
+                </section>
+              </div>
+            </section>
+          )}
+          {/* Charts - ChartContainer */}
+          {activeSection === 'chart-container' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">ChartContainer</h2>
+              <p className="demo-section__description">
+                Wrapper for chart content with loading and empty states.
+              </p>
+              <div className="demo-section__charts">
+                <section>
+                  <h3>States</h3>
+                  <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                    <ChartContainer title="Loading" loading>
+                      <div style={{ height: 200 }} />
+                    </ChartContainer>
+                    <ChartContainer title="Empty" empty emptyMessage="No data for this period">
+                      <div style={{ height: 200 }} />
+                    </ChartContainer>
+                  </div>
+                </section>
+              </div>
+            </section>
+          )}
           {/* TextArea */}
           {activeSection === 'textarea' && (
             <section className="demo-section">
@@ -816,6 +901,7 @@ const App = (): JSX.Element => {
             </section>
           )}
           {/* Checkbox & Switch */}
+
           {activeSection === 'checkbox-switch' && <CheckboxExample />}
           {/* Table */}
           {activeSection === 'table' && (
@@ -836,6 +922,13 @@ const App = (): JSX.Element => {
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
               </div>
+            </section>
+          )}
+          {/* Table */}
+          {activeSection === 'table' && (
+            <section className="demo-section">
+              <h2 className="demo-section__title">Table</h2>
+              <DemoTable />
             </section>
           )}
           {/* Accordion */}
