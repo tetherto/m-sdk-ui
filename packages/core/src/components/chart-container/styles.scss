@@ -40,6 +40,11 @@
   &__legend-item {
     @include flex_align;
     gap: 0.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
   }
 
   &__legend-box {

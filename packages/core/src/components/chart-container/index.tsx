@@ -95,9 +95,31 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
     },
     ref,
   ) => {
+    const [hiddenIndices, setHiddenIndices] = React.useState<Set<number>>(new Set())
+
+    const toggleDataset = React.useCallback((index: number) => {
+      setHiddenIndices((prev) => {
+        const next = new Set(prev)
+        if (next.has(index)) next.delete(index)
+        else next.add(index)
+        return next
+      })
+    }, [])
+
     const useGridLayout = (legendData && legendData.length > 0) || highlightedValue || rangeSelector
     const hasHeaderRow1 = header ?? title ?? (rangeSelector && rangeSelector.options.length > 0)
     const hasLegendRow = legendData && legendData.length > 0
+
+    const chartChildren =
+      hasLegendRow && hiddenIndices.size > 0
+        ? React.Children.map(children, (child) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child as React.ReactElement<{ hiddenDatasets?: Set<number> }>, {
+                  hiddenDatasets: hiddenIndices,
+                })
+              : child,
+          )
+        : children
 
     return (
       <div
@@ -148,18 +170,29 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
             <div className="mining-sdk-chart-container__legend-area">
               {hasLegendRow && (
                 <div className="mining-sdk-chart-container__legend">
-                  {legendData!.map((item, i) => (
-                    <div key={i} className="mining-sdk-chart-container__legend-item">
-                      <span
-                        className="mining-sdk-chart-container__legend-box"
-                        style={{
-                          backgroundColor: legendFillColor(item.color),
-                          borderColor: item.color,
-                        }}
-                      />
-                      <span className="mining-sdk-chart-container__legend-label">{item.label}</span>
-                    </div>
-                  ))}
+                  {legendData!.map((item, i) => {
+                    const isHidden = hiddenIndices.has(i)
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        className="mining-sdk-chart-container__legend-item"
+                        style={{ opacity: isHidden ? 0.3 : 1 }}
+                        onClick={() => toggleDataset(i)}
+                      >
+                        <span
+                          className="mining-sdk-chart-container__legend-box"
+                          style={{
+                            backgroundColor: legendFillColor(item.color),
+                            borderColor: item.color,
+                          }}
+                        />
+                        <span className="mining-sdk-chart-container__legend-label">
+                          {item.label}
+                        </span>
+                      </button>
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -192,7 +225,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
               {empty && !loading && (
                 <div className="mining-sdk-chart-container__empty">{emptyMessage}</div>
               )}
-              {!loading && !empty && children}
+              {!loading && !empty && chartChildren}
             </div>
           </>
         ) : (
@@ -214,7 +247,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
               {empty && !loading && (
                 <div className="mining-sdk-chart-container__empty">{emptyMessage}</div>
               )}
-              {!loading && !empty && children}
+              {!loading && !empty && chartChildren}
             </div>
           </>
         )}

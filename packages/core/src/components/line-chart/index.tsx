@@ -43,6 +43,8 @@ export type LineChartProps = {
   showPoints?: boolean
   /** Show built-in legend (default: true). Set false when using ChartContainer legendData */
   showLegend?: boolean
+  /** Set of dataset indices to hide (controlled externally, e.g. by ChartContainer custom legend) */
+  hiddenDatasets?: Set<number>
   /** Enable zoom (wheel/pinch) and pan (default: true) */
   enableZoom?: boolean
   /** Chart height in pixels */
@@ -68,6 +70,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
       formatYLabel,
       showPoints = false,
       showLegend = true,
+      hiddenDatasets,
       enableZoom = true,
       height = 300,
       className,
@@ -145,6 +148,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
     const chartData = React.useMemo(() => {
       const datasets = data.datasets?.map((ds, i) => ({
         ...ds,
+        hidden: hiddenDatasets?.has(i) ?? false,
         pointRadius: showPoints ? 3 : 0,
         pointHoverRadius: showPoints ? 6 : 4,
         borderColor: ds.borderColor ?? defaultChartColors[i % defaultChartColors.length],
@@ -152,7 +156,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
           ds.backgroundColor ?? `${defaultChartColors[i % defaultChartColors.length]}40`,
       }))
       return { ...data, datasets }
-    }, [data, showPoints])
+    }, [data, showPoints, hiddenDatasets])
 
     return (
       <div

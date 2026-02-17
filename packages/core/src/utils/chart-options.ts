@@ -123,7 +123,7 @@ export const defaultChartOptions = {
       display: true,
       border: { display: false },
       grid: { display: true, color: '#4a4a4a' },
-      ticks: { color: 'rgba(255, 255, 255, 0.7)' },
+      ticks: { color: 'rgba(255, 255, 255, 0.7)', padding: 8 },
     },
   },
   elements: {
