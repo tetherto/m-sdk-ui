@@ -903,12 +903,6 @@ const App = (): JSX.Element => {
           {/* Checkbox & Switch */}
 
           {activeSection === 'checkbox-switch' && <CheckboxExample />}
-          {/* Table */}
-          {activeSection === 'table' && (
-            <section className="demo-section">
-              <DemoTable />
-            </section>
-          )}
           {/* Avatar */}
           {activeSection === 'avatar' && (
             <section className="demo-section">

@@ -21,11 +21,21 @@ export const computeStats = (values: number[]): { min: number; max: number; avg:
 export const getDatasetValues = (datasets: Array<{ data: (number | null)[] }>): number[] =>
   datasets.flatMap((ds) => ds.data.filter((v): v is number => typeof v === 'number'))
 
-/** Add opacity to an HSL color string */
-const addColorOpacity = (color: string, opacity: number): string =>
-  typeof color === 'string' && color.startsWith('hsl')
-    ? color.replace(')', ` / ${opacity})`)
-    : color
+/** Add opacity to a CSS color string (supports hex, hsl, rgb) */
+export const colorWithAlpha = (color: string, alpha: number): string => {
+  if (typeof color !== 'string') return color
+  if (color.startsWith('#')) {
+    const hex = Math.round(alpha * 255)
+      .toString(16)
+      .padStart(2, '0')
+    const base = color.length === 9 ? color.slice(0, 7) : color
+    return `${base}${hex}`
+  }
+  if (color.startsWith('hsl') || color.startsWith('rgb')) {
+    return color.replace(/\)$/, ` / ${alpha})`)
+  }
+  return color
+}
 
 type LegendLabelItem = {
   text: string
@@ -53,10 +63,10 @@ const buildLegendLabels = (chart: Chart): LegendLabelItem[] => {
     const strokeStyle = typeof strokeStyleRaw === 'string' ? strokeStyleRaw : '#888'
 
     const fillStyle = isHidden
-      ? addColorOpacity(strokeStyle, 0.25 * disabledOpacity)
-      : addColorOpacity(strokeStyle, 0.25)
+      ? colorWithAlpha(strokeStyle, 0.25 * disabledOpacity)
+      : colorWithAlpha(strokeStyle, 0.25)
 
-    const dimmedStrokeStyle = isHidden ? addColorOpacity(strokeStyle, disabledOpacity) : strokeStyle
+    const dimmedStrokeStyle = isHidden ? colorWithAlpha(strokeStyle, disabledOpacity) : strokeStyle
     const fontColor = isHidden
       ? `rgba(255, 255, 255, ${0.7 * disabledOpacity})`
       : 'rgba(255, 255, 255, 0.7)'

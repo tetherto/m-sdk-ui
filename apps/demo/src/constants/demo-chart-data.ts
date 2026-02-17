@@ -3,6 +3,8 @@
  * Used by LineChart, BarChart, and AreaChart demos in App.tsx.
  */
 
+import { COLOR } from '@mining-sdk/core'
+
 export const LINE_CHART_REVENUE_BASIC = {
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
   datasets: [
@@ -75,6 +77,17 @@ export const AREA_CHART_HASHRATE_TREND = {
     {
       label: 'Hashrate',
       data: [100, 95, 110, 105, 120, 115],
+    },
+  ],
+}
+
+export const AREA_CHART_HASHRATE_TREND_BLUE = {
+  labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+  datasets: [
+    {
+      label: 'Hashrate',
+      data: [100, 35, 110, 105, 60, 115],
+      borderColor: COLOR.SLEEP_BLUE,
     },
   ],
 }

@@ -90,6 +90,18 @@
       }
     }
 
+    &--1-col {
+      grid-template-columns: 1fr;
+
+      @media (min-width: 640px) {
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 1024px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
     section {
       @include flex_column;
       gap: 0.75rem;

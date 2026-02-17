@@ -15,7 +15,6 @@ export * from './components/bar-chart'
 export * from './components/breadcrumbs'
 export * from './components/button'
 export * from './components/card'
-// Re-export Radix primitives with namespaces to avoid conflicts
 export * from './components/cascader'
 export * from './components/chart-container'
 export * from './components/checkbox'
@@ -52,6 +51,7 @@ export * from './components/toast'
 export * from './components/tooltip'
 export * from './components/typography'
 // Constants
+export * from './constants/colors'
 export * from './constants/units'
 // Theme system
 export * from './theme'
