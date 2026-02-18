@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { cn } from '../../utils'
+import { cn } from '@mining-sdk/core'
 
 const noDataMessage = 'No data available'
 

@@ -1,9 +1,8 @@
 import * as React from 'react'
 
-import { cn } from '../../utils'
+import { cn, SkeletonBlock } from '@mining-sdk/core'
 import { IncidentRow } from './incident-row'
 import type { TIncidentRowProps } from './incident-row'
-import { SkeletonBlock } from '../skeleton'
 
 export type ActiveIncidentsCardPartialProps = Partial<{
   label: string

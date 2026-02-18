@@ -1,4 +1,4 @@
-import { cn } from '../../utils'
+import { cn } from '@mining-sdk/core'
 import type { TIncidentSeverity } from './types'
 
 type TIncidentSeverityProps = {

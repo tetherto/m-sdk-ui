@@ -1,4 +1,4 @@
-import { cn } from '../../utils'
+import { cn } from '@mining-sdk/core'
 import { IncidentSeverity } from './incident-severity'
 import type { TIncidentSeverity } from './types'
 

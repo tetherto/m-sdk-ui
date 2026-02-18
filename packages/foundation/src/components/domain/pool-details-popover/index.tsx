@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-import { Button } from '../button'
-import { Dialog, DialogContent, DialogTrigger } from '../dialog'
+import { Button, cn, Dialog, DialogContent, DialogTrigger } from '@mining-sdk/core'
 import { PoolDetailsCard } from '../pool-details-card'
 import type { PoolDetailItem } from '../pool-details-card'
-import { cn } from '../../utils'
 
 type PoolDetailsPopoverPartialProps = Partial<{
   title: string

@@ -1,6 +1,6 @@
 import type { DateRange, SidebarMenuItem, ToastPosition, ToastVariant } from '@mining-sdk/core'
+import { ActiveIncidentsCard, PoolDetailsCard, PoolDetailsPopover } from '@mining-sdk/foundation'
 import {
-  ActiveIncidentsCard,
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -43,8 +43,6 @@ import {
   Loader,
   NotFoundPage,
   PersonIcon,
-  PoolDetailsCard,
-  PoolDetailsPopover,
   Popover,
   PopoverContent,
   PopoverTrigger,
