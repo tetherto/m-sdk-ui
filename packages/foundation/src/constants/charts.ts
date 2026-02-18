@@ -77,7 +77,6 @@ export const getChartAnimationConfig = (dataPointCount: number): false | { durat
 // Data decimation configuration for large datasets
 export const getDataDecimationConfig = (
   dataPointCount: number,
-  // eslint-disable-next-line style/member-delimiter-style
 ): { enabled: boolean; algorithm?: string } => {
   if (dataPointCount > CHART_PERFORMANCE.DECIMATION_THRESHOLD) {
     return {
