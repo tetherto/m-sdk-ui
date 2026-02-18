@@ -32,6 +32,19 @@ ChartJS.register(
   Legend,
 )
 
+type BarDataset = {
+  type?: string
+  stack?: string
+  data?: unknown[]
+}
+
+type DataLabelContext = {
+  chart: ChartJS
+  dataset: BarDataset
+  datasetIndex: number
+  dataIndex: number
+}
+
 export type BarChartProps = {
   /** Chart data - required, provided by parent. Use `as any` for mixed bar+line datasets. */
 
@@ -97,21 +110,14 @@ export const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
         },
         datalabels: showDataLabels
           ? {
-              display: (ctx: {
-                chart: ChartJS
-                dataset: { type?: string; stack?: string }
-                datasetIndex: number
-                dataIndex: number
-              }): boolean => {
+              display: (ctx: DataLabelContext): boolean => {
                 const { chart, dataset, datasetIndex, dataIndex } = ctx
                 if (dataset.type === 'line') return false
                 if (!isStacked) return true
                 const stackKey = dataset.stack || '__default__'
                 const dsets = chart.data.datasets ?? []
                 for (let i = dsets.length - 1; i >= 0; i--) {
-                  const ds = dsets[i] as
-                    | { type?: string; stack?: string; data?: unknown[] }
-                    | undefined
+                  const ds = dsets[i] as BarDataset | undefined
                   if (!ds || ds.type === 'line') continue
                   if ((ds.stack || '__default__') !== stackKey) continue
                   if (!chart.isDatasetVisible(i)) continue

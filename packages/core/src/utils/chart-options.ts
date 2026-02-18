@@ -114,7 +114,10 @@ export type BarChartSeries = {
   /** Assign a stack group id to stack multiple series together */
   stack?: string
   /** Gradient opacity stops (default { top: 0.3, bottom: 0.1 }) */
-  gradient?: { top: number; bottom: number }
+  gradient?: {
+    top: number
+    bottom: number
+  }
   categoryPercentage?: number
   barPercentage?: number
 }
@@ -226,7 +229,10 @@ export const buildBarChartData = (
     barPercentage?: number
     defaultLineAxis?: string
   },
-): { labels: string[]; datasets: Record<string, unknown>[] } => {
+): {
+  labels: string[]
+  datasets: Record<string, unknown>[]
+} => {
   const {
     series = [],
     lines = [],
@@ -381,8 +387,14 @@ export const buildBarChartOptions = ({
         intersect: false,
         callbacks: {
           label: (ctx: {
-            dataset: { label?: string; yAxisID?: string }
-            parsed: { y: number; x: number }
+            dataset: {
+              label?: string
+              yAxisID?: string
+            }
+            parsed: {
+              y: number
+              x: number
+            }
           }) => {
             const label = ctx.dataset.label || ''
             const value = ctx.parsed.y ?? ctx.parsed.x
