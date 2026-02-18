@@ -71,6 +71,85 @@ export const BAR_CHART_MINING_OUTPUT = {
   ],
 }
 
+export const BAR_CHART_STACKED_REVENUE = {
+  labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+  datasets: [
+    {
+      label: 'SITE-A',
+      data: [63, 30, 59, 75, 20, 10, 27, 45, 12, 45, 33, 28],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+      stack: 'revenue',
+    },
+    {
+      label: 'SITE-B',
+      data: [30, 9, 26, 35, 20, 27, 18, 27, 20, 42, 20, 19],
+      backgroundColor: COLOR.RED,
+      borderColor: COLOR.RED,
+      stack: 'revenue',
+    },
+  ],
+}
+
+export const BAR_CHART_GROUPED_SITES = {
+  labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+  datasets: [
+    {
+      label: 'SITE-C',
+      data: [58, 26, 55, 59, 28, 10, 55, 57, 26, 12, 58, 26],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+    },
+    {
+      label: 'SITE-D',
+      data: [34, 9, 31, 33, 22, 27, 18, 30, 28, 11, 31, 25],
+      backgroundColor: COLOR.RED,
+      borderColor: COLOR.RED,
+    },
+  ],
+}
+
+export const BAR_CHART_MINERS_STATUS = {
+  labels: ['02-11', '02-12', '02-13', '02-14', '02-15', '02-16', '02-17'],
+  datasets: [
+    {
+      label: 'Online',
+      data: [198, 200, 195, 197, 199, 198, 200],
+      backgroundColor: COLOR.GREEN,
+      borderColor: COLOR.GREEN,
+      stack: 'status',
+    },
+    {
+      label: 'Error',
+      data: [58, 55, 60, 57, 56, 58, 54],
+      backgroundColor: COLOR.RED,
+      borderColor: COLOR.RED,
+      stack: 'status',
+    },
+    {
+      label: 'Offline',
+      data: [12, 14, 10, 13, 11, 12, 10],
+      backgroundColor: '#FFFFFF',
+      borderColor: '#FFFFFF',
+      stack: 'status',
+    },
+    {
+      label: 'Sleep',
+      data: [8, 10, 7, 9, 8, 10, 6],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+      stack: 'status',
+    },
+    {
+      label: 'Maintenance',
+      data: [64, 61, 68, 64, 66, 62, 70],
+      backgroundColor: COLOR.COLD_ORANGE,
+      borderColor: COLOR.COLD_ORANGE,
+      stack: 'status',
+    },
+  ],
+}
+
 export const AREA_CHART_HASHRATE_TREND = {
   labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
   datasets: [
