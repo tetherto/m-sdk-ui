@@ -126,34 +126,13 @@ export const ChartWrapperPage = (): React.ReactElement => {
   const revenueStats = computeStats(revenueData)
 
   return (
-    <div
-      style={{
-        padding: '2rem',
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
-        minHeight: '100vh',
-      }}
-    >
-      {/* Header */}
-      <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-        <h2
-          style={{
-            fontSize: '2.5rem',
-            fontWeight: 700,
-            color: '#ff9300',
-            marginBottom: '0.5rem',
-          }}
-        >
-          ChartWrapper + ChartContainer Demo
-        </h2>
-        <p style={{ fontSize: '1.125rem', color: '#999' }}>
-          ChartWrapper handles loading/empty states, ChartContainer adds title/footer/legends
-        </p>
-      </div>
+    <div>
+      <h3>ChartWrapper + ChartContainer</h3>
 
       {/* Bar Chart Controls */}
       <div
         style={{
-          marginBottom: '2rem',
+          margin: '2rem 0',
           padding: '1.5rem',
           backgroundColor: '#1a1a1a',
           border: '1px solid #333',
@@ -521,69 +500,6 @@ export const ChartWrapperPage = (): React.ReactElement => {
               </ChartContainer>
             </ChartWrapper>
           </div>
-        </div>
-      </section>
-
-      {/* Mixed Dashboard */}
-      <section style={{ marginBottom: '4rem' }}>
-        <h3
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: 600,
-            color: '#e5e5e5',
-            marginBottom: '1.5rem',
-            paddingBottom: '0.75rem',
-            borderBottom: '2px solid #333',
-          }}
-        >
-          Mixed Dashboard (Bar + Line)
-        </h3>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
-          <ChartWrapper
-            data={showBarData ? BAR_CHART_MINING_OUTPUT : EMPTY_DATA}
-            isLoading={isLoadingBar}
-            minHeight={250}
-          >
-            <ChartContainer title="Mining Output">
-              <BarChart height={250} data={BAR_CHART_MINING_OUTPUT} />
-            </ChartContainer>
-          </ChartWrapper>
-
-          <ChartWrapper
-            data={showBarData ? BAR_CHART_REVENUE : EMPTY_DATA}
-            isLoading={isLoadingBar}
-            minHeight={250}
-          >
-            <ChartContainer title="Revenue">
-              <BarChart height={250} data={BAR_CHART_REVENUE} />
-            </ChartContainer>
-          </ChartWrapper>
-
-          <ChartWrapper
-            data={showLineData ? LINE_CHART_HASHRATE : EMPTY_DATA}
-            isLoading={isLoadingLine}
-            minHeight={250}
-          >
-            <ChartContainer title="Hashrate">
-              <LineChart height={250} data={LINE_CHART_HASHRATE} />
-            </ChartContainer>
-          </ChartWrapper>
-
-          <ChartWrapper
-            data={showLineData ? LINE_CHART_TEMPERATURE : EMPTY_DATA}
-            isLoading={isLoadingLine}
-            minHeight={250}
-          >
-            <ChartContainer title="Temperature">
-              <LineChart height={250} showPoints data={LINE_CHART_TEMPERATURE} />
-            </ChartContainer>
-          </ChartWrapper>
         </div>
       </section>
     </div>

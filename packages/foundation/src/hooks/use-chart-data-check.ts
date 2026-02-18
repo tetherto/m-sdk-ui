@@ -61,7 +61,9 @@ const hasDataset = (data: ChartData): data is ChartDataWithDataset => {
  * Returns `true` if data is empty/unavailable (should show empty state)
  * Returns `false` if data exists (should show chart)
  *
- * @param params - Object containing dataset or data
+ * @param dataset - Direct dataset for BarChart components
+ * @param dataset.dataset - Dataset property inside the dataset parameter (for custom charts)
+ * @param dataset.data - Data property inside the dataset parameter (for charts with data object)
  * @returns Boolean indicating if data is empty
  *
  * @example
