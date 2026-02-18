@@ -78,7 +78,7 @@ const EMPTY_DATA = {
 /**
  * ChartWrapper with ChartContainer Demo
  */
-export const ChartWrapperExample: React.FC = () => {
+export const ChartWrapperPage = (): React.ReactElement => {
   const [isLoadingBar, setIsLoadingBar] = React.useState(false)
   const [isLoadingLine, setIsLoadingLine] = React.useState(false)
   const [showBarData, setShowBarData] = React.useState(true)

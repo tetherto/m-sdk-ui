@@ -1,7 +1,8 @@
+import { Spinner } from '@mining-sdk/core'
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { Spinner } from '@mining-sdk/core'
 import App from './App'
+import { ChartWrapperPage } from './pages'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
 const HomePage = lazy(() => import('./pages/home-page').then((m) => ({ default: m.HomePage })))
@@ -179,6 +180,7 @@ export const router = createBrowserRouter([
       { path: 'area-chart', element: withSuspense(AreaChartExample) },
       { path: 'gauge-chart', element: withSuspense(GaugeChartPage) },
       { path: 'chart-container', element: withSuspense(ChartContainerPage) },
+      { path: 'chart-wrapper', element: withSuspense(ChartWrapperPage) },
       { path: 'tabs', element: withSuspense(TabsPage) },
       { path: 'breadcrumbs', element: withSuspense(BreadcrumbsPage) },
       { path: 'pagination', element: withSuspense(PaginationExample) },

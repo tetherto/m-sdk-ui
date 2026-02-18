@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import { CHART_EMPTY_DESCRIPTION, cn, EmptyState, Spinner } from '@mining-sdk/core'
+import { cn, EmptyState, Spinner } from '@mining-sdk/core'
+import { CHART_EMPTY_DESCRIPTION } from '../../../constants/charts'
 import { useChartDataCheck } from '../../../hooks/use-chart-data-check'
 
 type ChartWrapperProps = {
