@@ -59,6 +59,10 @@
   gap: 1rem;
   border: 1px solid var(--color-border);
   background: var(--color-background-elevated);
+  border-radius: 8px;
+  text-align: left;
+  width: 100%;
+  font: inherit;
 
   &:hover {
     transform: translateY(-4px);
@@ -66,20 +70,9 @@
     border-color: var(--color-primary);
   }
 
-  &__icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: var(--color-primary-transparent);
-    color: var(--color-primary);
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 
   &__title {

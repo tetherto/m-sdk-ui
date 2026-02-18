@@ -1,17 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import {
-  BarChartIcon,
-  ChatBubbleIcon,
-  CubeIcon,
-  DashboardIcon,
-  ExclamationTriangleIcon,
-  InputIcon,
-  LayersIcon,
-} from '@mining-sdk/core'
 import './home-page.scss'
 
 type CategoryCardProps = {
-  icon: React.ReactNode
   title: string
   description: string
   componentCount: number
@@ -20,7 +10,6 @@ type CategoryCardProps = {
 }
 
 const CategoryCard = ({
-  icon,
   title,
   description,
   componentCount,
@@ -28,8 +17,7 @@ const CategoryCard = ({
 }: CategoryCardProps): JSX.Element => {
   return (
     <button className="category-card" onClick={onClick} type="button">
-      <div className="category-card__icon">{icon}</div>
-      <h3 className="category-card__title">{title}</h3>
+      <h2 className="category-card__title">{title}</h2>
       <p className="category-card__description">{description}</p>
       <span className="category-card__count">{componentCount} components</span>
     </button>
@@ -38,49 +26,42 @@ const CategoryCard = ({
 
 const CATEGORIES = [
   {
-    icon: <InputIcon />,
     title: 'Forms',
     description: 'Input controls and form elements for user interaction',
     componentCount: 8,
     path: '/buttons',
   },
   {
-    icon: <ChatBubbleIcon />,
     title: 'Overlays',
     description: 'Dialogs, modals, and floating UI components',
     componentCount: 7,
     path: '/dialog',
   },
   {
-    icon: <LayersIcon />,
     title: 'Data Display',
     description: 'Components for presenting information and data',
     componentCount: 9,
     path: '/table',
   },
   {
-    icon: <BarChartIcon />,
     title: 'Charts',
     description: 'Data visualization and charting components',
     componentCount: 5,
     path: '/line-chart',
   },
   {
-    icon: <DashboardIcon />,
     title: 'Navigation',
     description: 'Navigation and routing components',
     componentCount: 4,
     path: '/tabs',
   },
   {
-    icon: <CubeIcon />,
     title: 'Loading',
     description: 'Loading states and progress indicators',
     componentCount: 2,
     path: '/spinner',
   },
   {
-    icon: <ExclamationTriangleIcon />,
     title: 'Feedback',
     description: 'Error handling and user feedback components',
     componentCount: 3,

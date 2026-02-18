@@ -166,6 +166,15 @@
     --mining-sdk-sidebar-overlay-border: var(--mining-sdk-color-primary);
     --mining-sdk-sidebar-item-active-color: var(--mining-sdk-color-primary);
     --mining-sdk-sidebar-toggle-bg: var(--mining-sdk-color-background-dark);
+
+    /* Demo App specific colors */
+    --color-primary: #f7931a;
+    --color-primary-light: #ffb347;
+    --color-primary-transparent: rgba(247, 147, 26, 0.1);
+    --color-text-primary: #ffffff;
+    --color-text-secondary: rgba(255, 255, 255, 0.7);
+    --color-background-elevated: #1a1a1a;
+    --color-border: rgba(255, 255, 255, 0.1);
   }
 
   .dark {
