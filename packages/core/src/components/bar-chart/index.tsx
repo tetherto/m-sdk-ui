@@ -45,6 +45,11 @@ type DataLabelContext = {
   dataIndex: number
 }
 
+type BarGradientContext = {
+  chart: ChartJS
+  dataIndex: number
+}
+
 export type BarChartProps = {
   /** Chart data - required, provided by parent. Use `as any` for mixed bar+line datasets. */
 
@@ -208,7 +213,7 @@ export const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
         if (bgIsFunction) {
           backgroundColor = ds.backgroundColor
         } else if (bgIsArray) {
-          backgroundColor = ((ctx: { chart: ChartJS; dataIndex: number }) =>
+          backgroundColor = ((ctx: BarGradientContext) =>
             makeBarGradient(
               ctx,
               ds.backgroundColor[ctx.dataIndex] ?? solidColor,
