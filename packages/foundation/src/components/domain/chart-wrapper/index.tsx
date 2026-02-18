@@ -27,6 +27,11 @@ type ChartWrapperProps = {
   isLoading?: boolean
 
   /**
+   * Custom loader component to show when loading (overrides default spinner)
+   */
+  customLoader?: React.ReactNode
+
+  /**
    * Whether to show "no data" placeholder when data is empty
    * @default true
    */
@@ -73,6 +78,18 @@ type ChartWrapperProps = {
  * </ChartWrapper>
  * ```
  *
+ *  @example
+ * ```tsx
+ * <ChartWrapper
+ *   data={chartData}
+ *   isLoading={isLoading}
+ *   minHeight={400}
+ *   custom={<CustomLoader />}
+ * >
+ *   <LineChart data={chartData} />
+ * </ChartWrapper>
+ * ```
+ *
  * @example
  * // With custom empty message
  * ```tsx
@@ -92,6 +109,7 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
   dataset,
   isLoading = false,
   showNoDataPlaceholder = true,
+  customLoader,
   customNoDataMessage,
   minHeight,
   loadingMinHeight,
@@ -144,7 +162,7 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
           className="mining-sdk-chart-wrapper__loading"
           style={{ minHeight: `${loadingMinHeight || minHeight || 400}px` }}
         >
-          <Spinner type="circle" color="secondary" />
+          {customLoader || <Spinner type="circle" color="secondary" />}
         </div>
       )}
     </div>

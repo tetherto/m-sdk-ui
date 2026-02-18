@@ -1,4 +1,12 @@
-import { BarChart, Button, ChartContainer, computeStats, LineChart, UNITS } from '@mining-sdk/core'
+import {
+  BarChart,
+  Button,
+  ChartContainer,
+  computeStats,
+  LineChart,
+  Loader,
+  UNITS,
+} from '@mining-sdk/core'
 import { ChartWrapper } from '@mining-sdk/foundation'
 import * as React from 'react'
 
@@ -196,6 +204,38 @@ export const ChartWrapperPage = (): React.ReactElement => {
             <ChartWrapper
               data={showBarData ? BAR_CHART_MINING_OUTPUT : EMPTY_DATA}
               isLoading={isLoadingBar}
+              minHeight={300}
+            >
+              <ChartContainer
+                title="Mining Output"
+                footer={
+                  <span>
+                    Min {miningOutputStats.min} TH/s · Max {miningOutputStats.max} TH/s · Avg{' '}
+                    {miningOutputStats.avg.toFixed(1)} TH/s
+                  </span>
+                }
+              >
+                <BarChart height={300} data={BAR_CHART_MINING_OUTPUT} />
+              </ChartContainer>
+            </ChartWrapper>
+          </div>
+
+          {/* Example 2: Bar Chart - Mining Output with Custom Loader */}
+          <div>
+            <h4
+              style={{
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: '#ff9300',
+                marginBottom: '1rem',
+              }}
+            >
+              Chart with custom loader
+            </h4>
+            <ChartWrapper
+              data={showBarData ? BAR_CHART_MINING_OUTPUT : EMPTY_DATA}
+              isLoading={isLoadingBar}
+              customLoader={<Loader />}
               minHeight={300}
             >
               <ChartContainer
