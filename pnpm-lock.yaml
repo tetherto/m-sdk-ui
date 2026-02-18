@@ -147,6 +147,9 @@ catalogs:
     react-router-dom:
       specifier: ^7.13.0
       version: 7.13.0
+    terser:
+      specifier: ^5.46.0
+      version: 5.46.0
     vite:
       specifier: ^6.0.11
       version: 6.4.1
@@ -380,7 +383,7 @@ importers:
         specifier: 'catalog:'
         version: 7.71.1(react@18.3.1)
       terser:
-        specifier: ^5.46.0
+        specifier: 'catalog:'
         version: 5.46.0
       vitest:
         specifier: 'catalog:'
