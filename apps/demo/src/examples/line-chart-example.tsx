@@ -1,5 +1,4 @@
-import { ChartContainer, computeStats, UNITS } from '@mining-sdk/core'
-import { LineChart } from '@mining-sdk/core/components/line-chart'
+import { ChartContainer, computeStats, LineChart, UNITS } from '@mining-sdk/core'
 import React, { useCallback, useEffect, useState } from 'react'
 import {
   LINE_CHART_DAILY_REVENUE,

@@ -1,19 +1,25 @@
 import { useRef } from 'react'
 import type { SidebarMenuItem } from '@mining-sdk/core'
+import { Sidebar } from '@mining-sdk/core'
 import {
   BarChartIcon,
   ChatBubbleIcon,
   CubeIcon,
   DashboardIcon,
   ExclamationTriangleIcon,
+  HomeIcon,
   InputIcon,
   LayersIcon,
-  Sidebar,
-} from '@mining-sdk/core'
+} from '@radix-ui/react-icons'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './App.scss'
 
 const COMPONENT_NAV: SidebarMenuItem[] = [
+  {
+    id: '',
+    label: 'Home',
+    icon: <HomeIcon />,
+  },
   {
     id: 'forms',
     label: 'Forms',
@@ -35,7 +41,6 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     icon: <ChatBubbleIcon />,
     items: [
       { id: 'dialog', label: 'Dialog' },
-      { id: 'alert-dialog', label: 'Alert Dialog' },
       { id: 'dropdown-menu', label: 'Dropdown Menu' },
       { id: 'cascader', label: 'Cascader' },
       { id: 'tooltip', label: 'Tooltip' },
@@ -49,9 +54,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     icon: <LayersIcon />,
     items: [
       { id: 'table', label: 'Table' },
-      { id: 'list-view-filter', label: 'List view filter' },
       { id: 'avatar', label: 'Avatar' },
-      { id: 'badge', label: 'Badge' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
       { id: 'typography', label: 'Typography' },
@@ -91,7 +94,6 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'spinner', label: 'Spinner' },
       { id: 'loader', label: 'Loader' },
-      { id: 'skeleton', label: 'Skeleton' },
     ],
   },
   {
@@ -107,7 +109,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
   {
     id: 'dashboard',
     label: 'Dashboard',
-    icon: <BarChartIcon />,
+    icon: <DashboardIcon />,
     items: [
       { id: 'active-incidents-card', label: 'Active Incidents Card' },
       { id: 'pool-details-card', label: 'Pool Details Card' },

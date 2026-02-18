@@ -5,9 +5,6 @@ import App from './App'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
 const HomePage = lazy(() => import('./pages/home-page').then((m) => ({ default: m.HomePage })))
-const AlertDialogPage = lazy(() =>
-  import('./pages/alert-dialog-page').then((m) => ({ default: m.AlertDialogPage })),
-)
 const AvatarPage = lazy(() =>
   import('./pages/avatar-page').then((m) => ({ default: m.AvatarPage })),
 )
@@ -71,6 +68,19 @@ const TagsPage = lazy(() => import('./pages/tags-page').then((m) => ({ default: 
 const ToastPage = lazy(() => import('./pages/toast-page').then((m) => ({ default: m.ToastPage })))
 const TooltipPage = lazy(() =>
   import('./pages/tooltip-page').then((m) => ({ default: m.TooltipPage })),
+)
+const ActiveIncidentsCardPage = lazy(() =>
+  import('./pages/active-incidents-card-page').then((m) => ({
+    default: m.ActiveIncidentsCardPage,
+  })),
+)
+const PoolDetailsCardPage = lazy(() =>
+  import('./pages/pool-details-card-page').then((m) => ({ default: m.PoolDetailsCardPage })),
+)
+const PoolDetailsPopoverPage = lazy(() =>
+  import('./pages/pool-details-popover-page').then((m) => ({
+    default: m.PoolDetailsPopoverPage,
+  })),
 )
 
 const LineChartExample = lazy(() =>
@@ -150,7 +160,6 @@ export const router = createBrowserRouter([
       { path: 'textarea', element: withSuspense(TextAreaExample) },
       { path: 'form', element: withSuspense(FormExample) },
       { path: 'dialog', element: withSuspense(DialogPage) },
-      { path: 'alert-dialog', element: withSuspense(AlertDialogPage) },
       { path: 'dropdown-menu', element: withSuspense(DropdownMenuPage) },
       { path: 'cascader', element: withSuspense(CascaderExample) },
       { path: 'tooltip', element: withSuspense(TooltipPage) },
@@ -179,6 +188,9 @@ export const router = createBrowserRouter([
       { path: 'error-boundary', element: withSuspense(ErrorBoundaryPage) },
       { path: 'error-card', element: withSuspense(ErrorCardPage) },
       { path: 'not-found-page', element: withSuspense(NotFoundPageDemo) },
+      { path: 'active-incidents-card', element: withSuspense(ActiveIncidentsCardPage) },
+      { path: 'pool-details-card', element: withSuspense(PoolDetailsCardPage) },
+      { path: 'pool-details-popover', element: withSuspense(PoolDetailsPopoverPage) },
       { path: '*', element: withSuspense(NotFoundPage) },
     ],
   },

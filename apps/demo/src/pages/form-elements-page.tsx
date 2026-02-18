@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { CheckIcon, Input, TagInput } from '@mining-sdk/core'
+import { Input, TagInput } from '@mining-sdk/core'
+import { CheckIcon } from '@radix-ui/react-icons'
 
 export const FormElementsPage = (): JSX.Element => {
   const [tagInputTags, setTagInputTags] = useState<string[]>([])

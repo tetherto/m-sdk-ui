@@ -34,7 +34,7 @@ export const DialogPage = (): JSX.Element => {
       <div className="demo-section__dialog-grid">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline">Open Dialog</Button>
+            <Button variant="primary">Open Dialog</Button>
           </DialogTrigger>
           <DialogContent
             closable

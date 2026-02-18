@@ -1,5 +1,4 @@
-import { ChartContainer } from '@mining-sdk/core'
-import { AreaChart } from '@mining-sdk/core/components/area-chart'
+import { AreaChart, ChartContainer } from '@mining-sdk/core'
 import React from 'react'
 import {
   AREA_CHART_HASHRATE_TREND,

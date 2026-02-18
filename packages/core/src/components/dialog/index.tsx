@@ -144,6 +144,11 @@ const DialogContent = React.forwardRef<
       onEscapeKeyDown?.(event)
     }
 
+    const contentProps = {
+      ...props,
+      ...(description ? {} : { 'aria-describedby': undefined }),
+    }
+
     return (
       <DialogPortal>
         <DialogOverlay />
@@ -152,7 +157,7 @@ const DialogContent = React.forwardRef<
           className={cn('mining-sdk-dialog__content', className)}
           onInteractOutside={handleInteractOutside}
           onEscapeKeyDown={handleEscapeKeyDown}
-          {...props}
+          {...contentProps}
         >
           <DialogHeader closable={closable} onClose={onClose} bare={bare}>
             {title && (

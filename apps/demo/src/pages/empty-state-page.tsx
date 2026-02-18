@@ -1,4 +1,5 @@
-import { CubeIcon, EmptyState } from '@mining-sdk/core'
+import { EmptyState } from '@mining-sdk/core'
+import { CubeIcon } from '@radix-ui/react-icons'
 
 export const EmptyStatePage = (): JSX.Element => {
   return (

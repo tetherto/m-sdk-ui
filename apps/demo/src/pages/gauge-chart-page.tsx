@@ -1,5 +1,4 @@
-import { ChartContainer } from '@mining-sdk/core'
-import { GaugeChart } from '@mining-sdk/core/components/gauge-chart'
+import { ChartContainer, GaugeChart } from '@mining-sdk/core'
 
 export const GaugeChartPage = (): JSX.Element => {
   return (

@@ -18,10 +18,7 @@ export default defineConfig({
       resolveDependencies: (url, deps) => {
         return deps.filter((dep) => {
           return (
-            !dep.includes('charts-') &&
-            !dep.includes('vendor-') &&
-            !dep.includes('page-alert-dialog') &&
-            !dep.includes('page-dialog')
+            !dep.includes('charts-') && !dep.includes('vendor-') && !dep.includes('page-dialog')
           )
         })
       },
