@@ -31,6 +31,7 @@
   position: relative;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
   font-size: 14px;
   outline: none;
   cursor: pointer;
@@ -57,6 +58,7 @@
 
 .mining-sdk-dropdown-menu__item-shortcut {
   margin-left: auto;
+  font-family: inherit;
   font-size: 12px;
   color: var(--mining-sdk-color-text-secondary, #ffffffd9);
 }
@@ -79,6 +81,7 @@
 
 .mining-sdk-dropdown-menu__label {
   padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 500;
   color: var(--mining-sdk-color-text-secondary, #ffffffd9);

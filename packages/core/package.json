@@ -4,18 +4,27 @@
   "version": "0.0.0",
   "private": true,
   "description": "Core UI components, utilities, types, and theme system",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
     "./styles": "./src/styles/_mixins.scss"
   },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
   "scripts": {
-    "build": "pnpm build:ts && pnpm build:scss",
+    "build": "pnpm build:scss && pnpm build:ts && node scripts/minify.mjs dist",
     "build:scss": "vite build",
-    "build:ts": "tsc",
+    "build:ts": "tsc -p tsconfig.build.json",
     "clean": "rimraf dist node_modules .turbo",
     "dev": "concurrently -n ts,scss -c cyan,magenta \"pnpm dev:ts\" \"pnpm dev:scss\"",
     "dev:scss": "vite build --watch",
@@ -76,6 +85,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-hook-form": "catalog:",
+    "terser": "catalog:",
     "vitest": "catalog:",
     "zod": "catalog:"
   }

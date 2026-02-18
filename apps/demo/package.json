@@ -15,7 +15,9 @@
   "dependencies": {
     "@hookform/resolvers": "catalog:",
     "@mining-sdk/core": "workspace:*",
+    "@mining-sdk/fonts": "workspace:*",
     "@mining-sdk/foundation": "workspace:*",
+    "@radix-ui/react-icons": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-hook-form": "catalog:",

@@ -107,6 +107,7 @@ export const MenuItemInternal = ({
         onClick={handleClick}
         disabled={item.disabled}
         title={!isExpanded && depth === 0 ? item.label : undefined}
+        aria-label={!isExpanded && depth === 0 ? item.label : undefined}
       >
         {item.icon && <span className="mining-sdk-sidebar__item-icon">{item.icon}</span>}
         {renderLabel}
@@ -128,6 +129,7 @@ export const MenuItemInternal = ({
           disabled={item.disabled}
           className={baseItemClass}
           title={!isExpanded && depth === 0 ? item.label : undefined}
+          aria-label={!isExpanded && depth === 0 ? item.label : undefined}
         >
           {item.icon && <span className="mining-sdk-sidebar__item-icon">{item.icon}</span>}
 
@@ -145,6 +147,7 @@ export const MenuItemInternal = ({
                   setGroupOpen((prev) => !prev)
                 }
               }}
+              aria-label={groupOpen ? `Collapse ${item.label}` : `Expand ${item.label}`}
             >
               {groupOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </span>

@@ -14,6 +14,7 @@
       "default": "./src/components/domain/index.ts"
     },
     "./styles.css": "./dist/styles.css",
+    "./src/styles/index.scss": "./src/styles/index.scss",
     "./feature": {
       "types": "./src/components/feature/index.ts",
       "default": "./src/components/feature/index.ts"

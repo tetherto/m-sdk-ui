@@ -7,10 +7,6 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
   @include flex_column;
 
   background-color: rgba(var(--mining-sdk-color-black), 0.05);
-}
-
-.mining-sdk-accordion--solid-background {
-  background-color: transparent;
 
   &--solid-background {
     background-color: var(--mining-sdk-select-content-bg);
@@ -31,13 +27,14 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
   // Accordion trigger
   &__trigger {
     @include flex_align_between;
-    
+
     width: 100%;
     padding: 1rem 1.5rem;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid var(--mining-sdk-popover-border);
     color: var(--mining-sdk-color-white);
+    font-family: var(--font-mono);
     font-size: 18px;
     font-weight: 400;
     text-align: left;
@@ -88,12 +85,14 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
   // Left side (toggle + title)
   &__trigger-left {
     @include flex_align;
+
     gap: 0.75rem;
     flex: 1;
     min-width: 0;
   }
 
   &__title {
+    font-family: inherit;
     font-weight: 400;
     letter-spacing: 0.01em;
     white-space: nowrap;
@@ -104,12 +103,14 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
   // Right side (custom label)
   &__trigger-right {
     @include flex_align;
+
     gap: 1rem;
     flex-shrink: 0;
   }
 
   // Custom label
   &__custom-label {
+    font-family: inherit;
     font-size: 14px;
     color: var(--mining-sdk-color-text-disabled);
   }
@@ -162,6 +163,7 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 
   &__content-inner {
     padding: 1.5rem;
+    font-family: inherit;
     line-height: 1.6;
 
     &--no-padding {
@@ -170,6 +172,7 @@ $accordion-animation: 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 
     &--row {
       @include flex_row;
+
       gap: 1rem;
     }
   }

@@ -14,12 +14,14 @@
   }
 
   &__title {
+    font-family: var(--font-mono);
     font-size: 16px;
     font-weight: 600;
     color: var(--mining-sdk-color-brick-red);
   }
 
   &__message {
+    font-family: var(--font-mono);
     font-size: 14px;
     color: var(--mining-sdk-color-brick-red);
     line-height: 1.5;

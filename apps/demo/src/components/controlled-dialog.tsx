@@ -7,18 +7,17 @@ export const ControlledDialog = (): JSX.Element => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Open Controlled Dialog</Button>
+        <Button variant="primary">Open Controlled Dialog</Button>
       </DialogTrigger>
       <DialogContent
         closable
-        closeOnClickOutside={false}
-        closeOnEscape={false}
+        closeOnClickOutside={true}
+        closeOnEscape={true}
         title="This is a controlled dialog"
       >
         <div className="demo-section__dialog-content">
-          <p>This dialog doesn't have a close button and a description.</p>
-          <p>Clicking outside will not close the dialog nor does the escape key.</p>
-          <p>Use the buttons below to close the dialog.</p>
+          <p>This is a controlled dialog example.</p>
+          <p>You can close it by clicking outside, pressing escape, or using the buttons below.</p>
         </div>
         <DialogFooter>
           <Button variant="secondary" onClick={() => setIsOpen(false)}>

@@ -29,7 +29,7 @@
     background: transparent;
     justify-content: center;
     transition: color 0.3s ease-in-out;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     color: var(--mining-sdk-color-text-secondary);
 
     &:not(:first-child) {
