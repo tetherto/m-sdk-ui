@@ -85,8 +85,8 @@ const AccordionTrigger = React.forwardRef<
         <div className="mining-sdk-accordion__trigger-left">
           {showToggleIcon && toggleIconPosition === 'left' && (
             <div className="mining-sdk-accordion__toggler">
-              <ChevronRightIcon className="mining-sdk-accordion__icon--minus" />
-              <ChevronDownIcon className="mining-sdk-accordion__icon--plus" />
+              <ChevronDownIcon className="mining-sdk-accordion__icon--minus" />
+              <ChevronRightIcon className="mining-sdk-accordion__icon--plus" />
             </div>
           )}
           <span className="mining-sdk-accordion__title">{children}</span>

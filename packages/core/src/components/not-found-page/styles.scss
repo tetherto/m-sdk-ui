@@ -6,6 +6,7 @@
   padding: 24px;
 
   &__title {
+    font-family: var(--font-mono);
     font-size: 48px;
     font-weight: 700;
     color: var(--mining-sdk-color-white);
@@ -13,6 +14,7 @@
   }
 
   &__message {
+    font-family: var(--font-mono);
     font-size: 18px;
     color: var(--mining-sdk-color-gray-400);
     margin-bottom: 32px;

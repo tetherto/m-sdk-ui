@@ -10,15 +10,17 @@
 
 /* Back Button */
 .mining-sdk-breadcrumbs__back {
-  @include inline_flex_align;
-  
   all: unset;
+  display: inline-flex;
+  align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--mining-sdk-breadcrumbs-back-button-color);
   cursor: pointer;
   transition: opacity 200ms ease;
+  white-space: nowrap;
 
   &:hover {
     opacity: 0.8;
@@ -29,12 +31,17 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  > span {
+    line-height: 1;
+  }
 }
 
 .mining-sdk-breadcrumbs__back-icon {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+  display: block;
 }
 
 /* Breadcrumb List */
@@ -56,6 +63,7 @@
 
 /* Breadcrumb Links */
 .mining-sdk-breadcrumbs__link {
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   color: rgb(var(--mining-sdk-breadcrumbs-link-color));
   text-decoration: none;
@@ -74,6 +82,7 @@
   &--button {
     all: unset;
     cursor: pointer;
+    font-family: var(--font-mono);
     font-size: 0.875rem;
     color: rgb(var(--mining-sdk-breadcrumbs-link-color));
 
@@ -89,6 +98,7 @@
 
 /* Separator */
 .mining-sdk-breadcrumbs__separator {
+  font-family: var(--font-mono);
   color: var(--mining-sdk-breadcrumbs-separator-color);
   font-size: 0.875rem;
   user-select: none;

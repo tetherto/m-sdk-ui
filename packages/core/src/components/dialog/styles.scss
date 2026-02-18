@@ -82,6 +82,7 @@
   }
 
   &__title {
+    font-family: var(--font-mono);
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1;
@@ -89,6 +90,7 @@
   }
 
   &__description {
+    font-family: var(--font-mono);
     font-size: 0.875rem;
     color: hsl(var(--muted-foreground));
   }

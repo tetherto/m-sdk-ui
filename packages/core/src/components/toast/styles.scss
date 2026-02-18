@@ -161,6 +161,7 @@ $viewport-padding: 24px;
   }
 
   &__title {
+    font-family: var(--font-mono);
     font-size: 16px;
     font-weight: 500;
     word-break: break-all;
@@ -168,6 +169,7 @@ $viewport-padding: 24px;
   }
 
   &__description {
+    font-family: var(--font-mono);
     font-size: 14px;
     font-weight: 400;
     word-break: break-word;
