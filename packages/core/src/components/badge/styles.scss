@@ -57,11 +57,11 @@
 
 /* Small */
 .mining-sdk-badge--sm {
-  min-width: 1rem;
-  height: 1rem;
-  padding: 0 0.3125rem;
-  font-size: 0.625rem;
-  line-height: 1rem;
+  min-width: 0.875rem;
+  height: 0.875rem;
+  padding: 0 0.25rem;
+  font-size: 0.5625rem;
+  line-height: 0.875rem;
 
   &.mining-sdk-badge--dot {
     width: 0.5rem;
@@ -73,15 +73,23 @@
   .mining-sdk-badge-wrapper & {
     transform: translate(40%, -40%);
   }
+
+  @media (min-width: 769px) {
+    min-width: 1rem;
+    height: 1rem;
+    padding: 0 0.3125rem;
+    font-size: 0.625rem;
+    line-height: 1rem;
+  }
 }
 
-/* Medium (Default) */
+/* Medium (Mobile) */
 .mining-sdk-badge--md {
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 0.4375rem;
-  font-size: 0.75rem;
-  line-height: 1.25rem;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.375rem;
+  font-size: 0.625rem;
+  line-height: 1rem;
 
   &.mining-sdk-badge--dot {
     width: 0.625rem;
@@ -93,15 +101,23 @@
   .mining-sdk-badge-wrapper & {
     transform: translate(50%, -50%);
   }
+
+  @media (min-width: 769px) {
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.4375rem;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+  }
 }
 
-/* Large */
+/* Large  */
 .mining-sdk-badge--lg {
-  min-width: 1.5rem;
-  height: 1.5rem;
-  padding: 0 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.4375rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
 
   &.mining-sdk-badge--dot {
     width: 0.75rem;
@@ -112,6 +128,14 @@
 
   .mining-sdk-badge-wrapper & {
     transform: translate(50%, -50%);
+  }
+
+  @media (min-width: 769px) {
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -226,34 +250,5 @@
   100% {
     opacity: 0.6;
     transform: scale(0.8);
-  }
-}
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-
-@media (max-width: 768px) {
-  .mining-sdk-badge {
-    &--sm {
-      min-width: 0.875rem;
-      height: 0.875rem;
-      font-size: 0.5625rem;
-      padding: 0 0.25rem;
-    }
-
-    &--md {
-      min-width: 1rem;
-      height: 1rem;
-      font-size: 0.625rem;
-      padding: 0 0.375rem;
-    }
-
-    &--lg {
-      min-width: 1.25rem;
-      height: 1.25rem;
-      font-size: 0.75rem;
-      padding: 0 0.4375rem;
-    }
   }
 }

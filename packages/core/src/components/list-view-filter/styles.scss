@@ -8,9 +8,9 @@
   display: inline-block;
 
   &__trigger {
+    @include inline_flex_align;
+
     position: relative;
-    display: inline-flex;
-    align-items: center;
   }
 
   &__icon {
