@@ -1,5 +1,4 @@
 import type { DateRange, SidebarMenuItem, ToastPosition, ToastVariant } from '@mining-sdk/core'
-import { ActiveIncidentsCard, PoolDetailsCard, PoolDetailsPopover } from '@mining-sdk/foundation'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -76,6 +75,7 @@ import {
   Typography,
   withErrorBoundary,
 } from '@mining-sdk/core'
+import { ActiveIncidentsCard, PoolDetailsCard, PoolDetailsPopover } from '@mining-sdk/foundation'
 import { useRef, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
@@ -86,6 +86,7 @@ import { AreaChartExample } from './examples/area-chart-example'
 import { BadgeExample } from './examples/badge-example'
 import { BarChartExample } from './examples/bar-chart-example'
 import { CascaderExample } from './examples/cascader-example'
+import { ChartWrapperExample } from './examples/chart-wrapper-example'
 import { CheckboxExample } from './examples/checkbox-example'
 import { DemoTable } from './examples/demo-table'
 import FormExample from './examples/form-example'
@@ -178,6 +179,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'area-chart', label: 'Area Chart' },
       { id: 'gauge-chart', label: 'Gauge Chart' },
       { id: 'chart-container', label: 'ChartContainer' },
+      { id: 'chart-wrapper', label: 'Chart wrapper' },
     ],
   },
   {
@@ -852,6 +854,7 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
+          {activeSection === 'chart-wrapper' && <ChartWrapperExample />}
           {/* TextArea */}
           {activeSection === 'textarea' && (
             <section className="demo-section">
