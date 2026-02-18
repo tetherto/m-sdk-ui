@@ -109,6 +109,32 @@ export const BAR_CHART_GROUPED_SITES = {
   ],
 }
 
+export const BAR_CHART_HORIZONTAL_MINERS = {
+  labels: ['S19 Pro', 'S19j Pro', 'S21', 'M50', 'M60', 'T21'],
+  datasets: [
+    {
+      label: 'Online',
+      data: [120, 85, 64, 42, 38, 25],
+      backgroundColor: [
+        COLOR.GREEN,
+        COLOR.SLEEP_BLUE,
+        COLOR.COLD_ORANGE,
+        COLOR.PURPLE_HIGH,
+        COLOR.BLUE_SEA,
+        COLOR.RED,
+      ],
+      borderColor: [
+        COLOR.GREEN,
+        COLOR.SLEEP_BLUE,
+        COLOR.COLD_ORANGE,
+        COLOR.PURPLE_HIGH,
+        COLOR.BLUE_SEA,
+        COLOR.RED,
+      ],
+    },
+  ],
+}
+
 export const BAR_CHART_SUBSIDY_FEES = {
   labels: ['02-08', '02-09', '02-10', '02-11', '02-12', '02-13', '02-14'],
   datasets: [

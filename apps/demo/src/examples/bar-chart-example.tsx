@@ -2,6 +2,7 @@ import { BarChart, ChartContainer } from '@mining-sdk/core'
 import React from 'react'
 import {
   BAR_CHART_GROUPED_SITES,
+  BAR_CHART_HORIZONTAL_MINERS,
   BAR_CHART_MINERS_STATUS,
   BAR_CHART_MINING_OUTPUT,
   BAR_CHART_STACKED_REVENUE,
@@ -29,6 +30,18 @@ export const BarChartExample: React.FC = () => {
         <h3>Grouped Bar Chart</h3>
         <ChartContainer title="Hash rate by site (grouped)">
           <BarChart height={250} data={BAR_CHART_GROUPED_SITES} />
+        </ChartContainer>
+      </section>
+
+      <section>
+        <h3>Horizontal Bar Chart</h3>
+        <ChartContainer title="Miners by type">
+          <BarChart
+            height={280}
+            data={BAR_CHART_HORIZONTAL_MINERS}
+            isHorizontal
+            showLegend={false}
+          />
         </ChartContainer>
       </section>
 

@@ -201,22 +201,38 @@ export const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
           }
         }
 
-        const hasCustomBg = ds.backgroundColor != null && typeof ds.backgroundColor === 'function'
+        const bgIsFunction = typeof ds.backgroundColor === 'function'
+        const bgIsArray = Array.isArray(ds.backgroundColor)
+
+        let backgroundColor: unknown
+        if (bgIsFunction) {
+          backgroundColor = ds.backgroundColor
+        } else if (bgIsArray) {
+          backgroundColor = ((ctx: { chart: ChartJS; dataIndex: number }) =>
+            makeBarGradient(
+              ctx,
+              ds.backgroundColor[ctx.dataIndex] ?? solidColor,
+            )) as unknown as string
+        } else {
+          backgroundColor = ((ctx: { chart: ChartJS }) =>
+            makeBarGradient(ctx, solidColor)) as unknown as string
+        }
 
         return {
           ...ds,
-          backgroundColor: hasCustomBg
-            ? ds.backgroundColor
-            : (((ctx: { chart: ChartJS }) =>
-                makeBarGradient(ctx, solidColor)) as unknown as string),
+          backgroundColor,
           borderColor: ds.borderColor ?? solidColor,
-          borderWidth: ds.borderWidth ?? ({ top: 1.5, right: 0, bottom: 0, left: 0 } as const),
+          borderWidth:
+            ds.borderWidth ??
+            (isHorizontal
+              ? { top: 0, right: 1.5, bottom: 0, left: 0 }
+              : { top: 1.5, right: 0, bottom: 0, left: 0 }),
           borderSkipped: ds.borderSkipped ?? (false as const),
           borderRadius: ds.borderRadius ?? 0,
         }
       })
       return { ...data, datasets }
-    }, [data])
+    }, [data, isHorizontal])
 
     const plugins = React.useMemo(
       () => (showDataLabels ? [legendMarginPlugin, ChartDataLabels] : [legendMarginPlugin]),
