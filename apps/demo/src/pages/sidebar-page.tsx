@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import type { SidebarMenuItem } from '@mining-sdk/core'
 import { Button, Sidebar } from '@mining-sdk/core'
+import { BarChartIcon, BellIcon, GearIcon, HomeIcon, PersonIcon } from '@radix-ui/react-icons'
 
 const SIDEBAR_EXAMPLE_ITEMS: SidebarMenuItem[] = [
-  { id: 'tab-1', label: 'Tab 1' },
+  { id: 'tab-1', label: 'Tab 1', icon: <HomeIcon /> },
   {
     id: 'tab-2',
     label: 'Tab 2',
+    icon: <BarChartIcon />,
     items: [
       { id: 'tab-2-detail-1', label: 'Detail 1' },
       { id: 'tab-2-detail-2', label: 'Detail 2' },
@@ -15,6 +17,7 @@ const SIDEBAR_EXAMPLE_ITEMS: SidebarMenuItem[] = [
   {
     id: 'tab-3',
     label: 'Tab 3',
+    icon: <PersonIcon />,
     items: [
       {
         id: 'tab-3-detail-1',
@@ -31,6 +34,7 @@ const SIDEBAR_EXAMPLE_ITEMS: SidebarMenuItem[] = [
   {
     id: 'tab-4',
     label: 'Tab 4',
+    icon: <BellIcon />,
     items: [
       {
         id: 'tab-4-detail-1',
@@ -49,6 +53,7 @@ const SIDEBAR_EXAMPLE_ITEMS: SidebarMenuItem[] = [
   {
     id: 'tab-5',
     label: 'Tab 5',
+    icon: <GearIcon />,
     disabled: true,
     items: [
       {
