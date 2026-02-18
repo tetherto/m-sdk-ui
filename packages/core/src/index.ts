@@ -54,6 +54,7 @@ export * from './components/toast'
 export * from './components/tooltip'
 export * from './components/typography'
 // Constants
+export * from './constants/charts'
 export * from './constants/colors'
 export * from './constants/units'
 // Theme system

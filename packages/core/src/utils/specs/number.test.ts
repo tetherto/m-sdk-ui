@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { convertUnits, getPercentChange, percentage, shouldDisplayValue } from './number'
+import { convertUnits, getPercentChange, percentage, shouldDisplayValue } from '../number'
 
 describe('percentage', () => {
   it('calculates percentage correctly', () => {
