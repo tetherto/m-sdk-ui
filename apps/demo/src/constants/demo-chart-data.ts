@@ -71,6 +71,143 @@ export const BAR_CHART_MINING_OUTPUT = {
   ],
 }
 
+export const BAR_CHART_STACKED_REVENUE = {
+  labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+  datasets: [
+    {
+      label: 'SITE-A',
+      data: [63, 30, 59, 75, 20, 10, 27, 45, 12, 45, 33, 28],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+      stack: 'revenue',
+    },
+    {
+      label: 'SITE-B',
+      data: [30, 9, 26, 35, 20, 27, 18, 27, 20, 42, 20, 19],
+      backgroundColor: COLOR.RED,
+      borderColor: COLOR.RED,
+      stack: 'revenue',
+    },
+  ],
+}
+
+export const BAR_CHART_GROUPED_SITES = {
+  labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+  datasets: [
+    {
+      label: 'SITE-C',
+      data: [58, 26, 55, 59, 28, 10, 55, 57, 26, 12, 58, 26],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+    },
+    {
+      label: 'SITE-D',
+      data: [34, 9, 31, 33, 22, 27, 18, 30, 28, 11, 31, 25],
+      backgroundColor: COLOR.RED,
+      borderColor: COLOR.RED,
+    },
+  ],
+}
+
+export const BAR_CHART_HORIZONTAL_MINERS = {
+  labels: ['S19 Pro', 'S19j Pro', 'S21', 'M50', 'M60', 'T21'],
+  datasets: [
+    {
+      label: 'Online',
+      data: [120, 85, 64, 42, 38, 25],
+      backgroundColor: [
+        COLOR.GREEN,
+        COLOR.SLEEP_BLUE,
+        COLOR.COLD_ORANGE,
+        COLOR.PURPLE_HIGH,
+        COLOR.BLUE_SEA,
+        COLOR.RED,
+      ],
+      borderColor: [
+        COLOR.GREEN,
+        COLOR.SLEEP_BLUE,
+        COLOR.COLD_ORANGE,
+        COLOR.PURPLE_HIGH,
+        COLOR.BLUE_SEA,
+        COLOR.RED,
+      ],
+    },
+  ],
+}
+
+export const BAR_CHART_SUBSIDY_FEES = {
+  labels: ['02-08', '02-09', '02-10', '02-11', '02-12', '02-13', '02-14'],
+  datasets: [
+    {
+      label: 'Subsidy',
+      data: [2.8, 2.6, 2.9, 3.0, 2.7, 2.5, 3.1],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+      stack: 'btc',
+    },
+    {
+      label: 'Fees',
+      data: [0.34, 0.53, 0.24, 0.15, 0.46, 0.63, 0.06],
+      backgroundColor: COLOR.COLD_ORANGE,
+      borderColor: COLOR.COLD_ORANGE,
+      stack: 'btc',
+    },
+    {
+      type: 'line' as const,
+      label: 'Fee %',
+      data: [0.5, 1.0, 1.2, 1.6, 1.5, 2.5, 2.9],
+      borderColor: COLOR.RED,
+      backgroundColor: COLOR.RED,
+      yAxisID: 'y1',
+      tension: 0.4,
+      pointRadius: 3,
+      pointHoverRadius: 5,
+      fill: false,
+    },
+  ],
+}
+
+export const BAR_CHART_MINERS_STATUS = {
+  labels: ['02-11', '02-12', '02-13', '02-14', '02-15', '02-16', '02-17'],
+  datasets: [
+    {
+      label: 'Online',
+      data: [198, 200, 195, 197, 199, 198, 200],
+      backgroundColor: COLOR.GREEN,
+      borderColor: COLOR.GREEN,
+      stack: 'status',
+    },
+    {
+      label: 'Error',
+      data: [58, 55, 60, 57, 56, 58, 54],
+      backgroundColor: COLOR.RED,
+      borderColor: COLOR.RED,
+      stack: 'status',
+    },
+    {
+      label: 'Offline',
+      data: [12, 14, 10, 13, 11, 12, 10],
+      backgroundColor: '#FFFFFF',
+      borderColor: '#FFFFFF',
+      stack: 'status',
+    },
+    {
+      label: 'Sleep',
+      data: [8, 10, 7, 9, 8, 10, 6],
+      backgroundColor: COLOR.SLEEP_BLUE,
+      borderColor: COLOR.SLEEP_BLUE,
+      stack: 'status',
+    },
+    {
+      label: 'Maintenance',
+      data: [64, 61, 68, 64, 66, 62, 70],
+      backgroundColor: COLOR.COLD_ORANGE,
+      borderColor: COLOR.COLD_ORANGE,
+      stack: 'status',
+    },
+  ],
+}
+
 export const AREA_CHART_HASHRATE_TREND = {
   labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
   datasets: [

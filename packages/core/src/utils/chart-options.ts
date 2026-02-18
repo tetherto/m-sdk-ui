@@ -4,6 +4,7 @@
 
 import type { Chart, ChartEvent, Plugin } from 'chart.js'
 import { defaultChartColors } from '../constants/charts'
+import { CHART_COLORS } from '../constants/colors'
 
 export { defaultChartColors }
 
@@ -100,6 +101,315 @@ export const legendMarginPlugin: Plugin<any> = {
       this.height += 12
     }
   },
+}
+
+// ---------------------------------------------------------------------------
+// Bar chart data builder types & utilities
+// ---------------------------------------------------------------------------
+
+export type BarChartSeries = {
+  label: string
+  values: number[] | Record<string, number>
+  color?: string
+  /** Assign a stack group id to stack multiple series together */
+  stack?: string
+  /** Gradient opacity stops (default { top: 0.3, bottom: 0.1 }) */
+  gradient?: {
+    top: number
+    bottom: number
+  }
+  categoryPercentage?: number
+  barPercentage?: number
+}
+
+export type BarChartLine = {
+  label: string
+  values: number[] | Record<string, number>
+  color?: string
+  yAxisID?: string
+  tension?: number
+  pointRadius?: number
+  pointHoverRadius?: number
+}
+
+export type BarChartConstant = {
+  label: string
+  value: number
+  color?: string
+  borderDash?: number[]
+  yAxisID?: string
+}
+
+export type BarChartInput = {
+  labels?: string[]
+  series: BarChartSeries[]
+  lines?: BarChartLine[]
+  constants?: BarChartConstant[]
+}
+
+const BAR_PALETTE: string[] = [CHART_COLORS.blue, CHART_COLORS.VIOLET, CHART_COLORS.orange]
+const LINE_PALETTE: string[] = [CHART_COLORS.red, CHART_COLORS.yellow, CHART_COLORS.purple]
+
+const pickColor = (explicit: string | undefined, i: number, palette: string[]): string =>
+  explicit || palette[i % palette.length] || '#888'
+
+const toColorWithAlpha = (base: string, a = 1): string => {
+  if (/^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(base)) {
+    const m = base.slice(1)
+    const hex =
+      m.length === 3
+        ? m
+            .split('')
+            .map((c) => c + c)
+            .join('')
+        : m
+    const n = Number.parseInt(hex, 16)
+    const r = (n >> 16) & 255
+    const g = (n >> 8) & 255
+    const b = n & 255
+    return `rgba(${r}, ${g}, ${b}, ${a})`
+  }
+  const rgbMatch = base.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i)
+  if (rgbMatch) return `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, ${a})`
+  if (base.startsWith('hsl')) {
+    return base.replace(/\)$/, ` / ${a})`)
+  }
+  return base
+}
+
+export const makeBarGradient = (
+  ctx: { chart: Chart },
+  base: string,
+  { top = 0.3, bottom = 0.1 } = {},
+): CanvasGradient | string => {
+  const { chartArea, ctx: c } = ctx.chart
+  if (!chartArea) return base
+  const vertical = (ctx.chart.config.options as Record<string, unknown>)?.indexAxis !== 'y'
+  const g = vertical
+    ? c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom)
+    : c.createLinearGradient(chartArea.left, 0, chartArea.right, 0)
+  g.addColorStop(0, toColorWithAlpha(base, top))
+  g.addColorStop(1, toColorWithAlpha(base, bottom))
+  return g
+}
+
+const toArray = (values: number[] | Record<string, number>, labels: string[]): (number | null)[] =>
+  Array.isArray(values) ? values : labels.map((l) => values[l] ?? null)
+
+const deriveLabels = (input: BarChartInput): string[] => {
+  if (input.labels?.length) return input.labels
+
+  const set = new Set<string>()
+  const collect = (v: number[] | Record<string, number>): void => {
+    if (!Array.isArray(v)) Object.keys(v).forEach((k) => set.add(k))
+  }
+  input.series.forEach((s) => collect(s.values))
+  input.lines?.forEach((l) => collect(l.values))
+
+  if (set.size) return Array.from(set)
+  const firstValues = input.series[0]?.values
+  if (Array.isArray(firstValues)) {
+    return firstValues.map((_, i) => String(i + 1))
+  }
+  return []
+}
+
+const DEFAULT_CATEGORY_PCT = 0.9
+const DEFAULT_BAR_PCT = 0.94
+const DEFAULT_BAR_WIDTH = 28
+
+/**
+ * Transform a declarative series/lines/constants structure into Chart.js
+ * compatible `{ labels, datasets }` with gradient bar styling.
+ */
+export const buildBarChartData = (
+  input: BarChartInput & {
+    barWidth?: number
+    categoryPercentage?: number
+    barPercentage?: number
+    defaultLineAxis?: string
+  },
+): {
+  labels: string[]
+  datasets: Record<string, unknown>[]
+} => {
+  const {
+    series = [],
+    lines = [],
+    constants = [],
+    barWidth = DEFAULT_BAR_WIDTH,
+    defaultLineAxis = 'y',
+    categoryPercentage = DEFAULT_CATEGORY_PCT,
+    barPercentage = DEFAULT_BAR_PCT,
+  } = input
+
+  const labels = deriveLabels(input)
+
+  const barDatasets = series.map((s, i) => {
+    const solid = pickColor(s.color, i, BAR_PALETTE)
+    const gradientStops = s.gradient || { top: 0.3, bottom: 0.1 }
+    return {
+      type: 'bar' as const,
+      label: s.label,
+      data: toArray(s.values, labels),
+      backgroundColor: (ctx: { chart: Chart }) => makeBarGradient(ctx, solid, gradientStops),
+      borderColor: solid,
+      borderWidth: { top: 1.5, right: 0, bottom: 0, left: 0 },
+      borderSkipped: false,
+      borderRadius: 0,
+      maxBarThickness: barWidth,
+      categoryPercentage: s.categoryPercentage ?? categoryPercentage,
+      barPercentage: s.barPercentage ?? barPercentage,
+      stack: s.stack,
+      order: 1,
+      _legendColor: solid,
+    }
+  })
+
+  const lineDatasets = lines.map((l, i) => {
+    const color = pickColor(l.color, i, LINE_PALETTE)
+    return {
+      type: 'line' as const,
+      label: l.label,
+      data: toArray(l.values, labels),
+      borderColor: color,
+      backgroundColor: color,
+      yAxisID: l.yAxisID || defaultLineAxis,
+      tension: l.tension ?? 0.35,
+      pointRadius: l.pointRadius ?? 3,
+      pointHoverRadius: l.pointHoverRadius ?? 4,
+      fill: false,
+      spanGaps: true,
+      order: 3,
+      _legendColor: color,
+    }
+  })
+
+  const constantDatasets = constants.map((c) => {
+    const color = c.color || CHART_COLORS.red
+    return {
+      type: 'line' as const,
+      label: c.label,
+      data: Array.from({ length: labels.length }, () => c.value),
+      borderColor: color,
+      backgroundColor: color,
+      borderDash: c.borderDash || [6, 6],
+      pointRadius: 0,
+      tension: 0,
+      yAxisID: c.yAxisID || 'y',
+      fill: false,
+      order: 2,
+      _legendColor: color,
+    }
+  })
+
+  return { labels, datasets: [...barDatasets, ...lineDatasets, ...constantDatasets] }
+}
+
+export type BuildBarChartOptionsInput = {
+  isHorizontal?: boolean
+  isStacked?: boolean
+  yTicksFormatter?: (value: number) => string
+  yRightTicksFormatter?: ((value: number) => string) | null
+  displayColors?: boolean
+  legendPosition?: 'top' | 'bottom' | 'left' | 'right'
+  legendAlign?: 'start' | 'center' | 'end'
+  showLegend?: boolean
+}
+
+/**
+ * Build Chart.js options pre-configured for bar charts with optional
+ * stacking, horizontal orientation, and dual Y-axes.
+ */
+export const buildBarChartOptions = ({
+  isHorizontal = false,
+  isStacked = false,
+  yTicksFormatter = (v: number) => String(v),
+  yRightTicksFormatter = null,
+  displayColors = true,
+  legendPosition = 'top',
+  legendAlign = 'end',
+  showLegend = true,
+}: BuildBarChartOptionsInput = {}): Record<string, unknown> => {
+  const axisTicks = { color: CHART_COLORS.axisTicks }
+  const gridColor = CHART_COLORS.gridLine
+
+  const scales: Record<string, Record<string, unknown>> = isHorizontal
+    ? {
+        x: {
+          beginAtZero: true,
+          stacked: isStacked,
+          ticks: { callback: (v: number) => yTicksFormatter(v), ...axisTicks },
+          grid: { color: gridColor, offset: false },
+        },
+        y: { stacked: isStacked, ticks: axisTicks },
+      }
+    : {
+        y: {
+          beginAtZero: true,
+          stacked: isStacked,
+          ticks: { callback: (v: number) => yTicksFormatter(v), ...axisTicks },
+          grid: { color: gridColor },
+        },
+        x: {
+          stacked: isStacked,
+          ticks: axisTicks,
+        },
+      }
+
+  if (yRightTicksFormatter) {
+    scales.y1 = {
+      position: 'right',
+      beginAtZero: true,
+      grid: { drawOnChartArea: false },
+      ticks: { callback: (v: number) => yRightTicksFormatter(v), ...axisTicks },
+    }
+  }
+
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: isHorizontal ? 'y' : 'x',
+    plugins: {
+      legend: {
+        display: showLegend,
+        position: legendPosition,
+        align: legendAlign,
+        labels: {
+          usePointStyle: false,
+          boxWidth: 12,
+          color: CHART_COLORS.legendLabel,
+        },
+      },
+      tooltip: {
+        displayColors,
+        mode: 'index',
+        intersect: false,
+        callbacks: {
+          label: (ctx: {
+            dataset: {
+              label?: string
+              yAxisID?: string
+            }
+            parsed: {
+              y: number
+              x: number
+            }
+          }) => {
+            const label = ctx.dataset.label || ''
+            const value = ctx.parsed.y ?? ctx.parsed.x
+            if (value == null) return `${label}: `
+            if (ctx.dataset.yAxisID === 'y1' && yRightTicksFormatter) {
+              return `${label}: ${yRightTicksFormatter(value)}`
+            }
+            return `${label}: ${yTicksFormatter(value)}`
+          },
+        },
+      },
+    },
+    elements: { bar: { borderWidth: 1 } },
+    scales,
+  }
 }
 
 export const defaultChartOptions = {
