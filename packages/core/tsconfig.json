@@ -4,12 +4,12 @@
     "composite": false,
     "jsx": "react-jsx",
     "rootDir": "./src",
-    "noEmit": false,
-    "outDir": "./dist",
     "declaration": true,
     "declarationMap": false,
-    "sourceMap": false,
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "outDir": "./dist",
+    "sourceMap": false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]

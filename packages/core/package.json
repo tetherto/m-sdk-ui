@@ -8,10 +8,6 @@
     "*.css",
     "*.scss"
   ],
-  "files": [
-    "dist",
-    "src/styles"
-  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -21,6 +17,10 @@
     "./styles.css": "./dist/styles.css",
     "./styles": "./src/styles/_mixins.scss"
   },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
   "scripts": {
     "build": "pnpm build:scss && pnpm build:ts && node scripts/minify.mjs dist",
     "build:scss": "vite build",
@@ -85,7 +85,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-hook-form": "catalog:",
-    "terser": "^5.46.0",
+    "terser": "catalog:",
     "vitest": "catalog:",
     "zod": "catalog:"
   }

@@ -15,7 +15,7 @@ export default defineConfig({
   build: {
     modulePreload: {
       polyfill: false,
-      resolveDependencies: (url, deps) => {
+      resolveDependencies: (_url, deps) => {
         return deps.filter((dep) => {
           return (
             !dep.includes('charts-') && !dep.includes('vendor-') && !dep.includes('page-dialog')
@@ -63,6 +63,7 @@ export default defineConfig({
             const exampleName = id.split('src/examples/')[1]?.split('.')[0]
             return `example-${exampleName}`
           }
+          return undefined
         },
       },
       treeshake: {

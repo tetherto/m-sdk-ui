@@ -59,3 +59,4 @@ const ActiveIncidentsCard = React.forwardRef<HTMLDivElement, ActiveIncidentsCard
 ActiveIncidentsCard.displayName = 'ActiveIncidentsCard'
 
 export { ActiveIncidentsCard }
+export type { TIncidentRowProps }

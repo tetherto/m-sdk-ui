@@ -33,8 +33,8 @@ const mockIncidents: TIncidentRowProps[] = [
 ]
 
 export const ActiveIncidentsCardPage = (): JSX.Element => {
-  const handleIncidentClick = (id: string): void => {
-    console.log('Incident clicked:', id)
+  const handleIncidentClick = (_id: string): void => {
+    // Handle incident click
   }
 
   return (
