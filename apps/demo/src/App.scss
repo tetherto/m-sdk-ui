@@ -62,10 +62,16 @@
     gap: 1rem;
   }
 
-  &__button-grid,
-  &__dialog-grid {
+  &__button-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(140px, max-content));
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__dialog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
     gap: 1rem;
     align-items: center;
   }
