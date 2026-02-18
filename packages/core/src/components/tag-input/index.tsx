@@ -1,8 +1,8 @@
-import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import { Cross1Icon, Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 
-import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 import { cn } from '../../utils'
+import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 
 // eslint-disable-next-line style/member-delimiter-style -- CI expects comma for this inline type
 export type TagInputOption = string | { value: string; label: string }
@@ -298,6 +298,11 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
       setOpen(next)
     }, [])
 
+    const removeAllTags = React.useCallback(() => {
+      setTags([])
+      inputRef.current?.focus()
+    }, [setTags])
+
     const content = (
       <Popover open={open} onOpenChange={handleOpenChange} modal={false}>
         <PopoverAnchor asChild>
@@ -365,8 +370,14 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
               />
             </div>
             {showSearchIcon && (
-              <span className="mining-sdk-tag-input__icon" aria-hidden>
-                <MagnifyingGlassIcon />
+              <span
+                className="mining-sdk-tag-input__icon"
+                aria-hidden
+                data-has-tags={tags.length > 0}
+                onClick={removeAllTags}
+              >
+                <MagnifyingGlassIcon className="mining-sdk-tag-input__icon--glass" />
+                <Cross1Icon className="mining-sdk-tag-input__icon--cross" />
               </span>
             )}
           </div>

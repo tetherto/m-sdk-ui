@@ -79,15 +79,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.scss'
 import { ControlledDialog } from './components/controlled-dialog'
 import { Icons } from './components/icons'
-import { AreaChartExample } from './examples/area-chart-example'
-import { BarChartExample } from './examples/bar-chart-example'
-import { LineChartExample } from './examples/line-chart-example'
 import { AccordionExample } from './examples/accordion-example'
+import { AreaChartExample } from './examples/area-chart-example'
+import { BadgeExample } from './examples/badge-example'
+import { BarChartExample } from './examples/bar-chart-example'
 import { CascaderExample } from './examples/cascader-example'
 import { CheckboxExample } from './examples/checkbox-example'
 import { DemoTable } from './examples/demo-table'
 import FormExample from './examples/form-example'
 import { IndicatorsExample } from './examples/indicators-example'
+import { LineChartExample } from './examples/line-chart-example'
+import { ListViewFilterExample } from './examples/list-view-filter-example'
 import PaginationExample from './examples/pagination-example'
 import { RadioExample } from './examples/radio-example'
 import TextAreaExample from './examples/textarea-example'
@@ -152,7 +154,9 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     icon: <LayersIcon />,
     items: [
       { id: 'table', label: 'Table' },
+      { id: 'list-view-filter', label: 'List view filter' },
       { id: 'avatar', label: 'Avatar' },
+      { id: 'badge', label: 'Badge' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
       { id: 'typography', label: 'Typography' },
@@ -901,8 +905,15 @@ const App = (): JSX.Element => {
             </section>
           )}
           {/* Checkbox & Switch */}
-
           {activeSection === 'checkbox-switch' && <CheckboxExample />}
+          {/* Table */}
+          {activeSection === 'table' && (
+            <section className="demo-section">
+              <DemoTable />
+            </section>
+          )}
+          {/* List view filter */}
+          {activeSection === 'list-view-filter' && <ListViewFilterExample />}
           {/* Avatar */}
           {activeSection === 'avatar' && (
             <section className="demo-section">
@@ -918,6 +929,8 @@ const App = (): JSX.Element => {
               </div>
             </section>
           )}
+          {/* Badge */}
+          {activeSection === 'badge' && <BadgeExample />}
           {/* Table */}
           {activeSection === 'table' && (
             <section className="demo-section">
