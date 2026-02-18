@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { PIE_CHART_COLORS } from '../../constants/colors'
 import { cn } from '../../utils'
+import { colorWithAlpha } from '../../utils/chart-options'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -15,11 +16,7 @@ export type DoughnutChartDataset = {
 export type DoughnutChartProps = {
   /** Array of labelled slices */
   data: DoughnutChartDataset[]
-  /** Header label displayed above the legend (e.g. "TOTAL MINERS") */
-  label?: string
-  /** Header value displayed next to the label (e.g. "271") */
-  value?: string | number
-  /** Unit suffix shown after value and in tooltips */
+  /** Unit suffix shown in tooltips */
   unit?: string
   /** Chart.js options – merged with defaults */
   options?: ChartJS<'doughnut'>['options']
@@ -39,7 +36,7 @@ const formatPct = (value: number, total: number): string => {
 
 /**
  * DoughnutChart – Presentational Chart.js doughnut chart
- * with built-in header card and custom HTML legend matching the miningOS design.
+ * with custom HTML legend matching the miningOS design.
  *
  * @example
  * ```tsx
@@ -48,26 +45,11 @@ const formatPct = (value: number, total: number): string => {
  *     { label: 'Online', value: 120, color: '#34C759' },
  *     { label: 'Offline', value: 30, color: '#FF3B30' },
  *   ]}
- *   label="TOTAL MINERS"
- *   value="150"
  * />
  * ```
  */
 export const DoughnutChart = React.forwardRef<HTMLDivElement, DoughnutChartProps>(
-  (
-    {
-      data,
-      label,
-      value,
-      unit = '',
-      options,
-      cutout = '75%',
-      borderWidth = 4,
-      height = 260,
-      className,
-    },
-    ref,
-  ) => {
+  ({ data, unit = '', options, cutout = '75%', borderWidth = 4, height = 260, className }, ref) => {
     const chartRef = React.useRef<ChartJS<'doughnut'> | null>(null)
     const [hiddenItems, setHiddenItems] = React.useState<Record<number, boolean>>({})
 
@@ -142,23 +124,8 @@ export const DoughnutChart = React.forwardRef<HTMLDivElement, DoughnutChartProps
       }))
     }, [])
 
-    const showHeader = label != null || value != null
-
     return (
       <div ref={ref} className={cn('mining-sdk-doughnut-chart', className)}>
-        {/* Header card */}
-        {showHeader && (
-          <div className="mining-sdk-doughnut-chart__header">
-            {label && <span className="mining-sdk-doughnut-chart__label">{label}</span>}
-            {value != null && (
-              <span className="mining-sdk-doughnut-chart__value">
-                {value}
-                {unit ? ` ${unit}` : ''}
-              </span>
-            )}
-          </div>
-        )}
-
         {/* Custom legend */}
         <div className="mining-sdk-doughnut-chart__legend">
           {data.map((item, i) => {
@@ -176,7 +143,10 @@ export const DoughnutChart = React.forwardRef<HTMLDivElement, DoughnutChartProps
               >
                 <span
                   className="mining-sdk-doughnut-chart__legend-color"
-                  style={{ backgroundColor: colors[i] }}
+                  style={{
+                    borderColor: colors[i],
+                    backgroundColor: colorWithAlpha(colors[i] ?? '#888', 0.2),
+                  }}
                 />
                 <span className="mining-sdk-doughnut-chart__legend-label">{item.label}</span>
                 <span className="mining-sdk-doughnut-chart__legend-stats">

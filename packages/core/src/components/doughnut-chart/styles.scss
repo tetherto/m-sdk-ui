@@ -4,36 +4,11 @@
   gap: 24px;
   width: 100%;
 
-  // ── Header card ───────────────────────────────────────────────────────────
-  &__header {
-    @include flex_align_between;
-
-    gap: 20px;
-    padding: 16px 20px;
-    background-color: hsl(0 0% 0% / 0.5);
-  }
-
-  &__label {
-    font-size: 0.75rem;
-    font-weight: 800;
-    line-height: 1rem;
-    letter-spacing: 1.32px;
-    text-transform: uppercase;
-    color: hsl(var(--foreground) / 0.5);
-  }
-
-  &__value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: normal;
-    color: var(--mining-sdk-color-primary, #f7931a);
-  }
-
   // ── Legend ─────────────────────────────────────────────────────────────────
   &__legend {
     @include flex_column;
 
-    gap: 4px;
+    gap: 8px;
     width: 100%;
   }
 
@@ -42,7 +17,7 @@
 
     gap: 12px;
     width: 100%;
-    padding: 6px 4px;
+    padding: 0;
     background: none;
     border: none;
     cursor: pointer;
@@ -61,12 +36,14 @@
     width: 14px;
     height: 14px;
     flex-shrink: 0;
+    border: 1px solid;
   }
 
   &__legend-label {
-    font-size: 0.8125rem;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', sans-serif;
     font-weight: 500;
-    color: hsl(var(--foreground) / 0.85);
+    color: hsl(210 40% 98% / 0.85);
     white-space: nowrap;
     text-align: left;
   }
@@ -79,16 +56,18 @@
   }
 
   &__legend-pct {
-    font-size: 0.8125rem;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', sans-serif;
     font-weight: 600;
-    color: hsl(var(--foreground) / 0.6);
+    color: hsl(210 40% 98% / 0.6);
     white-space: nowrap;
   }
 
   &__legend-count {
-    font-size: 0.8125rem;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', sans-serif;
     font-weight: 700;
-    color: hsl(var(--foreground) / 0.9);
+    color: hsl(210 40% 98% / 0.9);
     white-space: nowrap;
   }
 

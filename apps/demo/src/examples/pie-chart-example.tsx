@@ -7,40 +7,21 @@ import {
 } from '../constants/demo-chart-data'
 
 export const PieChartExample: React.FC = () => {
-  const minerTypeTotal = DOUGHNUT_CHART_MINER_TYPES.reduce((a, d) => a + d.value, 0)
-
   return (
     <div className="demo-section__charts">
       <section>
-        <h3>Miner Types (full card)</h3>
-        <DoughnutChart
-          data={DOUGHNUT_CHART_MINER_TYPES}
-          label="Total Miners"
-          value={minerTypeTotal}
-        />
+        <h3>Miner Types</h3>
+        <DoughnutChart data={DOUGHNUT_CHART_MINER_TYPES} />
       </section>
 
       <section>
         <h3>Miner Status</h3>
-        <DoughnutChart
-          data={DOUGHNUT_CHART_MINER_STATUS}
-          label="Miner Status"
-          value={DOUGHNUT_CHART_MINER_STATUS.reduce((a, d) => a + d.value, 0)}
-        />
+        <DoughnutChart data={DOUGHNUT_CHART_MINER_STATUS} />
       </section>
 
       <section>
         <h3>Site Distribution (auto colors)</h3>
-        <DoughnutChart
-          data={DOUGHNUT_CHART_SITE_DISTRIBUTION}
-          label="Miners per Site"
-          value={DOUGHNUT_CHART_SITE_DISTRIBUTION.reduce((a, d) => a + d.value, 0)}
-        />
-      </section>
-
-      <section>
-        <h3>No Header</h3>
-        <DoughnutChart data={DOUGHNUT_CHART_MINER_STATUS} />
+        <DoughnutChart data={DOUGHNUT_CHART_SITE_DISTRIBUTION} />
       </section>
     </div>
   )
