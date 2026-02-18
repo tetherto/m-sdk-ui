@@ -108,7 +108,7 @@ const App = (): JSX.Element => {
   const location = useLocation()
   const mainRef = useRef<HTMLDivElement>(null)
 
-  const activeSection = location.pathname.slice(1) || 'buttons'
+  const activeSection = location.pathname === '/' ? '' : location.pathname.slice(1)
 
   const handleNavClick = (item: SidebarMenuItem): void => {
     navigate(`/${item.id}`)

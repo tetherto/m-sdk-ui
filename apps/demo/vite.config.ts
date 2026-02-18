@@ -13,6 +13,19 @@ export default defineConfig({
     },
   },
   build: {
+    modulePreload: {
+      polyfill: false,
+      resolveDependencies: (url, deps) => {
+        return deps.filter((dep) => {
+          return (
+            !dep.includes('charts-') &&
+            !dep.includes('vendor-') &&
+            !dep.includes('page-alert-dialog') &&
+            !dep.includes('page-dialog')
+          )
+        })
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -28,7 +41,21 @@ export default defineConfig({
             }
             return 'vendor'
           }
+          // Split pages into separate chunks for better code splitting
+          if (id.includes('src/pages/')) {
+            const pageName = id.split('src/pages/')[1]?.split('.')[0]
+            return `page-${pageName}`
+          }
+          if (id.includes('src/examples/')) {
+            const exampleName = id.split('src/examples/')[1]?.split('.')[0]
+            return `example-${exampleName}`
+          }
         },
+      },
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        unknownGlobalSideEffects: false,
       },
     },
     cssCodeSplit: true,
@@ -45,12 +72,18 @@ export default defineConfig({
         unsafe_comps: true,
         unsafe_math: true,
         unsafe_proto: true,
+        dead_code: true,
+        unused: true,
       },
       mangle: {
         safari10: true,
       },
+      format: {
+        comments: false,
+      },
     },
     reportCompressedSize: false,
     chunkSizeWarningLimit: 1000,
+    sourcemap: false,
   },
 })
