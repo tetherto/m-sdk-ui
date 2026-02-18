@@ -49,7 +49,9 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     icon: <LayersIcon />,
     items: [
       { id: 'table', label: 'Table' },
+      { id: 'list-view-filter', label: 'List view filter' },
       { id: 'avatar', label: 'Avatar' },
+      { id: 'badge', label: 'Badge' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
       { id: 'typography', label: 'Typography' },
@@ -89,6 +91,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'spinner', label: 'Spinner' },
       { id: 'loader', label: 'Loader' },
+      { id: 'skeleton', label: 'Skeleton' },
     ],
   },
   {
@@ -99,6 +102,16 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'error-boundary', label: 'Error Boundary' },
       { id: 'error-card', label: 'Error Card' },
       { id: 'not-found-page', label: 'Not Found Page' },
+    ],
+  },
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    icon: <BarChartIcon />,
+    items: [
+      { id: 'active-incidents-card', label: 'Active Incidents Card' },
+      { id: 'pool-details-card', label: 'Pool Details Card' },
+      { id: 'pool-details-popover', label: 'Pool Details Popover' },
     ],
   },
 ]

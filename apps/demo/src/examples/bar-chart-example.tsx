@@ -1,4 +1,5 @@
-import { BarChart, ChartContainer } from '@mining-sdk/core'
+import { ChartContainer } from '@mining-sdk/core'
+import { BarChart } from '@mining-sdk/core/components/bar-chart'
 import React from 'react'
 import { BAR_CHART_MINING_OUTPUT } from '../constants/demo-chart-data'
 

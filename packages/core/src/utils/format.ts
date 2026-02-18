@@ -342,3 +342,9 @@ export const formatRelativeTime = (date: Date | string): string => {
 
   return `${Math.floor(diffInSeconds / 86400)}d ago`
 }
+
+/**
+ * Convert number or string to CSS size
+ */
+export const toCssSize = (value?: number | string): string | undefined =>
+  typeof value === 'number' ? `${value}px` : value

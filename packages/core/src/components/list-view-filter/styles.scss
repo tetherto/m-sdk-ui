@@ -1,0 +1,73 @@
+.mining-sdk-tag-input__dropdown {
+  border: unset;
+  margin-top: 4px;
+}
+
+.mining-sdk-list-view-filter {
+  position: relative;
+  display: inline-block;
+
+  &__trigger {
+    @include inline_flex_align;
+
+    position: relative;
+  }
+
+  &__icon {
+    margin-right: 0.5rem;
+  }
+
+  &__dropdown {
+    max-width: 90vw;
+    padding: 0;
+    background-color: var(--mining-sdk-color-obsidian);
+    border: unset;
+  }
+
+  &__header {
+    padding: 1rem 1.5rem;
+    background-color: var(--mining-sdk-color-obsidian);
+  }
+
+  &__content {
+    padding: 0;
+
+    .mining-sdk-cascader {
+      border: none;
+      background: transparent;
+    }
+
+    // Override TagInput styles for filter context
+    .mining-sdk-tag-input__wrapper {
+      border: 1px solid var(--mining-sdk-border-default-color);
+      border-radius: 0;
+      margin-top: 8px;
+      background-color: var(--mining-sdk-color-obsidian);
+      padding: 0 1rem;
+      width: 300px;
+
+      &:focus-within {
+        border-color: var(--mining-sdk-color-primary);
+        box-shadow: 0 0 0 2px rgba(var(--mining-sdk-color-primary-rgb), 0.29);
+      }
+    }
+
+    // Make cascader panels full width
+    .mining-sdk-cascader__panels {
+      border: none;
+    }
+
+    .mining-sdk-cascader__panel {
+      &--categories {
+        border-right: 1px solid var(--mining-sdk-border-default-color);
+      }
+    }
+  }
+}
+
+// Global popover styles for filter
+.mining-sdk-popover-content {
+  &:has(.mining-sdk-list-view-filter__dropdown) {
+    padding: 0;
+  }
+}

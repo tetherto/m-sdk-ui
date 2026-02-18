@@ -13,6 +13,7 @@
       "types": "./src/components/domain/index.ts",
       "default": "./src/components/domain/index.ts"
     },
+    "./styles.css": "./dist/styles.css",
     "./feature": {
       "types": "./src/components/feature/index.ts",
       "default": "./src/components/feature/index.ts"
@@ -35,9 +36,13 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "pnpm build:ts && pnpm build:scss",
+    "build:ts": "tsc",
+    "build:scss": "vite build",
     "clean": "rimraf dist node_modules .turbo",
-    "dev": "tsc --watch",
+    "dev": "concurrently -n ts,scss -c cyan,magenta \"pnpm dev:ts\" \"pnpm dev:scss\"",
+    "dev:ts": "tsc --watch",
+    "dev:scss": "vite build --watch",
     "lint": "eslint .",
     "test": "vitest run --config vitest.config.js --maxConcurrency=5",
     "test:watch": "vitest --watch",

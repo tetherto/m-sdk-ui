@@ -7,7 +7,7 @@
     position: fixed;
     inset: 0;
     z-index: 50;
-    background: rgb(0 0 0 / 0.8);
+    background: var(--mining-sdk-overlay-bg);
 
     &[data-state='open'] {
       animation: fadeIn 200ms ease-out;
@@ -22,17 +22,17 @@
     position: fixed;
     left: 50%;
     top: 50%;
+    gap: 1rem;
     z-index: 50;
-    display: grid;
     width: 100%;
+    display: grid;
+    padding: 1.5rem;
     max-width: 32rem;
     translate: -50% -50%;
-    gap: 1rem;
-    border: 1px solid hsl(var(--border));
-    background: var(--mining-sdk-color-surface);
-    padding: 1.5rem;
-    box-shadow: 0 10px 15px -3px var(--mining-sdk-dialog-box-shadow-color);
     animation-duration: 200ms;
+    background: var(--mining-sdk-color-surface);
+    border: 1px solid var(--mining-sdk-dialog-border-color);
+    box-shadow: 0 10px 15px -3px var(--mining-sdk-dialog-box-shadow-color);
 
     &[data-state='open'] {
       animation: dialogIn 200ms ease-out;
@@ -50,9 +50,14 @@
     padding-bottom: 28px;
     border-bottom: 1px solid var(--mining-sdk-dialog-border-color);
 
+    &--bare {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
     &__container {
       @include flex_column;
-      
+
       gap: 0.375rem;
     }
 
@@ -61,6 +66,23 @@
       right: -1rem;
       top: -0.75rem;
       border: 0;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      color: var(--mining-sdk-color-white-60);
+      transition:
+        background 0.2s ease-in-out,
+        color 0.2s ease-in-out;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      &:hover {
+        color: var(--mining-sdk-color-white);
+        background: var(--mining-sdk-color-white-12);
+      }
     }
 
     @media (min-width: 640px) {

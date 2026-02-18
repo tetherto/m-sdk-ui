@@ -1,7 +1,6 @@
 import {
   Button,
   Checkbox,
-  DatePicker,
   Form,
   FormControl,
   FormDescription,
@@ -22,6 +21,7 @@ import {
   Switch,
   TextArea,
 } from '@mining-sdk/core'
+import { DatePicker } from '@mining-sdk/core/components/date-picker'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

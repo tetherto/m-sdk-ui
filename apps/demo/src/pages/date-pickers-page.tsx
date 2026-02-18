@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import type { DateRange } from '@mining-sdk/core'
-import { DatePicker, DateRangePicker } from '@mining-sdk/core'
+import type { DateRange } from '@mining-sdk/core/components/date-picker'
+import { DatePicker, DateRangePicker } from '@mining-sdk/core/components/date-picker'
 
 export const DatePickersPage = (): JSX.Element => {
   const [selectedDate, setSelectedDate] = useState<Date>()

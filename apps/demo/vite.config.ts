@@ -30,15 +30,31 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'react-vendor'
+            // Split heavy chart libraries
+            if (id.includes('react-gauge-chart')) {
+              return 'vendor-gauge-chart'
+            }
+            if (id.includes('react-day-picker') || id.includes('date-fns')) {
+              return 'vendor-date-picker'
             }
             if (id.includes('recharts') || id.includes('d3-')) {
-              return 'charts'
+              return 'vendor-charts'
             }
+            // Core React libraries
+            if (id.includes('react-dom')) {
+              return 'vendor-react-dom'
+            }
+            if (id.includes('react-router')) {
+              return 'vendor-react-router'
+            }
+            if (id.includes('react/') || id.includes('react\\') || id.endsWith('react')) {
+              return 'vendor-react'
+            }
+            // Radix UI components
             if (id.includes('@radix-ui')) {
-              return 'radix-ui'
+              return 'vendor-radix-ui'
             }
+            // All other node_modules
             return 'vendor'
           }
           // Split pages into separate chunks for better code splitting

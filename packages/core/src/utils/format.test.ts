@@ -7,6 +7,7 @@ import {
   formatNumber,
   formatValueUnit,
   showTotalTableCount,
+  toCssSize,
   toTitleCase,
 } from './format'
 
@@ -76,5 +77,22 @@ describe('formatMacAddress', () => {
 
   it('returns empty string for undefined', () => {
     expect(formatMacAddress(undefined)).toBe('')
+  })
+})
+
+describe('toCssSize', () => {
+  it('converts numbers to px strings', () => {
+    expect(toCssSize(16)).toBe('16px')
+    expect(toCssSize(0)).toBe('0px')
+  })
+
+  it('passes strings through unchanged', () => {
+    expect(toCssSize('2rem')).toBe('2rem')
+    expect(toCssSize('100%')).toBe('100%')
+  })
+
+  it('returns undefined when no value is provided', () => {
+    expect(toCssSize()).toBe(undefined)
+    expect(toCssSize(undefined)).toBe(undefined)
   })
 })
