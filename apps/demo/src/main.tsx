@@ -1,3 +1,4 @@
+import '@mining-sdk/fonts/jetbrains-mono.css'
 import '@mining-sdk/core/styles.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'

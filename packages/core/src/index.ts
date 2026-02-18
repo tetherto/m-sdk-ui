@@ -50,9 +50,8 @@ export * from './components/textarea'
 export * from './components/toast'
 export * from './components/tooltip'
 export * from './components/typography'
-// Constants
-export * from './constants/colors'
-export * from './constants/units'
+// Constants (only UI-related)
+export * from './constants'
 // Theme system
 export * from './theme'
 // Core types

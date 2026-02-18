@@ -15,6 +15,7 @@
   "dependencies": {
     "@hookform/resolvers": "catalog:",
     "@mining-sdk/core": "workspace:*",
+    "@mining-sdk/fonts": "workspace:*",
     "@mining-sdk/foundation": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:",
