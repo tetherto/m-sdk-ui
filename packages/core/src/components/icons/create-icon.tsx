@@ -22,6 +22,7 @@ export function createIcon(
           height={resolvedHeight}
           viewBox={viewBox}
           fill="none"
+          aria-hidden="true"
           style={style}
           {...rest}
         >
