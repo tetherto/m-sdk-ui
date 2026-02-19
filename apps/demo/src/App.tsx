@@ -9,6 +9,7 @@ import {
   HomeIcon,
   InputIcon,
   LayersIcon,
+  MagnifyingGlassIcon,
 } from '@radix-ui/react-icons'
 import { useRef } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
@@ -115,8 +116,13 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'active-incidents-card', label: 'Active Incidents Card' },
       { id: 'pool-details-card', label: 'Pool Details Card' },
       { id: 'pool-details-popover', label: 'Pool Details Popover' },
-      { id: 'device-explorer', label: 'Device Explorer' },
     ],
+  },
+  {
+    id: 'explorer',
+    label: 'Explorer',
+    icon: <MagnifyingGlassIcon />,
+    items: [{ id: 'device-explorer', label: 'Device Explorer' }],
   },
 ]
 
