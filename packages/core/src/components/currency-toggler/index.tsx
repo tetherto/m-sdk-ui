@@ -49,9 +49,10 @@ const CurrencyToggler = React.forwardRef<HTMLDivElement, CurrencyTogglerProps>(
 
         return (
           <button
-            key={item.value}
             type="button"
+            key={item.value}
             disabled={item.disabled}
+            aria-label={`Select ${label} currency`}
             className={cn(
               'mining_sdk_currency_toggler__button',
               value === item.value && 'mining_sdk_currency_toggler__button--active',
