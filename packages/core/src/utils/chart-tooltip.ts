@@ -23,6 +23,47 @@ export type ChartTooltipConfig = {
 }
 
 const TOOLTIP_CONTAINER_ID = 'mining-sdk-chart-tooltip'
+const TRACKING_ATTR = 'data-msdk-mouse'
+const GAP = 10
+const OFFSET = 5
+
+const positionTooltip = (container: HTMLElement, cursorX: number, cursorY: number): void => {
+  const tooltipEl = container.querySelector<HTMLDivElement>(`#${TOOLTIP_CONTAINER_ID}`)
+  if (!tooltipEl || tooltipEl.style.opacity === '0') return
+
+  const tooltipWidth = tooltipEl.offsetWidth
+  const tooltipHeight = tooltipEl.offsetHeight
+  const containerWidth = container.offsetWidth
+  const containerHeight = container.offsetHeight
+
+  const fitsRight = cursorX + GAP + tooltipWidth <= containerWidth - OFFSET
+  let left = fitsRight ? cursorX + GAP : cursorX - tooltipWidth - GAP
+
+  if (left < OFFSET) left = OFFSET
+  if (left + tooltipWidth > containerWidth - OFFSET) left = containerWidth - tooltipWidth - OFFSET
+
+  let top = cursorY
+  if (top + tooltipHeight > containerHeight - OFFSET) top = containerHeight - tooltipHeight - OFFSET
+  if (top < OFFSET) top = OFFSET
+
+  tooltipEl.style.left = `${left}px`
+  tooltipEl.style.top = `${top}px`
+}
+
+const ensureMouseTracking = (container: HTMLElement): void => {
+  if (container.getAttribute(TRACKING_ATTR)) return
+  container.setAttribute(TRACKING_ATTR, '1')
+
+  container.addEventListener('mousemove', (e: MouseEvent) => {
+    const rect = container.getBoundingClientRect()
+    positionTooltip(container, e.clientX - rect.left, e.clientY - rect.top)
+  })
+
+  container.addEventListener('mouseleave', () => {
+    const tooltipEl = container.querySelector<HTMLDivElement>(`#${TOOLTIP_CONTAINER_ID}`)
+    if (tooltipEl) tooltipEl.style.opacity = '0'
+  })
+}
 
 const getOrCreateTooltipEl = (chart: Chart): HTMLDivElement => {
   const canvas = chart.canvas
@@ -41,6 +82,7 @@ const getOrCreateTooltipEl = (chart: Chart): HTMLDivElement => {
     container.appendChild(tooltipEl)
   }
 
+  ensureMouseTracking(container)
   return tooltipEl
 }
 
@@ -60,17 +102,16 @@ const resolveDatasetColor = (item: TooltipItem<any>): string => {
 /**
  * Creates a Chart.js external tooltip handler matching the miningOS design.
  *
+ * The tooltip follows the real mouse cursor (not data points) via a mousemove
+ * listener on the chart container. Content is updated by Chart.js's external
+ * tooltip callback; positioning is driven entirely by the mouse.
+ *
  * @example
  * ```tsx
- * const options = {
- *   plugins: {
- *     tooltip: buildChartTooltip({
- *       valueFormatter: (v) => `${v.toFixed(2)} PH/s`,
- *       valueColor: 'dataset',
- *       labelColor: 'dataset',
- *     }),
- *   },
- * }
+ * <LineChart
+ *   data={data}
+ *   tooltip={{ valueFormatter: (v) => `${v.toFixed(2)} PH/s` }}
+ * />
  * ```
  */
 export const buildChartTooltip = (
@@ -155,31 +196,6 @@ export const buildChartTooltip = (
       minWidth: `${minWidth}px`,
       zIndex: '10',
     })
-
-    const { offsetLeft, offsetTop } = chart.canvas
-    const tooltipWidth = tooltipEl.offsetWidth
-    const tooltipHeight = tooltipEl.offsetHeight
-    const canvasWidth = chart.canvas.offsetWidth
-    const canvasHeight = chart.canvas.offsetHeight
-
-    let left = offsetLeft + tooltip.caretX + 12
-    let top = offsetTop + tooltip.caretY
-
-    if (left + tooltipWidth > offsetLeft + canvasWidth) {
-      left = offsetLeft + tooltip.caretX - tooltipWidth - 12
-    }
-    if (left < offsetLeft) {
-      left = offsetLeft
-    }
-    if (top + tooltipHeight > offsetTop + canvasHeight) {
-      top = offsetTop + canvasHeight - tooltipHeight
-    }
-    if (top < offsetTop) {
-      top = offsetTop
-    }
-
-    tooltipEl.style.left = `${left}px`
-    tooltipEl.style.top = `${top}px`
   }
 
   return {
