@@ -1,4 +1,3 @@
-import type { UnknownRecord } from '../components/domain'
 import _capitalize from 'lodash/capitalize'
 import _find from 'lodash/find'
 import _get from 'lodash/get'
@@ -19,6 +18,7 @@ import { SEVERITY, SEVERITY_COLORS } from '../constants/alerts'
 import { MINER_MODEL_TO_TYPE_MAP } from '../constants/device-constants'
 import { HASHRATE_LABEL_DIVISOR, UNITS } from '../constants/units'
 import { convertUnits, FALLBACK, formatHashrateUnit, UNIT_LABELS } from '@mining-sdk/core'
+import type { UnknownRecord } from '@mining-sdk/core'
 import { MINER_POWER_MODE } from './status-utils'
 
 const FLOAT_PRECISION = 2
