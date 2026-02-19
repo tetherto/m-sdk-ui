@@ -6,6 +6,7 @@
 
 // Styled components
 export * from './components/accordion'
+export * from './components/action-button'
 export * from './components/alert-dialog'
 
 // Chart components

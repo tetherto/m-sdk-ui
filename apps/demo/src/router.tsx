@@ -7,6 +7,9 @@ import { ChartWrapperPage } from './pages'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
 const HomePage = lazy(() => import('./pages/home-page').then((m) => ({ default: m.HomePage })))
+const ActionButtonPage = lazy(() =>
+  import('./pages/action-button-page').then((m) => ({ default: m.ActionButtonPage })),
+)
 const AvatarPage = lazy(() =>
   import('./pages/avatar-page').then((m) => ({ default: m.AvatarPage })),
 )
@@ -160,6 +163,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: withSuspense(HomePage) },
+      { path: 'action-button', element: withSuspense(ActionButtonPage) },
       { path: 'buttons', element: withSuspense(ButtonsPage) },
       { path: 'form-elements', element: withSuspense(FormElementsPage) },
       { path: 'select', element: withSuspense(SelectPage) },

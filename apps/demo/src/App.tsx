@@ -25,6 +25,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Forms',
     icon: <InputIcon />,
     items: [
+      { id: 'action-button', label: 'Action Button' },
       { id: 'buttons', label: 'Buttons' },
       { id: 'form-elements', label: 'Form Elements' },
       { id: 'select', label: 'Select' },
