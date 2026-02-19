@@ -152,7 +152,7 @@ const ICON_CATEGORIES: { title: string; icons: IconEntry[] }[] = [
     title: 'Miner Card',
     icons: [
       { name: 'HashrateCardIcon', component: HashrateCardIcon },
-      { name: 'AlertTriangleIcon', component: AlertTriangleIcon, multiColor: true },
+      { name: 'AlertTriangleIcon', component: AlertTriangleIcon },
       { name: 'BtcCardIcon', component: BtcCardIcon, multiColor: true },
       { name: 'CoolingDropIcon', component: CoolingDropIcon },
       { name: 'PowerIcon', component: PowerIcon },
