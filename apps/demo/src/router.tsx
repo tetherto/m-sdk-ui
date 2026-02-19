@@ -127,6 +127,11 @@ const TypographyExample = lazy(() =>
   })),
 )
 const Icons = lazy(() => import('./components/icons').then((module) => ({ default: module.Icons })))
+const MiningIconsExample = lazy(() =>
+  import('./examples/mining-icons-example').then((module) => ({
+    default: module.MiningIconsExample,
+  })),
+)
 
 const SectionLoader = (): JSX.Element => (
   <div
@@ -176,6 +181,7 @@ export const router = createBrowserRouter([
       { path: 'indicators', element: withSuspense(IndicatorsExample) },
       { path: 'list-view-filter', element: withSuspense(ListViewFilterExample) },
       { path: 'icons', element: withSuspense(Icons) },
+      { path: 'mining-icons', element: withSuspense(MiningIconsExample) },
       { path: 'empty-state', element: withSuspense(EmptyStatePage) },
       { path: 'line-chart', element: withSuspense(LineChartExample) },
       { path: 'bar-chart', element: withSuspense(BarChartExample) },

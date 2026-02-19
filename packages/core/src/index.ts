@@ -32,6 +32,8 @@ export * from './components/error-boundary'
 export * from './components/error-card'
 export * from './components/form'
 export * from './components/gauge-chart'
+// Mining-specific icons
+export * from './components/icons'
 export * from './components/indicator'
 export * from './components/input'
 export * from './components/label'
