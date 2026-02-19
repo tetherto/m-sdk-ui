@@ -13,8 +13,22 @@
     position: relative;
   }
 
-  &__icon {
-    margin-right: 0.5rem;
+  &__trigger {
+    .mining-sdk-button {
+      transition:
+        color,
+        border-color 200ms ease;
+
+      &:hover {
+        color: var(--mining-sdk-color-primary-hover-light);
+        border-color: var(--mining-sdk-color-primary-hover-light);
+      }
+
+      &__label {
+        gap: 8px;
+        padding: 0 15px;
+      }
+    }
   }
 
   &__dropdown {
@@ -25,7 +39,7 @@
   }
 
   &__header {
-    padding: 1rem 1.5rem;
+    padding: 12px;
     background-color: var(--mining-sdk-color-obsidian);
   }
 

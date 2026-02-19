@@ -6,6 +6,17 @@ import { Popover, PopoverAnchor, PopoverContent } from '../popover'
 
 export type TagInputOption = string | { value: string; label: string }
 
+export type TagInputRef = {
+  /** Clear the input value programmatically */
+  clearInputValue: () => void
+  /** Focus the input */
+  focus: () => void
+  /** Blur the input */
+  blur: () => void
+  /** Get current input value */
+  getInputValue: () => string
+}
+
 export type TagInputDropdownProps = {
   /** Filtered options to display */
   filteredOptions: TagInputOption[]
@@ -40,6 +51,14 @@ export type TagInputProps = {
    * Callback when tags change (add/remove)
    */
   onTagsChange?: (tags: string[]) => void
+  /**
+   * Click handler for the input wrapper (e.g. to focus input). Receives click event.
+   */
+  onClick?: () => void
+  /**
+   * Callback when input value changes (typing). Receives current input value. Useful for async option loading or custom filtering.
+   */
+  onInputChange?: (value: string) => void
   /**
    * Callback when user presses Enter (submit). Receives current tags.
    * Called after adding a tag from selection or typed text, if applicable.
@@ -158,12 +177,14 @@ function defaultFilter(options: TagInputOption[], query: string): TagInputOption
  * />
  * ```
  */
-const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
+const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>(
   (
     {
       value = [],
       onTagsChange,
       onSubmit,
+      onClick,
+      onInputChange,
       options = [],
       placeholder = 'Search...',
       disabled = false,
@@ -213,6 +234,22 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
         setTags(next)
       },
       [tags, setTags],
+    )
+
+    const clearInputValue = React.useCallback(() => {
+      setInputValue('')
+      setHighlightedIndex(0)
+    }, [])
+
+    React.useImperativeHandle(
+      ref,
+      () => ({
+        clearInputValue,
+        focus: () => inputRef.current?.focus(),
+        blur: () => inputRef.current?.blur(),
+        getInputValue: () => inputValue,
+      }),
+      [clearInputValue, inputValue],
     )
 
     const handleKeyDown = React.useCallback(
@@ -313,7 +350,10 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
               disabled && 'mining-sdk-tag-input__wrapper--disabled',
               wrapperClassName,
             )}
-            onClick={() => inputRef.current?.focus()}
+            onClick={() => {
+              inputRef.current?.focus()
+              onClick?.()
+            }}
           >
             <div className="mining-sdk-tag-input__inner">
               {tags.map((tag, i) => (
@@ -348,6 +388,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
                 onChange={(e) => {
                   setInputValue(e.target.value)
                   setHighlightedIndex(0)
+                  onInputChange?.(e.target.value)
                 }}
                 onKeyDown={handleKeyDown}
                 onFocus={handleFocus}

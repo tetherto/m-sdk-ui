@@ -28,6 +28,7 @@
     --mining-sdk-color-warning: #ffc107;
 
     --mining-sdk-color-primary-hover: #f7931acc;
+    --mining-sdk-color-primary-hover-light: #e8a140;
 
     /* Loader/Spinner Colors */
     --ming-sdk-color-soft-apricot: 255, 236, 186; /* #ffecba in Hex */
@@ -153,7 +154,7 @@
     --mining-sdk-button-danger-text: #ffffff;
     --mining-sdk-button-danger-border: #ef4444;
 
-    --mining-sdk-orange-dimmer: #1D1914;
+    --mining-sdk-orange-dimmer: #1d1914;
 
     /* Accordion specific colors */
     --mining-sdk-accordion-item-bg: #0e0e0e80;
@@ -162,9 +163,12 @@
     --mining-sdk-chart-container-bg: rgba(0, 0, 0, 0.5);
     --mining-sdk-chart-container-legend-label: rgba(255, 255, 255, 0.7);
     --mining-sdk-chart-container-title: rgba(255, 255, 255, 0.5);
+
     /* Cascader specific colors */
     --mining-sdk-cascader-active-bg: #583a16;
     --mining-sdk-cascader-checkbox-bg: #141414;
+    --mining-sdk-cascader-color-highlight: #dc4446;
+
     /* Status colors */
     --mining-sdk-color-severity-critical: #ff0000;
     --mining-sdk-color-severity-high: #ffa500;
