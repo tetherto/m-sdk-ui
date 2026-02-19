@@ -28,7 +28,7 @@ const CATEGORIES = [
   {
     title: 'Forms',
     description: 'Input controls and form elements for user interaction',
-    componentCount: 8,
+    componentCount: 11,
     path: '/buttons',
   },
   {
@@ -127,7 +127,7 @@ export const HomePage = (): JSX.Element => {
 
       <div className="home-page__stats">
         <div className="stat-item">
-          <span className="stat-item__value">44+</span>
+          <span className="stat-item__value">50+</span>
           <span className="stat-item__label">Components</span>
         </div>
         <div className="stat-item">

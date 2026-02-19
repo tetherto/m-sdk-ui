@@ -12,6 +12,9 @@
   @include flex_column;
 
   gap: 0.5rem;
+  
+  // Prevent layout shift when errors appear/disappear
+  min-height: fit-content;
 }
 
 .mining-sdk-form-label {
@@ -26,6 +29,9 @@
   font-size: 0.75rem;
   line-height: 1.25rem;
   color: var(--mining-sdk-input-placeholder-color, #999999);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .mining-sdk-form-message {
@@ -34,4 +40,18 @@
   font-size: 0.75rem;
   line-height: 1.25rem;
   color: rgb(var(--mining-sdk-color-error, #ef4444));
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  
+  // Reserve space to prevent layout shift when errors appear
+  min-height: 1.25rem;
+  
+  // When empty, take up space but be invisible (prevents layout shift)
+  &--empty {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
