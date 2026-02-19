@@ -7,60 +7,58 @@ export const ActionButtonPage = (): JSX.Element => {
       <h2 className="demo-section__title">Action Button</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
-          <p style={{ marginBottom: '0.5rem', fontSize: '13px', opacity: 0.7 }}>Danger 1</p>
+          <p className="demo-section__label">Danger 1</p>
           <ActionButton
-            label="Reboot MiningOS"
+            label="Restart System"
             variant="danger"
             confirmation={{
-              title: 'Reboot MiningOS',
+              title: 'Restart System',
               description: (
                 <>
                   <p>
-                    The Reboot feature restarts all the device communication workers. This will help
-                    when any one type of device information goes missing in MiningOS.
+                    The restart feature will temporarily stop all running services. This may take a
+                    few minutes to complete.
                   </p>
                   <p style={{ marginTop: '0.75rem' }}>
-                    There should not be any pending actions in the Actions chart when rebooting
-                    MiningOS. Please submit or discard all other pending actions before submitting
-                    the request to reboot MiningOS. This action needs a 2nd approval.
+                    Please ensure all pending tasks are saved before proceeding. Any unsaved changes
+                    will be lost. This action requires confirmation.
                   </p>
                 </>
               ),
-              onConfirm: () => alert('Rebooting MiningOS...'),
+              onConfirm: () => alert('System restarting...'),
             }}
           />
         </div>
 
         <div>
-          <p style={{ marginBottom: '0.5rem', fontSize: '13px', opacity: 0.7 }}>Danger 2</p>
+          <p className="demo-section__label">Danger 2</p>
           <ActionButton
-            label="Enable container automation"
+            label="Enable Automation"
             variant="danger"
             confirmation={{
-              title: 'Enable container automation',
+              title: 'Enable Automation',
               description:
-                'The container automation feature sends miners to sleep if critical container pump failures occur in Bitmain immersion containers.',
-              onConfirm: () => alert('Container automation enabled!'),
+                'The automation feature will automatically manage resources based on system conditions. This may affect running processes.',
+              onConfirm: () => alert('Automation enabled!'),
             }}
           />
         </div>
 
         <div>
-          <p style={{ marginBottom: '0.5rem', fontSize: '13px', opacity: 0.7 }}>Primary</p>
+          <p className="demo-section__label">Primary</p>
           <ActionButton
-            label="Power All Sockets On"
+            label="Power On All"
             variant="primary"
             confirmation={{
-              title: 'Power All Sockets On',
-              description:
-                'Please ensure cooling system is ON before turning ON sockets and miners',
-              onConfirm: () => alert('Powering all sockets on...'),
+              title: 'Power On All',
+              description: 'Please ensure cooling system is active before powering on all devices.',
+              onConfirm: () => alert('Powering on all devices...'),
             }}
           />
         </div>
 
         <div>
-          <p style={{ marginBottom: '0.5rem', fontSize: '13px', opacity: 0.7 }}>Secondary</p>
+          <p className="demo-section__label">Secondary</p>
           <ActionButton
             label="Restart Service"
             variant="secondary"
@@ -73,7 +71,7 @@ export const ActionButtonPage = (): JSX.Element => {
         </div>
 
         <div>
-          <p style={{ marginBottom: '0.5rem', fontSize: '13px', opacity: 0.7 }}>Disabled</p>
+          <p className="demo-section__label">Disabled</p>
           <ActionButton
             label="Disabled Action"
             variant="secondary"
@@ -86,7 +84,7 @@ export const ActionButtonPage = (): JSX.Element => {
         </div>
 
         <div>
-          <p style={{ marginBottom: '0.5rem', fontSize: '13px', opacity: 0.7 }}>Loading</p>
+          <p className="demo-section__label">Loading</p>
           <ActionButton
             label="Processing..."
             variant="primary"
