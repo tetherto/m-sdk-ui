@@ -3,9 +3,17 @@ import * as React from 'react'
 
 import { cn } from '../../utils'
 
-type TabsProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.Root>
-type TabsListProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.List>
-type TabsTriggerProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.Trigger>
+type TabsVariant = 'default' | 'side'
+
+type TabsProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.Root> & {
+  variant?: TabsVariant
+}
+type TabsListProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.List> & {
+  variant?: TabsVariant
+}
+type TabsTriggerProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.Trigger> & {
+  variant?: TabsVariant
+}
 type TabsContentProps = React.ComponentPropsWithoutRef<typeof TabsPrimitives.Content>
 /**
  * Tabs component for organizing content into panels
@@ -27,17 +35,31 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(({ className, ...props 
 
 Tabs.displayName = 'Tabs'
 
-const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(({ className, ...props }, ref) => (
-  <TabsPrimitives.List ref={ref} className={cn('mining_sdk_tabs__list', className)} {...props} />
-))
+const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
+  ({ className, variant, ...props }, ref) => (
+    <TabsPrimitives.List
+      ref={ref}
+      className={cn(
+        'mining_sdk_tabs__list',
+        variant === 'side' && 'mining_sdk_tabs__list--side',
+        className,
+      )}
+      {...props}
+    />
+  ),
+)
 
 TabsList.displayName = 'TabsList'
 
 const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, variant, ...props }, ref) => (
     <TabsPrimitives.Trigger
       ref={ref}
-      className={cn('mining_sdk_tabs__trigger', className)}
+      className={cn(
+        'mining_sdk_tabs__trigger',
+        variant === 'side' && 'mining_sdk_tabs__trigger--side',
+        className,
+      )}
       {...props}
     />
   ),

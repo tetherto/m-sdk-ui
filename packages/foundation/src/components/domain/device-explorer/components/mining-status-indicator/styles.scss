@@ -2,4 +2,8 @@
 
 .mining-sdk-mining-status-indicator {
   @include flex_center;
+
+  &--alert {
+    color: var(--mining-sdk-color-severity-medium);
+  }
 }

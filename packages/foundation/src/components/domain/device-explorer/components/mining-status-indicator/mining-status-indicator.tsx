@@ -1,11 +1,11 @@
 import {
   AlertTriangleIcon,
-  ErrorIcon,
+  ErrorStatusIcon,
   formatErrors,
-  MiningIcon,
-  OfflineIcon,
+  MiningStatusIcon,
+  OfflineStatusIcon,
   SimpleTooltip,
-  SleepIcon,
+  SleepStatusIcon,
 } from '@mining-sdk/core'
 import type { UnknownRecord } from '@mining-sdk/core'
 import { getAlertsString } from '../../../../../utils/alerts-utils'
@@ -18,32 +18,32 @@ const MinerStatusIcon = ({ status = '' }): JSX.Element => {
   switch (status) {
     case MinerStatuses.ALERT:
       return (
-        <div className="mining-sdk-mining-status-indicator">
+        <div className="mining-sdk-mining-status-indicator--alert">
           <AlertTriangleIcon />
         </div>
       )
     case MinerStatuses.MINING:
       return (
         <StatusLabel>
-          <MiningIcon width={14} height={14} />
+          <MiningStatusIcon width={14} height={14} />
         </StatusLabel>
       )
     case MinerStatuses.SLEEPING:
       return (
         <StatusLabel status="sleep">
-          <SleepIcon width={14} height={14} />
+          <SleepStatusIcon width={14} height={14} />
         </StatusLabel>
       )
     case MinerStatuses.OFFLINE:
       return (
         <StatusLabel status="offline">
-          <OfflineIcon width={14} height={14} />
+          <OfflineStatusIcon width={14} height={14} />
         </StatusLabel>
       )
     case MinerStatuses.ERROR:
       return (
         <StatusLabel status="offline">
-          <ErrorIcon width={14} height={14} />
+          <ErrorStatusIcon width={14} height={14} />
         </StatusLabel>
       )
     default:

@@ -2,6 +2,7 @@ import { Spinner } from '@mining-sdk/core'
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
+import { ListViewFilterExample } from './examples/list-view-filter-example'
 import { ChartWrapperPage } from './pages'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
@@ -97,6 +98,9 @@ const AreaChartExample = lazy(() =>
     default: module.AreaChartExample,
   })),
 )
+const DoughnutChartPage = lazy(() =>
+  import('./pages/doughnut-chart-page').then((module) => ({ default: module.DoughnutChartPage })),
+)
 const AccordionExample = lazy(() =>
   import('./examples/accordion-example').then((module) => ({ default: module.AccordionExample })),
 )
@@ -125,7 +129,11 @@ const TypographyExample = lazy(() =>
     default: module.TypographyExample,
   })),
 )
-const Icons = lazy(() => import('./components/icons').then((module) => ({ default: module.Icons })))
+const MiningIconsExample = lazy(() =>
+  import('./examples/mining-icons-example').then((module) => ({
+    default: module.MiningIconsExample,
+  })),
+)
 
 const DeviceExplorerPage = lazy(() =>
   import('./pages/device-explorer-page/device-explorer-page').then((m) => ({
@@ -179,11 +187,13 @@ export const router = createBrowserRouter([
       { path: 'typography', element: withSuspense(TypographyExample) },
       { path: 'tags', element: withSuspense(TagsPage) },
       { path: 'indicators', element: withSuspense(IndicatorsExample) },
-      { path: 'icons', element: withSuspense(Icons) },
+      { path: 'list-view-filter', element: withSuspense(ListViewFilterExample) },
+      { path: 'mining-icons', element: withSuspense(MiningIconsExample) },
       { path: 'empty-state', element: withSuspense(EmptyStatePage) },
       { path: 'line-chart', element: withSuspense(LineChartExample) },
       { path: 'bar-chart', element: withSuspense(BarChartExample) },
       { path: 'area-chart', element: withSuspense(AreaChartExample) },
+      { path: 'doughnut-chart', element: withSuspense(DoughnutChartPage) },
       { path: 'gauge-chart', element: withSuspense(GaugeChartPage) },
       { path: 'chart-container', element: withSuspense(ChartContainerPage) },
       { path: 'chart-wrapper', element: withSuspense(ChartWrapperPage) },

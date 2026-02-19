@@ -38,7 +38,8 @@ export type IndicatorProps = {
  */
 const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(
   ({ className, color = 'gray', size = 'md', children, onClick, ...props }, ref) => {
-    const isLarge = size === 'lg'
+    const needGap = (Array.isArray(children) && children.length > 1) || size === 'lg'
+
     return (
       <div
         ref={ref}
@@ -56,7 +57,7 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(
           <span
             className={cn(
               'mining-sdk-indicator__label',
-              isLarge && 'mining-sdk-indicator__label--large',
+              needGap && 'mining-sdk-indicator__label--gap',
               className,
             )}
           >

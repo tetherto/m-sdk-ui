@@ -1,8 +1,8 @@
 import {
   AlertTriangleIcon,
-  ErrorIcon,
+  ErrorStatusIcon,
   formatValueUnit,
-  OfflineIcon,
+  OfflineStatusIcon,
   SimpleTooltip,
   unitToKilo,
 } from '@mining-sdk/core'
@@ -58,7 +58,7 @@ export const getContainerColumns = ({
         return (
           <SimpleTooltip content={`Error : ${error}`}>
             <StatusLabel status="error">
-              <ErrorIcon width={14} height={14} />
+              <ErrorStatusIcon width={14} height={14} />
             </StatusLabel>
           </SimpleTooltip>
         )
@@ -77,7 +77,7 @@ export const getContainerColumns = ({
         <div className="mining-sdk-device-explorer__table__cell-wrapper">
           {isContainerOffline(snap || {}) && (
             <StatusLabel status="offline">
-              <OfflineIcon width={14} height={14} />
+              <OfflineStatusIcon width={14} height={14} />
             </StatusLabel>
           )}
           <DeviceCardColText
