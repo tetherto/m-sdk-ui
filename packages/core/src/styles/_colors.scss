@@ -67,6 +67,7 @@
     /* Neutral / Gray scale */
     --mining-sdk-color-gray-900: #1f1f1f;
     --mining-sdk-color-gray-500: #777777;
+    --mining-sdk-color-gray-450: #87888c;
     --mining-sdk-color-gray-400: #8e8e8e;
     --mining-sdk-color-gray-300: #e1e0e0;
     --mining-sdk-color-gray-stone: #898887;
@@ -75,6 +76,7 @@
     --mining-sdk-overlay-bg: rgba(0, 0, 0, 0.45);
     --mining-sdk-color-white-60: rgba(255, 255, 255, 0.6);
     --mining-sdk-color-white-12: #ffffff1f;
+    --mining-sdk-color-white-8: #ffffff14;
 
     /* Breadcrumbs specific colors */
     --mining-sdk-breadcrumbs-separator-color: var(--mining-sdk-color-primary);
@@ -186,6 +188,7 @@
     --color-primary: #f7931a;
     --color-primary-light: #ffb347;
     --color-primary-transparent: rgba(247, 147, 26, 0.1);
+    --color-primary-transparent-20: rgba(247, 147, 26, 0.2);
     --color-text-primary: #ffffff;
     --color-text-secondary: rgba(255, 255, 255, 0.7);
     --color-background-elevated: #1a1a1a;
