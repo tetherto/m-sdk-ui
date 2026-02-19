@@ -1,4 +1,4 @@
-import { CrossCircledIcon, formatValueUnit, SimpleTooltip, unitToKilo } from '@mining-sdk/core'
+import { formatValueUnit, SimpleTooltip, unitToKilo } from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
 import type { ContainerSnap, DeviceExplorerDeviceData, GetColumnConfigParams } from '../types'
 import { getAlarms } from '../device-explorer.utils'
@@ -9,6 +9,7 @@ import { DeviceCardColText } from '../components/device-card-col-text/device-car
 import _isFinite from 'lodash/isFinite'
 import { UNITS } from '../../../../constants/units'
 import { AlertTriangle } from '../components/icons/alert-triangle'
+import { ErrorIcon } from '../components/icons/error-icon'
 
 export const getContainerColumns = ({
   getFormattedDate,
@@ -52,7 +53,7 @@ export const getContainerColumns = ({
         return (
           <SimpleTooltip content={`Error : ${error}`}>
             <StatusLabel status="error">
-              <CrossCircledIcon width={14} height={14} />
+              <ErrorIcon width={14} height={14} />
             </StatusLabel>
           </SimpleTooltip>
         )
