@@ -1,0 +1,5 @@
+@use '@mining-sdk/core/styles' as *;
+
+.mining-sdk-mining-status-indicator {
+  @include flex_center;
+}

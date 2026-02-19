@@ -1,6 +1,9 @@
 @use '@mining-sdk/core/styles' as *;
 
+@forward './global-colors.scss';
+
 // Domain Component Styles
 @forward '../components/domain/active-incidents-card/styles';
 @forward '../components/domain/pool-details-card/styles';
 @forward '../components/domain/pool-details-popover/styles';
+@forward '../components/domain//device-explorer/styles';

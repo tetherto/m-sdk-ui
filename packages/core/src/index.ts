@@ -66,4 +66,6 @@ export * from './types'
 // Core utilities
 export * from './utils'
 
+export * from '@radix-ui/react-icons'
+
 export const version = '0.0.0'
