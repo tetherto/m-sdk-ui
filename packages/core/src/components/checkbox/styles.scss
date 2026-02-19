@@ -120,16 +120,16 @@
    COLOR VARIANTS
    ======================================== */
 
-/* Default (Gray/Neutral) */
+/* Default  */
 .mining-sdk-checkbox--default {
-  color: var(--mining-sdk-color-surface);
+  color: var(--mining-sdk-color-gray-400);
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-surface);
+    background-color: var(--mining-sdk-color-gray-400);
   }
 }
 
-/* Primary (Orange) */
+/* Primary  */
 .mining-sdk-checkbox--primary {
   color: var(--mining-sdk-color-primary);
 
@@ -138,7 +138,7 @@
   }
 }
 
-/* Success (Green) */
+/* Success  */
 .mining-sdk-checkbox--success {
   color: rgb(var(--mining-sdk-color-success));
 
@@ -147,7 +147,7 @@
   }
 }
 
-/* Warning (Yellow) */
+/* Warning  */
 .mining-sdk-checkbox--warning {
   color: var(--mining-sdk-color-warning);
 
@@ -156,7 +156,7 @@
   }
 }
 
-/* Error/Danger (Red) */
+/* Error/Danger  */
 .mining-sdk-checkbox--error {
   color: rgb(var(--mining-sdk-color-error));
 

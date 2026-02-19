@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import type { SidebarMenuItem } from '@mining-sdk/core'
 import { Sidebar } from '@mining-sdk/core'
 import {
@@ -11,6 +10,7 @@ import {
   InputIcon,
   LayersIcon,
 } from '@radix-ui/react-icons'
+import { useRef } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './App.scss'
 
@@ -54,6 +54,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     icon: <LayersIcon />,
     items: [
       { id: 'table', label: 'Table' },
+      { id: 'list-view-filter', label: 'List view filter' },
       { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
