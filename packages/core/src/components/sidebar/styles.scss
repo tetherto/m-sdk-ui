@@ -180,6 +180,11 @@ $sidebar-expanded-width: 220px;
   min-width: 0;
   padding: 8px 12px;
   justify-content: flex-start;
+
+  &:hover {
+    color: var(--mining-sdk-color-primary);
+    background: var(--mining-sdk-orange-dimmer);
+  }
 }
 
 .mining-sdk-sidebar__item--sub.mining-sdk-sidebar__item--active {
@@ -252,13 +257,12 @@ $sidebar-expanded-width: 220px;
   @include flex_column;
 
   z-index: 100;
-  padding: 5px 0;
   position: fixed;
   min-width: 180px;
   box-sizing: border-box;
+  background: var(--mining-sdk-sidebar-toggle-bg);
   animation: mining-sdk-sidebar-fade-in 0.15s ease-in;
-  background: var(--mining-sdk-sidebar-overlay-bg, var(--mining-sdk-color-surface));
-  border: 1px solid var(--mining-sdk-sidebar-overlay-border, var(--mining-sdk-color-primary));
+  border: 1px solid var(--mining-sdk-dialog-border-color);
 
   @media (max-height: 590px) {
     transform: translateY(-90%);

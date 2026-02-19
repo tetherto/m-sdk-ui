@@ -12,6 +12,9 @@ export * from './array'
 // Async utilities
 export * from './async'
 
+// Chart-specific utilities
+export * from './chart'
+
 // Chart utilities
 export * from './chart-options'
 

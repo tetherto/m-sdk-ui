@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import type { SidebarMenuItem } from '@mining-sdk/core'
 import { Sidebar } from '@mining-sdk/core'
 import {
@@ -11,6 +10,7 @@ import {
   InputIcon,
   LayersIcon,
 } from '@radix-ui/react-icons'
+import { useRef } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './App.scss'
 
@@ -74,6 +74,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'area-chart', label: 'Area Chart' },
       { id: 'gauge-chart', label: 'Gauge Chart' },
       { id: 'chart-container', label: 'ChartContainer' },
+      { id: 'chart-wrapper', label: 'Chart wrapper' },
     ],
   },
   {
