@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { convertMpaToBar, toMW, toMWh, toPHS, unitToKilo } from './conversion'
+import { convertMpaToBar, toMW, toMWh, toPHS, unitToKilo } from '../conversion'
 
 describe('toMW', () => {
   it('converts watts to megawatts', () => {

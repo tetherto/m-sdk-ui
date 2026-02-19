@@ -9,7 +9,7 @@ import {
   showTotalTableCount,
   toCssSize,
   toTitleCase,
-} from './format'
+} from '../format'
 
 describe('formatNumber', () => {
   it('formats numbers with locale', () => {

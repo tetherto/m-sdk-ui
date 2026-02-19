@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { circularArrayAccess, getNestedValue, getWeightedAverage } from './array'
+import { circularArrayAccess, getNestedValue, getWeightedAverage } from '../array'
 
 describe('getNestedValue', () => {
   it('gets nested values by dot path', () => {

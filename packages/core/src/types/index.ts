@@ -2,6 +2,13 @@
  * Core types and interfaces
  */
 
+export * from './chart'
+
+/**
+ * Generic type for objects with unknown structure
+ */
+export type UnknownRecord = Record<string, unknown>
+
 // Common types
 export type Nullable<T> = T | null
 export type Optional<T> = T | undefined

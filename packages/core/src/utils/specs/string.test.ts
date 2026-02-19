@@ -6,7 +6,7 @@ import {
   getMinorLocation,
   getRolesFromAuthToken,
   normalizeHexColor,
-} from './string'
+} from '../string'
 
 describe('getRolesFromAuthToken', () => {
   it('extracts roles from token', () => {

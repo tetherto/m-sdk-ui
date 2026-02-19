@@ -35,3 +35,17 @@ export const isValidUrl = (url: string): boolean => {
     return false
   }
 }
+
+/**
+ * Check if a value is null or undefined
+ */
+export const isNil = (value: unknown): value is null | undefined => {
+  return value === null || value === undefined
+}
+
+/**
+ * Check if value is a plain object (not array, not null)
+ */
+export const isPlainObject = (value: unknown): value is Record<string, unknown> => {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
