@@ -5,7 +5,7 @@ import {
   unitToKilo,
 } from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
-import type { DeviceExplorerDeviceData, GetColumnConfigParams, LvCabinetRecord } from '../types'
+import type { DeviceExplorerDeviceData, GetColumnConfigParams } from '../types'
 import { isContainerOffline } from '../../../../utils/container-utils'
 import { UNITS } from '../../../../constants/units'
 import {
@@ -16,6 +16,7 @@ import {
 import _isNil from 'lodash/isNil'
 import _head from 'lodash/head'
 import _isNumber from 'lodash/isNumber'
+import type { LvCabinetRecord } from '../../../../types/device'
 
 export type GetCabinetColumnsParams = GetColumnConfigParams
 

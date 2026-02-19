@@ -7,9 +7,10 @@ import {
   SimpleTooltip,
   SleepIcon,
 } from '@mining-sdk/core'
+import type { UnknownRecord } from '@mining-sdk/core'
 import { getAlertsString } from '../../../../../utils/alerts-utils'
 import { MinerStatuses } from '../../../../../utils/device-utils'
-import type { Alert, UnknownRecord } from '../../types'
+import type { Alert } from '../../types'
 import _isObject from 'lodash/isObject'
 import { StatusLabel } from '../status-label/status-label'
 

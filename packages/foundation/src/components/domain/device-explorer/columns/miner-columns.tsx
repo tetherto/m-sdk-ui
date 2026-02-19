@@ -6,14 +6,8 @@ import {
   PowerIcon,
   SimpleTooltip,
 } from '@mining-sdk/core'
-import type { DataTableColumnDef } from '@mining-sdk/core'
-import type {
-  Alert,
-  DeviceExplorerDeviceData,
-  GetColumnConfigParams,
-  MinerRecord,
-  UnknownRecord,
-} from '../types'
+import type { DataTableColumnDef, UnknownRecord } from '@mining-sdk/core'
+import type { Alert, DeviceExplorerDeviceData, GetColumnConfigParams } from '../types'
 import { DeviceCardColText } from '../components/device-card-col-text/device-card-col-text'
 import { UNITS } from '../../../../constants/units'
 import type { PowerModeColors } from '../../../../utils/device-utils'
@@ -31,6 +25,7 @@ import { MinerStatusIndicator } from '../components/mining-status-indicator/mini
 import { formatDistanceStrict } from 'date-fns/formatDistanceStrict'
 import _isUndefined from 'lodash/isUndefined'
 import { CELL_MIN_WIDTH, ERROR_MESSAGES } from './column-constants'
+import type { MinerRecord } from '../../../../types/device'
 
 export type GetMinerColumnsParams = GetColumnConfigParams
 
