@@ -71,9 +71,14 @@
         margin-left: 0.5rem;
       }
 
-      &:hover:not([data-state='active']) {
+      &:hover:not([data-state='active']):not([data-disabled]) {
         background: var(--mining-sdk-cascader-checkbox-bg);
         color: var(--mining-sdk-color-text-disabled) !important;
+      }
+
+      &[data-disabled] {
+        color: var(--mining-sdk-color-gray-450);
+        background: var(--mining-sdk-color-white-8);
       }
 
       &[data-state='active'],

@@ -67,6 +67,25 @@ export const TabsPage = (): JSX.Element => {
           <TabsContent value="tab3">Tab 3 content</TabsContent>
         </Tabs>
       </div>
+      <h3 className="demo-section__subtitle">Side Variant (Disabled)</h3>
+      <div className="demo-section__tabs">
+        <Tabs defaultValue="tab1">
+          <TabsList variant="side">
+            <TabsTrigger variant="side" value="tab1">
+              Tab 1
+            </TabsTrigger>
+            <TabsTrigger variant="side" value="tab2" disabled>
+              Tab 2
+            </TabsTrigger>
+            <TabsTrigger variant="side" value="tab3" disabled>
+              Tab 3
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="tab1">Tab 1 content</TabsContent>
+          <TabsContent value="tab2">Tab 2 content</TabsContent>
+          <TabsContent value="tab3">Tab 3 content</TabsContent>
+        </Tabs>
+      </div>
       <div className="demo-section__tabs">
         <Tabs defaultValue="tab1">
           <TabsList>
