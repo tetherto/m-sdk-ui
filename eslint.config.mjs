@@ -31,6 +31,7 @@ export default antfu(
       'style/jsx-wrap-multilines': 'off',
       'style/jsx-curly-newline': 'off',
       'style/brace-style': 'off',
+      'style/member-delimiter-style': 'off',
       'antfu/if-newline': 'off',
       'unicorn/filename-case': [
         'error',

@@ -5,16 +5,16 @@ import { defineConfig } from 'vite'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig(({ mode }) => ({
-  publicDir: 'public',
+  publicDir: false,
   build: {
     lib: {
       entry: resolve(__dirname, 'src/styles/index.scss'),
       formats: ['es'],
     },
     outDir: resolve(__dirname, 'dist'),
-    emptyOutDir: true,
+    emptyOutDir: false,
     cssCodeSplit: false,
-    sourcemap: mode === 'development', // Source maps only in dev
+    sourcemap: mode === 'development',
     rollupOptions: {
       output: {
         assetFileNames: 'styles.css',

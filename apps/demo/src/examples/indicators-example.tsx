@@ -25,30 +25,14 @@ export const IndicatorsExample = (): React.ReactElement => {
         <section>
           <h3>All Colors</h3>
           <div className="demo-section__indicators--content">
-            <Indicator color="red" size="lg">
-              Red
-            </Indicator>
-            <Indicator color="gray" size="lg">
-              Gray
-            </Indicator>
-            <Indicator color="blue" size="lg">
-              Blue
-            </Indicator>
-            <Indicator color="yellow" size="lg">
-              Yellow
-            </Indicator>
-            <Indicator color="green" size="lg">
-              Green
-            </Indicator>
-            <Indicator color="purple" size="lg">
-              Purple
-            </Indicator>
-            <Indicator color="amber" size="lg">
-              Amber
-            </Indicator>
-            <Indicator color="slate" size="lg">
-              Slate
-            </Indicator>
+            <Indicator color="red">Red</Indicator>
+            <Indicator color="gray">Gray</Indicator>
+            <Indicator color="blue">Blue</Indicator>
+            <Indicator color="yellow">Yellow</Indicator>
+            <Indicator color="green">Green</Indicator>
+            <Indicator color="purple">Purple</Indicator>
+            <Indicator color="amber">Amber</Indicator>
+            <Indicator color="slate">Slate</Indicator>
           </div>
         </section>
 
@@ -68,25 +52,25 @@ export const IndicatorsExample = (): React.ReactElement => {
 
         {/* System Status */}
         <section>
-          <h3>System Status (Large)</h3>
+          <h3>System Status</h3>
           <div className="demo-section__indicators--content">
-            <Indicator color="green" size="lg">
+            <Indicator color="green">
               <span>Running</span>
               <span>10</span>
             </Indicator>
-            <Indicator color="blue" size="lg">
+            <Indicator color="blue">
               <span>Sleep</span>
               <span>0</span>
             </Indicator>
-            <Indicator color="amber" size="lg">
+            <Indicator color="amber">
               <span>Empty</span>
               <span>4</span>
             </Indicator>
-            <Indicator color="red" size="lg">
+            <Indicator color="red">
               <span>Error</span>
               <span>2</span>
             </Indicator>
-            <Indicator color="gray" size="lg">
+            <Indicator color="gray">
               <span>Offline</span>
               <span>1</span>
             </Indicator>

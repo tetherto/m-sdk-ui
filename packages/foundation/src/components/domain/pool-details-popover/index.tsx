@@ -6,6 +6,7 @@ import type { PoolDetailItem } from '../pool-details-card'
 
 type PoolDetailsPopoverPartialProps = Partial<{
   title: string
+  description: string
   disabled: boolean
   className: string
   triggerLabel: string
@@ -16,7 +17,7 @@ type PoolDetailsPopoverProps = PoolDetailsPopoverPartialProps & {
 }
 
 const PoolDetailsPopover = React.forwardRef<HTMLDivElement, PoolDetailsPopoverProps>(
-  ({ details, title, triggerLabel, disabled = false, className, ...props }, ref) => {
+  ({ details, title, description, triggerLabel, disabled = false, className, ...props }, ref) => {
     return (
       <div ref={ref} className={cn('mining-sdk-pool-details-popover', className)} {...props}>
         <Dialog>
@@ -25,7 +26,7 @@ const PoolDetailsPopover = React.forwardRef<HTMLDivElement, PoolDetailsPopoverPr
               {triggerLabel}
             </Button>
           </DialogTrigger>
-          <DialogContent title={title} closable bare>
+          <DialogContent title={title} description={description} closable bare>
             <div className="mining-sdk-pool-details-popover__body">
               <PoolDetailsCard details={details} />
             </div>

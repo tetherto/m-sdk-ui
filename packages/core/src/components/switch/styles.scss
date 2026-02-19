@@ -2,7 +2,7 @@
 
 .mining-sdk-switch {
   @include inline_flex_align;
-  
+
   all: unset;
   position: relative;
   cursor: pointer;
@@ -139,11 +139,11 @@
   background-color: var(--mining-sdk-switch-unchecked-bg);
 
   &[data-state='checked'] {
-    background-color: var(--mining-sdk-color-surface);
+    background-color: var(--mining-sdk-color-gray-400);
   }
 
   &:focus-visible {
-    outline-color: var(--mining-sdk-color-surface);
+    outline-color: var(--mining-sdk-color-gray-400);
   }
 }
 

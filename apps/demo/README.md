@@ -18,10 +18,12 @@ This demo showcases:
 
 - Button variants and sizes
 - Dialog components
-- Alert dialogs
 - Checkboxes and switches
+- Dropdown menus and tooltips
 - Avatars
 - Accordions
+- Dashboard components (Active Incidents, Pool Details)
+- Charts and data visualization
 - And more!
 
 ## Development

@@ -6,7 +6,7 @@ import {
   getTimeRoundedToMinute,
   isValidTimestamp,
   parseMonthLabelToDate,
-} from './date'
+} from '../date'
 
 describe('isValidTimestamp', () => {
   it('validates good timestamps', () => {

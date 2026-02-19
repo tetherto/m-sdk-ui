@@ -36,9 +36,14 @@ AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
 
 const AlertDialogHeader = ({
   className,
+  children,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => {
-  return <div className={cn('mining-sdk-dialog__header', className)} {...props} />
+  return (
+    <div className={cn('mining-sdk-dialog__header', className)} {...props}>
+      <div className="mining-sdk-dialog__header__container">{children}</div>
+    </div>
+  )
 }
 AlertDialogHeader.displayName = 'AlertDialogHeader'
 
@@ -81,7 +86,7 @@ const AlertDialogAction = React.forwardRef<
   <AlertDialogPrimitive.Action
     ref={ref}
     className={cn(
-      'mining-sdk-button mining-sdk-button--default mining-sdk-button--default',
+      'mining-sdk-button mining-sdk-button--variant-primary mining-sdk-button--size-md',
       className,
     )}
     {...props}
@@ -96,7 +101,7 @@ const AlertDialogCancel = React.forwardRef<
   <AlertDialogPrimitive.Cancel
     ref={ref}
     className={cn(
-      'mining-sdk-button mining-sdk-button--outline mining-sdk-button--default',
+      'mining-sdk-button mining-sdk-button--variant-outline mining-sdk-button--size-md',
       className,
     )}
     {...props}

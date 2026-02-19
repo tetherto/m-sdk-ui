@@ -62,10 +62,16 @@
     gap: 1rem;
   }
 
-  &__button-grid,
-  &__dialog-grid {
+  &__button-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(140px, max-content));
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__dialog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, max-content));
     gap: 1rem;
     align-items: center;
   }
@@ -201,7 +207,6 @@
     padding: 16px;
     border-radius: 8px;
     margin-bottom: 16px;
-    background-color: var(--mining-sdk-color-background-dark);
 
     &--column {
       @include flex_column;
@@ -209,6 +214,7 @@
       gap: 1rem;
     }
   }
+
   &__radio {
     @include flex_between;
 
@@ -318,6 +324,7 @@
       margin: 0;
     }
   }
+  
   &__tabs {
     margin-bottom: 16px;
   }

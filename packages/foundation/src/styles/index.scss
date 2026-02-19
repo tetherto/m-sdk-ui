@@ -1,6 +1,7 @@
-@use 'mixins' as *;
+@use '@mining-sdk/core/styles' as *;
 
 // Domain Component Styles
-@import '../components/domain/active-incidents-card/styles';
-@import '../components/domain/pool-details-card/styles';
-@import '../components/domain/pool-details-popover/styles';
+@forward '../components/domain/active-incidents-card/styles';
+@forward '../components/domain/pool-details-card/styles';
+@forward '../components/domain/pool-details-popover/styles';
+@forward '../components/domain/chart-wrapper/styles';

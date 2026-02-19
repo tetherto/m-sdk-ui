@@ -55,7 +55,6 @@ export const getWeightedAverage = (
   valueAttribute: string,
   weightAttribute: string,
 ): WeightedAverageResult => {
-  // eslint-disable-next-line style/member-delimiter-style
   const { weightedValue, totalWeight } = arr.reduce<{ weightedValue: number; totalWeight: number }>(
     (acc, curr) => {
       const value = Number(getNestedValue(curr, valueAttribute) ?? 0)
@@ -83,7 +82,6 @@ export const getWeightedAverage = (
  * @returns The computed average, or null if inputs are invalid
  */
 export const getAvgFromWeighted = (
-  // eslint-disable-next-line style/member-delimiter-style
   avgData: { avg?: number; totalWeight?: number } | undefined,
 ): number | null =>
   Number.isFinite(avgData?.avg) &&

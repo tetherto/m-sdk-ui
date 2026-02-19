@@ -1,7 +1,7 @@
 .mining-sdk-pagination {
   @include flex_center_justify_end;
   gap: 12px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 
   &__total {
     font-size: 14px;
@@ -69,7 +69,7 @@
       background: var(--mining-sdk-color-surface);
       border: 1px solid var(--mining-sdk-border-default-color);
       color: rgba(var(--mining-sdk-color-white-rgb), 0.8);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 14px;
       outline: none;
 

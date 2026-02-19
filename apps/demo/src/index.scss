@@ -18,3 +18,21 @@ body {
 #root {
   min-height: 100vh;
 }
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--mining-sdk-color-background-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--mining-sdk-color-primary);
+  border-radius: 3px;
+
+  &:hover {
+    background-color: var(--mining-sdk-color-primary-hover);
+  }
+}

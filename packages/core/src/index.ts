@@ -8,18 +8,22 @@
 export * from './components/accordion'
 export * from './components/alert-dialog'
 
+// Chart components
 export * from './components/area-chart'
 export * from './components/avatar'
 // Re-export Radix primitives with namespaces to avoid conflicts
 export * from './components/badge'
 export * from './components/bar-chart'
+
 export * from './components/breadcrumbs'
+
 export * from './components/button'
 export * from './components/card'
 export * from './components/cascader'
 export * from './components/chart-container'
 export * from './components/checkbox'
 export * from './components/data-table'
+// Date picker components
 export * from './components/date-picker'
 export * from './components/dialog'
 export * from './components/doughnut-chart'
@@ -32,6 +36,7 @@ export * from './components/gauge-chart'
 export * from './components/indicator'
 export * from './components/input'
 export * from './components/label'
+export * from './components/lazy-tab-wrapper'
 export * from './components/line-chart'
 export * from './components/list-view-filter'
 export * from './components/loader'
@@ -54,16 +59,13 @@ export * from './components/textarea'
 export * from './components/toast'
 export * from './components/tooltip'
 export * from './components/typography'
-// Constants
-export * from './constants/colors'
-export * from './constants/units'
+// Constants (only UI-related)
+export * from './constants'
 // Theme system
 export * from './theme'
 // Core types
 export * from './types'
 // Core utilities
 export * from './utils'
-
-export * from '@radix-ui/react-icons'
 
 export const version = '0.0.0'

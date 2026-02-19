@@ -22,6 +22,7 @@
 
 .mining-sdk-form-description {
   margin: 0;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.25rem;
   color: var(--mining-sdk-input-placeholder-color, #999999);
@@ -29,6 +30,7 @@
 
 .mining-sdk-form-message {
   margin: 0;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.25rem;
   color: rgb(var(--mining-sdk-color-error, #ef4444));

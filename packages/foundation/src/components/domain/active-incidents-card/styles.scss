@@ -1,7 +1,9 @@
+@use '@mining-sdk/core/styles' as *;
+
 $_prefix: 'mining-sdk-active-incidents-card';
 
 .#{$_prefix} {
-  @include flex-column;
+  @include flex_column;
 
   margin: 0;
   border-radius: 0;
@@ -26,7 +28,7 @@ $_prefix: 'mining-sdk-active-incidents-card';
   }
 
   &__list {
-    @include flex-column;
+    @include flex_column;
 
     gap: 20px;
     height: 100%;
@@ -70,7 +72,7 @@ $_prefix: 'mining-sdk-active-incidents-card';
   }
 
   &__row-data {
-    @include flex-column;
+    @include flex_column;
 
     flex: 1;
     gap: 2px;
@@ -134,7 +136,7 @@ $_prefix: 'mining-sdk-active-incidents-card';
   }
 
   &__skeleton-container {
-    @include flex-column;
+    @include flex_column;
 
     gap: 14px;
     padding: 10px;

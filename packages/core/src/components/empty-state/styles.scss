@@ -41,6 +41,7 @@
   }
 
   &__description {
+    font-family: var(--font-mono);
     color: var(--mining-sdk-empty-state-description-color);
     line-height: 1.5;
   }

@@ -23,7 +23,7 @@ type MockCanvasRenderingContext2D = {
   rotate: () => void
   arc: () => void
   fill: () => void
-  // eslint-disable-next-line style/member-delimiter-style
+
   measureText: (text: string) => { width: number; height: number }
   transform: () => void
   rect: () => void
