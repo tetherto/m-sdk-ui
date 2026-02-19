@@ -208,6 +208,32 @@ export const BAR_CHART_MINERS_STATUS = {
   ],
 }
 
+// ── Doughnut chart data ─────────────────────────────────────────────────────
+
+export const DOUGHNUT_CHART_MINER_STATUS = [
+  { label: 'Online', value: 198, color: COLOR.GREEN },
+  { label: 'Error', value: 58, color: COLOR.RED },
+  { label: 'Offline', value: 12, color: COLOR.WHITE },
+  { label: 'Sleep', value: 8, color: COLOR.SLEEP_BLUE },
+  { label: 'Maintenance', value: 64, color: COLOR.COLD_ORANGE },
+]
+
+export const DOUGHNUT_CHART_MINER_TYPES = [
+  { label: 'Antminer S19XP', value: 54, color: COLOR.SLEEP_BLUE },
+  { label: 'Antminer S19XP H', value: 4, color: '#C084FC' },
+  { label: 'Avalon A1346', value: 48, color: COLOR.PURPLE_HIGH },
+  { label: 'Whatsminer M30SP', value: 81, color: '#BEF264' },
+  { label: 'Whatsminer M53S', value: 5, color: COLOR.BRICK_RED },
+  { label: 'Whatsminer M56S', value: 79, color: COLOR.GRASS_GREEN },
+]
+
+export const DOUGHNUT_CHART_SITE_DISTRIBUTION = [
+  { label: 'SITE-A', value: 340 },
+  { label: 'SITE-B', value: 220 },
+  { label: 'SITE-C', value: 180 },
+  { label: 'SITE-D', value: 95 },
+]
+
 export const AREA_CHART_HASHRATE_TREND = {
   labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
   datasets: [
