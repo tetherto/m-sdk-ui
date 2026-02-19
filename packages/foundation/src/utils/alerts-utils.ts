@@ -29,7 +29,7 @@ export const getSingleAlarmMessage = (
 
 export const getAlarms = (
   data: Device = {} as Device,
-  getString?: () => void,
+  getString?: boolean,
   getFormattedDate?: (date: Date) => string,
 ): string | Alert[] => {
   const alarms = data?.last?.alerts as Alert[]
