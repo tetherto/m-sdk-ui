@@ -22,6 +22,7 @@ export * from './components/card'
 export * from './components/cascader'
 export * from './components/chart-container'
 export * from './components/checkbox'
+export * from './components/currency-toggler'
 export * from './components/data-table'
 // Date picker components
 export * from './components/date-picker'
