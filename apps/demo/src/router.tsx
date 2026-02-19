@@ -17,6 +17,9 @@ const ButtonsPage = lazy(() =>
   import('./pages/buttons-page').then((m) => ({ default: m.ButtonsPage })),
 )
 const CardPage = lazy(() => import('./pages/card-page').then((m) => ({ default: m.CardPage })))
+const CurrencyTogglerPage = lazy(() =>
+  import('./pages/currency-toggler-page').then((m) => ({ default: m.CurrencyTogglerPage })),
+)
 const ChartContainerPage = lazy(() =>
   import('./pages/chart-container-page').then((m) => ({ default: m.ChartContainerPage })),
 )
@@ -175,6 +178,7 @@ export const router = createBrowserRouter([
       { path: 'avatar', element: withSuspense(AvatarPage) },
       { path: 'accordion', element: withSuspense(AccordionExample) },
       { path: 'card', element: withSuspense(CardPage) },
+      { path: 'currency-toggler', element: withSuspense(CurrencyTogglerPage) },
       { path: 'typography', element: withSuspense(TypographyExample) },
       { path: 'tags', element: withSuspense(TagsPage) },
       { path: 'indicators', element: withSuspense(IndicatorsExample) },

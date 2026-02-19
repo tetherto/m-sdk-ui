@@ -58,6 +58,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'card', label: 'Card' },
+      { id: 'currency-toggler', label: 'Currency Toggler' },
       { id: 'typography', label: 'Typography' },
       { id: 'tags', label: 'Tags' },
       { id: 'indicators', label: 'Indicators' },

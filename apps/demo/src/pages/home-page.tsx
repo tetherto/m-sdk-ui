@@ -40,7 +40,7 @@ const CATEGORIES = [
   {
     title: 'Data Display',
     description: 'Components for presenting information and data',
-    componentCount: 9,
+    componentCount: 10,
     path: '/table',
   },
   {
