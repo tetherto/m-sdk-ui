@@ -3,6 +3,7 @@ import {
   formatMacAddress,
   formatNumber,
   formatValueUnit,
+  PowerIcon,
   SimpleTooltip,
 } from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
@@ -27,7 +28,6 @@ import {
 } from '../../../../utils/device-utils'
 import { MAINTENANCE_CONTAINER } from '../../../../constants/container-constants'
 import { MinerStatusIndicator } from '../components/mining-status-indicator/mining-status-indicator'
-import { PowerIcon } from '../components/icons/power-icon'
 import { formatDistanceStrict } from 'date-fns/formatDistanceStrict'
 import _isUndefined from 'lodash/isUndefined'
 import { CELL_MIN_WIDTH, ERROR_MESSAGES } from './column-constants'

@@ -1,15 +1,19 @@
-import { formatValueUnit, SimpleTooltip, unitToKilo } from '@mining-sdk/core'
+import {
+  AlertTriangleIcon,
+  ErrorIcon,
+  formatValueUnit,
+  OfflineIcon,
+  SimpleTooltip,
+  unitToKilo,
+} from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
 import type { ContainerSnap, DeviceExplorerDeviceData, GetColumnConfigParams } from '../types'
 import { getAlarms } from '../device-explorer.utils'
 import { StatusLabel } from '../components/status-label/status-label'
-import OfflineIcon from '../components/icons/offline-icon'
 import { getContainerName, isContainerOffline } from '../../../../utils/container-utils'
 import { DeviceCardColText } from '../components/device-card-col-text/device-card-col-text'
 import _isFinite from 'lodash/isFinite'
 import { UNITS } from '../../../../constants/units'
-import { AlertTriangle } from '../components/icons/alert-triangle'
-import { ErrorIcon } from '../components/icons/error-icon'
 
 export const getContainerColumns = ({
   getFormattedDate,
@@ -44,7 +48,7 @@ export const getContainerColumns = ({
         return (
           <SimpleTooltip content={String(JSON.stringify(alarm) || '')}>
             <div className="mining-sdk-device-explorer__table__alarms__status-container">
-              <AlertTriangle />
+              <AlertTriangleIcon />
             </div>
           </SimpleTooltip>
         )

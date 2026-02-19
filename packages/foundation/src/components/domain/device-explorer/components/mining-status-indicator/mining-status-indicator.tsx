@@ -1,21 +1,24 @@
-import { formatErrors, SimpleTooltip } from '@mining-sdk/core'
+import {
+  AlertTriangleIcon,
+  ErrorIcon,
+  formatErrors,
+  MiningIcon,
+  OfflineIcon,
+  SimpleTooltip,
+  SleepIcon,
+} from '@mining-sdk/core'
 import { getAlertsString } from '../../../../../utils/alerts-utils'
 import { MinerStatuses } from '../../../../../utils/device-utils'
 import type { Alert, UnknownRecord } from '../../types'
 import _isObject from 'lodash/isObject'
 import { StatusLabel } from '../status-label/status-label'
-import { MiningIcon } from '../icons/mining-icon'
-import OfflineIcon from '../icons/offline-icon'
-import { SleepIcon } from '../icons/sleep-icon'
-import { ErrorIcon } from '../icons/error-icon'
-import { AlertTriangle } from '../icons/alert-triangle'
 
 const MinerStatusIcon = ({ status = '' }): JSX.Element => {
   switch (status) {
     case MinerStatuses.ALERT:
       return (
         <div className="mining-sdk-mining-status-indicator">
-          <AlertTriangle />
+          <AlertTriangleIcon />
         </div>
       )
     case MinerStatuses.MINING:

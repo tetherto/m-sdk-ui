@@ -1,4 +1,9 @@
-import { formatValueUnit, SimpleTooltip, unitToKilo } from '@mining-sdk/core'
+import {
+  formatValueUnit,
+  SimpleTooltip,
+  TemperatureIndicatorIcon,
+  unitToKilo,
+} from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
 import type { DeviceExplorerDeviceData, GetColumnConfigParams, LvCabinetRecord } from '../types'
 import { isContainerOffline } from '../../../../utils/container-utils'
@@ -8,7 +13,6 @@ import {
   getLvCabinetTempSensorColor,
   getRootTempSensorTempValue,
 } from '../../../../utils/device-utils'
-import { TemperatureIndicatorIcon } from '../components/icons/temperature-indicator-icon'
 import _isNil from 'lodash/isNil'
 import _head from 'lodash/head'
 import _isNumber from 'lodash/isNumber'
