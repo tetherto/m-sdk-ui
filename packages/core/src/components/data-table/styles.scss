@@ -87,8 +87,8 @@ $_prefix: mining-sdk-table;
         }
       }
 
-      tbody tr {
-        &.#{$_prefix}__body-row {
+      tbody {
+        .#{$_prefix}__body-row {
           &:hover {
             background-color: var(--mining-sdk-table-body-hover-bg);
           }
