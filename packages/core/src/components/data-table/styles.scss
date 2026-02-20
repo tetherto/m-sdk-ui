@@ -1,12 +1,26 @@
-.mining-sdk-table {
+$_prefix: mining-sdk-table;
+
+.#{$_prefix} {
   margin: 10px 0;
 
-  &-content-section {
+  &__content-section {
     overflow-x: scroll;
     border: 1px solid var(--mining-sdk-table-border);
     position: relative;
 
-    &-loader-overlay {
+    &--empty {
+      @include flex_column;
+
+      .#{$_prefix}__empty-body {
+        align-self: center;
+      }
+    }
+
+    &--no-overflow {
+      overflow-x: hidden;
+    }
+
+    .#{$_prefix}__loader-overlay {
       position: absolute;
       top: 0;
       left: 0;
@@ -20,77 +34,77 @@
       justify-content: center;
       align-items: center;
     }
-  }
 
-  &-pagination-section {
-    padding-top: 10px;
-  }
-
-  &-element {
-    font-family: var(--font-mono);
-    text-align: left;
-    border-collapse: collapse;
-
-    &--width-full {
-      width: 100%;
-    }
-
-    &-empty-body {
+    .#{$_prefix}__empty-body {
       display: flex;
       align-items: center;
       flex-direction: column;
 
       padding: 30px;
       gap: 10px;
-      color: var(--mining-sdk-table-table-text-secondary);
+      color: var(--mining-sdk-table-text-secondary);
 
       &--hidden {
         min-height: 200px;
       }
     }
 
-    thead tr {
-      border-bottom: 1px solid var(--mining-sdk-table-border);
+    .#{$_prefix}__element {
+      font-family: var(--font-mono);
+      text-align: left;
+      border-collapse: collapse;
 
-      th {
-        padding: 10px 16px;
-        color: var(--mining-sdk-table-table-text-primary);
-        background-color: var(--mining-sdk-table-header-bg);
-        border-spacing: 0;
-        font-size: 12px;
+      &--width-full {
+        width: 100%;
+      }
 
-        &:hover {
-          background-color: var(--mining-sdk-table-header-hover-bg);
-        }
+      thead tr {
+        border-bottom: 1px solid var(--mining-sdk-table-border);
 
-        &.sortable {
-          cursor: pointer;
-          user-select: none;
-        }
+        th {
+          padding: 10px 16px;
+          color: var(--mining-sdk-table-text-primary);
+          background-color: var(--mining-sdk-table-header-bg);
+          border-spacing: 0;
+          font-size: 12px;
 
-        .mining-sdk-table-header {
-          &-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+          &:hover {
+            background-color: var(--mining-sdk-table-header-hover-bg);
+          }
+
+          &.sortable {
+            cursor: pointer;
+            user-select: none;
+          }
+
+          .#{$_prefix}-header {
+            &-content {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
           }
         }
       }
-    }
 
-    tbody tr {
-      &:hover {
-        background-color: var(--mining-sdk-table-body-hover-bg);
-      }
+      tbody tr {
+        &:hover {
+          background-color: var(--mining-sdk-table-body-hover-bg);
+        }
 
-      td {
-        padding: 16px;
-        margin: 0;
-        color: #ffffff;
-        border-spacing: 0;
-        font-size: 12px;
-        border-bottom: 1px solid var(--mining-sdk-table-row-border);
+        td {
+          padding: 16px;
+          margin: 0;
+          color: #ffffff;
+          border-spacing: 0;
+          font-size: 12px;
+          border-bottom: 1px solid var(--mining-sdk-table-row-border);
+        }
       }
     }
+  }
+
+  &__pagination-section {
+    padding-top: 10px;
   }
 }

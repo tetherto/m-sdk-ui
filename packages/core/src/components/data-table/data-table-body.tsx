@@ -49,8 +49,8 @@ export const EmptyTableBody = ({
 }): JSX.Element => {
   return (
     <div
-      className={cn('mining-sdk-table-element-empty-body', {
-        'mining-sdk-table-element-empty-body--hidden': hideContent,
+      className={cn('mining-sdk-table__empty-body', {
+        'mining-sdk-table__empty-body--hidden': hideContent,
       })}
     >
       {!hideContent && (
