@@ -62,6 +62,12 @@
     margin-bottom: 0.5rem;
   }
 
+  &__column {
+    @include flex_column;
+
+    gap: 2rem;
+  }
+
   &__buttons {
     @include flex_wrap;
 

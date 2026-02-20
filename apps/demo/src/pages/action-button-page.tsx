@@ -5,7 +5,7 @@ export const ActionButtonPage = (): JSX.Element => {
   return (
     <section className="demo-section">
       <h2 className="demo-section__title">Action Button</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div className="demo-section__column">
         <div>
           <p className="demo-section__label">Danger 1</p>
           <ActionButton
