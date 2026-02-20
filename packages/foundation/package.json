@@ -60,12 +60,16 @@
     "vitest": "^3.0.0"
   },
   "dependencies": {
-    "@mining-sdk/core": "workspace:*"
+    "@mining-sdk/core": "workspace:*",
+    "@radix-ui/react-use-controllable-state": "catalog:",
+    "date-fns": "catalog:",
+    "lodash": "catalog:"
   },
   "devDependencies": {
     "@reduxjs/toolkit": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
+    "@types/lodash": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitest/ui": "catalog:",

@@ -81,6 +81,9 @@ catalogs:
     '@testing-library/react':
       specifier: ^16.1.0
       version: 16.3.2
+    '@types/lodash':
+      specifier: ^4.17.23
+      version: 4.17.23
     '@types/react':
       specifier: ^18.3.18
       version: 18.3.28
@@ -120,6 +123,9 @@ catalogs:
     lightweight-charts:
       specifier: ^4.1.7
       version: 4.2.3
+    lodash:
+      specifier: ^4.17.23
+      version: 4.17.23
     prop-types:
       specifier: ^15.8.1
       version: 15.8.1
@@ -399,6 +405,15 @@ importers:
       '@mining-sdk/core':
         specifier: workspace:*
         version: link:../core
+      '@radix-ui/react-use-controllable-state':
+        specifier: 'catalog:'
+        version: 1.2.2(@types/react@18.3.28)(react@18.3.1)
+      date-fns:
+        specifier: 'catalog:'
+        version: 4.1.0
+      lodash:
+        specifier: 'catalog:'
+        version: 4.17.23
     devDependencies:
       '@reduxjs/toolkit':
         specifier: 'catalog:'
@@ -409,6 +424,9 @@ importers:
       '@testing-library/react':
         specifier: 'catalog:'
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@types/lodash':
+        specifier: 'catalog:'
+        version: 4.17.23
       '@types/react':
         specifier: 'catalog:'
         version: 18.3.28
@@ -1971,6 +1989,9 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/lodash@4.17.23':
+    resolution: {integrity: sha512-RDvF6wTulMPjrNdCoYRC8gNR880JNGT8uB+REUpC2Ns4pRqQJhGz90wh7rgdXDPpCczF3VGktDuFGVnz8zP7HA==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -6052,6 +6073,8 @@ snapshots:
   '@types/hammerjs@2.0.46': {}
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/lodash@4.17.23': {}
 
   '@types/mdast@4.0.4':
     dependencies:

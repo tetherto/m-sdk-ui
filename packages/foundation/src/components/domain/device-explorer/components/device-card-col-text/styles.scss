@@ -1,0 +1,20 @@
+@use '@mining-sdk/core/styles' as *;
+
+.mining-sdk-device-card-col-text {
+  color: var(--mining-sdk-color-white);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  @include flex_column_center;
+  align-items: flex-start;
+
+  &:hover {
+    overflow: visible;
+    white-space: normal;
+    width: auto;
+  }
+}

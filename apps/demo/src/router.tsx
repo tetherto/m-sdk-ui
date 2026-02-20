@@ -142,6 +142,12 @@ const MiningIconsExample = lazy(() =>
   })),
 )
 
+const DeviceExplorerPage = lazy(() =>
+  import('./pages/device-explorer-page/device-explorer-page').then((m) => ({
+    default: m.DeviceExplorerPage,
+  })),
+)
+
 const SectionLoader = (): JSX.Element => (
   <div
     style={{
@@ -213,6 +219,7 @@ export const router = createBrowserRouter([
       { path: 'active-incidents-card', element: withSuspense(ActiveIncidentsCardPage) },
       { path: 'pool-details-card', element: withSuspense(PoolDetailsCardPage) },
       { path: 'pool-details-popover', element: withSuspense(PoolDetailsPopoverPage) },
+      { path: 'device-explorer', element: withSuspense(DeviceExplorerPage) },
       { path: '*', element: withSuspense(NotFoundPage) },
     ],
   },

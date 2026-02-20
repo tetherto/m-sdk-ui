@@ -7,5 +7,6 @@
 
 export * from './active-incidents-card'
 export * from './chart-wrapper'
+export * from './device-explorer'
 export * from './pool-details-card'
 export * from './pool-details-popover'
