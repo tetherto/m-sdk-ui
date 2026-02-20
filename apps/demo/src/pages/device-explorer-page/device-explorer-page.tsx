@@ -62,12 +62,10 @@ export const DeviceExplorerPage = (): JSX.Element => {
       }}
       filterOptions={filterOptions}
       onFiltersChange={function (value: LocalFilters): void {
-        // eslint-disable-next-line no-console
-        console.log('new filters: ', value)
+        console.warn('new filters: ', value)
       }}
       onSelectedDevicesChange={function (selections: DataTableRowSelectionState): void {
-        // eslint-disable-next-line no-console
-        console.log('new selections: ', selections)
+        console.warn('new selections: ', selections)
       }}
       getFormattedDate={function (date: Date): string {
         return date.toISOString()
