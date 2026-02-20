@@ -54,16 +54,100 @@
     padding: 6px 10px;
     font-size: 12px;
   }
+
+  /* CSS arrow - border layer (outer, larger triangle) */
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 6.5px solid transparent;
+    pointer-events: none;
+  }
+
+  /* CSS arrow - fill layer (inner, smaller triangle covers border center) */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Side: top → arrow points down at bottom */
+  &[data-side='top']::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a));
+  }
+
+  &[data-side='top']::before {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
+  }
+
+  /* Side: bottom → arrow points up at top */
+  &[data-side='bottom']::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a));
+  }
+
+  &[data-side='bottom']::before {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
+  }
+
+  /* Side: right → arrow points left */
+  &[data-side='right']::after {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a));
+  }
+
+  &[data-side='right']::before {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
+  }
+
+  /* Side: left → arrow points right */
+  &[data-side='left']::after {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a));
+  }
+
+  &[data-side='left']::before {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
+  }
+
+  /* Hide arrows when showArrow=false (no Radix arrow in DOM) */
+  &:not(:has(.mining-sdk-tooltip__arrow)) {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
 }
 
-/* Arrow styling */
+/* Hide Radix SVG arrow - replaced by CSS pseudo-element arrows above */
 .mining-sdk-tooltip__arrow {
-  fill: var(--mining-sdk-tooltip-bg, var(--mining-sdk-color-surface, #0e0e0e));
-
-  /* Add border to arrow for seamless integration */
-  filter: drop-shadow(
-    0 0 0.5px var(--mining-sdk-tooltip-border, var(--mining-sdk-color-primary, #f7931a))
-  );
+  display: none;
 }
 
 /* Animations */

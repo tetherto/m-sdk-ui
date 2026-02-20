@@ -70,10 +70,11 @@ const TooltipContent = React.forwardRef<
      */
     showArrow?: boolean
   }
->(({ className, sideOffset = 8, showArrow = true, children, ...props }, ref) => (
+>(({ className, align = 'center', sideOffset = 8, showArrow = true, children, ...props }, ref) => (
   <TooltipPortal>
     <TooltipPrimitive.Content
       ref={ref}
+      align={align}
       sideOffset={sideOffset}
       className={cn('mining-sdk-tooltip__content', className)}
       {...props}
