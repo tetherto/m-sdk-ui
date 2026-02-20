@@ -88,17 +88,27 @@ $_prefix: mining-sdk-table;
       }
 
       tbody tr {
-        &:hover {
-          background-color: var(--mining-sdk-table-body-hover-bg);
-        }
+        &.#{$_prefix}__body-row {
+          &:hover {
+            background-color: var(--mining-sdk-table-body-hover-bg);
+          }
 
-        td {
-          padding: 16px;
-          margin: 0;
-          color: #ffffff;
-          border-spacing: 0;
-          font-size: 12px;
-          border-bottom: 1px solid var(--mining-sdk-table-row-border);
+          &--selected {
+            background-color: var(--mining-sdk-table-selected-row-bg);
+
+            &:hover {
+              background-color: var(--mining-sdk-table-selected-row-hover-bg);
+            }
+          }
+
+          td {
+            padding: 16px;
+            margin: 0;
+            color: #ffffff;
+            border-spacing: 0;
+            font-size: 12px;
+            border-bottom: 1px solid var(--mining-sdk-table-row-border);
+          }
         }
       }
     }

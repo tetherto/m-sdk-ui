@@ -17,7 +17,11 @@ export function TableBody<I = unknown>({
     <tbody>
       {table.getRowModel().rows.map((row) => (
         <React.Fragment key={row.id}>
-          <tr>
+          <tr
+            className={cn('mining-sdk-table__body-row', {
+              'mining-sdk-table__body-row--selected': row.getIsSelected(),
+            })}
+          >
             {row.getVisibleCells().map((cell) => (
               <td
                 key={cell.id}
