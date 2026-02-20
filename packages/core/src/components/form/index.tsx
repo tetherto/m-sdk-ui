@@ -216,25 +216,27 @@ FormDescription.displayName = 'FormDescription'
 /**
  * Displays the validation error message from react-hook-form field state.
  * Falls back to children if no error is present.
+ * Always renders to prevent layout shift when errors appear.
  */
 const FormMessage = React.forwardRef<HTMLParagraphElement, React.ComponentProps<'p'>>(
   ({ className, children, ...props }, ref) => {
     const { error, formMessageId } = useFormField()
     const body = error ? String(error.message) : children
 
-    if (!body) {
-      return null
-    }
-
     return (
       <p
         ref={ref}
         id={formMessageId}
-        className={cn('mining-sdk-form-message', className)}
-        role="alert"
+        className={cn(
+          'mining-sdk-form-message',
+          !body && 'mining-sdk-form-message--empty',
+          className,
+        )}
+        role={body ? 'alert' : undefined}
+        aria-live={body ? 'polite' : undefined}
         {...props}
       >
-        {body}
+        {body || '\u00A0'}
       </p>
     )
   },
@@ -254,3 +256,52 @@ export {
   FormMessage,
   useFormField,
 }
+
+export type { FormProps, UseFormFieldReturn }
+
+// Re-export pre-built field components
+export {
+  FormCascader,
+  FormCheckbox,
+  FormDatePicker,
+  FormInput,
+  FormRadioGroup,
+  FormSelect,
+  FormSwitch,
+  FormTagInput,
+  FormTextArea,
+} from './form-fields'
+
+export type {
+  FormCascaderProps,
+  FormCheckboxProps,
+  FormDatePickerProps,
+  FormInputProps,
+  FormRadioGroupProps,
+  FormRadioOption,
+  FormSelectOption,
+  FormSelectProps,
+  FormSwitchProps,
+  FormTagInputProps,
+  FormTextAreaProps,
+} from './form-fields'
+
+// Re-export hooks
+export { useFormReset } from './form-hooks'
+
+export type { UseFormResetOptions, UseFormResetReturn } from './form-hooks'
+
+// Re-export utilities and validators
+export {
+  contactSchema,
+  createConditionalRequired,
+  createDateRange,
+  createFieldNames,
+  createPasswordMatch,
+  loginSchema,
+  profileSchema,
+  registerSchema,
+  validators,
+} from './form-utils'
+
+export type { FieldName } from './form-utils'

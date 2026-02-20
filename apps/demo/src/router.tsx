@@ -121,6 +121,8 @@ const DemoTable = lazy(() =>
   import('./examples/demo-table').then((module) => ({ default: module.DemoTable })),
 )
 const FormExample = lazy(() => import('./examples/form-example'))
+const FormEnhancedExample = lazy(() => import('./examples/form-enhanced-example'))
+const FormAdvancedExample = lazy(() => import('./examples/form-advanced-example'))
 const IndicatorsExample = lazy(() =>
   import('./examples/indicators-example').then((module) => ({
     default: module.IndicatorsExample,
@@ -182,6 +184,8 @@ export const router = createBrowserRouter([
       { path: 'date-pickers', element: withSuspense(DatePickersPage) },
       { path: 'textarea', element: withSuspense(TextAreaExample) },
       { path: 'form', element: withSuspense(FormExample) },
+      { path: 'form-enhanced', element: withSuspense(FormEnhancedExample) },
+      { path: 'form-advanced', element: withSuspense(FormAdvancedExample) },
       { path: 'dialog', element: withSuspense(DialogPage) },
       { path: 'dropdown-menu', element: withSuspense(DropdownMenuPage) },
       { path: 'cascader', element: withSuspense(CascaderExample) },

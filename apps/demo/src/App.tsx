@@ -34,7 +34,9 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'radio', label: 'Radio' },
       { id: 'date-pickers', label: 'Date Pickers' },
       { id: 'textarea', label: 'TextArea' },
-      { id: 'form', label: 'Form' },
+      { id: 'form', label: 'Form (Basic)' },
+      { id: 'form-enhanced', label: 'Form (Enhanced)' },
+      { id: 'form-advanced', label: 'Form (Advanced)' },
     ],
   },
   {
