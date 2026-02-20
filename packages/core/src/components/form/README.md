@@ -282,37 +282,52 @@ function CustomFormComponent() {
 }
 ```
 
-### useFormSubmit
+### Form Submission (Modern Approach)
 
-Handle async form submission with loading states and error handling.
+React Hook Form already tracks submission state - use `form.formState.isSubmitting`!
 
 ```tsx
-import { useFormSubmit } from '@mining-sdk/core'
+import { useState } from 'react'
 
-const { isSubmitting, error, isSuccess, handleSubmit } = useFormSubmit({
-  onSubmit: async (data) => {
-    await apiClient.createUser(data)
-  },
-  onSuccess: (data) => {
-    toast.success('User created!')
-  },
-  onError: (error) => {
-    toast.error('Failed to create user')
-  },
-  resetOnSuccess: true, // optional: reset form after success
+const form = useForm<FormValues>({
+  resolver: zodResolver(schema),
 })
 
+// Optional: track error/success state
+const [error, setError] = useState<Error | null>(null)
+const [isSuccess, setIsSuccess] = useState(false)
+
+const onSubmit = async (data: FormValues) => {
+  setError(null)
+  setIsSuccess(false)
+  
+  try {
+    await apiClient.createUser(data)
+    setIsSuccess(true)
+    toast.success('User created!')
+  } catch (err) {
+    setError(err as Error)
+    toast.error('Failed to create user')
+  }
+}
+
 return (
-  <Form form={form} onSubmit={form.handleSubmit(handleSubmit)}>
+  <Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
     {/* fields */}
-    <Button type="submit" disabled={isSubmitting}>
-      {isSubmitting ? 'Submitting...' : 'Submit'}
+    <Button type="submit" disabled={form.formState.isSubmitting}>
+      {form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
     </Button>
     {error && <p className="error">{error.message}</p>}
     {isSuccess && <p className="success">Success!</p>}
   </Form>
 )
 ```
+
+**Why this is better:**
+- Uses RHF's built-in `isSubmitting` tracking
+- No extra hook needed - cleaner, simpler code
+- Works perfectly with Zod validation (which is synchronous)
+- More explicit control flow
 
 ### useFormReset
 
@@ -459,13 +474,13 @@ const field = createFieldNames<FormValues>()
 ```tsx
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { z } from 'zod'
 import {
   Form,
   FormInput,
   FormCheckbox,
   Button,
-  useFormSubmit,
   validators,
   createPasswordMatch,
   createFieldNames,
@@ -487,17 +502,20 @@ export function RegistrationForm() {
     resolver: zodResolver(schema),
   })
 
-  const { isSubmitting, error, handleSubmit } = useFormSubmit({
-    onSubmit: async (data) => {
+  const [error, setError] = useState<Error | null>(null)
+
+  const onSubmit = async (data: FormValues) => {
+    setError(null)
+    try {
       await apiClient.register(data)
-    },
-    onSuccess: () => {
       router.push('/welcome')
-    },
-  })
+    } catch (err) {
+      setError(err as Error)
+    }
+  }
 
   return (
-    <Form form={form} onSubmit={form.handleSubmit(handleSubmit)}>
+    <Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
       <FormInput
         control={form.control}
         name={field('username')}
@@ -531,8 +549,8 @@ export function RegistrationForm() {
         label="I accept the terms and conditions"
       />
       
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Creating account...' : 'Sign Up'}
+      <Button type="submit" disabled={form.formState.isSubmitting}>
+        {form.formState.isSubmitting ? 'Creating account...' : 'Sign Up'}
       </Button>
       
       {error && <p className="error">{error.message}</p>}
@@ -650,7 +668,7 @@ const schema = z.object({
 1. **Use pre-built components for standard fields** - Less code, better consistency
 2. **Leverage validators for common patterns** - Avoid reinventing validation logic
 3. **Use createFieldNames for type safety** - Catch field name typos at compile time
-4. **Use useFormSubmit for async operations** - Built-in loading and error states
+4. **Use `form.formState.isSubmitting`** - React Hook Form tracks async submissions automatically
 5. **Extend pre-built schemas** - Start with common schemas and customize as needed
 6. **Keep validation logic in schemas** - Don't mix validation in components
 

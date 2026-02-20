@@ -7,6 +7,7 @@ Quick reference guide for the enhanced form system. Copy and paste examples to g
 ```tsx
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { z } from 'zod'
 import {
   Form,
@@ -14,7 +15,6 @@ import {
   FormSelect,
   Button,
   validators,
-  useFormSubmit,
   createFieldNames,
 } from '@mining-sdk/core'
 
@@ -33,14 +33,19 @@ function MyForm() {
     resolver: zodResolver(schema),
   })
 
-  const { isSubmitting, handleSubmit } = useFormSubmit({
-    onSubmit: async (data) => {
+  const [error, setError] = useState<Error | null>(null)
+
+  const onSubmit = async (data: FormValues) => {
+    setError(null)
+    try {
       await apiClient.save(data)
-    },
-  })
+    } catch (err) {
+      setError(err as Error)
+    }
+  }
 
   return (
-    <Form form={form} onSubmit={form.handleSubmit(handleSubmit)}>
+    <Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
       <FormInput
         control={form.control}
         name={field('email')}
@@ -57,9 +62,11 @@ function MyForm() {
         ]}
       />
       
-      <Button type="submit" disabled={isSubmitting}>
-        Submit
+      <Button type="submit" disabled={form.formState.isSubmitting}>
+        {form.formState.isSubmitting ? 'Saving...' : 'Submit'}
       </Button>
+      
+      {error && <p className="error">{error.message}</p>}
     </Form>
   )
 }
@@ -278,23 +285,44 @@ const schema = z.object({
 
 ## 🪝 Hook Cheat Sheet
 
-### useFormSubmit
+### Built-in RHF State (Recommended)
 ```tsx
-const { isSubmitting, error, isSuccess, handleSubmit, reset } = useFormSubmit({
-  onSubmit: async (data) => {
-    await api.save(data)
-  },
-  onSuccess: (data) => {
-    toast.success('Saved!')
-  },
-  onError: (error) => {
-    toast.error(error.message)
-  },
+// React Hook Form already tracks submission state!
+const form = useForm<FormValues>({
+  resolver: zodResolver(schema),
 })
+
+const onSubmit = async (data: FormValues) => {
+  await api.save(data)
+  toast.success('Saved!')
+}
+
+// Use built-in formState
+const { isSubmitting, isSubmitSuccessful } = form.formState
 
 <Button type="submit" disabled={isSubmitting}>
   {isSubmitting ? 'Saving...' : 'Save'}
 </Button>
+```
+
+### Custom Error Handling
+```tsx
+const [error, setError] = useState<Error | null>(null)
+const [isSuccess, setIsSuccess] = useState(false)
+
+const onSubmit = async (data: FormValues) => {
+  setError(null)
+  setIsSuccess(false)
+  
+  try {
+    await api.save(data)
+    setIsSuccess(true)
+    toast.success('Saved!')
+  } catch (err) {
+    setError(err as Error)
+    toast.error(err.message)
+  }
+}
 
 {error && <p className="error">{error.message}</p>}
 {isSuccess && <p className="success">Success!</p>}
@@ -393,17 +421,17 @@ const form = useForm({
   resolver: zodResolver(loginSchema),
 })
 
-const { isSubmitting, handleSubmit } = useFormSubmit({
-  onSubmit: async (data) => {
-    await auth.login(data)
-  },
-})
+const onSubmit = async (data: LoginFormValues) => {
+  await auth.login(data)
+}
 
-<Form form={form} onSubmit={form.handleSubmit(handleSubmit)}>
+<Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
   <FormInput control={form.control} name="email" label="Email" />
   <FormInput control={form.control} name="password" label="Password" type="password" />
   <FormCheckbox control={form.control} name="rememberMe" label="Remember me" />
-  <Button type="submit" disabled={isSubmitting}>Login</Button>
+  <Button type="submit" disabled={form.formState.isSubmitting}>
+    {form.formState.isSubmitting ? 'Logging in...' : 'Login'}
+  </Button>
 </Form>
 ```
 
@@ -508,7 +536,7 @@ const schema = z.object({
 
 1. **Always use `createFieldNames`** for type safety
 2. **Prefer `validators`** over custom Zod schemas
-3. **Use `useFormSubmit`** for async operations
+3. **Use `form.formState.isSubmitting`** - RHF tracks async submission automatically
 4. **Extend pre-built schemas** instead of starting from scratch
 5. **Add descriptions** to help users understand fields
 6. **Use proper input types** (email, password, etc.)

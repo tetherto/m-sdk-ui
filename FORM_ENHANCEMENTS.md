@@ -12,8 +12,8 @@ This document outlines all the enhancements made to the form system to reduce bo
 
 2. **`packages/core/src/components/form/form-hooks.ts`**
    - Custom hooks for form state management
-   - `useFormSubmit`: Handle async submission with loading states, error handling, and success callbacks
    - `useFormReset`: Handle form reset with callbacks
+   - Note: `useFormSubmit` has been removed in favor of React Hook Form's built-in `formState.isSubmitting`
 
 3. **`packages/core/src/components/form/form-utils.ts`**
    - Type-safe field name inference utilities
@@ -73,25 +73,27 @@ Reduce boilerplate by 50-70% with components that handle everything automaticall
 />
 ```
 
-#### 2. Smart Async Submission Hook
+#### 2. Use Built-in Form State
 
-Handle loading states, errors, and success callbacks automatically:
+React Hook Form already tracks submission state - no custom hook needed!
 
 ```tsx
-const { isSubmitting, error, isSuccess, handleSubmit } = useFormSubmit({
-  onSubmit: async (data) => {
-    await apiClient.createUser(data)
-  },
-  onSuccess: (data) => {
-    toast.success('User created!')
-  },
-  onError: (error) => {
-    toast.error('Failed to create user')
-  },
+const form = useForm<FormValues>({
+  resolver: zodResolver(schema),
 })
 
-<Button type="submit" disabled={isSubmitting}>
-  {isSubmitting ? 'Submitting...' : 'Submit'}
+const onSubmit = async (data: FormValues) => {
+  try {
+    await apiClient.createUser(data)
+    toast.success('User created!')
+  } catch (error) {
+    toast.error('Failed to create user')
+  }
+}
+
+// Use built-in formState
+<Button disabled={form.formState.isSubmitting}>
+  {form.formState.isSubmitting ? 'Saving...' : 'Save'}
 </Button>
 ```
 
@@ -244,7 +246,7 @@ To migrate to the enhanced approach:
 
 1. Replace `FormField` + render prop with pre-built components
 2. Use `validators` instead of custom Zod schemas
-3. Add `useFormSubmit` for async submission
+3. Use `form.formState.isSubmitting` for async submission state
 4. Use `createFieldNames` for type safety
 
 ### 📝 Documentation

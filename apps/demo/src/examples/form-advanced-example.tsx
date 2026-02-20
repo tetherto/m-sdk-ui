@@ -7,10 +7,10 @@ import {
   FormInput,
   FormSwitch,
   FormTagInput,
-  useFormSubmit,
   validators,
 } from '@mining-sdk/core'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -44,15 +44,24 @@ export const FormAdvancedExample = (): React.ReactElement => {
     },
   })
 
-  const { isSubmitting, error, isSuccess, handleSubmit } = useFormSubmit<FormValues>({
-    onSubmit: async (data) => {
+  const [error, setError] = useState<Error | null>(null)
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  const onSubmit = async (data: FormValues): Promise<void> => {
+    setError(null)
+    setIsSuccess(false)
+
+    try {
       console.warn('Form submitted:', data)
       await new Promise((resolve) => setTimeout(resolve, 1500))
-    },
-    onSuccess: (data) => {
+
+      setIsSuccess(true)
       console.warn('Success!', data)
-    },
-  })
+    } catch (err) {
+      const error = err instanceof Error ? err : new Error('Submission failed')
+      setError(error)
+    }
+  }
 
   return (
     <div style={{ maxWidth: '600px' }}>
@@ -61,7 +70,7 @@ export const FormAdvancedExample = (): React.ReactElement => {
         Examples of FormTagInput and FormCascader
       </p>
 
-      <Form form={form} onSubmit={form.handleSubmit(handleSubmit)}>
+      <Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
         <FormInput
           control={form.control}
           name={field('name')}
@@ -143,8 +152,8 @@ export const FormAdvancedExample = (): React.ReactElement => {
           label="I agree to the terms and conditions"
         />
 
-        <Button type="submit" variant="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Profile'}
+        <Button type="submit" variant="primary" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? 'Submitting...' : 'Submit Profile'}
         </Button>
 
         {isSuccess && (

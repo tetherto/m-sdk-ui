@@ -9,10 +9,10 @@ import {
   FormSelect,
   FormSwitch,
   FormTextArea,
-  useFormSubmit,
   validators,
 } from '@mining-sdk/core'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -51,26 +51,33 @@ export const FormEnhancedExample = (): React.ReactElement => {
     },
   })
 
-  // Use the async submit hook with loading states
-  const { isSubmitting, error, isSuccess, handleSubmit } = useFormSubmit<FormValues>({
-    onSubmit: async (data) => {
+  // Track submission state for error/success messages
+  const [error, setError] = useState<Error | null>(null)
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  const onSubmit = async (data: FormValues): Promise<void> => {
+    setError(null)
+    setIsSuccess(false)
+
+    try {
       // Simulate API call
       console.warn('Form submitted:', data)
       await new Promise((resolve) => setTimeout(resolve, 2000))
-    },
-    onSuccess: (data) => {
+
+      setIsSuccess(true)
       console.warn('Success!', data)
-    },
-    onError: (error) => {
+    } catch (err) {
+      const error = err instanceof Error ? err : new Error('Submission failed')
+      setError(error)
       console.error('Submission failed:', error)
-    },
-  })
+    }
+  }
 
   return (
     <div style={{ maxWidth: '480px' }}>
       <h2 style={{ marginBottom: '1.5rem' }}>Enhanced Form Example</h2>
 
-      <Form form={form} onSubmit={form.handleSubmit(handleSubmit)}>
+      <Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
         {/* Using pre-built FormInput component - much less boilerplate! */}
         <FormInput
           control={form.control}
@@ -150,9 +157,9 @@ export const FormEnhancedExample = (): React.ReactElement => {
           layout="row"
         />
 
-        {/* Submit button with loading state from useFormSubmit */}
-        <Button type="submit" variant="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+        {/* Submit button with loading state from RHF's built-in formState */}
+        <Button type="submit" variant="primary" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
         </Button>
 
         {/* Display success/error messages */}

@@ -166,7 +166,7 @@ const schema = z.object({
 See all components in action:
 - Navigate to `/form-advanced` in the demo app
 - Interactive example with real validation
-- Shows integration with useFormSubmit hook
+- Shows modern async submission patterns
 
 ---
 
@@ -272,7 +272,7 @@ All components are:
 
 The form system is now **complete** with:
 - 10 pre-built field components
-- 2 custom hooks (useFormSubmit, useFormReset)
+- 1 custom hook (useFormReset) + RHF's built-in formState
 - 15+ validators
 - Type-safe utilities
 - Comprehensive documentation
