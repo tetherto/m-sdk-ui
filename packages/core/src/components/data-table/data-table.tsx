@@ -46,6 +46,11 @@ export type DataTableProps<I = unknown> = {
    */
   enableRowSelection?: boolean
   /**
+   * Enables selection of multiple rows
+   * @default true
+   */
+  enableMultiRowSelection?: boolean
+  /**
    * Specify the selected rows. If `undefined`, the selections are managed internally
    * Object with the key of row ID and a boolean specifying if the row is selected.
    * The default row ID is the index. This can be changed using `getRowId` prop
@@ -139,6 +144,7 @@ export function DataTable<I = unknown>({
   selections: providedSelections,
   onSelectionsChange,
   enablePagination = true,
+  enableMultiRowSelection = true,
   pagination: providedPagination,
   onPaginationChange,
   sorting: providedSorting,
@@ -266,6 +272,7 @@ export function DataTable<I = unknown>({
 
     // Selections
     enableRowSelection,
+    enableMultiRowSelection,
     onRowSelectionChange: setRowSelection,
 
     // Expansion
