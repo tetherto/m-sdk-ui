@@ -93,7 +93,7 @@ All pre-built components automatically handle:
 - Accessibility (ARIA attributes)
 - Validation state styling
 
-**Available Components:** FormInput, FormTextArea, FormSelect, FormCheckbox, FormSwitch, FormRadioGroup, FormDatePicker, FormTagInput, FormSlider, FormCascader
+**Available Components:** FormInput, FormTextArea, FormSelect, FormCheckbox, FormSwitch, FormRadioGroup, FormDatePicker, FormTagInput, FormCascader
 
 ### FormInput
 
@@ -220,23 +220,6 @@ Multi-select input with tags and search.
 />
 ```
 
-### FormSlider
-
-Range/slider input for numeric values.
-
-```tsx
-<FormSlider
-  control={form.control}
-  name="volume"
-  label="Volume"
-  min={0}
-  max={100}
-  step={1}
-  showValue
-  description="Adjust the volume level"
-/>
-```
-
 ### FormCascader
 
 Hierarchical select for categories and subcategories.
@@ -284,7 +267,30 @@ function CustomFormComponent() {
 
 ### Form Submission (Modern Approach)
 
-React Hook Form already tracks submission state - use `form.formState.isSubmitting`!
+React Hook Form already tracks submission state - just use `form.formState.isSubmitting`!
+
+#### Simple Pattern (Recommended)
+```tsx
+const form = useForm<FormValues>({
+  resolver: zodResolver(schema),
+})
+
+const onSubmit = async (data: FormValues): Promise<void> => {
+  await apiClient.createUser(data)
+}
+
+return (
+  <Form form={form} onSubmit={form.handleSubmit(onSubmit)}>
+    {/* fields */}
+    <Button type="submit" disabled={form.formState.isSubmitting}>
+      {form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
+    </Button>
+  </Form>
+)
+```
+
+#### With Custom Error/Success Messages (Optional)
+Only add `useState` if you need custom messages beyond RHF's field errors:
 
 ```tsx
 import { useState } from 'react'
@@ -293,11 +299,10 @@ const form = useForm<FormValues>({
   resolver: zodResolver(schema),
 })
 
-// Optional: track error/success state
 const [error, setError] = useState<Error | null>(null)
 const [isSuccess, setIsSuccess] = useState(false)
 
-const onSubmit = async (data: FormValues) => {
+const onSubmit = async (data: FormValues): Promise<void> => {
   setError(null)
   setIsSuccess(false)
   
@@ -324,10 +329,10 @@ return (
 ```
 
 **Why this is better:**
-- Uses RHF's built-in `isSubmitting` tracking
-- No extra hook needed - cleaner, simpler code
+- RHF's built-in `formState.isSubmitting` tracks async operations automatically
+- No custom hooks needed - minimal boilerplate
 - Works perfectly with Zod validation (which is synchronous)
-- More explicit control flow
+- `useState` only when you actually need custom messages
 
 ### useFormReset
 
@@ -474,7 +479,6 @@ const field = createFieldNames<FormValues>()
 ```tsx
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
 import { z } from 'zod'
 import {
   Form,
@@ -502,16 +506,9 @@ export function RegistrationForm() {
     resolver: zodResolver(schema),
   })
 
-  const [error, setError] = useState<Error | null>(null)
-
-  const onSubmit = async (data: FormValues) => {
-    setError(null)
-    try {
-      await apiClient.register(data)
-      router.push('/welcome')
-    } catch (err) {
-      setError(err as Error)
-    }
+  const onSubmit = async (data: FormValues): Promise<void> => {
+    await apiClient.register(data)
+    router.push('/welcome')
   }
 
   return (
@@ -552,8 +549,6 @@ export function RegistrationForm() {
       <Button type="submit" disabled={form.formState.isSubmitting}>
         {form.formState.isSubmitting ? 'Creating account...' : 'Sign Up'}
       </Button>
-      
-      {error && <p className="error">{error.message}</p>}
     </Form>
   )
 }

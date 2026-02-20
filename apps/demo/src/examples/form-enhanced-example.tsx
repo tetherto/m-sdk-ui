@@ -12,7 +12,6 @@ import {
   validators,
 } from '@mining-sdk/core'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -51,26 +50,11 @@ export const FormEnhancedExample = (): React.ReactElement => {
     },
   })
 
-  // Track submission state for error/success messages
-  const [error, setError] = useState<Error | null>(null)
-  const [isSuccess, setIsSuccess] = useState(false)
-
   const onSubmit = async (data: FormValues): Promise<void> => {
-    setError(null)
-    setIsSuccess(false)
-
-    try {
-      // Simulate API call
-      console.warn('Form submitted:', data)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      setIsSuccess(true)
-      console.warn('Success!', data)
-    } catch (err) {
-      const error = err instanceof Error ? err : new Error('Submission failed')
-      setError(error)
-      console.error('Submission failed:', error)
-    }
+    // Simulate API call
+    console.warn('Form submitted:', data)
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    console.warn('Success!', data)
   }
 
   return (
@@ -157,43 +141,9 @@ export const FormEnhancedExample = (): React.ReactElement => {
           layout="row"
         />
 
-        {/* Submit button with loading state from RHF's built-in formState */}
         <Button type="submit" variant="primary" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
         </Button>
-
-        {/* Display success/error messages */}
-        {isSuccess && (
-          <div
-            style={{
-              color: 'var(--status-success)',
-              marginTop: '1rem',
-              padding: '0.75rem',
-              backgroundColor: 'var(--status-success-bg)',
-              borderRadius: '0.375rem',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word',
-            }}
-          >
-            Form submitted successfully! ✓
-          </div>
-        )}
-        {error && (
-          <div
-            style={{
-              color: 'var(--status-error)',
-              marginTop: '1rem',
-              padding: '0.75rem',
-              backgroundColor: 'var(--status-error-bg)',
-              borderRadius: '0.375rem',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word',
-            }}
-            role="alert"
-          >
-            Error: {error.message}
-          </div>
-        )}
       </Form>
     </div>
   )

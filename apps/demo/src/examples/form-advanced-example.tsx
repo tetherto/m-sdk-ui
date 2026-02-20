@@ -10,7 +10,6 @@ import {
   validators,
 } from '@mining-sdk/core'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -44,23 +43,10 @@ export const FormAdvancedExample = (): React.ReactElement => {
     },
   })
 
-  const [error, setError] = useState<Error | null>(null)
-  const [isSuccess, setIsSuccess] = useState(false)
-
   const onSubmit = async (data: FormValues): Promise<void> => {
-    setError(null)
-    setIsSuccess(false)
-
-    try {
-      console.warn('Form submitted:', data)
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      setIsSuccess(true)
-      console.warn('Success!', data)
-    } catch (err) {
-      const error = err instanceof Error ? err : new Error('Submission failed')
-      setError(error)
-    }
+    console.warn('Form submitted:', data)
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    console.warn('Success!', data)
   }
 
   return (
@@ -155,38 +141,6 @@ export const FormAdvancedExample = (): React.ReactElement => {
         <Button type="submit" variant="primary" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? 'Submitting...' : 'Submit Profile'}
         </Button>
-
-        {isSuccess && (
-          <div
-            style={{
-              color: 'var(--status-success)',
-              marginTop: '1rem',
-              padding: '0.75rem',
-              backgroundColor: 'var(--status-success-bg)',
-              borderRadius: '0.375rem',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word',
-            }}
-          >
-            Profile submitted successfully! ✓
-          </div>
-        )}
-        {error && (
-          <div
-            style={{
-              color: 'var(--status-error)',
-              marginTop: '1rem',
-              padding: '0.75rem',
-              backgroundColor: 'var(--status-error-bg)',
-              borderRadius: '0.375rem',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word',
-            }}
-            role="alert"
-          >
-            Error: {error.message}
-          </div>
-        )}
       </Form>
     </div>
   )

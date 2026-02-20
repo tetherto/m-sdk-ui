@@ -7,7 +7,6 @@ Quick reference guide for the enhanced form system. Copy and paste examples to g
 ```tsx
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
 import { z } from 'zod'
 import {
   Form,
@@ -33,15 +32,8 @@ function MyForm() {
     resolver: zodResolver(schema),
   })
 
-  const [error, setError] = useState<Error | null>(null)
-
-  const onSubmit = async (data: FormValues) => {
-    setError(null)
-    try {
-      await apiClient.save(data)
-    } catch (err) {
-      setError(err as Error)
-    }
+  const onSubmit = async (data: FormValues): Promise<void> => {
+    await apiClient.save(data)
   }
 
   return (
@@ -65,8 +57,6 @@ function MyForm() {
       <Button type="submit" disabled={form.formState.isSubmitting}>
         {form.formState.isSubmitting ? 'Saving...' : 'Submit'}
       </Button>
-      
-      {error && <p className="error">{error.message}</p>}
     </Form>
   )
 }
@@ -175,20 +165,6 @@ function MyForm() {
 />
 ```
 
-### FormSlider
-```tsx
-<FormSlider
-  control={form.control}
-  name="fieldName"
-  label="Label"
-  min={0}
-  max={100}
-  step={1}
-  showValue                   // Show current value
-  description="Help text"
-/>
-```
-
 ### FormCascader
 ```tsx
 <FormCascader
@@ -285,32 +261,31 @@ const schema = z.object({
 
 ## 🪝 Hook Cheat Sheet
 
-### Built-in RHF State (Recommended)
+### Built-in RHF State (Default - Recommended)
 ```tsx
 // React Hook Form already tracks submission state!
 const form = useForm<FormValues>({
   resolver: zodResolver(schema),
 })
 
-const onSubmit = async (data: FormValues) => {
+const onSubmit = async (data: FormValues): Promise<void> => {
   await api.save(data)
-  toast.success('Saved!')
 }
 
-// Use built-in formState
-const { isSubmitting, isSubmitSuccessful } = form.formState
-
-<Button type="submit" disabled={isSubmitting}>
-  {isSubmitting ? 'Saving...' : 'Save'}
+// RHF automatically tracks isSubmitting during async operations
+<Button type="submit" disabled={form.formState.isSubmitting}>
+  {form.formState.isSubmitting ? 'Saving...' : 'Save'}
 </Button>
 ```
 
-### Custom Error Handling
+### Optional: Custom Error/Success Messages
+Only add `useState` if you need custom success/error messages beyond RHF's field errors:
+
 ```tsx
 const [error, setError] = useState<Error | null>(null)
 const [isSuccess, setIsSuccess] = useState(false)
 
-const onSubmit = async (data: FormValues) => {
+const onSubmit = async (data: FormValues): Promise<void> => {
   setError(null)
   setIsSuccess(false)
   
@@ -421,7 +396,7 @@ const form = useForm({
   resolver: zodResolver(loginSchema),
 })
 
-const onSubmit = async (data: LoginFormValues) => {
+const onSubmit = async (data: LoginFormValues): Promise<void> => {
   await auth.login(data)
 }
 
@@ -484,11 +459,10 @@ const schema = z.object({
 </Form>
 ```
 
-### Profile Form with Tags and Slider
+### Profile Form with Tags and Cascader
 ```tsx
 const schema = z.object({
   skills: z.array(z.string()),
-  experience: validators.number({ min: 0, max: 100 }),
   categories: z.array(z.array(z.union([z.string(), z.number()]))),
 })
 
@@ -499,16 +473,6 @@ const schema = z.object({
     label="Skills"
     placeholder="Add skills..."
     options={['React', 'TypeScript', 'Node.js']}
-  />
-  
-  <FormSlider
-    control={form.control}
-    name="experience"
-    label="Experience Level"
-    min={0}
-    max={100}
-    step={5}
-    showValue
   />
   
   <FormCascader
