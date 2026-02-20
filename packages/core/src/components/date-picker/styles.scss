@@ -24,6 +24,7 @@
   border: 1px solid var(--mining-sdk-date-picker-border, #ffffff33);
   border-radius: 0;
   color: var(--mining-sdk-date-picker-text, #ffffff);
+  font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
@@ -77,6 +78,7 @@
 
 /* ===== Calendar Base Styles (react-day-picker v9) ===== */
 .mining-sdk-date-picker__calendar {
+  font-family: var(--font-mono);
   color: var(--mining-sdk-date-picker-text, #ffffff);
 
   /* Root */
@@ -308,6 +310,7 @@
 }
 
 .mining-sdk-date-picker__modal-title {
+  font-family: var(--font-mono);
   font-size: 18px;
   font-weight: 400;
   line-height: 18px;
