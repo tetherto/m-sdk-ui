@@ -10,6 +10,7 @@ type StatsExportProps = {
 }
 
 type exportHandlerType = (typeof EXPORT_ITEM_KEYS)[keyof typeof EXPORT_ITEM_KEYS]
+
 export const StatsExport = ({
   onJsonExport,
   onCsvExport,
