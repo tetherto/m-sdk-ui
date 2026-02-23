@@ -18,28 +18,47 @@ export type IndicatorProps = {
    */
   className?: string
   /**
-   * Children content
+   * When true, adds extra spacing between child elements and stacks them vertically.
+   * Useful for displaying multiple pieces of information (e.g. status + count) in a clear way.
+   * @default false
+   */
+  vertical?: boolean
+  /**
+   * Children content (can include text, icons, multiple elements)
    */
   children?: React.ReactNode
   /**
    * Click handler
    */
   onClick?: () => void
-} & React.ComponentPropsWithoutRef<'span'>
+} & React.ComponentPropsWithoutRef<'div'>
 
 /**
- * Indicator component - display status with colored dot and label
+ * Indicator component - display status with colored background and label
  *
  * @example
  * ```tsx
+ * // Basic usage
  * <Indicator color="green" size="lg">Running</Indicator>
- * <Indicator color="red" size="sm">Error</Indicator>
+ *
+ * // With icon
+ * <Indicator color="green">
+ *   <span>Functioning</span>
+ *   <ChevronDownIcon />
+ * </Indicator>
+ *
+ * // With count
+ * <Indicator color="green">
+ *   <span>Running</span>
+ *   <span>10</span>
+ * </Indicator>
  * ```
  */
 const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(
-  ({ className, color = 'gray', size = 'md', children, onClick, ...props }, ref) => {
-    const needGap = (Array.isArray(children) && children.length > 1) || size === 'lg'
-
+  (
+    { className, color = 'gray', size = 'md', vertical = false, children, onClick, ...props },
+    ref,
+  ) => {
     return (
       <div
         ref={ref}
@@ -48,22 +67,13 @@ const Indicator = React.forwardRef<HTMLDivElement, IndicatorProps>(
           `mining-sdk-indicator--${color}`,
           `mining-sdk-indicator--${size}`,
           onClick && 'mining-sdk-indicator--clickable',
+          vertical && 'mining-sdk-indicator--vertical',
           className,
         )}
         onClick={onClick}
         {...props}
       >
-        {children && (
-          <span
-            className={cn(
-              'mining-sdk-indicator__label',
-              needGap && 'mining-sdk-indicator__label--gap',
-              className,
-            )}
-          >
-            {children}
-          </span>
-        )}
+        {children}
       </div>
     )
   },

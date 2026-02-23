@@ -1,10 +1,32 @@
-import { Indicator } from '@mining-sdk/core'
+import { ArrowIcon, Indicator } from '@mining-sdk/core'
 
 export const IndicatorsExample = (): React.ReactElement => {
   return (
     <section className="demo-section">
       <h2 className="demo-section__title">Indicators</h2>
       <section className="demo-section__indicators">
+        {/* With Icons/Arrows */}
+        <section>
+          <h3>With Icons & Arrows</h3>
+          <div className="demo-section__indicators--content">
+            <Indicator color="green" onClick={() => {}}>
+              <span>Active</span>
+              <ArrowIcon />
+            </Indicator>
+            <Indicator color="red" size="md" onClick={() => {}}>
+              <span>Functioning</span>
+              <ArrowIcon isOpen={true} />
+            </Indicator>
+            <Indicator color="blue" size="md" onClick={() => {}}>
+              <span>Functioning</span>
+              <ArrowIcon isOpen={true} />
+            </Indicator>
+            <Indicator color="amber" size="md" onClick={() => {}}>
+              <span>Functioning</span>
+              <ArrowIcon isOpen={true} />
+            </Indicator>
+          </div>
+        </section>
         {/* Size Variants */}
         <section>
           <h3>Size Variants</h3>
@@ -54,23 +76,23 @@ export const IndicatorsExample = (): React.ReactElement => {
         <section>
           <h3>System Status</h3>
           <div className="demo-section__indicators--content">
-            <Indicator color="green">
+            <Indicator color="green" vertical>
               <span>Running</span>
               <span>10</span>
             </Indicator>
-            <Indicator color="blue">
+            <Indicator color="blue" vertical>
               <span>Sleep</span>
               <span>0</span>
             </Indicator>
-            <Indicator color="amber">
+            <Indicator color="amber" vertical>
               <span>Empty</span>
               <span>4</span>
             </Indicator>
-            <Indicator color="red">
+            <Indicator color="red" vertical>
               <span>Error</span>
               <span>2</span>
             </Indicator>
-            <Indicator color="gray">
+            <Indicator color="gray" vertical>
               <span>Offline</span>
               <span>1</span>
             </Indicator>

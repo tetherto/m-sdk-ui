@@ -123,6 +123,7 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'active-incidents-card', label: 'Active Incidents Card' },
       { id: 'pool-details-card', label: 'Pool Details Card' },
       { id: 'pool-details-popover', label: 'Pool Details Popover' },
+      { id: 'stats-export', label: 'Stats Export Dropdown' },
     ],
   },
   {
