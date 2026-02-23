@@ -7,8 +7,65 @@
   height: 100vh;
   overflow: hidden;
 
-  &__nav {
-    border-right: 0.5px solid var(--mining-sdk-color-primary);
+  &__search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 16px 12px;
+    background: var(--mining-sdk-sidebar-bg, var(--mining-sdk-color-surface));
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 24px;
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 8px 32px 8px 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--mining-sdk-color-primary, #f7931a);
+    }
+  }
+
+  &__search-clear {
+    position: absolute;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 1;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
   }
 
   &__nav-header {
