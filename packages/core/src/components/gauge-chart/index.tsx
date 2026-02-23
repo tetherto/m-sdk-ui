@@ -2,6 +2,7 @@
 import * as React from 'react'
 import ReactGaugeChart from 'react-gauge-chart'
 import { cn } from '../../utils'
+import './styles.scss'
 
 export type GaugeChartProps = {
   /** Value between 0 and 1 (e.g. 0.75 = 75%) */
@@ -16,7 +17,7 @@ export type GaugeChartProps = {
   hideText?: boolean
   /** Unique id for the chart (required by react-gauge-chart) */
   id?: string
-  /** Fixed height to prevent resize bug */
+  /** Chart height in pixels */
   height?: number
   className?: string
 }
