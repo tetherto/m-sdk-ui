@@ -1,4 +1,4 @@
-import { ArrowIcon, DropdownMenu, ExportIcon, Spinner } from '@mining-sdk/core'
+import { ArrowIcon, cn, DropdownMenu, ExportIcon, Spinner } from '@mining-sdk/core'
 import { useState } from 'react'
 import { EXPORT_ITEM_KEYS, EXPORT_ITEMS, EXPORT_LABEL } from './constants'
 
@@ -9,6 +9,7 @@ type StatsExportProps = {
   onJsonExport: () => Promise<void>
 }
 
+type exportHandlerType = (typeof EXPORT_ITEM_KEYS)[keyof typeof EXPORT_ITEM_KEYS]
 export const StatsExport = ({
   onJsonExport,
   onCsvExport,
@@ -20,16 +21,17 @@ export const StatsExport = ({
 
   const isButtonDisabled = isLoading || disabled
 
-  const handleMenuClick = async (key: string): Promise<void> => {
+  const exportHandlers: Record<exportHandlerType, () => Promise<void>> = {
+    [EXPORT_ITEM_KEYS.CSV]: onCsvExport,
+    [EXPORT_ITEM_KEYS.JSON]: onJsonExport,
+  }
+
+  const handleMenuClick = async (key: exportHandlerType): Promise<void> => {
     setOpen(false)
     setIsLoading(true)
 
-    if (key === EXPORT_ITEM_KEYS.CSV) {
-      await onCsvExport()
-    }
-    if (key === EXPORT_ITEM_KEYS.JSON) {
-      await onJsonExport()
-    }
+    await exportHandlers[key]?.()
+
     setIsLoading(false)
   }
 
@@ -43,7 +45,9 @@ export const StatsExport = ({
     <DropdownMenu.Root open={open} onOpenChange={handleOpenChange}>
       <DropdownMenu.Trigger asChild disabled={isButtonDisabled}>
         <button
-          className={`stats-export__button ${isButtonDisabled ? 'stats-export__button--disabled' : ''}`}
+          className={cn('stats-export__button', {
+            'stats-export__button--disabled': isButtonDisabled,
+          })}
           disabled={isButtonDisabled}
         >
           {isLoading ? <Spinner type="circle" size="sm" color="secondary" /> : <ExportIcon />}
@@ -57,7 +61,10 @@ export const StatsExport = ({
         {EXPORT_ITEMS.map((item, index) => (
           <DropdownMenu.Item
             key={item.key}
-            className={`stats-export__item ${index !== EXPORT_ITEMS.length - 1 ? 'stats-export__item--bordered' : ''}`}
+            className={cn(
+              'stats-export__item',
+              index !== EXPORT_ITEMS.length - 1 && 'stats-export__item--bordered',
+            )}
             onSelect={() => handleMenuClick(item.key)}
           >
             {item.label}

@@ -1,6 +1,6 @@
 .mining-sdk-indicator {
-  display: inline-flex;
-  align-items: center;
+  @include inline_flex_align;
+
   justify-content: center;
   gap: 8px;
   font-family: var(--font-mono);
