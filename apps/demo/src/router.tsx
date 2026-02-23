@@ -5,6 +5,7 @@ import App from './App'
 import { ListViewFilterExample } from './examples/list-view-filter-example'
 import { ChartWrapperPage } from './pages'
 import { MosaicPageDemo } from './pages/mosaic.page'
+import { StateExportsPage } from './pages/stats-export-page'
 
 // Lazy load ALL pages to eliminate unused JavaScript and CSS
 const HomePage = lazy(() => import('./pages/home-page').then((m) => ({ default: m.HomePage })))
@@ -217,6 +218,7 @@ export const router = createBrowserRouter([
       { path: 'sidebar', element: withSuspense(SidebarPage) },
       { path: 'spinner', element: withSuspense(SpinnerPage) },
       { path: 'loader', element: withSuspense(LoaderPage) },
+      { path: 'stats-export', element: withSuspense(StateExportsPage) },
       { path: 'error-boundary', element: withSuspense(ErrorBoundaryPage) },
       { path: 'error-card', element: withSuspense(ErrorCardPage) },
       { path: 'not-found-page', element: withSuspense(NotFoundPageDemo) },
