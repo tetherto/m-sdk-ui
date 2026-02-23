@@ -9,7 +9,7 @@ type StatsExportProps = {
   onJsonExport: () => Promise<void>
 }
 
-type exportHandlerType = (typeof EXPORT_ITEM_KEYS)[keyof typeof EXPORT_ITEM_KEYS]
+type ExportHandlerType = (typeof EXPORT_ITEM_KEYS)[keyof typeof EXPORT_ITEM_KEYS]
 
 export const StatsExport = ({
   onJsonExport,
@@ -22,12 +22,12 @@ export const StatsExport = ({
 
   const isButtonDisabled = isLoading || disabled
 
-  const exportHandlers: Record<exportHandlerType, () => Promise<void>> = {
+  const exportHandlers: Record<ExportHandlerType, () => Promise<void>> = {
     [EXPORT_ITEM_KEYS.CSV]: onCsvExport,
     [EXPORT_ITEM_KEYS.JSON]: onJsonExport,
   }
 
-  const handleMenuClick = async (key: exportHandlerType): Promise<void> => {
+  const handleMenuClick = async (key: ExportHandlerType): Promise<void> => {
     setOpen(false)
     setIsLoading(true)
 
