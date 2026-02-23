@@ -93,8 +93,14 @@
   &__chart {
     @include flex_center;
 
+    position: relative;
     width: 100%;
     align-self: center;
     flex-shrink: 0;
+    
+    canvas {
+      max-width: 100% !important;
+      height: auto !important;
+    }
   }
 }

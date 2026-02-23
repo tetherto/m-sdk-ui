@@ -1,4 +1,7 @@
 .mining-sdk-chart-container {
+  min-width: 0;
+  width: 100%;
+  
   &--grid {
     display: grid;
     grid-template-columns: 1fr auto;

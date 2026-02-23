@@ -20,6 +20,7 @@ import {
 } from '../../utils/chart-options'
 import { buildChartTooltip } from '../../utils/chart-tooltip'
 import type { ChartTooltipConfig } from '../../utils/chart-tooltip'
+import './styles.scss'
 
 ChartJS.register(
   CategoryScale,
@@ -170,11 +171,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
     }, [data, showPoints, hiddenDatasets])
 
     return (
-      <div
-        ref={ref}
-        className={cn('mining-sdk-line-chart', className)}
-        style={{ height, width: '100%' }}
-      >
+      <div ref={ref} className={cn('mining-sdk-line-chart', className)} style={{ height }}>
         <Line data={chartData} options={mergedOptions} plugins={[legendMarginPlugin]} />
       </div>
     )

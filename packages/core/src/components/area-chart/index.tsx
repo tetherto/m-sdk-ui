@@ -21,6 +21,7 @@ import {
 } from '../../utils/chart-options'
 import { buildChartTooltip } from '../../utils/chart-tooltip'
 import type { ChartTooltipConfig } from '../../utils/chart-tooltip'
+import './styles.scss'
 
 ChartJS.register(
   CategoryScale,
