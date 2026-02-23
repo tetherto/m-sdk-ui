@@ -52,10 +52,6 @@ export type TagInputProps = {
    */
   onTagsChange?: (tags: string[]) => void
   /**
-   * Click handler for the input wrapper (e.g. to focus input). Receives click event.
-   */
-  onClick?: () => void
-  /**
    * Callback when input value changes (typing). Receives current input value. Useful for async option loading or custom filtering.
    */
   onInputChange?: (value: string) => void
@@ -192,7 +188,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
       value = [],
       onTagsChange,
       onSubmit,
-      onClick,
       onInputChange,
       options = [],
       placeholder = 'Search...',
@@ -218,6 +213,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
     const listRef = React.useRef<HTMLDivElement>(null)
     const wrapperRef = React.useRef<HTMLDivElement>(null)
     const dropdownRef = React.useRef<HTMLDivElement>(null)
+    const openChangeTimeoutRef = React.useRef<ReturnType<typeof setTimeout>>()
 
     const tags = value
     const setTags = onTagsChange ?? (() => {})
@@ -323,10 +319,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
       inputRef.current?.focus()
     }
 
-    const handleFocus = (): void => {
-      setOpen(true)
-    }
-
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>): void => {
       const relatedTarget = e.relatedTarget as Node | null
       const isInWrapper = relatedTarget && wrapperRef.current?.contains(relatedTarget)
@@ -339,16 +331,52 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
 
     const showSearchIcon = variant === 'search'
 
-    const handleOpenChange = React.useCallback((next: boolean) => {
-      // Keep open when input is focused (user is typing) - Radix may try to close on "interact outside"
-      if (!next && inputRef.current === document.activeElement) return
-      setOpen(next)
-    }, [])
+    const handleOpenChange = (next: boolean): void => {
+      if (openChangeTimeoutRef.current) {
+        clearTimeout(openChangeTimeoutRef.current)
+      }
+
+      // Debounce to avoid race conditions between manual toggle and Radix's interact outside
+      openChangeTimeoutRef.current = setTimeout(() => {
+        // Keep open when input is focused (user is typing) - Radix may try to close on "interact outside"
+        if (!next && inputRef.current === document.activeElement) {
+          return
+        }
+
+        setOpen(next)
+      }, 50)
+    }
+
+    const handleWrapperClick = (e: React.MouseEvent): void => {
+      // Check if click is on the remove tag button or icon
+      const target = e.target as HTMLElement
+      if (
+        target.closest('.mining-sdk-tag-input__tag-remove') ||
+        target.closest('.mining-sdk-tag-input__icon')
+      ) {
+        return
+      }
+
+      // Toggle dropdown if input is already focused
+      if (document.activeElement === inputRef.current) {
+        setOpen((prev) => !prev)
+      } else {
+        inputRef.current?.focus()
+      }
+    }
 
     const removeAllTags = React.useCallback(() => {
       setTags([])
       inputRef.current?.focus()
     }, [setTags])
+
+    React.useEffect(() => {
+      return () => {
+        if (openChangeTimeoutRef.current) {
+          clearTimeout(openChangeTimeoutRef.current)
+        }
+      }
+    }, [])
 
     const content = (
       <Popover open={open} onOpenChange={handleOpenChange} modal={false}>
@@ -361,10 +389,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
               disabled && 'mining-sdk-tag-input__wrapper--disabled',
               wrapperClassName,
             )}
-            onClick={() => {
-              inputRef.current?.focus()
-              onClick?.()
-            }}
+            onClick={handleWrapperClick}
           >
             <div className="mining-sdk-tag-input__inner">
               {tags.map((tag, i) => (
@@ -402,7 +427,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                   onInputChange?.(e.target.value)
                 }}
                 onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
                 onBlur={handleBlur}
                 disabled={disabled}
                 placeholder={tags.length === 0 ? placeholder : ''}

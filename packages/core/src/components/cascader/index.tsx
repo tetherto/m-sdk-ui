@@ -483,12 +483,6 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>(
               setActiveCategory(null)
             }
           }}
-          onClick={() => {
-            if (!searchValue.trim()) {
-              setShowLeftPanel(!showLeftPanel)
-              setActiveCategory(null)
-            }
-          }}
           allowCustomTags={false}
           className={className}
           renderDropdown={({ inputValue }) => (
