@@ -98,7 +98,7 @@ export const LineChartExample: React.FC = () => {
           >
             <LineChart
               height={250}
-              formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
+              formatYLabel={(v) => `${v.toFixed(2)} ${UNITS.HASHRATE_PH_S}`}
               data={LINE_CHART_HASH_RATE}
               tooltip={hashRateTooltip}
             />
@@ -133,7 +133,7 @@ export const LineChartExample: React.FC = () => {
             <LineChart
               height={250}
               showLegend={false}
-              formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
+              formatYLabel={(v) => `${v.toFixed(2)} ${UNITS.HASHRATE_PH_S}`}
               data={hashRateData}
               tooltip={hashRateTooltip}
             />

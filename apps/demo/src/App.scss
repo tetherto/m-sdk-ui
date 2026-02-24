@@ -20,7 +20,7 @@
     left: 24px;
     width: 16px;
     height: 16px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-text-secondary);
     pointer-events: none;
     z-index: 1;
   }
@@ -28,8 +28,8 @@
   &__search-input {
     width: 100%;
     padding: 8px 32px 8px 36px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--mining-sdk-sidebar-item-hover-bg);
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     color: #ffffff;
     font-size: 14px;
@@ -37,11 +37,11 @@
     transition: all 0.2s ease;
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.4);
+      color: var(--mining-sdk-input-placeholder-color);
     }
 
     &:focus {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--mining-sdk-color-white-8);
       border-color: var(--mining-sdk-color-primary, #f7931a);
     }
   }
@@ -52,19 +52,17 @@
     width: 20px;
     height: 20px;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex_center;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-text-secondary);
     font-size: 20px;
     cursor: pointer;
     transition: color 0.2s ease;
     z-index: 1;
 
     &:hover {
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--mining-sdk-color-white-60);
     }
   }
 
@@ -193,14 +191,12 @@
   }
 
   &__resize-hint {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex_center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--mining-sdk-color-white-12);
+    background: var(--mining-sdk-color-white-8);
     font-size: 0.8125rem;
     opacity: 0.7;
     margin-bottom: 1.5rem;
