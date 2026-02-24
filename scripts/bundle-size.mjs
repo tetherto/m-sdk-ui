@@ -71,10 +71,12 @@ function formatSize(bytes) {
  */
 function getPackageInfo(packagePath, packageName) {
   const srcPath = join(packagePath, 'src')
+  const publicPath = join(packagePath, 'public')
   const distPath = join(packagePath, 'dist')
 
-  const sourceSize = getDirectorySize(srcPath)
-  const builtSize = getRuntimeBundleSize(distPath) // Only count JS/CSS, not .d.ts
+  // Source size = src + public (for fonts, images, etc.)
+  const sourceSize = getDirectorySize(srcPath) + getDirectorySize(publicPath)
+  const builtSize = getRuntimeBundleSize(distPath) // Only count JS/CSS/fonts, not .d.ts
   const gzippedSize = getGzippedSize(distPath)
 
   return {
@@ -82,7 +84,7 @@ function getPackageInfo(packagePath, packageName) {
     sourceSize,
     builtSize,
     gzippedSize,
-    hasSource: existsSync(srcPath),
+    hasSource: existsSync(srcPath) || existsSync(publicPath),
     hasBuild: existsSync(distPath),
   }
 }
@@ -192,7 +194,7 @@ function main() {
 
   // Print legend
   console.log('Columns:')
-  console.log('  Source   = Source TypeScript files')
+  console.log('  Source   = Source files (src/ + public/)')
   console.log('  Runtime  = Built JS/CSS/fonts (excludes .d.ts files)')
   console.log('  Gzipped  = Compressed runtime bundle\n')
   console.log('Status:')
