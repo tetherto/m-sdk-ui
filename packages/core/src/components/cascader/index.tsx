@@ -489,7 +489,12 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>(
             <div className={cn('mining-sdk-cascader__panels', dropdownClassName)}>
               {/* Search Results View - Flat list */}
               {showSearchResults ? (
-                <div className="mining-sdk-cascader__panel mining-sdk-cascader__panel--search">
+                <div
+                  className={cn(
+                    'mining-sdk-cascader__panel mining-sdk-cascader__panel--search',
+                    !filteredOptions.length && 'mining-sdk-cascader__panel--empty',
+                  )}
+                >
                   <div className="mining-sdk-cascader__options-list">
                     {multiple ? (
                       // Multiple select mode with checkboxes
@@ -572,7 +577,7 @@ const Cascader = React.forwardRef<HTMLDivElement, CascaderProps>(
                     )}
 
                     {/* Empty state for search */}
-                    {filteredOptions.length === 0 && <EmptyState description="No data" />}
+                    {filteredOptions.length === 0 && <EmptyState description="No data" size="sm" />}
                   </div>
                 </div>
               ) : (
