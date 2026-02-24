@@ -21,6 +21,7 @@
     "dev:packages": "turbo dev --filter=!@mining-sdk/demo",
     "format": "turbo format",
     "size": "node scripts/bundle-size.mjs",
+    "size:check": "pnpm build && pnpm size",
     "test": "turbo test",
     "test:watch": "turbo test:watch",
     "lint": "turbo lint",
