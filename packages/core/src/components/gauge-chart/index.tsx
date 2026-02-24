@@ -16,7 +16,7 @@ export type GaugeChartProps = {
   hideText?: boolean
   /** Unique id for the chart (required by react-gauge-chart) */
   id?: string
-  /** Fixed height to prevent resize bug */
+  /** Chart height in pixels */
   height?: number
   className?: string
 }

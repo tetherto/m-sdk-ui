@@ -24,6 +24,7 @@ const Sidebar = ({
   overlay = false,
   onExpandedChange,
   defaultExpanded = false,
+  header,
 }: SidebarProps): React.ReactNode => {
   const [overlayId, setOverlayId] = useState<string | null>(null)
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded)
@@ -64,9 +65,12 @@ const Sidebar = ({
           !visible && 'mining-sdk-sidebar--hidden',
           overlay && 'mining-sdk-sidebar--overlay',
           showBackdrop && 'mining-sdk-sidebar--overlay-visible',
+          header && 'mining-sdk-sidebar--with-header',
           className,
         )}
       >
+        {header && <div className="mining-sdk-sidebar__header">{header}</div>}
+
         <button
           type="button"
           className="mining-sdk-sidebar__toggle"
