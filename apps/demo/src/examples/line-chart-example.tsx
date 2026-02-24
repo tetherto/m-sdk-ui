@@ -74,108 +74,113 @@ export const LineChartExample: React.FC = () => {
   const dailyRevenueStats = computeStats(dailyRevenueData)
 
   return (
-    <div className="demo-section__charts demo-section__charts--2-col">
-      <section>
-        <h3>Basic</h3>
-        <ChartContainer title="Revenue over time">
-          <LineChart height={250} data={LINE_CHART_REVENUE_BASIC} />
-        </ChartContainer>
-      </section>
-      <section>
-        <h3>With custom tooltip</h3>
-        <ChartContainer
-          title="Hash Rate"
-          footer={
-            <span>
-              Min {hashRateStats.min.toFixed(2)} PH/s · Max {hashRateStats.max.toFixed(2)} PH/s ·
-              Avg {hashRateStats.avg.toFixed(2)} PH/s
-            </span>
-          }
-        >
-          <LineChart
-            height={250}
-            formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
-            data={LINE_CHART_HASH_RATE}
-            tooltip={hashRateTooltip}
-          />
-        </ChartContainer>
-      </section>
-      <section>
-        <h3>With highlighted value and range selector</h3>
-        <ChartContainer
-          title="Hash Rate"
-          loading={hashRateLoading}
-          legendData={hashRateData.datasets.map((ds) => ({
-            label: ds.label as string,
-            color: (ds.borderColor ??
-              (ds as { backgroundColor?: string }).backgroundColor) as string,
-          }))}
-          highlightedValue={{
-            value: hashRateStats.max.toFixed(3),
-            unit: 'PH/s',
-          }}
-          rangeSelector={{
-            options: RANGE_OPTIONS.map((o) => ({ label: o.label, value: o.value })),
-            value: range,
-            onChange: handleRangeChange,
-          }}
-          footer={
-            <span>
-              Min {hashRateStats.min.toFixed(2)} PH/s · Max {hashRateStats.max.toFixed(2)} PH/s ·
-              Avg {hashRateStats.avg.toFixed(2)} PH/s
-            </span>
-          }
-        >
-          <LineChart
-            height={250}
-            showLegend={false}
-            formatYLabel={(v) => `${v.toFixed(2)} PH/s`}
-            data={hashRateData}
-            tooltip={hashRateTooltip}
-          />
-        </ChartContainer>
-      </section>
-      <section>
-        <h3>With points + footer</h3>
-        <ChartContainer
-          title="Temperature"
-          footer={
-            <span>
-              Min {temperatureStats.min}
-              {UNITS.TEMPERATURE_C} · Max {temperatureStats.max}
-              {UNITS.TEMPERATURE_C} · Avg {temperatureStats.avg.toFixed(1)}
-              {UNITS.TEMPERATURE_C}
-            </span>
-          }
-        >
-          <LineChart
-            height={250}
-            showPoints
-            formatYLabel={(v) => `${v}${UNITS.TEMPERATURE_C}`}
-            data={LINE_CHART_TEMPERATURE}
-            tooltip={{ valueFormatter: (v) => `${v}${UNITS.TEMPERATURE_C}` }}
-          />
-        </ChartContainer>
-      </section>
-      <section>
-        <h3>Currency format</h3>
-        <ChartContainer
-          title="Daily revenue"
-          footer={
-            <span>
-              Min ${dailyRevenueStats.min.toLocaleString()} · Max $
-              {dailyRevenueStats.max.toLocaleString()} · Avg ${dailyRevenueStats.avg.toFixed(0)}
-            </span>
-          }
-        >
-          <LineChart
-            height={250}
-            formatYLabel={(v) => `$${(v / 1000).toFixed(1)}k`}
-            data={LINE_CHART_DAILY_REVENUE}
-            tooltip={{ valueFormatter: (v) => `$${v.toLocaleString()}` }}
-          />
-        </ChartContainer>
-      </section>
-    </div>
+    <>
+      <p className="demo-section__resize-hint">
+        ← Resize the window horizontally to see charts adapt →
+      </p>
+      <div className="demo-section__charts demo-section__charts--2-col">
+        <section>
+          <h3>Basic</h3>
+          <ChartContainer title="Revenue over time">
+            <LineChart height={250} data={LINE_CHART_REVENUE_BASIC} />
+          </ChartContainer>
+        </section>
+        <section>
+          <h3>With custom tooltip</h3>
+          <ChartContainer
+            title="Hash Rate"
+            footer={
+              <span>
+                Min {hashRateStats.min.toFixed(2)} PH/s · Max {hashRateStats.max.toFixed(2)} PH/s ·
+                Avg {hashRateStats.avg.toFixed(2)} PH/s
+              </span>
+            }
+          >
+            <LineChart
+              height={250}
+              formatYLabel={(v) => `${v.toFixed(2)} ${UNITS.HASHRATE_PH_S}`}
+              data={LINE_CHART_HASH_RATE}
+              tooltip={hashRateTooltip}
+            />
+          </ChartContainer>
+        </section>
+        <section>
+          <h3>With highlighted value and range selector</h3>
+          <ChartContainer
+            title="Hash Rate"
+            loading={hashRateLoading}
+            legendData={hashRateData.datasets.map((ds) => ({
+              label: ds.label as string,
+              color: (ds.borderColor ??
+                (ds as { backgroundColor?: string }).backgroundColor) as string,
+            }))}
+            highlightedValue={{
+              value: hashRateStats.max.toFixed(3),
+              unit: 'PH/s',
+            }}
+            rangeSelector={{
+              options: RANGE_OPTIONS.map((o) => ({ label: o.label, value: o.value })),
+              value: range,
+              onChange: handleRangeChange,
+            }}
+            footer={
+              <span>
+                Min {hashRateStats.min.toFixed(2)} PH/s · Max {hashRateStats.max.toFixed(2)} PH/s ·
+                Avg {hashRateStats.avg.toFixed(2)} PH/s
+              </span>
+            }
+          >
+            <LineChart
+              height={250}
+              showLegend={false}
+              formatYLabel={(v) => `${v.toFixed(2)} ${UNITS.HASHRATE_PH_S}`}
+              data={hashRateData}
+              tooltip={hashRateTooltip}
+            />
+          </ChartContainer>
+        </section>
+        <section>
+          <h3>With points + footer</h3>
+          <ChartContainer
+            title="Temperature"
+            footer={
+              <span>
+                Min {temperatureStats.min}
+                {UNITS.TEMPERATURE_C} · Max {temperatureStats.max}
+                {UNITS.TEMPERATURE_C} · Avg {temperatureStats.avg.toFixed(1)}
+                {UNITS.TEMPERATURE_C}
+              </span>
+            }
+          >
+            <LineChart
+              height={250}
+              showPoints
+              formatYLabel={(v) => `${v}${UNITS.TEMPERATURE_C}`}
+              data={LINE_CHART_TEMPERATURE}
+              tooltip={{ valueFormatter: (v) => `${v}${UNITS.TEMPERATURE_C}` }}
+            />
+          </ChartContainer>
+        </section>
+        <section>
+          <h3>Currency format</h3>
+          <ChartContainer
+            title="Daily revenue"
+            footer={
+              <span>
+                Min ${dailyRevenueStats.min.toLocaleString()} · Max $
+                {dailyRevenueStats.max.toLocaleString()} · Avg ${dailyRevenueStats.avg.toFixed(0)}
+              </span>
+            }
+          >
+            <LineChart
+              height={250}
+              formatYLabel={(v) => `$${(v / 1000).toFixed(1)}k`}
+              data={LINE_CHART_DAILY_REVENUE}
+              tooltip={{ valueFormatter: (v) => `$${v.toLocaleString()}` }}
+            />
+          </ChartContainer>
+        </section>
+      </div>
+    </>
   )
 }

@@ -4,6 +4,16 @@
 
   .mining-sdk-tag-input__dropdown {
     padding: 0;
+    margin-top: unset;
+  }
+
+  .mining-sdk-tag-input__inner {
+    gap: 4px;
+
+    .mining-sdk-tag-input__tag-chip {
+      font-size: 14px;
+      color: var(--mining-sdk-color-text-secondary);
+    }
   }
 
   &__panels {
@@ -29,6 +39,10 @@
       width: 100%;
       background-color: var(--mining-sdk-select-content-bg);
       border-left: none;
+    }
+
+    &--empty {
+      height: auto;
     }
   }
 
@@ -119,6 +133,11 @@
   &__options-list {
     flex: 1;
     overflow-y: auto;
+
+    .mining-sdk-radio-group {
+      gap: 0;
+      padding: 4px;
+    }
   }
 
   &__option {

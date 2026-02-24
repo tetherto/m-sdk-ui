@@ -1,4 +1,6 @@
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { COMPONENT_NAV, getCategoryStats } from '../constants/navigation'
 import './home-page.scss'
 
 type CategoryCardProps = {
@@ -24,59 +26,61 @@ const CategoryCard = ({
   )
 }
 
-const CATEGORIES = [
-  {
-    title: 'Forms',
+const CATEGORY_DESCRIPTIONS: Record<string, { description: string; path: string }> = {
+  Forms: {
     description: 'Input controls and form elements for user interaction',
-    componentCount: 11,
     path: '/buttons',
   },
-  {
-    title: 'Overlays',
+  Overlays: {
     description: 'Dialogs, modals, and floating UI components',
-    componentCount: 6,
     path: '/dialog',
   },
-  {
-    title: 'Data Display',
+  'Data Display': {
     description: 'Components for presenting information and data',
-    componentCount: 10,
     path: '/table',
   },
-  {
-    title: 'Charts',
+  Charts: {
     description: 'Data visualization and charting components',
-    componentCount: 5,
     path: '/line-chart',
   },
-  {
-    title: 'Navigation',
+  Navigation: {
     description: 'Navigation and routing components',
-    componentCount: 4,
     path: '/tabs',
   },
-  {
-    title: 'Loading',
+  Loading: {
     description: 'Loading states and progress indicators',
-    componentCount: 2,
     path: '/spinner',
   },
-  {
-    title: 'Feedback',
+  Feedback: {
     description: 'Error handling and user feedback components',
-    componentCount: 3,
     path: '/error-boundary',
   },
-  {
-    title: 'Dashboard',
+  Dashboard: {
     description: 'Domain-specific dashboard components for mining operations',
-    componentCount: 3,
     path: '/active-incidents-card',
   },
-]
+  Explorer: {
+    description: 'Device exploration and management tools',
+    path: '/device-explorer',
+  },
+}
 
 export const HomePage = (): JSX.Element => {
   const navigate = useNavigate()
+
+  const categories = useMemo(() => {
+    return COMPONENT_NAV.filter((item) => item.id !== '').map((category) => {
+      const info = CATEGORY_DESCRIPTIONS[category.label]
+      return {
+        title: category.label,
+        description: info?.description || '',
+        componentCount: category.items?.length || 0,
+        path: info?.path || `/${category.id}`,
+      }
+    })
+  }, [])
+
+  const stats = useMemo(() => getCategoryStats(), [])
 
   const handleCategoryClick = (path: string): void => {
     navigate(path)
@@ -116,7 +120,7 @@ export const HomePage = (): JSX.Element => {
       </div>
 
       <div className="home-page__categories">
-        {CATEGORIES.map((category) => (
+        {categories.map((category) => (
           <CategoryCard
             key={category.title}
             {...category}
@@ -127,11 +131,11 @@ export const HomePage = (): JSX.Element => {
 
       <div className="home-page__stats">
         <div className="stat-item">
-          <span className="stat-item__value">50+</span>
+          <span className="stat-item__value">{stats.totalComponents}</span>
           <span className="stat-item__label">Components</span>
         </div>
         <div className="stat-item">
-          <span className="stat-item__value">8</span>
+          <span className="stat-item__value">{stats.totalCategories}</span>
           <span className="stat-item__label">Categories</span>
         </div>
         <div className="stat-item">

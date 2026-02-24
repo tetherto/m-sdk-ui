@@ -381,68 +381,70 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
     const content = (
       <Popover open={open} onOpenChange={handleOpenChange} modal={false}>
         <PopoverAnchor asChild>
-          <div
-            ref={wrapperRef}
-            className={cn(
-              'mining-sdk-tag-input__wrapper',
-              showSearchIcon && 'mining-sdk-tag-input__wrapper--search',
-              disabled && 'mining-sdk-tag-input__wrapper--disabled',
-              wrapperClassName,
-            )}
-            onClick={handleWrapperClick}
-          >
-            <div className="mining-sdk-tag-input__inner">
-              {tags.map((tag, i) => (
-                <span key={`${tag}-${i}`} className="mining-sdk-tag-input__tag">
-                  <span className="mining-sdk-tag-input__tag-chip">
-                    {tag}
-                    <button
-                      type="button"
-                      className="mining-sdk-tag-input__tag-remove"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        removeTag(i)
-                      }}
-                      aria-label={`Remove ${tag}`}
-                      tabIndex={-1}
-                    >
-                      <Cross2Icon />
-                    </button>
+          <div>
+            <div
+              ref={wrapperRef}
+              className={cn(
+                'mining-sdk-tag-input__wrapper',
+                showSearchIcon && 'mining-sdk-tag-input__wrapper--search',
+                disabled && 'mining-sdk-tag-input__wrapper--disabled',
+                wrapperClassName,
+              )}
+              onClick={handleWrapperClick}
+            >
+              <div className="mining-sdk-tag-input__inner">
+                {tags.map((tag, i) => (
+                  <span key={`${tag}-${i}`} className="mining-sdk-tag-input__tag">
+                    <span className="mining-sdk-tag-input__tag-chip">
+                      {tag}
+                      <button
+                        type="button"
+                        className="mining-sdk-tag-input__tag-remove"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          removeTag(i)
+                        }}
+                        aria-label={`Remove ${tag}`}
+                        tabIndex={-1}
+                      >
+                        <Cross2Icon />
+                      </button>
+                    </span>
                   </span>
-                </span>
-              ))}
-              <input
-                ref={(node) => {
-                  ;(inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node
-                  if (typeof ref === 'function') ref(node)
-                  else if (ref)
-                    (ref as React.MutableRefObject<HTMLInputElement | null>).current = node
-                }}
-                id={id}
-                type="text"
-                value={inputValue}
-                onChange={(e) => {
-                  setInputValue(e.target.value)
-                  setHighlightedIndex(0)
-                  onInputChange?.(e.target.value)
-                }}
-                onKeyDown={handleKeyDown}
-                onBlur={handleBlur}
-                disabled={disabled}
-                placeholder={tags.length === 0 ? placeholder : ''}
-                className={cn('mining-sdk-tag-input__input', className)}
-                autoComplete="off"
-                aria-autocomplete="list"
-                aria-expanded={open}
-                aria-controls={open ? `${id}-listbox` : undefined}
-                aria-activedescendant={
-                  open && filteredOptions.length > 0
-                    ? `${id}-option-${highlightedIndex}`
-                    : undefined
-                }
-                role="combobox"
-                aria-haspopup="listbox"
-              />
+                ))}
+                <input
+                  ref={(node) => {
+                    ;(inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node
+                    if (typeof ref === 'function') ref(node)
+                    else if (ref)
+                      (ref as React.MutableRefObject<HTMLInputElement | null>).current = node
+                  }}
+                  id={id}
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => {
+                    setInputValue(e.target.value)
+                    setHighlightedIndex(0)
+                    onInputChange?.(e.target.value)
+                  }}
+                  onKeyDown={handleKeyDown}
+                  onBlur={handleBlur}
+                  disabled={disabled}
+                  placeholder={tags.length === 0 ? placeholder : ''}
+                  className={cn('mining-sdk-tag-input__input', className)}
+                  autoComplete="off"
+                  aria-autocomplete="list"
+                  aria-expanded={open}
+                  aria-controls={open ? `${id}-listbox` : undefined}
+                  aria-activedescendant={
+                    open && filteredOptions.length > 0
+                      ? `${id}-option-${highlightedIndex}`
+                      : undefined
+                  }
+                  role="combobox"
+                  aria-haspopup="listbox"
+                />
+              </div>
             </div>
             {showSearchIcon && (
               <span

@@ -1,4 +1,4 @@
-import { Mosaic } from '@mining-sdk/core'
+import { Card, Mosaic } from '@mining-sdk/core'
 
 export const MosaicPageDemo = (): JSX.Element => {
   return (
@@ -53,17 +53,7 @@ export const MosaicPageDemo = (): JSX.Element => {
             flexDirection: 'column',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            Total Hashrate
-          </h3>
+          <h3>Total Hashrate</h3>
           <p
             style={{
               fontSize: '2.5rem',
@@ -90,17 +80,7 @@ export const MosaicPageDemo = (): JSX.Element => {
             flexDirection: 'column',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            Avg Temperature
-          </h3>
+          <h3>Avg Temperature</h3>
           <p
             style={{
               fontSize: '2.5rem',
@@ -141,17 +121,7 @@ export const MosaicPageDemo = (): JSX.Element => {
             flexDirection: 'column',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            Power Consumption
-          </h3>
+          <h3>Power Consumption</h3>
           <p
             style={{
               fontSize: '2.5rem',
@@ -178,17 +148,7 @@ export const MosaicPageDemo = (): JSX.Element => {
             flexDirection: 'column',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            Active Workers
-          </h3>
+          <h3>Active Workers</h3>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
             <thead>
               <tr>
@@ -403,17 +363,7 @@ export const MosaicPageDemo = (): JSX.Element => {
             flexDirection: 'column',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            Hashrate History (24h)
-          </h3>
+          <h3>Hashrate History (24h)</h3>
           <div style={{ marginTop: '1rem', flex: 1 }}>
             <svg
               width="100%"
@@ -443,23 +393,13 @@ export const MosaicPageDemo = (): JSX.Element => {
             padding: '1.5rem',
             borderRadius: '8px',
             border: '1px solid #333',
-            display: 'flex',
-            flexDirection: 'column',
+            minHeight: '30vh',
+            overflowY: 'auto',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            ⚠️ Recent Alerts
-          </h3>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            <li
+          <h3>⚠️ Recent Alerts</h3>
+          <div style={{ marginTop: '1rem', flex: 1 }}>
+            <Card
               style={{
                 padding: '1rem',
                 marginBottom: '0.75rem',
@@ -482,8 +422,8 @@ export const MosaicPageDemo = (): JSX.Element => {
                 Miner-012 reached 78°C
               </p>
               <span style={{ fontSize: '0.75rem', color: '#666' }}>2 min ago</span>
-            </li>
-            <li
+            </Card>
+            <Card
               style={{
                 padding: '1rem',
                 marginBottom: '0.75rem',
@@ -506,8 +446,8 @@ export const MosaicPageDemo = (): JSX.Element => {
                 Miner-004 is not responding
               </p>
               <span style={{ fontSize: '0.75rem', color: '#666' }}>15 min ago</span>
-            </li>
-            <li
+            </Card>
+            <Card
               style={{
                 padding: '1rem',
                 marginBottom: 0,
@@ -530,8 +470,8 @@ export const MosaicPageDemo = (): JSX.Element => {
                 Switched to backup pool
               </p>
               <span style={{ fontSize: '0.75rem', color: '#666' }}>1 hour ago</span>
-            </li>
-          </ul>
+            </Card>
+          </div>
         </Mosaic.Item>
 
         <Mosaic.Item
@@ -543,23 +483,15 @@ export const MosaicPageDemo = (): JSX.Element => {
             border: '1px solid #333',
             display: 'flex',
             flexDirection: 'column',
+            minHeight: '30vh',
+            overflowY: 'auto',
           }}
         >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              color: '#999',
-              fontSize: '0.875rem',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-            }}
-          >
-            💰 Earnings
-          </h3>
+          <h3>💰 Earnings</h3>
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridGap: '1rem',
               gap: '1rem',
               marginTop: '1rem',
             }}

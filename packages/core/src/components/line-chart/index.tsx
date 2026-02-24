@@ -170,11 +170,7 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
     }, [data, showPoints, hiddenDatasets])
 
     return (
-      <div
-        ref={ref}
-        className={cn('mining-sdk-line-chart', className)}
-        style={{ height, width: '100%' }}
-      >
+      <div ref={ref} className={cn('mining-sdk-line-chart', className)} style={{ height }}>
         <Line data={chartData} options={mergedOptions} plugins={[legendMarginPlugin]} />
       </div>
     )
