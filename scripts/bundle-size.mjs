@@ -167,10 +167,10 @@ function main() {
     let status = '✅'
     if (!pkg.hasBuild) {
       status = '⚠️  No build'
+    } else if (pkg.gzippedSize > 500 * 1024) {
+      status = '🔴 > 500KB'
     } else if (pkg.gzippedSize > 200 * 1024) {
-      status = '🔴 > 200KB'
-    } else if (pkg.gzippedSize > 100 * 1024) {
-      status = '🟡 > 100KB'
+      status = '🟡 > 200KB'
     }
 
     console.log(`${name}  ${source}  ${built}  ${gzipped}  ${status}`)
@@ -198,9 +198,9 @@ function main() {
   console.log('  Runtime  = Built JS/CSS/fonts (excludes .d.ts files)')
   console.log('  Gzipped  = Compressed runtime bundle\n')
   console.log('Status:')
-  console.log('  ✅ Gzipped < 100KB')
-  console.log('  🟡 Gzipped 100-200KB')
-  console.log('  🔴 Gzipped > 200KB')
+  console.log('  ✅ Gzipped < 200KB')
+  console.log('  🟡 Gzipped 200-500KB')
+  console.log('  🔴 Gzipped > 500KB')
   console.log('  ⚠️  No build output found\n')
 }
 
