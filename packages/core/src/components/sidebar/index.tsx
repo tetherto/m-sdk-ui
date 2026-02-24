@@ -3,6 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
 import { cn } from '../../utils'
 import type { SidebarProps } from './types'
 import { MenuItemInternal } from './menu-item'
+import { useSidebarExpandedState } from './use-sidebar-state'
 
 export type {
   SidebarCallbacks,
@@ -12,6 +13,12 @@ export type {
   SidebarOptions,
   SidebarProps,
 } from './types'
+
+export {
+  clearSidebarState,
+  useSidebarExpandedState,
+  useSidebarSectionState,
+} from './use-sidebar-state'
 
 const Sidebar = ({
   items,
@@ -27,7 +34,8 @@ const Sidebar = ({
   header,
 }: SidebarProps): React.ReactNode => {
   const [overlayId, setOverlayId] = useState<string | null>(null)
-  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded)
+  const [persistedExpanded, setPersistedExpanded] = useSidebarExpandedState(defaultExpanded)
+  const [internalExpanded, setInternalExpanded] = useState(persistedExpanded)
 
   const showBackdrop = overlay && visible
   const isControlled = expanded !== undefined
@@ -39,9 +47,13 @@ const Sidebar = ({
       return
     }
 
-    if (!isControlled) setInternalExpanded(!isExpanded)
-    onExpandedChange?.(!isExpanded)
-  }, [overlay, onClose, isExpanded, isControlled, onExpandedChange])
+    const newExpanded = !isExpanded
+    if (!isControlled) {
+      setInternalExpanded(newExpanded)
+      setPersistedExpanded(newExpanded)
+    }
+    onExpandedChange?.(newExpanded)
+  }, [overlay, onClose, isExpanded, isControlled, onExpandedChange, setPersistedExpanded])
 
   useEffect(() => {
     if (!showBackdrop) return
