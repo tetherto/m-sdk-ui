@@ -1,4 +1,4 @@
-import { COLOR } from './colors'
+import { COLOR } from '@mining-sdk/core'
 
 export const SEVERITY = {
   HIGH: 'high',

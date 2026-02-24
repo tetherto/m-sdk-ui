@@ -1,4 +1,6 @@
 import * as React from 'react'
+
+import type { TypographyColor } from '../../types'
 import { cn } from '../../utils'
 
 type TypographyElement = 'h1' | 'h2' | 'h3' | 'p' | 'span'
@@ -26,7 +28,7 @@ export type TypographyProps = {
   /**
    * Text color variant
    */
-  color?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'muted'
+  color?: TypographyColor
   /**
    * Truncate text with ellipsis
    */

@@ -1,4 +1,4 @@
-import { CHART_COLORS } from './colors'
+import { CHART_COLORS } from '@mining-sdk/core'
 
 export const MINER_MODEL = {
   AVALON: 'avalon',

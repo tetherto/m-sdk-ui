@@ -1,10 +1,8 @@
 import * as React from 'react'
 
+import type { ButtonIconPosition, ButtonSize, ButtonVariant } from '../../types'
 import { cn } from '../../utils'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'outline' | 'ghost' | 'link'
-export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon'
-export type ButtonIconPosition = 'left' | 'right'
 export type ButtonAntdSize = 'small' | 'middle' | 'large'
 export type ButtonProps = {
   variant?: ButtonVariant

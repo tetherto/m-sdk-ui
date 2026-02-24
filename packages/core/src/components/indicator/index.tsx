@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import type { ComponentSize } from '../../types'
 import { cn } from '../../utils'
 
 export type IndicatorProps = {
@@ -12,7 +13,7 @@ export type IndicatorProps = {
    * Size variant of the indicator
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
   /**
    * Custom className for the root element
    */

@@ -1,6 +1,7 @@
 import * as SwitchPrimitives from '@radix-ui/react-switch'
 import * as React from 'react'
 
+import type { BorderRadius, ComponentColor, ComponentSize } from '../../types'
 import { cn } from '../../utils'
 
 export type SwitchProps = {
@@ -8,17 +9,17 @@ export type SwitchProps = {
    * Size variant of the switch
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
   /**
    * Color variant when checked
    * @default 'default'
    */
-  color?: 'default' | 'primary' | 'success' | 'warning' | 'error'
+  color?: ComponentColor
   /**
    * Border radius variant
    * @default 'none'
    */
-  radius?: 'none' | 'small' | 'medium' | 'large' | 'full'
+  radius?: BorderRadius
   /**
    * Custom className for the root element
    */

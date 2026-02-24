@@ -2,12 +2,12 @@ import {
   formatValueUnit,
   SimpleTooltip,
   TemperatureIndicatorIcon,
+  UNITS,
   unitToKilo,
 } from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
 import type { DeviceExplorerDeviceData, GetColumnConfigParams } from '../types'
 import { isContainerOffline } from '../../../../utils/container-utils'
-import { UNITS } from '../../../../constants/units'
 import {
   getCabinetTitle,
   getLvCabinetTempSensorColor,

@@ -3,7 +3,9 @@ import { ArchiveIcon, CircleIcon } from '@radix-ui/react-icons'
 
 import { cn } from '../../utils'
 
-export type EmptyStateSize = 'sm' | 'md' | 'lg'
+import type { ComponentSize } from '../../types'
+
+export type EmptyStateSize = ComponentSize
 export type EmptyStateImage = 'default' | 'simple' | React.ReactNode
 
 const ICON_SIZE: Record<EmptyStateSize, string> = {

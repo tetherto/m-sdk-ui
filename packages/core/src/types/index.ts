@@ -3,6 +3,8 @@
  */
 
 export * from './chart'
+export * from './common'
+export * from './component'
 
 /**
  * Generic type for objects with unknown structure

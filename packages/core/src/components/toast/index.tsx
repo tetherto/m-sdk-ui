@@ -1,6 +1,7 @@
 import * as ToastPrimitives from '@radix-ui/react-toast'
 import * as React from 'react'
 
+import type { NotificationVariant } from '../../types'
 import { cn } from '../../utils'
 
 // TODO Update this to use the correct icons
@@ -15,7 +16,7 @@ type ToastRootProps = React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root
 type ToastProviderProps = React.ComponentPropsWithoutRef<typeof ToastPrimitives.Provider>
 type ToastViewportProps = React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
 
-type ToastVariant = 'success' | 'error' | 'warning' | 'info'
+type ToastVariant = NotificationVariant
 type ToastPosition =
   | 'top-left'
   | 'top-right'

@@ -5,6 +5,8 @@ import {
   DoubleArrowRightIcon,
 } from '@radix-ui/react-icons'
 import * as React from 'react'
+
+import type { ComponentSize } from '../../types'
 import { cn } from '../../utils'
 import { Button } from '../button'
 import {
@@ -57,7 +59,7 @@ export type PaginationProps = {
    * Size variant
    * @default 'sm'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
   /**
    * Custom className for the root element
    */

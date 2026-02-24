@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import type { ComponentSize } from '../../types'
 import { cn } from '../../utils'
 
 export type SpinnerProps = {
@@ -7,7 +8,7 @@ export type SpinnerProps = {
    * Size variant of the spinner
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
   /**
    * Color variant of the spinner
    * @default 'primary'
