@@ -119,12 +119,10 @@ export default defineConfig({
 pnpm build
 
 # Turborepo will:
-# 1. Build @mining-sdk/core first (no dependencies)
-# 2. Build @mining-sdk/theme, @mining-sdk/hooks in parallel
-# 3. Build @mining-sdk/components-foundation (depends on core)
-# 4. Build @mining-sdk/components-domain (depends on foundation)
-# 5. Build @mining-sdk/components-feature (depends on domain)
-# 6. Build apps (depends on all packages)
+# 1. Build @mining-sdk/core first (no dependencies, exports built JS)
+# 2. Build @mining-sdk/fonts in parallel (independent)
+# 3. Build @mining-sdk/foundation (depends on core, exports TS source)
+# 4. Build @mining-sdk/demo app (depends on all packages)
 ```
 
 ### Selective Build
@@ -134,7 +132,7 @@ pnpm build
 pnpm --filter @mining-sdk/core build
 
 # Build package with dependencies
-pnpm --filter @mining-sdk/components-foundation... build
+pnpm --filter @mining-sdk/foundation... build
 
 # Build package with dependents
 pnpm --filter ...@mining-sdk/core build
@@ -202,35 +200,35 @@ Turborepo automatically parallelizes independent tasks:
 Time →
 
 @mining-sdk/core         ████████
-@mining-sdk/theme              ████████
-@mining-sdk/hooks              ████████
+@mining-sdk/fonts        ████████ (parallel with core)
 @mining-sdk/foundation                ████████
-@mining-sdk/domain                          ████████
-@mining-sdk/feature                               ████████
+@mining-sdk/demo                           ████████
 
-Total: ~5s (vs ~20s sequential)
+Total: ~3-4s (vs ~10s sequential)
 ```
 
 ## Dependency Graph
 
 ```
-@mining-sdk/core
-├── @mining-sdk/theme
-├── @mining-sdk/hooks
-└── @mining-sdk/components-foundation
-    └── @mining-sdk/components-domain
-        └── @mining-sdk/components-feature
-            └── @mining-sdk/demo (app)
+@mining-sdk/core (built JS + CSS)
+└── @mining-sdk/foundation (TS source + CSS)
+    └── @mining-sdk/demo (app)
 
-@mining-sdk/api-client
-└── @mining-sdk/state
-    └── @mining-sdk/components-feature
+@mining-sdk/fonts (independent, CSS only)
+└── @mining-sdk/demo (app)
 ```
 
+**Simplified Architecture:**
+- **2 main packages** + 1 font package
+- **Linear dependency**: core → foundation → demo
+- **Fonts are independent** and can build in parallel
+- **Foundation exports TypeScript source** (no build needed for workspace deps)
+- **Core exports built JavaScript** (requires build step)
+
 Turborepo ensures:
-- `@mining-sdk/core` builds before `@mining-sdk/components-foundation`
-- `@mining-sdk/components-foundation` builds before `@mining-sdk/components-domain`
-- Independent packages build in parallel
+- `@mining-sdk/core` builds before `@mining-sdk/foundation`
+- `@mining-sdk/fonts` can build in parallel
+- `@mining-sdk/foundation` and `@mining-sdk/fonts` build before `@mining-sdk/demo`
 
 ## Performance
 

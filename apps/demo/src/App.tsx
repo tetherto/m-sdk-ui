@@ -11,7 +11,7 @@ import {
   LayersIcon,
   MagnifyingGlassIcon,
 } from '@radix-ui/react-icons'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './App.scss'
 
@@ -28,15 +28,16 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'action-button', label: 'Action Button' },
       { id: 'buttons', label: 'Buttons' },
-      { id: 'form-elements', label: 'Form Elements' },
-      { id: 'select', label: 'Select' },
       { id: 'checkbox-switch', label: 'Checkbox & Switch' },
-      { id: 'radio', label: 'Radio' },
       { id: 'date-pickers', label: 'Date Pickers' },
-      { id: 'textarea', label: 'TextArea' },
+      { id: 'form-advanced', label: 'Form (Advanced)' },
       { id: 'form', label: 'Form (Basic)' },
       { id: 'form-enhanced', label: 'Form (Enhanced)' },
-      { id: 'form-advanced', label: 'Form (Advanced)' },
+      { id: 'form-elements', label: 'Form Elements' },
+      { id: 'form-performance', label: 'Form Performance' },
+      { id: 'radio', label: 'Radio' },
+      { id: 'select', label: 'Select' },
+      { id: 'textarea', label: 'TextArea' },
     ],
   },
   {
@@ -44,12 +45,12 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Overlays',
     icon: <ChatBubbleIcon />,
     items: [
+      { id: 'cascader', label: 'Cascader' },
       { id: 'dialog', label: 'Dialog' },
       { id: 'dropdown-menu', label: 'Dropdown Menu' },
-      { id: 'cascader', label: 'Cascader' },
-      { id: 'tooltip', label: 'Tooltip' },
       { id: 'popover', label: 'Popover' },
       { id: 'toast', label: 'Toast' },
+      { id: 'tooltip', label: 'Tooltip' },
     ],
   },
   {
@@ -57,18 +58,18 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Data Display',
     icon: <LayersIcon />,
     items: [
-      { id: 'table', label: 'Table' },
-      { id: 'list-view-filter', label: 'List view filter' },
-      { id: 'mosaic', label: 'Mosaic' },
-      { id: 'avatar', label: 'Avatar' },
       { id: 'accordion', label: 'Accordion' },
+      { id: 'avatar', label: 'Avatar' },
       { id: 'card', label: 'Card' },
       { id: 'currency-toggler', label: 'Currency Toggler' },
-      { id: 'typography', label: 'Typography' },
-      { id: 'tags', label: 'Tags' },
-      { id: 'indicators', label: 'Indicators' },
-      { id: 'mining-icons', label: 'Mining Icons' },
       { id: 'empty-state', label: 'Empty State' },
+      { id: 'indicators', label: 'Indicators' },
+      { id: 'list-view-filter', label: 'List view filter' },
+      { id: 'mining-icons', label: 'Mining Icons' },
+      { id: 'mosaic', label: 'Mosaic' },
+      { id: 'table', label: 'Table' },
+      { id: 'tags', label: 'Tags' },
+      { id: 'typography', label: 'Typography' },
     ],
   },
   {
@@ -76,13 +77,13 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Charts',
     icon: <BarChartIcon />,
     items: [
-      { id: 'line-chart', label: 'Line Chart' },
-      { id: 'bar-chart', label: 'Bar Chart' },
       { id: 'area-chart', label: 'Area Chart' },
-      { id: 'doughnut-chart', label: 'Doughnut Chart' },
-      { id: 'gauge-chart', label: 'Gauge Chart' },
+      { id: 'bar-chart', label: 'Bar Chart' },
       { id: 'chart-container', label: 'ChartContainer' },
       { id: 'chart-wrapper', label: 'Chart wrapper' },
+      { id: 'doughnut-chart', label: 'Doughnut Chart' },
+      { id: 'gauge-chart', label: 'Gauge Chart' },
+      { id: 'line-chart', label: 'Line Chart' },
     ],
   },
   {
@@ -90,10 +91,10 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Navigation',
     icon: <DashboardIcon />,
     items: [
-      { id: 'tabs', label: 'Tabs' },
       { id: 'breadcrumbs', label: 'Breadcrumbs' },
       { id: 'pagination', label: 'Pagination' },
       { id: 'sidebar', label: 'Sidebar' },
+      { id: 'tabs', label: 'Tabs' },
     ],
   },
   {
@@ -101,8 +102,8 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     label: 'Loading',
     icon: <CubeIcon />,
     items: [
-      { id: 'spinner', label: 'Spinner' },
       { id: 'loader', label: 'Loader' },
+      { id: 'spinner', label: 'Spinner' },
     ],
   },
   {
@@ -112,7 +113,6 @@ const COMPONENT_NAV: SidebarMenuItem[] = [
     items: [
       { id: 'error-boundary', label: 'Error Boundary' },
       { id: 'error-card', label: 'Error Card' },
-      { id: 'not-found-page', label: 'Not Found Page' },
     ],
   },
   {
@@ -141,6 +141,15 @@ const App = (): JSX.Element => {
 
   const activeSection = location.pathname === '/' ? '' : location.pathname.slice(1)
 
+  const sortedNav = useMemo(() => {
+    return COMPONENT_NAV.map((section) => ({
+      ...section,
+      items: section.items
+        ? [...section.items].sort((a, b) => a.label.localeCompare(b.label))
+        : undefined,
+    }))
+  }, [])
+
   const handleNavClick = (item: SidebarMenuItem): void => {
     navigate(`/${item.id}`)
     mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
@@ -149,7 +158,7 @@ const App = (): JSX.Element => {
   return (
     <div className="demo-app">
       <Sidebar
-        items={COMPONENT_NAV}
+        items={sortedNav}
         activeId={activeSection}
         onItemClick={handleNavClick}
         defaultExpanded

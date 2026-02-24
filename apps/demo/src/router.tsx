@@ -58,9 +58,6 @@ const LoaderPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import('./pages/not-found-page').then((m) => ({ default: m.NotFoundPage })),
 )
-const NotFoundPageDemo = lazy(() =>
-  import('./pages/not-found-page-demo').then((m) => ({ default: m.NotFoundPageDemo })),
-)
 const PopoverPage = lazy(() =>
   import('./pages/popover-page').then((m) => ({ default: m.PopoverPage })),
 )
@@ -124,6 +121,11 @@ const DemoTable = lazy(() =>
 const FormExample = lazy(() => import('./examples/form-example'))
 const FormEnhancedExample = lazy(() => import('./examples/form-enhanced-example'))
 const FormAdvancedExample = lazy(() => import('./examples/form-advanced-example'))
+const FormPerformancePage = lazy(() =>
+  import('./pages/form-performance-page-real').then((m) => ({
+    default: m.FormPerformancePageReal,
+  })),
+)
 const IndicatorsExample = lazy(() =>
   import('./examples/indicators-example').then((module) => ({
     default: module.IndicatorsExample,
@@ -187,6 +189,7 @@ export const router = createBrowserRouter([
       { path: 'form', element: withSuspense(FormExample) },
       { path: 'form-enhanced', element: withSuspense(FormEnhancedExample) },
       { path: 'form-advanced', element: withSuspense(FormAdvancedExample) },
+      { path: 'form-performance', element: withSuspense(FormPerformancePage) },
       { path: 'dialog', element: withSuspense(DialogPage) },
       { path: 'dropdown-menu', element: withSuspense(DropdownMenuPage) },
       { path: 'cascader', element: withSuspense(CascaderExample) },
@@ -221,7 +224,6 @@ export const router = createBrowserRouter([
       { path: 'stats-export', element: withSuspense(StateExportsPage) },
       { path: 'error-boundary', element: withSuspense(ErrorBoundaryPage) },
       { path: 'error-card', element: withSuspense(ErrorCardPage) },
-      { path: 'not-found-page', element: withSuspense(NotFoundPageDemo) },
       { path: 'active-incidents-card', element: withSuspense(ActiveIncidentsCardPage) },
       { path: 'pool-details-card', element: withSuspense(PoolDetailsCardPage) },
       { path: 'pool-details-popover', element: withSuspense(PoolDetailsPopoverPage) },

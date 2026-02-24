@@ -66,14 +66,25 @@ This monorepo uses **SCSS** with **Vite** and **Turborepo** for styling, replaci
 
 ### Packages with SCSS
 
-1. **@mining-sdk/core** - Base styles and design tokens
-2. **@mining-sdk/theme** - Theme system with SCSS mixins
-3. **@mining-sdk/components-foundation** - Foundation component styles
+1. **@mining-sdk/core** - Core components with base styles and design tokens
+2. **@mining-sdk/foundation** - Foundation components and feature styles
+3. **@mining-sdk/fonts** - Font assets (JetBrains Mono)
 
-Each package has:
-- `src/styles.scss` - Source SCSS file
-- `src/styles.css` - Compiled CSS (gitignored)
-- `vite.config.js` - Vite configuration
+Packages with SCSS build:
+- `@mining-sdk/core`
+  - `src/styles/` - Source SCSS files
+  - `dist/styles.css` - Compiled, minified CSS
+  - `vite.config.js` - Vite configuration for SCSS compilation
+
+- `@mining-sdk/foundation`
+  - `src/styles/` - Source SCSS files
+  - `dist/styles.css` - Compiled CSS
+  - `vite.config.js` - Vite configuration
+
+- `@mining-sdk/fonts`
+  - `src/` - Font files and CSS
+  - `dist/jetbrains-mono.css` - Built font CSS
+  - `vite.config.js` - Vite configuration
 
 ## Configuration Files
 
@@ -140,21 +151,23 @@ export default defineConfig({
 ### 1. Create SCSS File
 
 ```scss
-// packages/my-package/src/styles.scss
+// packages/my-package/src/styles/index.scss
 
 /**
  * @mining-sdk/my-package styles
  */
 
-// Import from other workspace packages
+// Import from other workspace packages (core exports SCSS mixins)
 @use '@mining-sdk/core/styles' as core;
-@use '@mining-sdk/theme/styles' as theme;
 
-// Your styles
+// Your styles using CSS variables
 .my-component {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  padding: theme.$spacing-unit * 4;
+  padding: 1rem;
+  
+  // Use core mixins if available
+  // @include core.flex-center;
 }
 ```
 
@@ -171,10 +184,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/styles.scss'),
+      entry: resolve(__dirname, 'src/styles/index.scss'),
       formats: ['es'],
     },
-    outDir: resolve(__dirname, 'src'),
+    outDir: resolve(__dirname, 'dist'),
     emptyOutDir: false,
     cssCodeSplit: false,
     rollupOptions: {
@@ -194,7 +207,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@mining-sdk/core': resolve(__dirname, '../core/src'),
-      '@mining-sdk/theme': resolve(__dirname, '../theme/src'),
+      '@mining-sdk/foundation': resolve(__dirname, '../foundation/src'),
     },
   },
 })
@@ -266,18 +279,16 @@ pnpm --filter @mining-sdk/components-foundation... build
 
 ## Importing Styles in Applications
 
-### Option 1: Import Compiled CSS
+### Import Compiled CSS
 
 ```tsx
-// In your app entry point
-import '@mining-sdk/components-foundation/styles.css'
+// In your app entry point (e.g., apps/demo/src/main.tsx)
+import '@mining-sdk/core/styles.css'
+import '@mining-sdk/foundation/styles.css'
+import '@mining-sdk/fonts/jetbrains-mono.css'
 ```
 
-### Option 2: Import SCSS (if using Vite)
-
-```tsx
-import '@mining-sdk/components-foundation/styles.scss'
-```
+**Note:** Always import compiled CSS files (`.css`), not SCSS source files. The SCSS is pre-compiled during the build process.
 
 ## Workspace Package Resolution
 
@@ -286,10 +297,9 @@ Vite resolves `@mining-sdk/*` imports using aliases:
 ```scss
 // This works! ✅
 @use '@mining-sdk/core/styles' as core;
-@use '@mining-sdk/theme/styles' as theme;
 
 // No need for relative paths ❌
-@use '../../core/src/styles.scss' as core;
+@use '../../core/src/styles/_mixins.scss' as core;
 ```
 
 ### How It Works
@@ -303,21 +313,27 @@ Vite resolves `@mining-sdk/*` imports using aliases:
 ### Variables
 
 ```scss
-// packages/theme/src/_variables.scss
+// Example: packages/core/src/styles/_variables.scss (if exists)
 $spacing-unit: 0.25rem;
 $border-radius-base: 0.5rem;
 
-// Usage
+// Usage in other SCSS files
 .card {
   padding: $spacing-unit * 4; // 1rem
   border-radius: $border-radius-base;
+}
+
+// Better: Use CSS variables for runtime theming
+.card {
+  padding: 1rem;
+  border-radius: var(--radius);
 }
 ```
 
 ### Mixins
 
 ```scss
-// packages/theme/src/styles.scss
+// Example mixin (if defined in core)
 @mixin theme-colors($mode: 'light') {
   @if $mode == 'light' {
     --background: 0 0% 100%;
@@ -328,7 +344,7 @@ $border-radius-base: 0.5rem;
   }
 }
 
-// Usage
+// Usage in your SCSS
 :root {
   @include theme-colors('light');
 }
@@ -447,15 +463,14 @@ pnpm build --force
 ```scss
 // ✅ Good - Namespaced
 @use '@mining-sdk/core/styles' as core;
-@use '@mining-sdk/theme/styles' as theme;
 
 .my-component {
-  @include theme.flex-center;
+  // Use core mixins if available
+  // @include core.flex-center;
 }
 
 // ❌ Bad - Global namespace pollution
 @use '@mining-sdk/core/styles' as *;
-@use '@mining-sdk/theme/styles' as *;
 ```
 
 ### 3. Leverage Turborepo
@@ -466,8 +481,8 @@ pnpm build
 
 # ❌ Bad - Manual dependency management
 pnpm --filter @mining-sdk/core build
-pnpm --filter @mining-sdk/theme build
-pnpm --filter @mining-sdk/components-foundation build
+pnpm --filter @mining-sdk/foundation build
+pnpm --filter @mining-sdk/fonts build
 ```
 
 ### 4. Keep Specificity Low
