@@ -13,6 +13,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 import 'chartjs-adapter-date-fns'
 import * as React from 'react'
 import { Bar } from 'react-chartjs-2'
+import type { FlexAlign, Position } from '../../types'
 import { cn } from '../../utils'
 import {
   defaultChartColors,
@@ -67,9 +68,9 @@ export type BarChartProps = {
   /** Show built-in Chart.js legend (default: true) */
   showLegend?: boolean
   /** Position of the legend (default: 'top') */
-  legendPosition?: 'top' | 'bottom' | 'left' | 'right'
+  legendPosition?: Position
   /** Alignment of the legend labels within their position (default: 'start') */
-  legendAlign?: 'start' | 'center' | 'end'
+  legendAlign?: FlexAlign
   /** Show values above each bar */
   showDataLabels?: boolean
   /** Format data label values (default: round to nearest integer) */

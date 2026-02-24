@@ -1,8 +1,11 @@
 import * as React from 'react'
 
 import { Button, cn, Dialog, DialogContent, DialogTrigger } from '@mining-sdk/core'
+import type { ButtonVariant } from '@mining-sdk/core'
 import { PoolDetailsCard } from '../pool-details-card'
 import type { PoolDetailItem } from '../pool-details-card'
+
+const TRIGGER_BUTTON_VARIANT: ButtonVariant = 'secondary'
 
 type PoolDetailsPopoverPartialProps = Partial<{
   title: string
@@ -22,7 +25,7 @@ const PoolDetailsPopover = React.forwardRef<HTMLDivElement, PoolDetailsPopoverPr
       <div ref={ref} className={cn('mining-sdk-pool-details-popover', className)} {...props}>
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="secondary" disabled={disabled}>
+            <Button variant={TRIGGER_BUTTON_VARIANT} disabled={disabled}>
               {triggerLabel}
             </Button>
           </DialogTrigger>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import type { TypographyColor } from '../../types'
+import type { TextAlign, TypographyColor } from '../../types'
 import { cn } from '../../utils'
 
 type TypographyElement = 'h1' | 'h2' | 'h3' | 'p' | 'span'
@@ -24,7 +24,7 @@ export type TypographyProps = {
   /**
    * Text alignment
    */
-  align?: 'left' | 'center' | 'right' | 'justify'
+  align?: TextAlign
   /**
    * Text color variant
    */

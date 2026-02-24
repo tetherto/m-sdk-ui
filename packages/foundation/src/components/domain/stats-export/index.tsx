@@ -1,4 +1,5 @@
 import { ArrowIcon, cn, DropdownMenu, ExportIcon, Spinner } from '@mining-sdk/core'
+import type { ComponentSize, SpinnerProps } from '@mining-sdk/core'
 import { useState } from 'react'
 import { EXPORT_ITEM_KEYS, EXPORT_ITEMS, EXPORT_LABEL } from './constants'
 
@@ -10,6 +11,9 @@ type StatsExportProps = {
 }
 
 type ExportHandlerType = (typeof EXPORT_ITEM_KEYS)[keyof typeof EXPORT_ITEM_KEYS]
+
+const SPINNER_SIZE: ComponentSize = 'sm'
+const SPINNER_COLOR: SpinnerProps['color'] = 'secondary'
 
 export const StatsExport = ({
   onJsonExport,
@@ -51,7 +55,11 @@ export const StatsExport = ({
           })}
           disabled={isButtonDisabled}
         >
-          {isLoading ? <Spinner type="circle" size="sm" color="secondary" /> : <ExportIcon />}
+          {isLoading ? (
+            <Spinner type="circle" size={SPINNER_SIZE} color={SPINNER_COLOR} />
+          ) : (
+            <ExportIcon />
+          )}
           {!showLabel && <span className="stats-export__label">{EXPORT_LABEL}</span>}
           <span className="stats-export__divider" />
           <ArrowIcon isOpen={open} />

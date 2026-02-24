@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 
+import type { Position } from '../../types'
 import { cn } from '../../utils'
 
 /**
@@ -104,7 +105,7 @@ type SimpleTooltipProps = {
    * Position of the tooltip relative to trigger
    * @default "top"
    */
-  side?: 'top' | 'right' | 'bottom' | 'left'
+  side?: Position
   /**
    * Distance from the trigger in pixels
    * @default 8

@@ -43,3 +43,21 @@ export type StatusVariant = 'success' | 'processing' | 'error' | 'warning' | 'de
  * Used by form components like Checkbox, Switch, Radio, Typography
  */
 export type ComponentColor = 'default' | 'primary' | 'success' | 'warning' | 'error'
+
+/**
+ * Position/side options for UI elements
+ * Used by Tooltip, Popover, and chart legends
+ */
+export type Position = 'top' | 'right' | 'bottom' | 'left'
+
+/**
+ * Text alignment options
+ * Used by Typography component
+ */
+export type TextAlign = 'left' | 'center' | 'right' | 'justify'
+
+/**
+ * Flex/Grid alignment options
+ * Used by Popover, charts, and layout components
+ */
+export type FlexAlign = 'start' | 'center' | 'end'
