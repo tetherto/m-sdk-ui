@@ -20,6 +20,24 @@ function getDirectorySize(dir) {
 }
 
 /**
+ * Get runtime bundle size (only .js and .css files, excluding .d.ts)
+ */
+function getRuntimeBundleSize(dir) {
+  if (!existsSync(dir)) return 0
+
+  try {
+    // Use wc -c to count bytes (works on both Linux and macOS)
+    const output = execSync(
+      `find "${dir}" -type f \\( -name "*.js" -o -name "*.css" \\) -exec sh -c 'wc -c < "{}"' \\; | awk '{sum+=$1} END {print sum}'`,
+      { encoding: 'utf8' },
+    )
+    return Number.parseInt(output.trim(), 10) || 0
+  } catch {
+    return 0
+  }
+}
+
+/**
  * Get gzipped size of all files in directory
  */
 function getGzippedSize(dir) {
@@ -54,7 +72,7 @@ function getPackageInfo(packagePath, packageName) {
   const distPath = join(packagePath, 'dist')
 
   const sourceSize = getDirectorySize(srcPath)
-  const builtSize = getDirectorySize(distPath)
+  const builtSize = getRuntimeBundleSize(distPath) // Only count JS/CSS, not .d.ts
   const gzippedSize = getGzippedSize(distPath)
 
   return {
@@ -126,7 +144,7 @@ function main() {
   // Print header
   const headerName = 'Package'.padEnd(maxNameWidth)
   const headerSource = 'Source'.padStart(maxSourceWidth)
-  const headerBuilt = 'Built'.padStart(maxBuiltWidth)
+  const headerBuilt = 'Runtime'.padStart(maxBuiltWidth)
   const headerGzipped = 'Gzipped'.padStart(maxGzippedWidth)
   const headerStatus = 'Status'
 
@@ -171,7 +189,11 @@ function main() {
   console.log(`${totalName}  ${totalSourceStr}  ${totalBuiltStr}  ${totalGzippedStr}\n`)
 
   // Print legend
-  console.log('Legend:')
+  console.log('Columns:')
+  console.log('  Source   = Source TypeScript files')
+  console.log('  Runtime  = Built JS/CSS (excludes .d.ts files)')
+  console.log('  Gzipped  = Compressed runtime bundle\n')
+  console.log('Status:')
   console.log('  ✅ Gzipped < 100KB')
   console.log('  🟡 Gzipped 100-200KB')
   console.log('  🔴 Gzipped > 200KB')
