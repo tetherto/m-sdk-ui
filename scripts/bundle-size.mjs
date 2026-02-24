@@ -20,15 +20,16 @@ function getDirectorySize(dir) {
 }
 
 /**
- * Get runtime bundle size (only .js and .css files, excluding .d.ts)
+ * Get runtime bundle size (JS, CSS, and font files, excluding .d.ts)
  */
 function getRuntimeBundleSize(dir) {
   if (!existsSync(dir)) return 0
 
   try {
     // Use wc -c to count bytes (works on both Linux and macOS)
+    // Include JS, CSS, and font files (.woff, .woff2, .ttf, .eot)
     const output = execSync(
-      `find "${dir}" -type f \\( -name "*.js" -o -name "*.css" \\) -exec sh -c 'wc -c < "{}"' \\; | awk '{sum+=$1} END {print sum}'`,
+      `find "${dir}" -type f \\( -name "*.js" -o -name "*.css" -o -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" -o -name "*.eot" \\) -exec sh -c 'wc -c < "{}"' \\; | awk '{sum+=$1} END {print sum}'`,
       { encoding: 'utf8' },
     )
     return Number.parseInt(output.trim(), 10) || 0
@@ -38,14 +39,15 @@ function getRuntimeBundleSize(dir) {
 }
 
 /**
- * Get gzipped size of all files in directory
+ * Get gzipped size of all runtime files in directory
  */
 function getGzippedSize(dir) {
   if (!existsSync(dir)) return 0
 
   try {
+    // Include JS, CSS, and font files
     const output = execSync(
-      `find "${dir}" -type f \\( -name "*.js" -o -name "*.css" \\) -exec sh -c 'gzip -c "{}" | wc -c' \\; | awk '{sum+=$1} END {print sum}'`,
+      `find "${dir}" -type f \\( -name "*.js" -o -name "*.css" -o -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" -o -name "*.eot" \\) -exec sh -c 'gzip -c "{}" | wc -c' \\; | awk '{sum+=$1} END {print sum}'`,
       { encoding: 'utf8' },
     )
     return Number.parseInt(output.trim(), 10) || 0
@@ -191,7 +193,7 @@ function main() {
   // Print legend
   console.log('Columns:')
   console.log('  Source   = Source TypeScript files')
-  console.log('  Runtime  = Built JS/CSS (excludes .d.ts files)')
+  console.log('  Runtime  = Built JS/CSS/fonts (excludes .d.ts files)')
   console.log('  Gzipped  = Compressed runtime bundle\n')
   console.log('Status:')
   console.log('  ✅ Gzipped < 100KB')
