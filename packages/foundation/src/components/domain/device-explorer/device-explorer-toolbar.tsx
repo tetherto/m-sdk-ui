@@ -1,4 +1,4 @@
-import { ListViewFilter, RadioCard, RadioGroup, TagInput } from '@mining-sdk/core'
+import { ListViewFilter, Tabs, TabsList, TabsTrigger, TagInput } from '@mining-sdk/core'
 import type { CascaderValue, LocalFilters } from '@mining-sdk/core'
 import type {
   DeviceExplorerDeviceType,
@@ -17,20 +17,20 @@ export type DeviceExplorerToolbarProps = {
   onDeviceTypeChange: (type: DeviceExplorerDeviceType) => void
 }
 
-const deviceTypeRadioOptions = [
+const deviceTypeTabs = [
   {
     value: 'container',
-    label: 'Container',
+    label: 'Containers',
   },
   {
     value: 'miner',
-    label: 'Miner',
+    label: 'Miners',
   },
   {
     value: 'cabinet',
-    label: 'Cabinet',
+    label: 'Cabinets',
   },
-]
+] as const
 
 export const DeviceExplorerToolbar = ({
   filters,
@@ -61,22 +61,24 @@ export const DeviceExplorerToolbar = ({
         onTagsChange={onSearchTagsChange}
         value={searchTags}
       />
-      <RadioGroup
-        className="mining-sdk-device-explorer__toolbar__radio-group"
-        orientation="horizontal"
-        onValueChange={onDeviceTypeChange}
+      <Tabs
         value={deviceType}
+        onValueChange={(value) => onDeviceTypeChange(value as DeviceExplorerDeviceType)}
+        className="mining-sdk-device-explorer__toolbar__tabs"
       >
-        {deviceTypeRadioOptions.map(({ label, value }) => (
-          <RadioCard
-            key={value}
-            className="mining-sdk-device-explorer__toolbar__radio-card"
-            color={deviceType === value ? 'primary' : 'default'}
-            value={value}
-            label={label}
-          />
-        ))}
-      </RadioGroup>
+        <TabsList variant="side" className="mining-sdk-device-explorer__toolbar__tabs-list">
+          {deviceTypeTabs.map(({ label, value }) => (
+            <TabsTrigger
+              key={value}
+              value={value}
+              variant="side"
+              className="mining-sdk-device-explorer__toolbar__tab-trigger"
+            >
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
     </div>
   )
 }

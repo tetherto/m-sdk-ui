@@ -19,9 +19,16 @@
       }
     }
 
-    &__radio-card {
-      height: 100%;
-      box-sizing: border-box;
+    &__tabs-list {
+      width: auto;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &__tab-trigger {
+      margin: 0;
     }
   }
 
