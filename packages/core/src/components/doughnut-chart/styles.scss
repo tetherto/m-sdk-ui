@@ -35,11 +35,6 @@
     background: none;
     border: none;
     cursor: pointer;
-    transition: opacity 0.15s ease;
-
-    &:hover {
-      opacity: 0.85;
-    }
 
     &--hidden {
       opacity: 0.3;
