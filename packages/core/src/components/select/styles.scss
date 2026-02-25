@@ -24,7 +24,7 @@
   // ── Size: lg ───────────────────────────────────────────────────────────
   &--lg {
     height: 2.75rem;
-    padding: 0 0.75rem 0 1rem;
+    padding: 8px 8px 8px 14px;
     min-width: 10rem;
     font-size: 14px;
     line-height: 22px;
@@ -33,7 +33,7 @@
   // ── Size: md (default) ─────────────────────────────────────────────────
   &--md {
     height: 2.25rem;
-    padding: 0 0.625rem 0 0.75rem;
+    padding: 4px 4px 4px 12px;
     min-width: 8rem;
     font-size: 13px;
     line-height: 20px;
@@ -42,7 +42,7 @@
   // ── Size: sm ───────────────────────────────────────────────────────────
   &--sm {
     height: 2rem;
-    padding: 0 0.5rem 0 0.75rem;
+    padding-left: 8px;
     min-width: 7rem;
     font-size: 12px;
     line-height: 18px;
