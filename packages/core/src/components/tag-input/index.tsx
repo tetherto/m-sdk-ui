@@ -42,6 +42,8 @@ export type TagInputDropdownProps = {
   getOptionLabel: (opt: TagInputOption) => string
 }
 
+export type TagInputSize = 'lg' | 'md' | 'sm'
+
 export type TagInputProps = {
   /**
    * Controlled tags (array of tag values)
@@ -87,6 +89,11 @@ export type TagInputProps = {
    * @default 'search'
    */
   variant?: 'default' | 'search'
+  /**
+   * Size of the tag input wrapper -- aligns with Select trigger sizes
+   * @default 'lg'
+   */
+  size?: TagInputSize
   /**
    * Label for the input
    */
@@ -195,6 +202,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
       allowCustomTags = true,
       filterOptions = defaultFilter,
       variant = 'search',
+      size = 'lg',
       label,
       id: idProp,
       className,
@@ -386,6 +394,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
               ref={wrapperRef}
               className={cn(
                 'mining-sdk-tag-input__wrapper',
+                `mining-sdk-tag-input__wrapper--${size}`,
                 showSearchIcon && 'mining-sdk-tag-input__wrapper--search',
                 disabled && 'mining-sdk-tag-input__wrapper--disabled',
                 wrapperClassName,

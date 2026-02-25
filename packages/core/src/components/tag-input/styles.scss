@@ -32,8 +32,6 @@
   min-height: 2.5rem;
   max-height: 9rem;
   overflow-y: auto;
-  font-size: var(--mining-sdk-font-size, 14px);
-  line-height: var(--mining-sdk-line-height, 22px);
   font-family: inherit;
   color: var(--mining-sdk-color-white, #ffffff);
   background: var(--mining-sdk-input-bg, #363636);
@@ -43,6 +41,27 @@
   transition:
     border-color 0.2s,
     background-color 0.2s;
+
+  // ── Size: lg (default) ─────────────────────────────────────────────────
+  &--lg {
+    min-height: 2.75rem;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  // ── Size: md ───────────────────────────────────────────────────────────
+  &--md {
+    min-height: 2.25rem;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  // ── Size: sm ───────────────────────────────────────────────────────────
+  &--sm {
+    min-height: 2rem;
+    font-size: 12px;
+    line-height: 18px;
+  }
 
   &:hover:not(.mining-sdk-tag-input__wrapper--disabled):not(:focus-within) {
     border-color: var(--mining-sdk-input-border-hover, #777777);

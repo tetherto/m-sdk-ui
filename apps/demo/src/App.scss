@@ -202,6 +202,25 @@
     margin-bottom: 1.5rem;
   }
 
+  &__subtitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 2rem 0 0.75rem;
+    color: var(--mining-sdk-color-text-secondary, #ffffffd9);
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  &__selector-row {
+    @include flex_align;
+
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
   &__select-grid {
     display: grid;
     grid-template-columns: 1fr;
