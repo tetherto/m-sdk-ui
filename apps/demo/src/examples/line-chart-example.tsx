@@ -82,7 +82,11 @@ export const LineChartExample: React.FC = () => {
         <section>
           <h3>Basic</h3>
           <ChartContainer title="Revenue over time">
-            <LineChart height={250} data={LINE_CHART_REVENUE_BASIC} />
+            <LineChart
+              height={250}
+              data={LINE_CHART_REVENUE_BASIC}
+              tooltip={{ valueFormatter: (v) => `$${v}` }}
+            />
           </ChartContainer>
         </section>
         <section>
