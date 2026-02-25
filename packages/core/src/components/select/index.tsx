@@ -1,8 +1,18 @@
-import { CheckIcon, ChevronDownIcon } from '@radix-ui/react-icons'
+import { CheckIcon, ChevronDownIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import * as React from 'react'
 
 import { cn } from '../../utils'
+
+export type SelectSize = 'lg' | 'md' | 'sm'
+
+export type SelectTriggerProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
+  size?: SelectSize
+  /** CSS color string -- border (50% alpha), background (10% alpha), and text are derived from it */
+  color?: string
+  /** Render a magnifying glass icon instead of the chevron */
+  searchable?: boolean
+}
 
 const Select = SelectPrimitive.Root
 
@@ -10,24 +20,57 @@ const SelectGroup = SelectPrimitive.Group
 
 const SelectValue = SelectPrimitive.Value
 
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+  if (!result?.[1] || !result[2] || !result[3]) return null
+  return {
+    r: Number.parseInt(result[1], 16),
+    g: Number.parseInt(result[2], 16),
+    b: Number.parseInt(result[3], 16),
+  }
+}
+
 /**
  * SelectTrigger - The button that toggles the select dropdown
  */
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn('mining-sdk-select__trigger', className)}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <ChevronDownIcon className="mining-sdk-select__icon" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-))
+  SelectTriggerProps
+>(({ className, children, size = 'md', color, searchable, style, ...props }, ref) => {
+  const colorStyle = React.useMemo(() => {
+    if (!color) return undefined
+    const rgb = hexToRgb(color)
+    if (!rgb) return undefined
+    const { r, g, b } = rgb
+    return {
+      '--select-color': color,
+      '--select-color-border': `rgba(${r}, ${g}, ${b}, 0.5)`,
+      '--select-color-bg': `rgba(${r}, ${g}, ${b}, 0.1)`,
+    } as React.CSSProperties
+  }, [color])
+
+  const Icon = searchable ? MagnifyingGlassIcon : ChevronDownIcon
+
+  return (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        'mining-sdk-select__trigger',
+        `mining-sdk-select__trigger--${size}`,
+        searchable && 'mining-sdk-select__trigger--search',
+        color && 'mining-sdk-select__trigger--color',
+        className,
+      )}
+      style={{ ...colorStyle, ...style }}
+      {...props}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <Icon className="mining-sdk-select__icon" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  )
+})
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
 /**

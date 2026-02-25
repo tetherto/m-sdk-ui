@@ -1,118 +1,220 @@
+import { useState } from 'react'
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectLabel,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
+  TagInput,
 } from '@mining-sdk/core'
 
+const minerOptions = [
+  { value: 'Antminer S19', label: 'Antminer S19' },
+  { value: 'Whatsminer M30S', label: 'Whatsminer M30S' },
+  { value: 'Antminer S19 Pro', label: 'Antminer S19 Pro' },
+  { value: 'Whatsminer M50', label: 'Whatsminer M50' },
+  { value: 'Antminer S21', label: 'Antminer S21' },
+]
+
 export const SelectPage = (): JSX.Element => {
+  const [tags, setTags] = useState<string[]>(['Antminer S19', 'Whatsminer M30S'])
+
   return (
     <section className="demo-section">
-      <h2 className="demo-section__title">Select</h2>
-      <div className="demo-section__select-grid">
-        <section>
-          <h3>Basic</h3>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Actions" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Actions</SelectLabel>
-                <SelectItem value="move-miner">Move Miner</SelectItem>
-                <SelectItem value="repair">Repair</SelectItem>
-                <SelectItem value="inventory-logs">Inventory Logs</SelectItem>
-                <SelectItem value="go-to-explorer">Go To Explorer</SelectItem>
-                <SelectItem value="add-comment">Add Comment</SelectItem>
-                <SelectItem value="delete-miner">Delete Miner</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </section>
+      <h2 className="demo-section__title">Selectors</h2>
 
-        <section>
-          <h3>With placeholder</h3>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Choose a status..." />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Status</SelectLabel>
-                <SelectItem value="online">Online</SelectItem>
-                <SelectItem value="offline">Offline</SelectItem>
-                <SelectItem value="maintenance">Maintenance</SelectItem>
-                <SelectItem value="error">Error</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </section>
+      {/* ── Default ───────────────────────────────────────────────────── */}
+      <h3 className="demo-section__subtitle">Selectors - Default</h3>
+      <div className="demo-section__selector-row">
+        <Select>
+          <SelectTrigger size="lg">
+            <SelectValue placeholder="Big Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
-        <section>
-          <h3>With disabled items</h3>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Select action" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Actions</SelectLabel>
-                <SelectItem value="move-miner">Move Miner</SelectItem>
-                <SelectItem value="repair" disabled>
-                  Repair (unavailable)
-                </SelectItem>
-                <SelectItem value="go-to-explorer" disabled>
-                  Go To Explorer (unavailable)
-                </SelectItem>
-                <SelectItem value="add-comment">Add Comment</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </section>
+        <Select>
+          <SelectTrigger size="lg" searchable>
+            <SelectValue placeholder="Search Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
-        <section>
-          <h3>Grouped with separator</h3>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Choose an action" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Primary</SelectLabel>
-                <SelectItem value="move-miner">Move Miner</SelectItem>
-                <SelectItem value="repair">Repair</SelectItem>
-                <SelectItem value="add-comment">Add Comment</SelectItem>
-              </SelectGroup>
-              <SelectSeparator />
-              <SelectGroup>
-                <SelectLabel>Danger Zone</SelectLabel>
-                <SelectItem value="delete-miner">Delete Miner</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </section>
+        <Select>
+          <SelectTrigger size="md">
+            <SelectValue placeholder="Medium Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
-        <section>
-          <h3>With default value</h3>
-          <Select defaultValue="apple">
-            <SelectTrigger>
-              <SelectValue placeholder="Pick a fruit" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="orange">Orange</SelectItem>
-                <SelectItem value="grape">Grape</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </section>
+        <Select>
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Small Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger size="sm" color="#72F59E">
+            <SelectValue placeholder="Color Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Status</SelectLabel>
+              <SelectItem value="online">Online</SelectItem>
+              <SelectItem value="offline">Offline</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* ── Disabled ──────────────────────────────────────────────────── */}
+      <h3 className="demo-section__subtitle">Selectors - Disabled</h3>
+      <div className="demo-section__selector-row">
+        <Select disabled>
+          <SelectTrigger size="lg">
+            <SelectValue placeholder="Big Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="placeholder">—</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select disabled>
+          <SelectTrigger size="lg" searchable>
+            <SelectValue placeholder="Search Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="placeholder">—</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select disabled>
+          <SelectTrigger size="md">
+            <SelectValue placeholder="Medium Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="placeholder">—</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select disabled>
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Small Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="placeholder">—</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select disabled>
+          <SelectTrigger size="sm" color="#72F59E">
+            <SelectValue placeholder="Color Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="placeholder">—</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* ── Hover / Active ────────────────────────────────────────────── */}
+      <h3 className="demo-section__subtitle">Selectors - Hover/Active</h3>
+      <div className="demo-section__selector-row">
+        <Select>
+          <SelectTrigger size="lg">
+            <SelectValue placeholder="Big Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <TagInput
+          value={tags}
+          onTagsChange={setTags}
+          options={minerOptions}
+          placeholder="Search..."
+          size="lg"
+        />
+
+        <Select>
+          <SelectTrigger size="md">
+            <SelectValue placeholder="Medium Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger size="sm">
+            <SelectValue placeholder="Small Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Miners</SelectLabel>
+              <SelectItem value="antminer-s19">Antminer S19</SelectItem>
+              <SelectItem value="whatsminer-m30s">Whatsminer M30S</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select defaultValue="online">
+          <SelectTrigger size="sm" color="#72F59E">
+            <SelectValue placeholder="Color Selector" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Status</SelectLabel>
+              <SelectItem value="online">Color Selector</SelectItem>
+              <SelectItem value="offline">Offline</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
     </section>
   )
