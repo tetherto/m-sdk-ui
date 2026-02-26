@@ -11,6 +11,7 @@ type TableHeaderProps<I> = {
 
 export function TableHeader<I = unknown>({ table }: TableHeaderProps<I>): JSX.Element {
   const renderTableHeaderCell = (header: Header<I, unknown>): React.ReactNode => {
+    const isSorted = header.column.getIsSorted()
     return (
       <th
         colSpan={header.colSpan}
@@ -19,6 +20,7 @@ export function TableHeader<I = unknown>({ table }: TableHeaderProps<I>): JSX.El
         }}
         className={cn({
           sortable: header.column.getCanSort(),
+          sorted: !!isSorted,
         })}
         onClick={header.column.getToggleSortingHandler()}
       >

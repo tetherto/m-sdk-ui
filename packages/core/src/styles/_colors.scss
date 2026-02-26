@@ -113,6 +113,20 @@
     --mining-sdk-input-placeholder-color: #999999;
     --mining-sdk-input-border-hover: var(--mining-sdk-color-gray-500);
 
+    /* TagInput specific colors */
+    --mining-sdk-tag-input-bg: transparent;
+    --mining-sdk-tag-input-border: rgba(255, 255, 255, 0.2);
+    --mining-sdk-tag-input-border-hover: rgba(255, 255, 255, 0.3);
+    --mining-sdk-tag-input-text: rgba(255, 255, 255, 0.88);
+    --mining-sdk-tag-input-placeholder: rgba(255, 255, 255, 0.4);
+    --mining-sdk-tag-input-arrow: rgba(255, 255, 255, 0.45);
+    --mining-sdk-tag-input-arrow-focus: rgba(255, 255, 255, 0.65);
+    --mining-sdk-tag-input-tag-bg: rgba(255, 255, 255, 0.15);
+    --mining-sdk-tag-input-dropdown-bg: #313131;
+    --mining-sdk-tag-input-dropdown-border: rgba(255, 255, 255, 0.15);
+    --mining-sdk-tag-input-option-hover-bg: rgba(255, 255, 255, 0.15);
+    --mining-sdk-tag-input-option-selected-bg: #543b1d;
+
     /* Select specific colors */
     --mining-sdk-select-content-bg: #1a1a1a;
     --mining-sdk-select-item-text: #e1e0e0;

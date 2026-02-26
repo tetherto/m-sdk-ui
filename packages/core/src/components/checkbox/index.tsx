@@ -19,7 +19,7 @@ export type CheckboxProps = {
   color?: ComponentColor
   /**
    * Border radius variant
-   * @default 'small'
+   * @default 'none'
    */
   radius?: BorderRadius
   /**
@@ -42,7 +42,7 @@ export type CheckboxProps = {
  */
 const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(
   (
-    { className, indicatorClassName, size = 'md', color = 'primary', radius = 'small', ...props },
+    { className, indicatorClassName, size = 'md', color = 'primary', radius = 'none', ...props },
     ref,
   ) => (
     <CheckboxPrimitive.Root

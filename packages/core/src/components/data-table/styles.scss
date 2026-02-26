@@ -8,6 +8,24 @@ $_prefix: mining-sdk-table;
     border: 1px solid var(--mining-sdk-table-border);
     position: relative;
 
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--mining-sdk-color-primary, #f7931a);
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--mining-sdk-color-primary-hover, #ff9f2e);
+    }
+
     &--empty {
       @include flex_column;
 
@@ -75,6 +93,10 @@ $_prefix: mining-sdk-table;
           &.sortable {
             cursor: pointer;
             user-select: none;
+          }
+
+          &.sorted {
+            background-color: var(--mining-sdk-table-header-sorted-bg, rgba(255, 255, 255, 0.1));
           }
 
           .#{$_prefix}-header {

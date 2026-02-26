@@ -60,6 +60,8 @@ export const DeviceExplorerToolbar = ({
         options={searchOptions}
         onTagsChange={onSearchTagsChange}
         value={searchTags}
+        variant="search"
+        className="mining-sdk-device-explorer__toolbar__search"
       />
       <Tabs
         value={deviceType}

@@ -26,6 +26,7 @@ body {
 ::-webkit-scrollbar {
   background-color: transparent;
   width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -34,7 +35,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--mining-sdk-color-primary);
-  border-radius: 3px;
+  border-radius: 0;
 
   &:hover {
     background-color: var(--mining-sdk-color-primary-hover);
