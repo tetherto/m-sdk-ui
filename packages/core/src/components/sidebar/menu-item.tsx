@@ -5,6 +5,7 @@ import { cn } from '../../utils'
 import type { MenuItemInternalProps } from './types'
 import { getFirstLeaf, hasActiveDescendant } from './helpers'
 import { OverlayContent } from './overlay-content'
+import { useSidebarSectionState } from './use-sidebar-state'
 
 const initialOverlayPos = { top: 0, left: 0 }
 
@@ -23,8 +24,20 @@ export const MenuItemInternal = ({
   const hasChildren = Boolean(item.items?.length)
   const isGroupActive = hasChildren && hasActiveDescendant(item, activeId)
 
-  const [groupOpen, setGroupOpen] = useState(isGroupActive)
+  const [persistedGroupOpen, setPersistedGroupOpen] = useSidebarSectionState(item.id, isGroupActive)
+  const [groupOpen, setGroupOpenState] = useState(persistedGroupOpen)
   const [overlayPos, setOverlayPos] = useState(initialOverlayPos)
+
+  const setGroupOpen = useCallback(
+    (value: boolean | ((prev: boolean) => boolean)) => {
+      setGroupOpenState((prev) => {
+        const newValue = typeof value === 'function' ? value(prev) : value
+        setPersistedGroupOpen(newValue)
+        return newValue
+      })
+    },
+    [setPersistedGroupOpen],
+  )
 
   const hoverOverlay = useRef(false)
   const hoverContainer = useRef(false)

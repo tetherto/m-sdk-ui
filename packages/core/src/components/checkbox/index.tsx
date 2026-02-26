@@ -1,6 +1,7 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import * as React from 'react'
 
+import type { BorderRadius, ComponentColor, ComponentSize } from '../../types'
 import { cn } from '../../utils'
 
 export type { CheckedState } from '@radix-ui/react-checkbox'
@@ -10,17 +11,17 @@ export type CheckboxProps = {
    * Size variant of the checkbox
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
   /**
    * Color variant when checked
    * @default 'primary'
    */
-  color?: 'default' | 'primary' | 'success' | 'warning' | 'error'
+  color?: ComponentColor
   /**
    * Border radius variant
    * @default 'small'
    */
-  radius?: 'none' | 'small' | 'medium' | 'large' | 'full'
+  radius?: BorderRadius
   /**
    * Custom className for the root element
    */

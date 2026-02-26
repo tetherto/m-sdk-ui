@@ -46,6 +46,31 @@ $sidebar-expanded-width: 220px;
       display: block;
     }
   }
+
+  &__header {
+    flex-shrink: 0;
+    border-bottom: $border-width solid var(--color-border);
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity $transition-duration ease-in-out,
+      max-height $transition-duration ease-in-out,
+      visibility $transition-duration ease-in-out;
+  }
+
+  &--with-header {
+    padding-top: 0;
+  }
+
+  &--expanded &__header {
+    opacity: 1;
+    max-height: 100px;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
 .mining-sdk-sidebar--expanded {

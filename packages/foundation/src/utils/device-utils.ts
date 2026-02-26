@@ -16,8 +16,14 @@ import _split from 'lodash/split'
 import _toUpper from 'lodash/toUpper'
 import { SEVERITY, SEVERITY_COLORS } from '../constants/alerts'
 import { MINER_MODEL_TO_TYPE_MAP } from '../constants/device-constants'
-import { HASHRATE_LABEL_DIVISOR, UNITS } from '../constants/units'
-import { convertUnits, FALLBACK, formatHashrateUnit, UNIT_LABELS } from '@mining-sdk/core'
+import {
+  convertUnits,
+  FALLBACK,
+  formatHashrateUnit,
+  HASHRATE_LABEL_DIVISOR,
+  UNIT_LABELS,
+  UNITS,
+} from '@mining-sdk/core'
 import type { UnknownRecord } from '@mining-sdk/core'
 import { MINER_POWER_MODE } from './status-utils'
 

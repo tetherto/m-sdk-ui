@@ -9,7 +9,7 @@
 
 .mining-sdk-select__trigger {
   @include inline_flex_align;
-  
+
   justify-content: space-between;
   height: 2.5rem;
   padding: 0 0.75rem 0 1rem;
@@ -71,14 +71,11 @@
   background-color: var(--mining-sdk-select-content-bg, #1a1a1a);
   color: var(--mining-sdk-popover-text, #ffffff);
   border: 1px solid var(--mining-sdk-popover-border, #ffffff1a);
-  border-radius: 4px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   z-index: 10000;
 }
 
 .mining-sdk-select__viewport {
-  padding: 6px 4px;
-
   &--popper {
     width: var(--radix-select-trigger-width);
     max-height: var(--radix-select-content-available-height);
@@ -87,7 +84,7 @@
 
 .mining-sdk-select__item {
   @include flex_align;
-  
+
   position: relative;
   padding: 0.5rem 2rem 0.5rem 0.75rem;
   font-size: 14px;
@@ -96,6 +93,10 @@
   user-select: none;
   border-radius: 4px;
   color: var(--mining-sdk-select-item-text, #e1e0e0);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--mining-sdk-button-secondary-border);
+  }
 
   &[data-highlighted] {
     background-color: var(--mining-sdk-color-primary, #f7931a);

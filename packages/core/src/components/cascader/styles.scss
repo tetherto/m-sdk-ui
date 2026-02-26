@@ -4,6 +4,16 @@
 
   .mining-sdk-tag-input__dropdown {
     padding: 0;
+    margin-top: unset;
+  }
+
+  .mining-sdk-tag-input__inner {
+    gap: 4px;
+
+    .mining-sdk-tag-input__tag-chip {
+      font-size: 14px;
+      color: var(--mining-sdk-color-text-secondary);
+    }
   }
 
   &__panels {
@@ -30,8 +40,13 @@
       background-color: var(--mining-sdk-select-content-bg);
       border-left: none;
     }
+
+    &--empty {
+      height: auto;
+    }
   }
 
+  &__option,
   &__category {
     @include flex_center;
 
@@ -39,11 +54,24 @@
     padding: 5px 12px;
     transition: all 0.2s ease;
     border-radius: 4px;
+    height: 32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
     &:hover:not(&--disabled):not(&--active) {
       background-color: rgba(var(--mining-sdk-color-white-rgb), 0.08);
     }
+  }
 
+  &__category {
     &--active {
       background-color: var(--mining-sdk-cascader-active-bg);
     }
@@ -105,31 +133,14 @@
   &__options-list {
     flex: 1;
     overflow-y: auto;
+
+    .mining-sdk-radio-group {
+      gap: 0;
+      padding: 4px;
+    }
   }
 
   &__option {
-    @include flex_center;
-
-    gap: 0.75rem;
-    padding: 5px 12px;
-    border-radius: 4px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover:not(&--disabled) {
-      background-color: rgba(var(--mining-sdk-color-white-rgb), 0.08);
-    }
-
-    &--disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-
-      &:hover {
-        background-color: transparent;
-      }
-    }
-
     &--search {
       // Search result items have full width
       width: 100%;

@@ -1,57 +1,89 @@
 # Architecture
 
-## Three-Layer Architecture
+## Consolidated Two-Package Architecture
+
+The Mining SDK uses a **simplified, consolidated architecture** with two main packages instead of many micro-packages:
 
 ```mermaid
 graph TB
-    subgraph Layer3[Layer 3: Developer Experience]
-        Docs[Documentation]
-        Examples[Example Apps]
-        Types[TypeScript Types]
-        Tests[Test Patterns]
+    subgraph Apps[Applications]
+        Demo[Demo App<br/>Interactive Examples]
     end
 
-    subgraph Layer2[Layer 2: Integration & State]
-        API[API Client<br/>RTK Query]
-        State[State Management<br/>Redux Toolkit]
-        Hooks[Custom Hooks<br/>70+ hooks]
-        Auth[Auth & Permissions]
-    end
-
-    subgraph Layer1[Layer 1: Component Library]
-        Foundation[Foundation Components<br/>Generic, Reusable]
+    subgraph Foundation[Foundation Package<br/>@mining-sdk/foundation]
         Domain[Domain Components<br/>Mining-Specific]
-        Features[Feature Modules<br/>Complete Features]
+        Features[Feature Compositions<br/>Complete Features]
+        API[API Client<br/>RTK Query]
+        State[State Management<br/>Redux]
+        Hooks[Custom Hooks]
+        Utils[Utilities]
     end
 
-    Layer3 --> Layer2
-    Layer2 --> Layer1
+    subgraph Core[Core Package<br/>@mining-sdk/core]
+        Components[UI Components<br/>Radix UI-based]
+        Charts[Charts & Tables<br/>Chart.js, TanStack]
+        Theme[Theme System<br/>CSS Variables]
+        Types[TypeScript Types]
+    end
 
-    style Layer1 fill:#e1f5ff
-    style Layer2 fill:#fff3e0
-    style Layer3 fill:#f3e5f5
+    subgraph Fonts[Fonts Package<br/>@mining-sdk/fonts]
+        JetBrains[JetBrains Mono]
+    end
+
+    Apps --> Foundation
+    Apps --> Fonts
+    Foundation --> Core
+
+    style Core fill:#e1f5ff
+    style Foundation fill:#fff3e0
+    style Apps fill:#f3e5f5
+    style Fonts fill:#e8f5e9
 ```
+
+**Key Design Decisions:**
+- **Two-layer dependency**: Core → Foundation → Apps
+- **Foundation exports TypeScript source** for fast dev iteration
+- **Core exports built JavaScript** for stability and performance
+- **Subpath exports** organize Foundation's internal structure
 
 ## Monorepo Structure
 
 ```
-miningos-ui-kit/
+mining-sdk-ui-kit/
 ├── packages/
-│   ├── core/                    # @mining-sdk/core - Types, constants, utilities
-│   ├── hooks/                   # @mining-sdk/hooks - 70+ custom React hooks
-│   ├── state/                   # @mining-sdk/state - Redux slices
-│   ├── api-client/              # @mining-sdk/api-client - RTK Query endpoints
-│   ├── components-foundation/   # @mining-sdk/components-foundation - Generic components
-│   ├── components-domain/       # @mining-sdk/components-domain - Mining-specific
-│   ├── features/                # @mining-sdk/features - Complete feature modules
-│   └── theme/                   # @mining-sdk/theme - Design system
+│   ├── core/                    # @mining-sdk/core
+│   │   ├── src/
+│   │   │   ├── components/      # Radix UI-based components
+│   │   │   ├── types/           # TypeScript type definitions
+│   │   │   ├── utils/           # Utility functions
+│   │   │   ├── constants/       # Shared constants
+│   │   │   ├── styles/          # SCSS source & mixins
+│   │   │   └── theme/           # Theme system
+│   │   └── dist/                # Built JS, types, and CSS
+│   │
+│   ├── foundation/              # @mining-sdk/foundation
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── domain/      # Mining-specific components
+│   │   │   │   └── feature/     # Complete feature compositions
+│   │   │   ├── hooks/           # Custom React hooks
+│   │   │   ├── api/             # API client (RTK Query)
+│   │   │   ├── state/           # Redux state management
+│   │   │   ├── utils/           # Utility functions
+│   │   │   ├── types/           # Type definitions
+│   │   │   ├── constants/       # Constants
+│   │   │   └── test-utils/      # Testing utilities
+│   │   └── dist/                # Built CSS only (TS source exported)
+│   │
+│   └── fonts/                   # @mining-sdk/fonts
+│       └── dist/                # JetBrains Mono font files
+│
 ├── apps/
-│   ├── docs/                    # Documentation site
-│   ├── playground/              # Component playground
-│   └── cli/                     # CLI tools
-└── examples/
-    ├── minimal-app/             # Minimal example
-    └── dashboard-app/           # Full dashboard example
+│   ├── demo/                    # Interactive demo application
+│   └── cli/                     # CLI tools (placeholder)
+│
+├── docs/                        # Documentation
+└── scripts/                     # Build & utility scripts
 ```
 
 ## Package Dependencies
@@ -59,252 +91,173 @@ miningos-ui-kit/
 ```mermaid
 graph LR
     App[Your Application]
-    Features[@mining-sdk/features]
-    Domain[@mining-sdk/components-domain]
-    Foundation[@mining-sdk/components-foundation]
-    API[@mining-sdk/api-client]
-    State[@mining-sdk/state]
-    Hooks[@mining-sdk/hooks]
+    Demo[@mining-sdk/demo]
+    Foundation[@mining-sdk/foundation]
     Core[@mining-sdk/core]
-    Theme[@mining-sdk/theme]
+    Fonts[@mining-sdk/fonts]
 
-    App --> Features
-    App --> Domain
     App --> Foundation
-    App --> API
-    App --> State
-
-    Features --> Domain
-    Features --> Foundation
-    Domain --> Foundation
-    Domain --> Hooks
+    App --> Core
+    App --> Fonts
+    
+    Demo --> Foundation
+    Demo --> Core
+    Demo --> Fonts
+    
     Foundation --> Core
-    Foundation --> Theme
-    API --> Core
-    State --> Core
-    Hooks --> Core
 
     style App fill:#4caf50
-    style Features fill:#2196f3
-    style Domain fill:#ff9800
-    style Foundation fill:#9c27b0
+    style Demo fill:#2196f3
+    style Foundation fill:#ff9800
+    style Core fill:#9c27b0
+    style Fonts fill:#8bc34a
 ```
 
-## Core Packages
+**Simplified Dependencies:**
+- Applications depend on `foundation`, `core`, and optionally `fonts`
+- `foundation` depends on `core`
+- `fonts` is independent
+- No circular dependencies
+- Clear, linear dependency chain
+
+## Package Details
 
 ### `@mining-sdk/core`
 
-**Purpose**: Shared types, constants, and utilities
+**Purpose**: Core UI components, utilities, types, and theme system
+
+**Export Strategy**: Built JavaScript (requires build step)
 
 **Contents**:
 
-- TypeScript types and interfaces
-- Shared constants (routes, colors, units, etc.)
-- Pure utility functions
-- Common type guards
+- **Components**: Radix UI-based primitives (Button, Dialog, Accordion, etc.)
+- **Charts**: Chart.js and Lightweight Charts integrations
+- **Tables**: TanStack Table integration
+- **Forms**: React Hook Form integration with Zod validation
+- **Types**: TypeScript type definitions and interfaces
+- **Utilities**: Pure utility functions (cn, formatters, validators)
+- **Theme**: CSS variables and theme system
+- **Styles**: SCSS source and compiled CSS
 
-**Usage**:
-
-```typescript
-import { DeviceType, formatHashrate, isValidMiner } from '@mining-sdk/core'
+**Exports**:
+```json
+{
+  ".": "./dist/index.js",
+  "./styles.css": "./dist/styles.css",
+  "./styles": "./src/styles/_mixins.scss"
+}
 ```
 
----
-
-### `@mining-sdk/components-foundation`
-
-**Purpose**: Generic, reusable UI components
-
-**Contents**:
-
-- DataTable (sortable, filterable, paginated)
-- Chart wrappers (LineChart, BarChart, DoughnutChart)
-- Form components (Input, Select, Checkbox, etc.)
-- Layout components (Grid, Flex, Container)
-- Feedback components (Alert, Toast, Loading)
-
 **Usage**:
 
 ```typescript
-import { Button, DataTable, LineChart } from '@mining-sdk/components-foundation'
+import { Button, Dialog, DataTable, LineChart } from '@mining-sdk/core'
+import '@mining-sdk/core/styles.css'
 ```
 
 **Key Features**:
 
-- Built on shadcn/ui + Radix UI
+- Built on Radix UI primitives
+- Chart.js & Lightweight Charts support
+- TanStack Table for data grids
 - Zero CSS-in-JS runtime
 - Fully accessible (WCAG compliant)
-- Highly customizable via props
+- Class Variance Authority for variant styling
 
 ---
 
-### `@mining-sdk/components-domain`
+### `@mining-sdk/foundation`
 
-**Purpose**: Mining-specific components
+**Purpose**: All-in-one foundation with domain components, features, state, API, hooks, and utilities
+
+**Export Strategy**: TypeScript source (no build needed for workspace dependencies)
+
+**Internal Structure**:
+
+- `src/components/domain/` - Mining-specific components
+- `src/components/feature/` - Complete feature compositions
+- `src/hooks/` - Custom React hooks
+- `src/api/` - API client using RTK Query
+- `src/state/` - Redux Toolkit state management
+- `src/utils/` - Utility functions
+- `src/types/` - Type definitions
+- `src/constants/` - Shared constants
+- `src/test-utils/` - Testing utilities
+
+**Exports**:
+```json
+{
+  ".": "./src/index.ts",
+  "./domain": "./src/components/domain/index.ts",
+  "./feature": "./src/components/feature/index.ts",
+  "./hooks": "./src/hooks/index.ts",
+  "./api": "./src/api/index.ts",
+  "./state": "./src/state/index.ts",
+  "./test-utils": "./src/test-utils/index.ts",
+  "./styles.css": "./dist/styles.css"
+}
+```
+
+**Usage Examples**:
+
+```typescript
+// Domain components
+import { MinerCard, PoolStats } from '@mining-sdk/foundation/domain'
+
+// Feature compositions
+import { Dashboard } from '@mining-sdk/foundation/feature'
+
+// Custom hooks
+import { useLocalStorage, useDebounce } from '@mining-sdk/foundation/hooks'
+
+// API client
+import { useGetMinersQuery } from '@mining-sdk/foundation/api'
+
+// State management
+import { store, useAppSelector } from '@mining-sdk/foundation/state'
+
+// Testing utilities
+import { render, mockMiner } from '@mining-sdk/foundation/test-utils'
+
+// Styles
+import '@mining-sdk/foundation/styles.css'
+```
+
+**Key Features**:
+
+- Exports TypeScript source for fast development
+- Organized via subpath exports
+- Redux Toolkit for state management
+- RTK Query for API integration
+- Comprehensive testing utilities
+- Domain-specific mining components
+
+---
+
+### `@mining-sdk/fonts`
+
+**Purpose**: Font assets for the UI kit
 
 **Contents**:
 
-- DeviceExplorer, MinerCard, ListView
-- Container components
-- HashRateChart, TemperatureMonitor
-- AlertsWidget, PoolStatusCard
-- Real-time data displays
+- JetBrains Mono font files
+- Font face CSS definitions
 
 **Usage**:
 
 ```typescript
-import { MinerCard, HashRateChart, DeviceExplorer } from '@mining-sdk/components-domain'
+import '@mining-sdk/fonts/jetbrains-mono.css'
 ```
 
----
+**Note:** State management, hooks, API client, domain components, and feature modules are now consolidated within the `@mining-sdk/foundation` package. Access them via subpath exports:
+  
+- State: `@mining-sdk/foundation/state`
+- Hooks: `@mining-sdk/foundation/hooks`
+- API: `@mining-sdk/foundation/api`
+- Domain: `@mining-sdk/foundation/domain`
+- Features: `@mining-sdk/foundation/feature`
 
-### `@mining-sdk/features`
-
-**Purpose**: Complete, ready-to-use feature modules
-
-**Contents**:
-
-- Dashboard module (complete single-site dashboard)
-- Device Management module (Explorer + List + Details)
-- Container Management module (all container types)
-- Alert Management module
-- Reporting module (basic)
-- Settings module
-- Multi-Site Dashboard module
-
-**Usage**:
-
-```typescript
-import { DashboardModule, DeviceManagementModule } from "@mining-sdk/features";
-
-const App = () => {
-  return (
-    <DashboardModule
-      siteId="site-1"
-      refreshInterval={30000}
-      customMetrics={["hashrate", "temperature"]}
-    />
-  );
-}
-```
-
----
-
-### `@mining-sdk/api-client`
-
-**Purpose**: RTK Query-based API client with 87+ hooks
-
-**Contents**:
-
-- Auth endpoints (getUserinfo, postToken, getUserPermissions)
-- Device endpoints (getListThings, getThingConfig)
-- Operations endpoints (hashrate, consumption, workers, efficiency)
-- Financial endpoints (revenue, costs, production)
-- Reports endpoints (multi-site reports)
-- Intelligent caching (5-min retention, 30s refetch)
-- Tag-based invalidation
-
-**Usage**:
-
-```typescript
-import { useGetListThingsQuery, useGetOperationsHashrateQuery } from "@mining-sdk/api-client";
-
-const DeviceList=()=> {
-  const { data, isLoading } = useGetListThingsQuery({ siteId: "site-1" });
-
-  if (isLoading) return <Loading />;
-  return <div>{data.things.map(thing => <MinerCard key={thing.id} {...thing} />)}</div>;
-}
-```
-
----
-
-### `@mining-sdk/hooks`
-
-**Purpose**: 70+ custom React hooks
-
-**Contents**:
-
-- Data fetching hooks (useDeviceData, useRealTimeMetrics)
-- Business logic hooks (useHashrateCalculation, useEfficiencyScore)
-- UI utility hooks (useDebounce, useLocalStorage, useMediaQuery)
-- Real-time hooks (useWebSocket, usePolling)
-- Form hooks (useFormValidation, useFieldArray)
-
-**Usage**:
-
-```typescript
-import { useDebounce, useLocalStorage, useRealTimeMetrics } from '@mining-sdk/hooks'
-
-const SearchBar = () => {
-  const [search, setSearch] = useState('')
-  const debouncedSearch = useDebounce(search, 300)
-  const [recentSearches, setRecentSearches] = useLocalStorage('recent-searches', [])
-
-  // ... rest of component
-}
-```
-
----
-
-### `@mining-sdk/state`
-
-**Purpose**: Redux Toolkit state management
-
-**Contents**:
-
-- Authentication slice (user, token, permissions)
-- Device selection slice (selected devices, filters)
-- Notification slice (toasts, alerts)
-- Theme slice (dark/light mode, preferences)
-- Feature flags slice
-- UI state slice (sidebar, modals)
-
-**Usage**:
-
-```typescript
-import { useAppSelector, useAppDispatch, selectSelectedDevices } from '@mining-sdk/state'
-
-const DeviceActions = () => {
-  const dispatch = useAppDispatch()
-  const selectedDevices = useAppSelector(selectSelectedDevices)
-
-  // ... rest of component
-}
-```
-
----
-
-### `@mining-sdk/theme`
-
-**Purpose**: Design system and theming
-
-**Contents**:
-
-- Design tokens (colors, spacing, typography)
-- Light/dark theme definitions
-- CSS variables for performance
-- Theme provider component
-- Theme switching utilities
-
-**Usage**:
-
-```typescript
-import { ThemeProvider, useTheme } from "@mining-sdk/theme";
-
-const App = () => {
-  return (
-    <ThemeProvider defaultTheme="dark">
-      <YourApp />
-    </ThemeProvider>
-  );
-}
-
-const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
-  return <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>Toggle</button>;
-}
-```
+See the Foundation package documentation above for detailed usage examples.
 
 ---
 
@@ -374,18 +327,15 @@ const ThemeToggle = () => {
 
 ### Bundle Size Targets
 
-| Package                             | Target Size (gzipped) | Current Size |
-| ----------------------------------- | --------------------- | ------------ |
-| `@mining-sdk/core`                  | < 50KB                | TBD          |
-| `@mining-sdk/components-foundation` | < 150KB               | TBD          |
-| `@mining-sdk/components-domain`     | < 200KB               | TBD          |
-| `@mining-sdk/features`              | < 250KB               | TBD          |
-| `@mining-sdk/api-client`            | < 100KB               | TBD          |
-| `@mining-sdk/hooks`                 | < 50KB                | TBD          |
-| `@mining-sdk/state`                 | < 50KB                | TBD          |
-| `@mining-sdk/theme`                 | < 30KB                | TBD          |
+| Package                    | Target Size (gzipped) | Current Size |
+| -------------------------- | --------------------- | ------------ |
+| `@mining-sdk/core`         | < 200KB               | TBD          |
+| `@mining-sdk/foundation`   | < 300KB               | TBD          |
+| `@mining-sdk/fonts`        | < 30KB                | TBD          |
 
-**Total**: < 500KB (vs. 700KB legacy)
+**Total**: < 530KB
+
+**Note:** The consolidated architecture results in similar or better bundle sizes compared to the previous micro-package approach, with improved tree-shaking and fewer duplicate dependencies.
 
 ### Performance Metrics
 

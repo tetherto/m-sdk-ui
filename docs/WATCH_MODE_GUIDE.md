@@ -26,11 +26,10 @@ Watch mode automatically recompiles files when they change, providing instant fe
 
 | Package | TypeScript | SCSS | Output |
 |---------|-----------|------|--------|
-| `@mining-sdk/core` | ✅ | ✅ | `dist/` + `src/styles.css` |
-| `@mining-sdk/components-foundation` | ✅ | ✅ | `dist/` + `src/styles.css` |
-| `@mining-sdk/theme` | ✅ | ✅ | `dist/` + `src/styles.css` |
+| `@mining-sdk/core` | ✅ | ✅ | `dist/` (built JS + types + CSS) |
+| `@mining-sdk/foundation` | ✅ | ✅ | `dist/styles.css` (TS source exported) |
+| `@mining-sdk/fonts` | ❌ | ✅ | `dist/jetbrains-mono.css` |
 | `@mining-sdk/demo` | ✅ | ✅ | HMR (no build output) |
-| Other packages | ✅ | ❌ | `dist/` |
 
 ## Development Workflows
 
@@ -185,7 +184,7 @@ Watch mode respects package dependencies:
 ```
 @mining-sdk/core (watches TS + SCSS)
     ↓
-@mining-sdk/components-foundation (watches TS + SCSS)
+@mining-sdk/foundation (watches TS + SCSS)
     ↓
 @mining-sdk/demo (Vite dev server)
 ```
@@ -424,7 +423,7 @@ pnpm dev
 turbo dev --filter=@mining-sdk/core
 
 # Watch core and foundation
-turbo dev --filter=@mining-sdk/core --filter=@mining-sdk/components-foundation
+turbo dev --filter=@mining-sdk/core --filter=@mining-sdk/foundation
 
 # Watch everything except demo
 turbo dev --filter=!@mining-sdk/demo

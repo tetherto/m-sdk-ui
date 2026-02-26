@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import type { ColorVariant, ComponentSize } from '../../types'
 import { cn } from '../../utils'
 
 export type BadgeProps = {
@@ -41,13 +42,13 @@ export type BadgeProps = {
    * Color variant
    * @default 'primary'
    */
-  color?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info'
+  color?: ColorVariant
 
   /**
    * Badge size
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
 
   /**
    * Offset position [x, y] in pixels

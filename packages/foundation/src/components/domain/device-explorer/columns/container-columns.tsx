@@ -4,6 +4,7 @@ import {
   formatValueUnit,
   OfflineStatusIcon,
   SimpleTooltip,
+  UNITS,
   unitToKilo,
 } from '@mining-sdk/core'
 import type { DataTableColumnDef } from '@mining-sdk/core'
@@ -13,7 +14,6 @@ import { StatusLabel } from '../components/status-label/status-label'
 import { getContainerName, isContainerOffline } from '../../../../utils/container-utils'
 import { DeviceCardColText } from '../components/device-card-col-text/device-card-col-text'
 import _isFinite from 'lodash/isFinite'
-import { UNITS } from '../../../../constants/units'
 import type { ContainerSnap } from '../../../../types/device'
 
 export const getContainerColumns = ({

@@ -3,6 +3,7 @@ import type { TooltipItem } from 'chart.js'
 import * as React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 import { PIE_CHART_COLORS } from '../../constants/colors'
+import type { Position } from '../../types'
 import { cn } from '../../utils'
 import { colorWithAlpha } from '../../utils/chart-options'
 import { buildChartTooltip } from '../../utils/chart-tooltip'
@@ -15,8 +16,6 @@ export type DoughnutChartDataset = {
   value: number
   color?: string
 }
-
-export type DoughnutLegendPosition = 'top' | 'bottom' | 'left' | 'right'
 
 export type DoughnutChartProps = {
   /** Array of labelled slices */
@@ -32,7 +31,7 @@ export type DoughnutChartProps = {
   /** Chart height in pixels */
   height?: number
   /** Where to place the legend relative to the chart (default: 'top') */
-  legendPosition?: DoughnutLegendPosition
+  legendPosition?: Position
   /**
    * Custom HTML tooltip configuration. When provided, replaces the default doughnut tooltip
    *  (which shows label, value with unit, and percentage). Use `valueFormatter` to replicate

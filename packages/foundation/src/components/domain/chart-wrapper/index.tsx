@@ -1,8 +1,11 @@
 import * as React from 'react'
 
 import { cn, EmptyState, Spinner } from '@mining-sdk/core'
+import type { SpinnerProps } from '@mining-sdk/core'
 import { CHART_EMPTY_DESCRIPTION } from '../../../constants/charts'
 import { useChartDataCheck } from '../../../hooks/use-chart-data-check'
+
+const SPINNER_COLOR: SpinnerProps['color'] = 'secondary'
 
 type ChartWrapperProps = {
   /**
@@ -162,7 +165,7 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
           className="mining-sdk-chart-wrapper__loading"
           style={{ minHeight: `${loadingMinHeight || minHeight || 400}px` }}
         >
-          {customLoader || <Spinner type="circle" color="secondary" />}
+          {customLoader || <Spinner type="circle" color={SPINNER_COLOR} />}
         </div>
       )}
     </div>

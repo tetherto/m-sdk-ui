@@ -7,8 +7,63 @@
   height: 100vh;
   overflow: hidden;
 
-  &__nav {
-    border-right: 0.5px solid var(--mining-sdk-color-primary);
+  &__search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 16px 12px;
+    background: var(--mining-sdk-sidebar-bg, var(--mining-sdk-color-surface));
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 24px;
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-secondary);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 8px 32px 8px 36px;
+    background: var(--mining-sdk-sidebar-item-hover-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: var(--mining-sdk-input-placeholder-color);
+    }
+
+    &:focus {
+      background: var(--mining-sdk-color-white-8);
+      border-color: var(--mining-sdk-color-primary, #f7931a);
+    }
+  }
+
+  &__search-clear {
+    position: absolute;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    @include flex_center;
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 1;
+
+    &:hover {
+      color: var(--mining-sdk-color-white-60);
+    }
   }
 
   &__nav-header {
@@ -103,14 +158,10 @@
     }
 
     &--2-col {
-      grid-template-columns: repeat(2, minmax(300px, 500px));
+      grid-template-columns: 1fr;
 
       @media (min-width: 640px) {
-        grid-template-columns: repeat(2, minmax(300px, 500px));
-      }
-
-      @media (min-width: 1024px) {
-        grid-template-columns: repeat(2, minmax(300px, 500px));
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -129,6 +180,7 @@
     section {
       @include flex_column;
       gap: 0.75rem;
+      min-width: 0;
 
       h3 {
         font-size: 1rem;
@@ -136,6 +188,18 @@
         margin: 0;
       }
     }
+  }
+
+  &__resize-hint {
+    @include flex_center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--mining-sdk-color-white-12);
+    background: var(--mining-sdk-color-white-8);
+    font-size: 0.8125rem;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
   }
 
   &__select-grid {

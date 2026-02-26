@@ -56,12 +56,19 @@ pnpm clean
 
 ```
 packages/core/
-├── dist/              # TypeScript output
-└── src/styles.css     # Compiled SCSS
+├── dist/              # Built TypeScript + types
+│   ├── index.js
+│   ├── index.d.ts
+│   └── styles.css     # Compiled, minified SCSS
 
-packages/components-foundation/
+packages/foundation/
 ├── dist/
-└── src/styles.css
+│   └── styles.css     # Compiled SCSS
+└── src/               # TypeScript source (exported directly)
+
+packages/fonts/
+└── dist/
+    └── jetbrains-mono.css
 
 apps/demo/
 └── dist/              # Vite production build
@@ -140,12 +147,12 @@ pnpm watch:ts           # Same as dev:ts
 pnpm watch:scss         # Same as dev:scss
 ```
 
-### Components Foundation (`@mining-sdk/components-foundation`)
+### Foundation Package (`@mining-sdk/foundation`)
 
 Same scripts as `@mining-sdk/core`:
 
 ```bash
-cd packages/components-foundation
+cd packages/foundation
 
 pnpm build              # Build TS + SCSS
 pnpm dev                # Watch TS + SCSS
@@ -153,15 +160,13 @@ pnpm dev:ts             # Watch TypeScript
 pnpm dev:scss           # Watch SCSS
 ```
 
-### Theme Package (`@mining-sdk/theme`)
-
-Same scripts as above packages:
+### Fonts Package (`@mining-sdk/fonts`)
 
 ```bash
-cd packages/theme
+cd packages/fonts
 
-pnpm build              # Build TS + SCSS
-pnpm dev                # Watch TS + SCSS
+pnpm build              # Build font CSS
+pnpm dev                # Watch mode for fonts
 ```
 
 ### Demo App (`@mining-sdk/demo`)
@@ -206,17 +211,16 @@ All tasks are defined in `turbo.json`:
 ### Execution Order
 
 ```
-@mining-sdk/core → @mining-sdk/components-foundation → @mining-sdk/components-domain
-                                       ↓
-                              @mining-sdk/components-feature
-                                       ↓
-                                  @mining-sdk/demo
+@mining-sdk/core ───┐
+                    ├──→ @mining-sdk/foundation ──→ @mining-sdk/demo
+@mining-sdk/fonts ──┘
 ```
 
 Turborepo automatically:
-1. Builds dependencies first
-2. Runs tasks in parallel where possible
-3. Caches results for faster rebuilds
+1. Builds `@mining-sdk/core` and `@mining-sdk/fonts` in parallel (independent)
+2. Builds `@mining-sdk/foundation` after `@mining-sdk/core` completes
+3. Builds `@mining-sdk/demo` after all dependencies complete
+4. Caches results for faster rebuilds
 
 ## Best Practices
 

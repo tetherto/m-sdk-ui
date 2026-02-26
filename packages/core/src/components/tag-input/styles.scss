@@ -30,6 +30,8 @@
   gap: 0.5rem;
   padding: 0 0.75rem;
   min-height: 2.5rem;
+  max-height: 9rem;
+  overflow-y: auto;
   font-size: var(--mining-sdk-font-size, 14px);
   line-height: var(--mining-sdk-line-height, 22px);
   font-family: inherit;
@@ -67,6 +69,7 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   min-width: 0;
+  padding-inline-end: 24px;
 }
 
 .mining-sdk-tag-input__tag {
@@ -132,6 +135,7 @@
 
   position: absolute;
   right: 0.75rem;
+  top: calc(50% - 2px);
   color: var(--mining-sdk-input-placeholder-color, #999999);
   pointer-events: none;
 

@@ -5,11 +5,11 @@ import {
   formatValueUnit,
   PowerIcon,
   SimpleTooltip,
+  UNITS,
 } from '@mining-sdk/core'
 import type { DataTableColumnDef, UnknownRecord } from '@mining-sdk/core'
 import type { Alert, DeviceExplorerDeviceData, GetColumnConfigParams } from '../types'
 import { DeviceCardColText } from '../components/device-card-col-text/device-card-col-text'
-import { UNITS } from '../../../../constants/units'
 import type { PowerModeColors } from '../../../../utils/device-utils'
 import {
   formatPowerConsumption,

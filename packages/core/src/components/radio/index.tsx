@@ -1,6 +1,7 @@
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import * as React from 'react'
 
+import type { BorderRadius, ComponentColor, ComponentSize } from '../../types'
 import { cn } from '../../utils'
 
 export type RadioProps = {
@@ -8,17 +9,17 @@ export type RadioProps = {
    * Size variant of the radio
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: ComponentSize
   /**
    * Color variant when checked
    * @default 'default'
    */
-  color?: 'default' | 'primary' | 'success' | 'warning' | 'error'
+  color?: ComponentColor
   /**
    * Border radius variant (full makes it circular)
    * @default 'full'
    */
-  radius?: 'none' | 'small' | 'medium' | 'large' | 'full'
+  radius?: BorderRadius
   /**
    * Custom className for the root element
    */

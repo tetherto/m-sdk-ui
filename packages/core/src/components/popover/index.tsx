@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 
+import type { FlexAlign, Position } from '../../types'
 import { cn } from '../../utils'
 
 /**
@@ -144,12 +145,12 @@ type SimplePopoverProps = {
    * Position of the popover relative to trigger
    * @default "bottom"
    */
-  side?: 'top' | 'right' | 'bottom' | 'left'
+  side?: Position
   /**
    * Alignment of the popover
    * @default "center"
    */
-  align?: 'start' | 'center' | 'end'
+  align?: FlexAlign
   /**
    * Distance from the trigger in pixels
    * @default 8

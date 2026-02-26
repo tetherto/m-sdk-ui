@@ -18,6 +18,7 @@ export type SidebarOptions = Partial<{
   overlay: boolean
   className: string
   defaultExpanded: boolean
+  header: React.ReactNode
 }>
 
 export type SidebarCallbacks = Partial<{

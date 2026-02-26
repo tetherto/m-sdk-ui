@@ -52,10 +52,6 @@ export type TagInputProps = {
    */
   onTagsChange?: (tags: string[]) => void
   /**
-   * Click handler for the input wrapper (e.g. to focus input). Receives click event.
-   */
-  onClick?: () => void
-  /**
    * Callback when input value changes (typing). Receives current input value. Useful for async option loading or custom filtering.
    */
   onInputChange?: (value: string) => void
@@ -192,7 +188,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
       value = [],
       onTagsChange,
       onSubmit,
-      onClick,
       onInputChange,
       options = [],
       placeholder = 'Search...',
@@ -218,6 +213,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
     const listRef = React.useRef<HTMLDivElement>(null)
     const wrapperRef = React.useRef<HTMLDivElement>(null)
     const dropdownRef = React.useRef<HTMLDivElement>(null)
+    const openChangeTimeoutRef = React.useRef<ReturnType<typeof setTimeout>>()
 
     const tags = value
     const setTags = onTagsChange ?? (() => {})
@@ -323,10 +319,6 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
       inputRef.current?.focus()
     }
 
-    const handleFocus = (): void => {
-      setOpen(true)
-    }
-
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>): void => {
       const relatedTarget = e.relatedTarget as Node | null
       const isInWrapper = relatedTarget && wrapperRef.current?.contains(relatedTarget)
@@ -339,86 +331,120 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
 
     const showSearchIcon = variant === 'search'
 
-    const handleOpenChange = React.useCallback((next: boolean) => {
-      // Keep open when input is focused (user is typing) - Radix may try to close on "interact outside"
-      if (!next && inputRef.current === document.activeElement) return
-      setOpen(next)
-    }, [])
+    const handleOpenChange = (next: boolean): void => {
+      if (openChangeTimeoutRef.current) {
+        clearTimeout(openChangeTimeoutRef.current)
+      }
+
+      // Debounce to avoid race conditions between manual toggle and Radix's interact outside
+      openChangeTimeoutRef.current = setTimeout(() => {
+        // Keep open when input is focused (user is typing) - Radix may try to close on "interact outside"
+        if (!next && inputRef.current === document.activeElement) {
+          return
+        }
+
+        setOpen(next)
+      }, 50)
+    }
+
+    const handleWrapperClick = (e: React.MouseEvent): void => {
+      // Check if click is on the remove tag button or icon
+      const target = e.target as HTMLElement
+      if (
+        target.closest('.mining-sdk-tag-input__tag-remove') ||
+        target.closest('.mining-sdk-tag-input__icon')
+      ) {
+        return
+      }
+
+      // Toggle dropdown if input is already focused
+      if (document.activeElement === inputRef.current) {
+        setOpen((prev) => !prev)
+      } else {
+        inputRef.current?.focus()
+      }
+    }
 
     const removeAllTags = React.useCallback(() => {
       setTags([])
       inputRef.current?.focus()
     }, [setTags])
 
+    React.useEffect(() => {
+      return () => {
+        if (openChangeTimeoutRef.current) {
+          clearTimeout(openChangeTimeoutRef.current)
+        }
+      }
+    }, [])
+
     const content = (
       <Popover open={open} onOpenChange={handleOpenChange} modal={false}>
         <PopoverAnchor asChild>
-          <div
-            ref={wrapperRef}
-            className={cn(
-              'mining-sdk-tag-input__wrapper',
-              showSearchIcon && 'mining-sdk-tag-input__wrapper--search',
-              disabled && 'mining-sdk-tag-input__wrapper--disabled',
-              wrapperClassName,
-            )}
-            onClick={() => {
-              inputRef.current?.focus()
-              onClick?.()
-            }}
-          >
-            <div className="mining-sdk-tag-input__inner">
-              {tags.map((tag, i) => (
-                <span key={`${tag}-${i}`} className="mining-sdk-tag-input__tag">
-                  <span className="mining-sdk-tag-input__tag-chip">
-                    {tag}
-                    <button
-                      type="button"
-                      className="mining-sdk-tag-input__tag-remove"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        removeTag(i)
-                      }}
-                      aria-label={`Remove ${tag}`}
-                      tabIndex={-1}
-                    >
-                      <Cross2Icon />
-                    </button>
+          <div>
+            <div
+              ref={wrapperRef}
+              className={cn(
+                'mining-sdk-tag-input__wrapper',
+                showSearchIcon && 'mining-sdk-tag-input__wrapper--search',
+                disabled && 'mining-sdk-tag-input__wrapper--disabled',
+                wrapperClassName,
+              )}
+              onClick={handleWrapperClick}
+            >
+              <div className="mining-sdk-tag-input__inner">
+                {tags.map((tag, i) => (
+                  <span key={`${tag}-${i}`} className="mining-sdk-tag-input__tag">
+                    <span className="mining-sdk-tag-input__tag-chip">
+                      {tag}
+                      <button
+                        type="button"
+                        className="mining-sdk-tag-input__tag-remove"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          removeTag(i)
+                        }}
+                        aria-label={`Remove ${tag}`}
+                        tabIndex={-1}
+                      >
+                        <Cross2Icon />
+                      </button>
+                    </span>
                   </span>
-                </span>
-              ))}
-              <input
-                ref={(node) => {
-                  ;(inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node
-                  if (typeof ref === 'function') ref(node)
-                  else if (ref)
-                    (ref as React.MutableRefObject<HTMLInputElement | null>).current = node
-                }}
-                id={id}
-                type="text"
-                value={inputValue}
-                onChange={(e) => {
-                  setInputValue(e.target.value)
-                  setHighlightedIndex(0)
-                  onInputChange?.(e.target.value)
-                }}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                disabled={disabled}
-                placeholder={tags.length === 0 ? placeholder : ''}
-                className={cn('mining-sdk-tag-input__input', className)}
-                autoComplete="off"
-                aria-autocomplete="list"
-                aria-expanded={open}
-                aria-controls={open ? `${id}-listbox` : undefined}
-                aria-activedescendant={
-                  open && filteredOptions.length > 0
-                    ? `${id}-option-${highlightedIndex}`
-                    : undefined
-                }
-                role="combobox"
-                aria-haspopup="listbox"
-              />
+                ))}
+                <input
+                  ref={(node) => {
+                    ;(inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node
+                    if (typeof ref === 'function') ref(node)
+                    else if (ref)
+                      (ref as React.MutableRefObject<HTMLInputElement | null>).current = node
+                  }}
+                  id={id}
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => {
+                    setInputValue(e.target.value)
+                    setHighlightedIndex(0)
+                    onInputChange?.(e.target.value)
+                  }}
+                  onKeyDown={handleKeyDown}
+                  onBlur={handleBlur}
+                  disabled={disabled}
+                  placeholder={tags.length === 0 ? placeholder : ''}
+                  className={cn('mining-sdk-tag-input__input', className)}
+                  autoComplete="off"
+                  aria-autocomplete="list"
+                  aria-expanded={open}
+                  aria-controls={open ? `${id}-listbox` : undefined}
+                  aria-activedescendant={
+                    open && filteredOptions.length > 0
+                      ? `${id}-option-${highlightedIndex}`
+                      : undefined
+                  }
+                  role="combobox"
+                  aria-haspopup="listbox"
+                />
+              </div>
             </div>
             {showSearchIcon && (
               <span

@@ -90,8 +90,8 @@ pnpm clean                  # Remove all build artifacts
 
 ```bash
 # From root (recommended)
-pnpm add react --filter @mining-sdk/components-foundation
-pnpm add -D vitest --filter @mining-sdk/components-foundation
+pnpm add react --filter @mining-sdk/foundation
+pnpm add -D vitest --filter @mining-sdk/foundation
 
 # Or cd into package
 cd packages/components-foundation
