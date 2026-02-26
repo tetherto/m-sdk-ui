@@ -72,7 +72,7 @@
     "class-variance-authority": "catalog:",
     "clsx": "catalog:",
     "date-fns": "catalog:",
-    "date-fns-tz": "^3.2.0",
+    "date-fns-tz": "catalog:",
     "lightweight-charts": "catalog:",
     "lodash": "catalog:",
     "prop-types": "catalog:",
