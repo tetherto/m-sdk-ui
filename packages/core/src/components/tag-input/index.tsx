@@ -1,4 +1,10 @@
-import { ChevronDownIcon, Cross1Icon, Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  Cross1Icon,
+  Cross2Icon,
+  MagnifyingGlassIcon,
+} from '@radix-ui/react-icons'
 import * as React from 'react'
 
 import { cn } from '../../utils'
@@ -458,11 +464,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                 <Cross1Icon className="mining-sdk-tag-input__icon--cross" />
               </span>
             ) : (
-              <span
-                className="mining-sdk-tag-input__arrow"
-                aria-hidden
-                style={{ userSelect: 'none' }}
-              >
+              <span className="mining-sdk-tag-input__arrow" aria-hidden>
                 <ChevronDownIcon />
               </span>
             )}
@@ -533,24 +535,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                       <span className="mining-sdk-tag-input__option-label">
                         {getOptionLabel(opt)}
                       </span>
-                      {isSelected && (
-                        <svg
-                          className="mining-sdk-tag-input__option-check"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M13.3332 4L5.99984 11.3333L2.6665 8"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      )}
+                      {isSelected && <CheckIcon className="mining-sdk-tag-input__option-check" />}
                     </div>
                   )
                 })

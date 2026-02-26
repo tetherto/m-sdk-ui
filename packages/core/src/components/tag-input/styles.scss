@@ -39,9 +39,9 @@
   font-size: var(--mining-sdk-font-size, 14px);
   line-height: var(--mining-sdk-line-height, 22px);
   font-family: inherit;
-  color: var(--mining-sdk-tag-input-text, rgba(255, 255, 255, 0.88));
-  background: var(--mining-sdk-tag-input-bg, #1a1a1a);
-  border: 1px solid var(--mining-sdk-tag-input-border, rgba(255, 255, 255, 0.2));
+  color: var(--mining-sdk-tag-input-text, var(--mining-sdk-color-text-secondary));
+  background: var(--mining-sdk-tag-input-bg, transparent);
+  border: 1px solid var(--mining-sdk-tag-input-border, var(--mining-sdk-color-white-transparent));
   border-radius: 0;
   outline: none;
   transition:
@@ -49,12 +49,12 @@
     background-color 0.2s;
 
   &:hover:not(.mining-sdk-tag-input__wrapper--disabled):not(:focus-within) {
-    border-color: var(--mining-sdk-tag-input-border-hover, rgba(255, 255, 255, 0.3));
+    border-color: var(--mining-sdk-tag-input-border-hover, var(--mining-sdk-color-white-transparent));
   }
 
   &:focus-within {
     border-color: var(--mining-sdk-color-primary, #f7931a);
-    background: var(--mining-sdk-tag-input-bg, #1a1a1a);
+    background: var(--mining-sdk-tag-input-bg, transparent);
   }
 
   &--search {
@@ -88,8 +88,8 @@
   height: 22px;
   font-size: 14px;
   line-height: 20px;
-  background-color: var(--mining-sdk-tag-input-tag-bg, rgba(255, 255, 255, 0.12));
-  color: var(--mining-sdk-tag-input-text, rgba(255, 255, 255, 0.88));
+  background-color: var(--mining-sdk-tag-input-tag-bg, var(--mining-sdk-color-white-12));
+  color: var(--mining-sdk-tag-input-text, var(--mining-sdk-color-text-secondary));
   border-radius: 0;
   flex-shrink: 0;
 }
@@ -100,7 +100,7 @@
   padding: 0;
   margin: 0;
   margin-left: 0.25rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--mining-sdk-tag-input-icon, var(--mining-sdk-color-text-disabled));
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -109,7 +109,7 @@
   z-index: 1;
 
   &:hover {
-    color: #ffffff;
+    color: var(--mining-sdk-color-white, #ffffff);
   }
 
   svg {
@@ -127,13 +127,13 @@
   font-size: inherit;
   line-height: 22px;
   font-family: inherit;
-  color: var(--mining-sdk-tag-input-text, rgba(255, 255, 255, 0.88));
+  color: var(--mining-sdk-tag-input-text, var(--mining-sdk-color-text-secondary));
   background: transparent;
   border: none;
   outline: none;
 
   &::placeholder {
-    color: var(--mining-sdk-tag-input-placeholder, rgba(255, 255, 255, 0.4));
+    color: var(--mining-sdk-tag-input-placeholder, var(--mining-sdk-color-text-disabled));
   }
 
   &:disabled {
@@ -156,7 +156,7 @@
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--mining-sdk-input-placeholder-color, #999999);
+  color: var(--mining-sdk-tag-input-icon, var(--mining-sdk-color-text-disabled));
   pointer-events: none;
 
   &--cross {
@@ -185,9 +185,10 @@
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--mining-sdk-tag-input-arrow, rgba(255, 255, 255, 0.45));
+  color: var(--mining-sdk-tag-input-icon, var(--mining-sdk-color-text-disabled));
   pointer-events: none;
   transition: color 0.2s;
+  user-select: none;
 
   svg {
     width: 12px;
@@ -196,7 +197,7 @@
 }
 
 .mining-sdk-tag-input__wrapper:focus-within .mining-sdk-tag-input__arrow {
-  color: var(--mining-sdk-tag-input-arrow-focus, rgba(255, 255, 255, 0.65));
+  color: var(--mining-sdk-tag-input-icon-focus, var(--mining-sdk-color-white-60));
 }
 
 .mining-sdk-tag-input__dropdown {
@@ -206,8 +207,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 4px;
-  background-color: var(--mining-sdk-tag-input-dropdown-bg, #2a2a2a);
-  border: 1px solid var(--mining-sdk-tag-input-dropdown-border, rgba(255, 255, 255, 0.15));
+  background-color: var(--mining-sdk-tag-input-dropdown-bg, var(--mining-sdk-color-gray-900));
+  border: 1px solid var(--mining-sdk-tag-input-dropdown-border, var(--mining-sdk-color-white-transparent));
   border-radius: 0;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3), 0 3px 6px -4px rgba(0, 0, 0, 0.2), 0 9px 28px 8px rgba(0, 0, 0, 0.15);
 }
@@ -221,7 +222,7 @@
   font-size: 14px;
   cursor: pointer;
   border-radius: 0;
-  color: var(--mining-sdk-tag-input-text, rgba(255, 255, 255, 0.88));
+  color: var(--mining-sdk-tag-input-text, var(--mining-sdk-color-text-secondary));
   transition: background-color 0.2s;
   display: flex;
   align-items: center;
@@ -229,7 +230,7 @@
   gap: 12px;
 
   &--highlighted {
-    background-color: var(--mining-sdk-tag-input-option-hover-bg, rgba(255, 255, 255, 0.15));
+    background-color: var(--mining-sdk-tag-input-option-hover-bg, var(--mining-sdk-color-white-transparent));
   }
 
   &--selected {
@@ -237,7 +238,7 @@
   }
 
   &:hover {
-    background-color: var(--mining-sdk-tag-input-option-hover-bg, rgba(255, 255, 255, 0.15));
+    background-color: var(--mining-sdk-tag-input-option-hover-bg, var(--mining-sdk-color-white-transparent));
   }
 }
 
@@ -269,11 +270,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--mining-sdk-color-white-transparent);
     border-radius: 0;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--mining-sdk-color-white-transparent);
   }
 }
