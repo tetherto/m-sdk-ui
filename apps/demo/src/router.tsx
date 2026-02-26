@@ -92,6 +92,12 @@ const PoolDetailsPopoverPage = lazy(() =>
   })),
 )
 
+const LwLineChartExample = lazy(() =>
+  import('./examples/lightweight-line-chart-example').then((module) => ({
+    default: module.LwLineChartExample,
+  })),
+)
+
 const LineChartExample = lazy(() =>
   import('./examples/line-chart-example').then((module) => ({
     default: module.LineChartExample,
@@ -205,6 +211,7 @@ export const router = createBrowserRouter([
       { path: 'mining-icons', element: withSuspense(MiningIconsExample) },
       { path: 'empty-state', element: withSuspense(EmptyStatePage) },
       { path: 'line-chart', element: withSuspense(LineChartExample) },
+      { path: 'lw-line-chart', element: withSuspense(LwLineChartExample) },
       { path: 'bar-chart', element: withSuspense(BarChartExample) },
       { path: 'area-chart', element: withSuspense(AreaChartExample) },
       { path: 'doughnut-chart', element: withSuspense(DoughnutChartPage) },
