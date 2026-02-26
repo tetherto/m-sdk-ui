@@ -15,7 +15,7 @@
 }
 
 .mining-sdk-tag-input__label {
-  color: var(--mining-sdk-color-white, #ffffff);
+  color: var(--mining-sdk-color-white);
   font-size: var(--mining-sdk-font-size, 14px);
   line-height: var(--mining-sdk-line-height, 22px);
 }
@@ -53,7 +53,7 @@
   }
 
   &:focus-within {
-    border-color: var(--mining-sdk-color-primary, #f7931a);
+    border-color: var(--mining-sdk-color-primary);
     background: var(--mining-sdk-tag-input-bg, transparent);
   }
 
@@ -109,7 +109,7 @@
   z-index: 1;
 
   &:hover {
-    color: var(--mining-sdk-color-white, #ffffff);
+    color: var(--mining-sdk-color-white);
   }
 
   svg {
@@ -210,7 +210,7 @@
   background-color: var(--mining-sdk-tag-input-dropdown-bg, var(--mining-sdk-color-gray-900));
   border: 1px solid var(--mining-sdk-tag-input-dropdown-border, var(--mining-sdk-color-white-transparent));
   border-radius: 0;
-  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3), 0 3px 6px -4px rgba(0, 0, 0, 0.2), 0 9px 28px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--mining-sdk-shadow-lg);
 }
 
 .mining-sdk-tag-input__list {
@@ -234,7 +234,7 @@
   }
 
   &--selected {
-    background-color: var(--mining-sdk-tag-input-option-selected-bg, #6b5a3d);
+    background-color: var(--mining-sdk-tag-input-option-selected-bg);
   }
 
   &:hover {
@@ -249,13 +249,13 @@
 
 .mining-sdk-tag-input__option-check {
   flex-shrink: 0;
-  color: var(--mining-sdk-color-primary, #f7931a);
+  color: var(--mining-sdk-color-primary);
 }
 
 .mining-sdk-tag-input__empty {
   padding: 0.5rem 0.75rem;
   font-size: 14px;
-  color: var(--mining-sdk-color-text-secondary, #ffffffd9);
+  color: var(--mining-sdk-color-text-secondary);
 }
 
 /* Custom scrollbar styling */

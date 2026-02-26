@@ -27,7 +27,7 @@
   line-height: 1.4;
 
   /* Effects */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--mining-sdk-shadow-sm);
   border-radius: 2px;
 
   /* Animations */

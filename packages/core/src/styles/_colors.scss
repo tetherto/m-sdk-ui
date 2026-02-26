@@ -75,12 +75,21 @@
     --mining-sdk-color-gray-400: #8e8e8e;
     --mining-sdk-color-gray-300: #e1e0e0;
     --mining-sdk-color-gray-stone: #898887;
+    --mining-sdk-color-black-bg: #000000;
+    --mining-sdk-color-dark-bg: #1a1a1a;
+    --mining-sdk-color-brown-selected: #6b5a3d;
 
     /* Overlays */
     --mining-sdk-overlay-bg: rgba(0, 0, 0, 0.45);
     --mining-sdk-color-white-60: rgba(255, 255, 255, 0.6);
     --mining-sdk-color-white-12: #ffffff1f;
     --mining-sdk-color-white-8: #ffffff14;
+
+    /* Shadows */
+    --mining-sdk-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --mining-sdk-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+    --mining-sdk-shadow-lg: 0 6px 16px 0 rgba(0, 0, 0, 0.3), 0 3px 6px -4px rgba(0, 0, 0, 0.2), 0 9px 28px 8px rgba(0, 0, 0, 0.15);
+    --mining-sdk-shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 
     /* Breadcrumbs specific colors */
     --mining-sdk-breadcrumbs-separator-color: var(--mining-sdk-color-primary);
@@ -125,7 +134,7 @@
     --mining-sdk-tag-input-dropdown-bg: #313131;
     --mining-sdk-tag-input-dropdown-border: var(--mining-sdk-color-white-transparent);
     --mining-sdk-tag-input-option-hover-bg: var(--mining-sdk-color-white-transparent);
-    --mining-sdk-tag-input-option-selected-bg: #543b1d;
+    --mining-sdk-tag-input-option-selected-bg: var(--mining-sdk-color-brown-selected);
 
     /* Select specific colors */
     --mining-sdk-select-content-bg: #1a1a1a;
