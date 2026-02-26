@@ -23,6 +23,9 @@ import { withErrorBoundary } from '../error-boundary'
 import { cn } from '../../utils'
 import type { LightWeightLineChartProps } from './types'
 
+/**
+ * Line Chart for time series data
+ */
 const LineChart = ({
   chartRef,
   data,
