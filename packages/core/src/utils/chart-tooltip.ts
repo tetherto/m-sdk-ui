@@ -2,7 +2,7 @@ import type { Chart, ChartType, TooltipItem, TooltipModel, TooltipOptions } from
 import { COLOR } from '../constants/colors'
 
 export type ChartTooltipConfig = {
-  /** Color for label text. Use 'dataset' to match dataset border color. Defaults to COLOR.LIGHT_GREY */
+  /** Color for label text. Use 'dataset' to match dataset border color. Defaults to COLOR.WHITE_ALPHA_05 */
   labelColor?: string | 'dataset'
   /** Color for value text. Use 'dataset' to match dataset border color. Defaults to 'dataset' */
   valueColor?: string | 'dataset'
@@ -121,7 +121,7 @@ export const buildChartTooltip = (
   config: ChartTooltipConfig = {},
 ): Partial<TooltipOptions<ChartType>> => {
   const {
-    labelColor = COLOR.LIGHT_GREY,
+    labelColor = COLOR.WHITE_ALPHA_05,
     valueColor = 'dataset',
     valueFormatter,
     backgroundColor = COLOR.DARK_BLACK,
@@ -147,7 +147,7 @@ export const buildChartTooltip = (
       const titleText = tooltip.title.join(' ')
       innerHtml += `<div style="
         font-size: ${fontSize - 2}px;
-        color: ${COLOR.LIGHT_GREY};
+        color: ${COLOR.WHITE_ALPHA_05};
         opacity: 0.7;
       ">${titleText}</div>`
     }
@@ -186,9 +186,9 @@ export const buildChartTooltip = (
     Object.assign(tooltipEl.style, {
       opacity: '1',
       background: backgroundColor,
-      color: COLOR.LIGHT_GREY,
-      borderRadius: '0px',
-      padding: '12px 16px',
+      color: COLOR.WHITE_ALPHA_05,
+      clipPath: 'polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px)',
+      padding: '14px',
       fontFamily: `'JetBrains Mono', monospace`,
       fontSize: `${fontSize}px`,
       minWidth: `${minWidth}px`,

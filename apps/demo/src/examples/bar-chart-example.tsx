@@ -10,8 +10,25 @@ import {
   BAR_CHART_SUBSIDY_FEES,
 } from '../constants/demo-chart-data'
 
-const barTooltip: ChartTooltipConfig = {
+const miningOutputTooltip: ChartTooltipConfig = {
+  valueFormatter: (v) => `${v.toLocaleString()} TH/s`,
+}
+
+const revenueTooltip: ChartTooltipConfig = {
+  valueFormatter: (v) => `${v.toLocaleString()} BTC`,
+}
+
+const hashRateTooltip: ChartTooltipConfig = {
+  valueFormatter: (v) => `${v.toLocaleString()} PH/s`,
+}
+
+const minersTooltip: ChartTooltipConfig = {
   valueFormatter: (v) => v.toLocaleString(),
+}
+
+const subsidyFeesTooltip: ChartTooltipConfig = {
+  valueFormatter: (v, item) =>
+    item.dataset.yAxisID === 'y1' ? `${v.toFixed(2)}%` : `${v.toFixed(2)} BTC`,
 }
 
 export const BarChartExample: React.FC = () => {
@@ -24,7 +41,7 @@ export const BarChartExample: React.FC = () => {
         <section>
           <h3>Bar Chart</h3>
           <ChartContainer title="Mining output">
-            <BarChart height={250} data={BAR_CHART_MINING_OUTPUT} tooltip={barTooltip} />
+            <BarChart height={250} data={BAR_CHART_MINING_OUTPUT} tooltip={miningOutputTooltip} />
           </ChartContainer>
         </section>
 
@@ -35,7 +52,7 @@ export const BarChartExample: React.FC = () => {
               height={250}
               data={BAR_CHART_STACKED_REVENUE}
               isStacked
-              tooltip={barTooltip}
+              tooltip={revenueTooltip}
             />
           </ChartContainer>
         </section>
@@ -43,7 +60,7 @@ export const BarChartExample: React.FC = () => {
         <section>
           <h3>Grouped Bar Chart</h3>
           <ChartContainer title="Hash rate by site (grouped)">
-            <BarChart height={250} data={BAR_CHART_GROUPED_SITES} tooltip={barTooltip} />
+            <BarChart height={250} data={BAR_CHART_GROUPED_SITES} tooltip={hashRateTooltip} />
           </ChartContainer>
         </section>
 
@@ -55,7 +72,7 @@ export const BarChartExample: React.FC = () => {
               data={BAR_CHART_HORIZONTAL_MINERS}
               isHorizontal
               showLegend={false}
-              tooltip={barTooltip}
+              tooltip={minersTooltip}
             />
           </ChartContainer>
         </section>
@@ -69,7 +86,7 @@ export const BarChartExample: React.FC = () => {
               isStacked
               legendPosition="bottom"
               legendAlign="start"
-              tooltip={barTooltip}
+              tooltip={minersTooltip}
             />
           </ChartContainer>
         </section>
@@ -85,7 +102,7 @@ export const BarChartExample: React.FC = () => {
               legendPosition="bottom"
               legendAlign="start"
               formatDataLabel={(v) => v.toFixed(2)}
-              tooltip={{ valueFormatter: (v) => v.toFixed(2) }}
+              tooltip={subsidyFeesTooltip}
               options={{
                 scales: {
                   y1: {
