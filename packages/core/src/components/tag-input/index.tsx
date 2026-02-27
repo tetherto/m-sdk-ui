@@ -1,4 +1,10 @@
-import { Cross1Icon, Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  Cross1Icon,
+  Cross2Icon,
+  MagnifyingGlassIcon,
+} from '@radix-ui/react-icons'
 import * as React from 'react'
 
 import { cn } from '../../utils'
@@ -381,7 +387,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
     const content = (
       <Popover open={open} onOpenChange={handleOpenChange} modal={false}>
         <PopoverAnchor asChild>
-          <div>
+          <div className="mining-sdk-tag-input__container">
             <div
               ref={wrapperRef}
               className={cn(
@@ -390,6 +396,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                 disabled && 'mining-sdk-tag-input__wrapper--disabled',
                 wrapperClassName,
               )}
+              data-has-tags={tags.length > 0}
               onClick={handleWrapperClick}
             >
               <div className="mining-sdk-tag-input__inner">
@@ -446,7 +453,7 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
                 />
               </div>
             </div>
-            {showSearchIcon && (
+            {showSearchIcon ? (
               <span
                 className="mining-sdk-tag-input__icon"
                 aria-hidden
@@ -455,6 +462,10 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
               >
                 <MagnifyingGlassIcon className="mining-sdk-tag-input__icon--glass" />
                 <Cross1Icon className="mining-sdk-tag-input__icon--cross" />
+              </span>
+            ) : (
+              <span className="mining-sdk-tag-input__arrow" aria-hidden>
+                <ChevronDownIcon />
               </span>
             )}
           </div>
@@ -502,25 +513,32 @@ const TagInput = React.forwardRef<TagInputRef | HTMLInputElement, TagInputProps>
               {filteredOptions.length === 0 ? (
                 <div className="mining-sdk-tag-input__empty">No options</div>
               ) : (
-                filteredOptions.map((opt, i) => (
-                  <div
-                    key={getOptionValue(opt)}
-                    id={`${id}-option-${i}`}
-                    role="option"
-                    aria-selected={i === highlightedIndex}
-                    className={cn(
-                      'mining-sdk-tag-input__option',
-                      i === highlightedIndex && 'mining-sdk-tag-input__option--highlighted',
-                    )}
-                    onMouseDown={(e) => {
-                      e.preventDefault()
-                      handleOptionSelect(opt)
-                    }}
-                    onMouseEnter={() => setHighlightedIndex(i)}
-                  >
-                    {getOptionLabel(opt)}
-                  </div>
-                ))
+                filteredOptions.map((opt, i) => {
+                  const isSelected = tags.includes(getOptionValue(opt))
+                  return (
+                    <div
+                      key={getOptionValue(opt)}
+                      id={`${id}-option-${i}`}
+                      role="option"
+                      aria-selected={i === highlightedIndex}
+                      className={cn(
+                        'mining-sdk-tag-input__option',
+                        i === highlightedIndex && 'mining-sdk-tag-input__option--highlighted',
+                        isSelected && 'mining-sdk-tag-input__option--selected',
+                      )}
+                      onMouseDown={(e) => {
+                        e.preventDefault()
+                        handleOptionSelect(opt)
+                      }}
+                      onMouseEnter={() => setHighlightedIndex(i)}
+                    >
+                      <span className="mining-sdk-tag-input__option-label">
+                        {getOptionLabel(opt)}
+                      </span>
+                      {isSelected && <CheckIcon className="mining-sdk-tag-input__option-check" />}
+                    </div>
+                  )
+                })
               )}
             </div>
           )}

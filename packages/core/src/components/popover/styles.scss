@@ -24,7 +24,7 @@
     var(--mining-sdk-popover-border, var(--mining-sdk-color-white-transparent, #ffffff1a));
 
   /* Effects */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--mining-sdk-shadow-md);
   border-radius: 4px;
 
   /* Position relative for close button */

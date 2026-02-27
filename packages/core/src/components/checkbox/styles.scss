@@ -8,8 +8,8 @@
 
   all: unset;
   justify-content: center;
-  border: 2px solid var(--mining-sdk-button-secondary-border);
-  background-color: var(--mining-sdk-color-white-transparent);
+  border: 1px solid var(--mining-sdk-button-secondary-border);
+  background-color: transparent;
   cursor: pointer;
   transition: all 200ms ease;
   flex-shrink: 0;
@@ -32,6 +32,7 @@
 
   &[data-state='checked'] {
     border-color: currentColor;
+    background-color: currentColor;
   }
 }
 

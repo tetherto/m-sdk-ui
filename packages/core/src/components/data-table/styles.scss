@@ -8,6 +8,24 @@ $_prefix: mining-sdk-table;
     border: 1px solid var(--mining-sdk-table-border);
     position: relative;
 
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--mining-sdk-color-primary);
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--mining-sdk-color-primary-hover);
+    }
+
     &--empty {
       @include flex_column;
 
@@ -77,6 +95,10 @@ $_prefix: mining-sdk-table;
             user-select: none;
           }
 
+          &.sorted {
+            background-color: var(--mining-sdk-table-header-sorted-bg, var(--mining-sdk-color-white-transparent));
+          }
+
           .#{$_prefix}-header {
             &-content {
               display: flex;
@@ -104,7 +126,7 @@ $_prefix: mining-sdk-table;
           td {
             padding: 16px;
             margin: 0;
-            color: #ffffff;
+            color: var(--mining-sdk-color-white);
             border-spacing: 0;
             font-size: 12px;
             border-bottom: 1px solid var(--mining-sdk-table-row-border);

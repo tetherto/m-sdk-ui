@@ -5,18 +5,34 @@
 @forward './components/status-label/styles.scss';
 
 .mining-sdk-device-explorer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
   &__toolbar {
     @include flex_center;
     align-items: stretch;
     gap: 8px;
     margin: 20px 0;
+    min-width: 0;
 
     &__filter {
+      flex-shrink: 0;
+
       .mining-sdk-list-view-filter__trigger,
       .mining-sdk-badge-wrapper,
       .mining-sdk-button {
         height: 100%;
       }
+    }
+
+    &__search {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__tabs {
+      flex-shrink: 0;
     }
 
     &__tabs-list {
@@ -33,6 +49,8 @@
   }
 
   &__table {
+    width: 100%;
+
     &__cell-wrapper {
       @include flex_align;
       gap: 6px;

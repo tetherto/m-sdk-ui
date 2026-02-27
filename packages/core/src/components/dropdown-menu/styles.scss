@@ -14,7 +14,7 @@
   color: var(--mining-sdk-popover-text, #ffffff);
   border: 1px solid var(--mining-sdk-popover-border, #ffffff1a);
   border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--mining-sdk-shadow-md);
   z-index: 10000;
   padding: 6px 4px;
 
@@ -109,6 +109,6 @@
   color: var(--mining-sdk-popover-text, #ffffff);
   border: 1px solid var(--mining-sdk-popover-border, #ffffff1a);
   border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--mining-sdk-shadow-md);
   padding: 6px 4px;
 }
