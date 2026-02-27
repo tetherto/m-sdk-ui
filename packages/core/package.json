@@ -72,7 +72,9 @@
     "class-variance-authority": "catalog:",
     "clsx": "catalog:",
     "date-fns": "catalog:",
+    "date-fns-tz": "catalog:",
     "lightweight-charts": "catalog:",
+    "lodash": "catalog:",
     "prop-types": "catalog:",
     "react-chartjs-2": "catalog:",
     "react-day-picker": "catalog:",
@@ -80,6 +82,7 @@
   },
   "devDependencies": {
     "@hookform/resolvers": "catalog:",
+    "@types/lodash": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "react": "catalog:",
