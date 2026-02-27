@@ -80,6 +80,7 @@ export const COMPONENT_NAV: SidebarMenuItem[] = [
       { id: 'gauge-chart', label: 'Gauge Chart' },
       { id: 'chart-container', label: 'Chart Container' },
       { id: 'chart-wrapper', label: 'Chart wrapper' },
+      { id: 'lw-line-chart', label: 'Lightweight Line Chart' },
     ],
   },
   {
