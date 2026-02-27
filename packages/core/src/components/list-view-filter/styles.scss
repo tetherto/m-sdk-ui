@@ -10,6 +10,7 @@
 
   &__trigger {
     .mining-sdk-button {
+      border-color: rgba(255, 255, 255, 0.65);
       transition:
         color,
         border-color 200ms ease;
@@ -74,6 +75,31 @@
         border-right: 1px solid var(--mining-sdk-border-default-color);
       }
     }
+  }
+}
+
+/* Portaled dropdown: Cascader panels are rendered inside TagInput's Popover (outside __content). */
+.mining-sdk-tag-input__dropdown:has(.mining-sdk-list-view-filter__cascader-dropdown) {
+  background-color: var(--mining-sdk-color-obsidian);
+  min-width: 0;
+  width: fit-content;
+}
+
+.mining-sdk-list-view-filter__cascader-dropdown {
+  width: fit-content;
+
+  .mining-sdk-cascader__panel {
+    min-height: 0;
+  }
+
+  .mining-sdk-cascader__panel--categories,
+  .mining-sdk-cascader__panel--options,
+  .mining-sdk-cascader__panel--search {
+    background-color: var(--mining-sdk-color-obsidian);
+  }
+
+  .mining-sdk-cascader__panel--options {
+    min-width: 180px;
   }
 }
 

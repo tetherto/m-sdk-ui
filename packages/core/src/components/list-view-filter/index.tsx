@@ -182,6 +182,7 @@ const ListViewFilter = React.forwardRef<HTMLDivElement, ListViewFilterProps>(
                   onChange={handleFiltersChange}
                   multiple
                   placeholder=""
+                  dropdownClassName="mining-sdk-list-view-filter__cascader-dropdown"
                 />
               </div>
             </div>
